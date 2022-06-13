@@ -23,6 +23,7 @@ public class DBHandler extends SQLiteOpenHelper {
     public static String COLUMN_DESCRIPTION = "Description";
     public static String COLUMN_RECIPEID = "RecipeId";
     public static String COLUMN_RECIPEUSERID = "UserId";
+    public static String COLUMN_IMAGEID = "ImageId";
 
     public static int DATABASE_VERSION = 1;
 
@@ -35,7 +36,8 @@ public class DBHandler extends SQLiteOpenHelper {
         String CREATE_TABLE1 = "CREATE TABLE " + ACCOUNTS + "(" + COLUMN_USERNAME
                 + " TEXT," + COLUMN_PASSWORD + " TEXT," + COLUMN_USERID + " TEXT" + ")";
         String CREATE_TABLE2 = "CREATE TABLE " + RECIPES + "(" + COLUMN_RECIPENAME
-                + " TEXT," + COLUMN_DESCRIPTION + " TEXT," + COLUMN_RECIPEID + " TEXT" + ")";
+                + " TEXT," + COLUMN_DESCRIPTION + " TEXT," + COLUMN_RECIPEID + " TEXT," +
+                COLUMN_RECIPEUSERID + " TEXT," + COLUMN_IMAGEID + " TEXT" + ")";
         db.execSQL(CREATE_TABLE1);
         db.execSQL(CREATE_TABLE2);
 
@@ -93,6 +95,7 @@ public class DBHandler extends SQLiteOpenHelper {
             queryData.setDescription(cursor.getString(1));
             queryData.setRecipeId(cursor.getInt(2));
             queryData.setUserId(cursor.getInt(3));
+            queryData.setImage(cursor.getInt(4));
             cursor.close();
         }
         else{
@@ -108,6 +111,7 @@ public class DBHandler extends SQLiteOpenHelper {
         values.put(COLUMN_DESCRIPTION, recipeData.getDescription());
         values.put(COLUMN_RECIPEID, recipeData.getRecipeId());
         values.put(COLUMN_RECIPEUSERID, recipeData.getUserId());
+        values.put(COLUMN_IMAGEID, recipeData.getImage());
 
         SQLiteDatabase db = this.getWritableDatabase();
         db.insert(RECIPES, null, values);
