@@ -19,6 +19,9 @@
         android:testOnly="true"
         android:theme="@style/Theme.MADAssignmentCookverse" >
         <activity
+            android:name="sg.edu.np.mad.mad_assignment_cookverse.MainFragment"
+            android:exported="true" />
+        <activity
             android:name="sg.edu.np.mad.mad_assignment_cookverse.MainActivity"
             android:exported="true" >
             <intent-filter>
