@@ -15,5 +15,6 @@ public class MainActivity extends AppCompatActivity {
         test.setText("Testing repo to get A+ :D");
         TextView test2=findViewById(R.id.test2);
         test2.setText("Hello ash ayrton kok kai and minh");
+        //ayrton testing
     }
 }
