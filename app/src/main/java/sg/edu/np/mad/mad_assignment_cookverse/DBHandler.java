@@ -21,6 +21,8 @@ public class DBHandler extends SQLiteOpenHelper {
     public static String COLUMN_USERNAME = "Username";
     public static String COLUMN_PASSWORD = "Password";
     public static String COLUMN_USERID = "Id";
+    public static String COLUMN_LIKEDRECIPES = "LikedList";
+    public static String COLUMN_CREATEDRECIPES = "CreatedList";
 
     public static String RECIPES = "Recipes";
     public static String COLUMN_RECIPENAME = "RecipeName";
@@ -41,7 +43,8 @@ public class DBHandler extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db){
         String CREATE_TABLE1 = "CREATE TABLE " + ACCOUNTS + "(" + COLUMN_USERID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
-                 + COLUMN_USERNAME + " TEXT," + COLUMN_PASSWORD + " TEXT)";
+                 + COLUMN_USERNAME + " TEXT," + COLUMN_PASSWORD + " TEXT," + COLUMN_LIKEDRECIPES +
+                " TEXT," + COLUMN_CREATEDRECIPES + " TEXT)";
         String CREATE_TABLE2 = "CREATE TABLE " + RECIPES + "(" + COLUMN_RECIPEID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
                 + COLUMN_RECIPENAME + " TEXT," + COLUMN_DESCRIPTION + " TEXT," + COLUMN_RECIPEUSERID
                 + " TEXT," + COLUMN_CUISINES  + " TEXT," + COLUMN_INGREDIENTS  + " TEXT," + COLUMN_LIKES
@@ -58,7 +61,7 @@ public class DBHandler extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public User findUserByName(String username){ //either username or Id is fine but both are necessary before the User class is substantiated
+    public User findUserByName(String username) throws JSONException { //either username or Id is fine but both are necessary before the User class is substantiated
         String query = "SELECT * FROM " + ACCOUNTS +
                 " WHERE " + COLUMN_USERNAME + "=\"" + username + "\"";
         SQLiteDatabase db = this.getReadableDatabase();
@@ -70,6 +73,25 @@ public class DBHandler extends SQLiteOpenHelper {
             queryData.setId(cursor.getInt(0));
             queryData.setName(cursor.getString(1));
             queryData.setPassword(cursor.getString(2));
+
+            JSONObject ljson = new JSONObject(cursor.getString(3));
+            JSONArray ljArray = ljson.optJSONArray("unique");
+            ArrayList<String> lList = new ArrayList<String>();
+            for (int i =0;i<ljArray.length();i++){
+                String str_value =ljArray.optString(i);
+                lList.add(str_value);
+            }
+            queryData.setLikedList(lList);
+
+            JSONObject cjson = new JSONObject(cursor.getString(4));
+            JSONArray cjArray = cjson.optJSONArray("unique");
+            ArrayList<String> cList = new ArrayList<String>();
+            for (int i =0;i<cjArray.length();i++){
+                String str_value =cjArray.optString(i);
+                cList.add(str_value);
+            }
+            queryData.setCreatedList(cList);
+
             cursor.close();
         }
         else{
@@ -79,7 +101,7 @@ public class DBHandler extends SQLiteOpenHelper {
         return queryData;
     }
 
-    public User findUserById(int id){
+    public User findUserById(int id) throws JSONException {
         String query = "SELECT * FROM " + ACCOUNTS +
                 " WHERE " + COLUMN_USERID + "=\"" + id + "\"";
         SQLiteDatabase db = this.getReadableDatabase();
@@ -91,6 +113,24 @@ public class DBHandler extends SQLiteOpenHelper {
             queryData.setId(cursor.getInt(0));
             queryData.setName(cursor.getString(1));
             queryData.setPassword(cursor.getString(2));
+
+            JSONObject ljson = new JSONObject(cursor.getString(3));
+            JSONArray ljArray = ljson.optJSONArray("unique");
+            ArrayList<String> lList = new ArrayList<String>();
+            for (int i =0;i<ljArray.length();i++){
+                String str_value =ljArray.optString(i);
+                lList.add(str_value);
+            }
+            queryData.setLikedList(lList);
+
+            JSONObject cjson = new JSONObject(cursor.getString(4));
+            JSONArray cjArray = cjson.optJSONArray("unique");
+            ArrayList<String> cList = new ArrayList<String>();
+            for (int i =0;i<cjArray.length();i++){
+                String str_value =cjArray.optString(i);
+                cList.add(str_value);
+            }
+
             cursor.close();
         }
         else{
@@ -100,18 +140,28 @@ public class DBHandler extends SQLiteOpenHelper {
         return queryData;
     }
 
-    public void addUser(User userData){
+    public void addUser(User userData) throws JSONException {
         ContentValues values = new ContentValues();
         values.put(COLUMN_USERNAME, userData.getName());
         values.put(COLUMN_PASSWORD, userData.getPassword());
         //values.put(COLUMN_USERID, userData.getId()); not necessary due to Integer Primary Key Autoincrementation
+
+        JSONObject ljson = new JSONObject();
+        ljson.put("uniqueArrays", new JSONArray(userData.getLikedList()));
+        String lList = ljson.toString();
+        values.put(COLUMN_LIKEDRECIPES, lList);
+
+        JSONObject cjson = new JSONObject();
+        cjson.put("uniqueArrays", new JSONArray(userData.getCreatedList()));
+        String cList = cjson.toString();
+        values.put(COLUMN_CREATEDRECIPES, cList);
 
         SQLiteDatabase db = this.getWritableDatabase();
         db.insert(ACCOUNTS, null, values);
         db.close();
     }
 
-    public void updateUser(User userData) {
+    public void updateUser(User userData) throws JSONException {
 
         deleteUser(userData.getId());
 
@@ -119,6 +169,16 @@ public class DBHandler extends SQLiteOpenHelper {
         values.put(COLUMN_USERNAME, userData.getName());
         values.put(COLUMN_PASSWORD, userData.getPassword());
         values.put(COLUMN_USERID, userData.getId()); //necessary to avoid auto incrementation
+
+        JSONObject ljson = new JSONObject();
+        ljson.put("uniqueArrays", new JSONArray(userData.getLikedList()));
+        String lList = ljson.toString();
+        values.put(COLUMN_LIKEDRECIPES, lList);
+
+        JSONObject cjson = new JSONObject();
+        cjson.put("uniqueArrays", new JSONArray(userData.getCreatedList()));
+        String cList = cjson.toString();
+        values.put(COLUMN_CREATEDRECIPES, cList);
 
         SQLiteDatabase db = this.getWritableDatabase();
         db.insert(ACCOUNTS, null, values);
