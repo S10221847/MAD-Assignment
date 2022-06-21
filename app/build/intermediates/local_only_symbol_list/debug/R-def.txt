@@ -9,6 +9,7 @@ color teal_700
 color white
 drawable ic_launcher_background
 drawable ic_launcher_foreground
+drawable random_pic
 id bottomNavigationView
 id create
 id discover

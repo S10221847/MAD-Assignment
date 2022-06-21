@@ -1,9 +1,9 @@
 -- Merging decision tree log ---
 manifest
-ADDED from C:\Users\tanko\Desktop\Year 2 sem 1\MAD\MAD-Assignment\app\src\main\AndroidManifest.xml:2:1-26:12
-INJECTED from C:\Users\tanko\Desktop\Year 2 sem 1\MAD\MAD-Assignment\app\src\main\AndroidManifest.xml:2:1-26:12
-INJECTED from C:\Users\tanko\Desktop\Year 2 sem 1\MAD\MAD-Assignment\app\src\main\AndroidManifest.xml:2:1-26:12
-INJECTED from C:\Users\tanko\Desktop\Year 2 sem 1\MAD\MAD-Assignment\app\src\main\AndroidManifest.xml:2:1-26:12
+ADDED from C:\Users\tanko\Desktop\Year 2 sem 1\MAD\MAD-Assignment\app\src\main\AndroidManifest.xml:2:1-27:12
+INJECTED from C:\Users\tanko\Desktop\Year 2 sem 1\MAD\MAD-Assignment\app\src\main\AndroidManifest.xml:2:1-27:12
+INJECTED from C:\Users\tanko\Desktop\Year 2 sem 1\MAD\MAD-Assignment\app\src\main\AndroidManifest.xml:2:1-27:12
+INJECTED from C:\Users\tanko\Desktop\Year 2 sem 1\MAD\MAD-Assignment\app\src\main\AndroidManifest.xml:2:1-27:12
 MERGED from [androidx.databinding:viewbinding:7.1.3] C:\Users\tanko\.gradle\caches\transforms-3\79bbba38c0333ceac137369ab8f72784\transformed\viewbinding-7.1.3\AndroidManifest.xml:17:1-24:12
 MERGED from [com.google.android.material:material:1.6.0] C:\Users\tanko\.gradle\caches\transforms-3\a911bf5df232e3fd12bbd44240a4fea2\transformed\material-1.6.0\AndroidManifest.xml:17:1-26:12
 MERGED from [androidx.constraintlayout:constraintlayout:2.1.4] C:\Users\tanko\.gradle\caches\transforms-3\f06aebf0b0c854b48adfbf120800f602\transformed\constraintlayout-2.1.4\AndroidManifest.xml:2:1-11:12
@@ -44,25 +44,25 @@ MERGED from [androidx.documentfile:documentfile:1.0.0] C:\Users\tanko\.gradle\ca
 MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] C:\Users\tanko\.gradle\caches\transforms-3\23bc2eaa3d335b525ba2ecfef837b657\transformed\localbroadcastmanager-1.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.print:print:1.0.0] C:\Users\tanko\.gradle\caches\transforms-3\58d3fb1b78397bc15eea1568e0b97297\transformed\print-1.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.annotation:annotation-experimental:1.1.0] C:\Users\tanko\.gradle\caches\transforms-3\75868ec7d8db0714374451122b3b1963\transformed\annotation-experimental-1.1.0\AndroidManifest.xml:17:1-24:12
-INJECTED from C:\Users\tanko\Desktop\Year 2 sem 1\MAD\MAD-Assignment\app\src\main\AndroidManifest.xml:2:1-26:12
-INJECTED from C:\Users\tanko\Desktop\Year 2 sem 1\MAD\MAD-Assignment\app\src\main\AndroidManifest.xml:2:1-26:12
-INJECTED from C:\Users\tanko\Desktop\Year 2 sem 1\MAD\MAD-Assignment\app\src\main\AndroidManifest.xml:2:1-26:12
+INJECTED from C:\Users\tanko\Desktop\Year 2 sem 1\MAD\MAD-Assignment\app\src\main\AndroidManifest.xml:2:1-27:12
+INJECTED from C:\Users\tanko\Desktop\Year 2 sem 1\MAD\MAD-Assignment\app\src\main\AndroidManifest.xml:2:1-27:12
+INJECTED from C:\Users\tanko\Desktop\Year 2 sem 1\MAD\MAD-Assignment\app\src\main\AndroidManifest.xml:2:1-27:12
 	package
 		ADDED from C:\Users\tanko\Desktop\Year 2 sem 1\MAD\MAD-Assignment\app\src\main\AndroidManifest.xml:3:5-53
 		INJECTED from C:\Users\tanko\Desktop\Year 2 sem 1\MAD\MAD-Assignment\app\src\main\AndroidManifest.xml
 		INJECTED from C:\Users\tanko\Desktop\Year 2 sem 1\MAD\MAD-Assignment\app\src\main\AndroidManifest.xml
 	android:versionName
 		INJECTED from C:\Users\tanko\Desktop\Year 2 sem 1\MAD\MAD-Assignment\app\src\main\AndroidManifest.xml
-		ADDED from C:\Users\tanko\Desktop\Year 2 sem 1\MAD\MAD-Assignment\app\src\main\AndroidManifest.xml:2:1-26:12
+		ADDED from C:\Users\tanko\Desktop\Year 2 sem 1\MAD\MAD-Assignment\app\src\main\AndroidManifest.xml:2:1-27:12
 		INJECTED from C:\Users\tanko\Desktop\Year 2 sem 1\MAD\MAD-Assignment\app\src\main\AndroidManifest.xml
 	android:versionCode
 		INJECTED from C:\Users\tanko\Desktop\Year 2 sem 1\MAD\MAD-Assignment\app\src\main\AndroidManifest.xml
-		ADDED from C:\Users\tanko\Desktop\Year 2 sem 1\MAD\MAD-Assignment\app\src\main\AndroidManifest.xml:2:1-26:12
+		ADDED from C:\Users\tanko\Desktop\Year 2 sem 1\MAD\MAD-Assignment\app\src\main\AndroidManifest.xml:2:1-27:12
 		INJECTED from C:\Users\tanko\Desktop\Year 2 sem 1\MAD\MAD-Assignment\app\src\main\AndroidManifest.xml
 	xmlns:android
 		ADDED from C:\Users\tanko\Desktop\Year 2 sem 1\MAD\MAD-Assignment\app\src\main\AndroidManifest.xml:2:11-69
 application
-ADDED from C:\Users\tanko\Desktop\Year 2 sem 1\MAD\MAD-Assignment\app\src\main\AndroidManifest.xml:5:5-24:19
+ADDED from C:\Users\tanko\Desktop\Year 2 sem 1\MAD\MAD-Assignment\app\src\main\AndroidManifest.xml:5:5-25:19
 MERGED from [com.google.android.material:material:1.6.0] C:\Users\tanko\.gradle\caches\transforms-3\a911bf5df232e3fd12bbd44240a4fea2\transformed\material-1.6.0\AndroidManifest.xml:24:5-20
 MERGED from [com.google.android.material:material:1.6.0] C:\Users\tanko\.gradle\caches\transforms-3\a911bf5df232e3fd12bbd44240a4fea2\transformed\material-1.6.0\AndroidManifest.xml:24:5-20
 MERGED from [androidx.constraintlayout:constraintlayout:2.1.4] C:\Users\tanko\.gradle\caches\transforms-3\f06aebf0b0c854b48adfbf120800f602\transformed\constraintlayout-2.1.4\AndroidManifest.xml:9:5-20
@@ -98,21 +98,21 @@ ADDED from C:\Users\tanko\Desktop\Year 2 sem 1\MAD\MAD-Assignment\app\src\main\A
 	android:name
 		ADDED from C:\Users\tanko\Desktop\Year 2 sem 1\MAD\MAD-Assignment\app\src\main\AndroidManifest.xml:13:13-41
 activity#sg.edu.np.mad.mad_assignment_cookverse.MainActivity
-ADDED from C:\Users\tanko\Desktop\Year 2 sem 1\MAD\MAD-Assignment\app\src\main\AndroidManifest.xml:15:9-23:20
+ADDED from C:\Users\tanko\Desktop\Year 2 sem 1\MAD\MAD-Assignment\app\src\main\AndroidManifest.xml:16:9-24:20
 	android:exported
-		ADDED from C:\Users\tanko\Desktop\Year 2 sem 1\MAD\MAD-Assignment\app\src\main\AndroidManifest.xml:17:13-36
+		ADDED from C:\Users\tanko\Desktop\Year 2 sem 1\MAD\MAD-Assignment\app\src\main\AndroidManifest.xml:18:13-36
 	android:name
-		ADDED from C:\Users\tanko\Desktop\Year 2 sem 1\MAD\MAD-Assignment\app\src\main\AndroidManifest.xml:16:13-41
+		ADDED from C:\Users\tanko\Desktop\Year 2 sem 1\MAD\MAD-Assignment\app\src\main\AndroidManifest.xml:17:13-41
 intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
-ADDED from C:\Users\tanko\Desktop\Year 2 sem 1\MAD\MAD-Assignment\app\src\main\AndroidManifest.xml:18:13-22:29
+ADDED from C:\Users\tanko\Desktop\Year 2 sem 1\MAD\MAD-Assignment\app\src\main\AndroidManifest.xml:19:13-23:29
 action#android.intent.action.MAIN
-ADDED from C:\Users\tanko\Desktop\Year 2 sem 1\MAD\MAD-Assignment\app\src\main\AndroidManifest.xml:19:17-69
+ADDED from C:\Users\tanko\Desktop\Year 2 sem 1\MAD\MAD-Assignment\app\src\main\AndroidManifest.xml:20:17-69
 	android:name
-		ADDED from C:\Users\tanko\Desktop\Year 2 sem 1\MAD\MAD-Assignment\app\src\main\AndroidManifest.xml:19:25-66
+		ADDED from C:\Users\tanko\Desktop\Year 2 sem 1\MAD\MAD-Assignment\app\src\main\AndroidManifest.xml:20:25-66
 category#android.intent.category.LAUNCHER
-ADDED from C:\Users\tanko\Desktop\Year 2 sem 1\MAD\MAD-Assignment\app\src\main\AndroidManifest.xml:21:17-77
+ADDED from C:\Users\tanko\Desktop\Year 2 sem 1\MAD\MAD-Assignment\app\src\main\AndroidManifest.xml:22:17-77
 	android:name
-		ADDED from C:\Users\tanko\Desktop\Year 2 sem 1\MAD\MAD-Assignment\app\src\main\AndroidManifest.xml:21:27-74
+		ADDED from C:\Users\tanko\Desktop\Year 2 sem 1\MAD\MAD-Assignment\app\src\main\AndroidManifest.xml:22:27-74
 uses-sdk
 INJECTED from C:\Users\tanko\Desktop\Year 2 sem 1\MAD\MAD-Assignment\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from C:\Users\tanko\Desktop\Year 2 sem 1\MAD\MAD-Assignment\app\src\main\AndroidManifest.xml

@@ -11,7 +11,8 @@
         android:theme="@style/Theme.MADAssignmentCookverse">
         <activity
             android:name=".MainFragment"
-            android:exported="false" />
+            android:exported="true" />
+
         <activity
             android:name=".MainActivity"
             android:exported="true">
