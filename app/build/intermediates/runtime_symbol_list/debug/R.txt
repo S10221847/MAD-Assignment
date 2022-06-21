@@ -2864,6 +2864,7 @@ int id profile 0x7f08015b
 int id progress_circular 0x7f08015c
 int id progress_horizontal 0x7f08015d
 int id radio 0x7f08015e
+int id randomText 0x7f0801ef
 int id ratio 0x7f08015f
 int id rectangles 0x7f080160
 int id reverseSawtooth 0x7f080161

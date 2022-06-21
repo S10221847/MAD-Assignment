@@ -16,6 +16,7 @@ id discover
 id frame_layout
 id home
 id profile
+id randomText
 id test
 id test2
 layout activity_main
