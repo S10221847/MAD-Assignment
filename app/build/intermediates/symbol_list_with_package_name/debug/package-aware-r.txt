@@ -2509,6 +2509,7 @@ drawable notification_template_icon_bg
 drawable notification_template_icon_low_bg
 drawable notification_tile_bg
 drawable notify_panel_notification_icon_bg
+drawable pic
 drawable random_pic
 drawable test_custom_background
 drawable test_level_drawable
@@ -2613,6 +2614,8 @@ id bounce
 id bounceBoth
 id bounceEnd
 id bounceStart
+id buttonCancel
+id buttonCreate
 id buttonPanel
 id cache_measures
 id callMeasure
@@ -2650,6 +2653,8 @@ id contentPanel
 id contiguous
 id continuousVelocity
 id coordinator
+id coordinatorLayout
+id coordinatorLayout2
 id cos
 id counterclockwise
 id create
@@ -2693,7 +2698,11 @@ id easeIn
 id easeInOut
 id easeOut
 id east
+id editTextTextEmailAddress
+id editTextTextPassword
 id edit_query
+id editmyEmailAdd
+id editmyPassword
 id edittext_dropdown_editable
 id edittext_dropdown_noneditable
 id elastic
@@ -2743,6 +2752,7 @@ id ifRoom
 id ignore
 id ignoreRequest
 id image
+id imageView
 id immediateStop
 id included
 id info
@@ -2823,6 +2833,7 @@ id mtrl_picker_text_input_range_start
 id mtrl_picker_title_text
 id mtrl_view_tag_bottom_padding
 id multiply
+id myLoginButton
 id navigation_bar_item_active_indicator_view
 id navigation_bar_item_icon_container
 id navigation_bar_item_icon_view
@@ -2963,6 +2974,12 @@ id textSpacerNoButtons
 id textSpacerNoTitle
 id textStart
 id textTop
+id textView
+id textView2
+id textView3
+id textView4
+id textView5
+id textView6
 id text_input_end_icon
 id text_input_error_icon
 id text_input_start_icon
@@ -2993,6 +3010,7 @@ id uniform
 id unlabeled
 id up
 id useLogo
+id userSignup
 id vertical_only
 id view_offset_helper
 id view_transition
@@ -3102,6 +3120,8 @@ layout abc_search_dropdown_item_icons_2line
 layout abc_search_view
 layout abc_select_dialog_material
 layout abc_tooltip
+layout activity_creater_user_page
+layout activity_login_page
 layout activity_main
 layout custom_dialog
 layout design_bottom_navigation_item
