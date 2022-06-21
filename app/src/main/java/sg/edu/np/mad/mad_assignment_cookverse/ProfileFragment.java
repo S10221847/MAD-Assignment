@@ -1,11 +1,25 @@
-package sg.edu.np.mad.mad_assignment_cookverse;
+package sp.edu.np.mad.myapplication;
 
 import android.os.Bundle;
+
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
+
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
-import androidx.fragment.app.Fragment;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.navigation.NavigationBarView;
+
+
+import sg.edu.np.mad.mad_assignment_cookverse.LikedRecipeFragment;
+import sg.edu.np.mad.mad_assignment_cookverse.R;
+import sg.edu.np.mad.mad_assignment_cookverse.UserRecipeFragment;
+import sg.edu.np.mad.mad_assignment_cookverse.databinding.FragmentProfileBinding;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -13,7 +27,7 @@ import androidx.fragment.app.Fragment;
  * create an instance of this fragment.
  */
 public class ProfileFragment extends Fragment {
-
+    FragmentProfileBinding binding;
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -44,7 +58,6 @@ public class ProfileFragment extends Fragment {
         fragment.setArguments(args);
         return fragment;
     }
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,12 +65,33 @@ public class ProfileFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+        binding = FragmentProfileBinding.inflate(getLayoutInflater());
+        replaceFragment(new UserRecipeFragment());
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_profile, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_profile, container, false);
+        BottomNavigationView BNV = (BottomNavigationView) rootView.findViewById(R.id.bottomNavigationView2);
+        BNV.setOnItemSelectedListener(item -> {
+            switch (item.getItemId()){
+                case R.id.personal:
+                    replaceFragment(new UserRecipeFragment());
+                    break;
+                case R.id.liked:
+                    replaceFragment(new LikedRecipeFragment());
+                    break;
+            }
+            return true;
+        });
+        return rootView;
+    }
+    private void replaceFragment(Fragment fragment){
+        FragmentManager fragmentManager = getChildFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.FRAGMENT_PLACEHOLDER, fragment);
+        fragmentTransaction.commit();
     }
 }

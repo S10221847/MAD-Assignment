@@ -2509,6 +2509,7 @@ drawable notification_template_icon_bg
 drawable notification_template_icon_low_bg
 drawable notification_tile_bg
 drawable notify_panel_notification_icon_bg
+drawable pfp
 drawable pic
 drawable random_pic
 drawable test_custom_background
@@ -2519,6 +2520,7 @@ id ALT
 id BOTTOM_END
 id BOTTOM_START
 id CTRL
+id FRAGMENT_PLACEHOLDER
 id FUNCTION
 id META
 id NO_DEBUG
@@ -2607,9 +2609,11 @@ id baseline
 id beginOnFirstDraw
 id beginning
 id bestChoice
+id bio
 id blocking
 id bottom
 id bottomNavigationView
+id bottomNavigationView2
 id bounce
 id bounceBoth
 id bounceEnd
@@ -2726,6 +2730,8 @@ id fitXY
 id fixed
 id flip
 id floating
+id followers
+id followings
 id forever
 id fragment_container_view_tag
 id frame_layout
@@ -2753,6 +2759,7 @@ id ignore
 id ignoreRequest
 id image
 id imageView
+id imageView3
 id immediateStop
 id included
 id info
@@ -2771,9 +2778,11 @@ id layout
 id left
 id leftToRight
 id legacy
+id liked
 id line1
 id line3
 id linear
+id linearLayout
 id listMode
 id list_item
 id masked
@@ -2869,9 +2878,11 @@ id path
 id pathRelative
 id peekHeight
 id percent
+id personal
 id pin
 id position
 id postLayout
+id posts
 id profile
 id progress_circular
 id progress_horizontal
@@ -2980,6 +2991,7 @@ id textView3
 id textView4
 id textView5
 id textView6
+id textView7
 id text_input_end_icon
 id text_input_error_icon
 id text_input_start_icon
@@ -3010,6 +3022,7 @@ id uniform
 id unlabeled
 id up
 id useLogo
+id userName
 id userSignup
 id vertical_only
 id view_offset_helper
@@ -3142,8 +3155,10 @@ layout design_text_input_start_icon
 layout fragment_create
 layout fragment_discover
 layout fragment_home
+layout fragment_liked_recipe
 layout fragment_main
 layout fragment_profile
+layout fragment_user_recipe
 layout m3_alert_dialog
 layout m3_alert_dialog_actions
 layout m3_alert_dialog_title
@@ -3221,6 +3236,7 @@ layout text_view_without_line_height
 menu bottom_nav_menu
 menu example_menu
 menu example_menu2
+menu profile_nav_menu
 mipmap ic_launcher
 mipmap ic_launcher_round
 plurals mtrl_badge_content_description

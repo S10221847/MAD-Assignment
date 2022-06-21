@@ -8,6 +8,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import sg.edu.np.mad.mad_assignment_cookverse.databinding.FragmentMainBinding;
+import sp.edu.np.mad.myapplication.ProfileFragment;
 
 public class MainFragment extends AppCompatActivity {
     FragmentMainBinding binding;
