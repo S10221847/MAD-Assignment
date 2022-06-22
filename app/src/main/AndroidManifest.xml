@@ -13,7 +13,9 @@
         <activity
             android:name=".MainFragment"
             android:exported="true" />
-
+        <activity
+            android:name=".createUserPage"
+            android:exported="true" />
 
         <activity
             android:name=".MainActivity"

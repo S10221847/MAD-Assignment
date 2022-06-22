@@ -22,6 +22,9 @@
             android:name="sg.edu.np.mad.mad_assignment_cookverse.MainFragment"
             android:exported="true" />
         <activity
+            android:name="sg.edu.np.mad.mad_assignment_cookverse.createUserPage"
+            android:exported="true" />
+        <activity
             android:name="sg.edu.np.mad.mad_assignment_cookverse.MainActivity"
             android:exported="true" >
             <intent-filter>
