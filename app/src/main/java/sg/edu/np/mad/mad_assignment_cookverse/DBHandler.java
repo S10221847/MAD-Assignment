@@ -215,6 +215,28 @@ public class DBHandler extends SQLiteOpenHelper {
         }
         db.close();
     }
+
+    public ArrayList<User> listUser(){
+        String query = "SELECT * FROM " + RECIPES;
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(query, null);
+
+        User queryData = new User();
+        ArrayList<User> uList = new ArrayList<>();
+        if (cursor.moveToFirst()) {
+            do {
+                queryData.setId(cursor.getInt(0));
+                queryData.setName(cursor.getString(1));
+                queryData.setPassword(cursor.getString(2));
+                uList.add(queryData);
+
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+
+        return uList;
+    }
+
     public Recipe findRecipe(int recipeID){
         String query = "SELECT * FROM " + RECIPES +
                 " WHERE " + COLUMN_RECIPEID + "=\"" + recipeID + "\"";
@@ -328,5 +350,28 @@ public class DBHandler extends SQLiteOpenHelper {
             cursor.close();
         }
         db.close();
+    }
+
+    public ArrayList<Recipe> listRecipe(){
+        String query = "SELECT * FROM " + RECIPES;
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(query, null);
+
+        Recipe queryData = new Recipe();
+        ArrayList<Recipe> rList = new ArrayList<>();
+        if (cursor.moveToFirst()) {
+            do {
+                queryData.setRecipeId(cursor.getInt(0));
+                queryData.setName(cursor.getString(1));
+                queryData.setDescription(cursor.getString(2));
+                queryData.setUserId(cursor.getInt(3));
+                queryData.setNoOfLikes(cursor.getInt(4));
+                rList.add(queryData);
+
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+
+        return rList;
     }
 }
