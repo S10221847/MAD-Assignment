@@ -51,6 +51,20 @@ public class DBHandler extends SQLiteOpenHelper {
                 + /*" TEXT," + COLUMN_IMAGEID +*/ " TEXT)";
         db.execSQL(CREATE_TABLE1);
         db.execSQL(CREATE_TABLE2);
+
+        addDefaultRecipes(db);
+    }
+
+    public void addDefaultRecipes(SQLiteDatabase db) {
+        // create default Recipes
+        ContentValues values = new ContentValues();
+        values.put(COLUMN_RECIPENAME, "Farro Salad with Asparagus and Parmesan");
+        //values.put(COLUMN_DESCRIPTION, recipeData.getDescription());
+        // values.put(COLUMN_RECIPEID, recipeData.getRecipeId()); Primary Key Autoincrement
+        //values.put(COLUMN_RECIPEUSERID, recipeData.getUserId());
+        values.put(COLUMN_LIKES, 0);
+
+        db.insert(RECIPES, null, values);
     }
 
     @Override

@@ -30,7 +30,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_page);
 
-        //createInitialRecipe();
         //setRecipeTest();
 
         TextView newUser = findViewById(R.id.userSignup);
@@ -79,7 +78,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void setRecipeTest(){
         TextView myText = findViewById(R.id.RecipeTest);
-        myText.setText(dbHandler.findRecipe(0).getName());
+        myText.setText(dbHandler.findRecipe(1).getName());
     }
 
     public void createInitialRecipe() {
