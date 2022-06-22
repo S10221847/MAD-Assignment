@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="sg.edu.np.mad.mad_assignment_cookverse">
 
     <application
@@ -11,7 +12,14 @@
         android:theme="@style/Theme.MADAssignmentCookverse">
         <activity
             android:name=".MainFragment"
-            android:exported="true" />
+            android:exported="false" />
+        <activity
+            android:name=".createUserPage"
+            android:exported="false" />
+        <activity
+            android:name=".HomeFragment"
+            android:exported="false"
+            tools:ignore="Instantiatable" />
 
         <activity
             android:name=".MainActivity"

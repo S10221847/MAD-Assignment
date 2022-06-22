@@ -13,7 +13,7 @@ import org.json.JSONException;
 
 public class createUserPage extends AppCompatActivity {
     public String TAG = "Create User Page";
-    public String MY_EMAIL_ADDRESS = "MyEmailAddress";
+    public String MY_USERNAME = "MyUsername";
     public String MY_PASSWORD = "MyPassword";
     DBHandler dbHandler = new DBHandler(this,null,null,1);
 
@@ -21,18 +21,17 @@ public class createUserPage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_creater_user_page);
 
-        EditText myCreateEmailAddress = findViewById(R.id.editmyEmailAdd);
+        EditText myCreateUsername = findViewById(R.id.editmyEmailAdd);
         EditText myCreatePassword = findViewById(R.id.editmyPassword);
 
         Button myButtonCreate = findViewById(R.id.buttonCreate);
         myButtonCreate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                User userDBData = null;
-                userDBData = dbHandler.findUserByName(myCreateEmailAddress.getText().toString());
+                User userDBData = dbHandler.findUserByName(myCreateUsername.getText().toString());
                 if (userDBData == null) {
                     User userDataDB = new User();
-                    userDataDB.setName(myCreateEmailAddress.getText().toString());
+                    userDataDB.setName(myCreateUsername.getText().toString());
                     userDataDB.setPassword((myCreatePassword.getText().toString()));
                     /*userDataDB.setLikedList(null);
                     userDataDB.setCreatedList(null);*/
