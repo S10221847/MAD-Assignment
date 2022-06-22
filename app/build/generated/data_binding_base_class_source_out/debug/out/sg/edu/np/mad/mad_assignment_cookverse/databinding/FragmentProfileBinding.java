@@ -5,24 +5,83 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.viewbinding.ViewBinding;
+import androidx.viewbinding.ViewBindings;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import java.lang.NullPointerException;
 import java.lang.Override;
+import java.lang.String;
 import sg.edu.np.mad.mad_assignment_cookverse.R;
 
 public final class FragmentProfileBinding implements ViewBinding {
   @NonNull
-  private final FrameLayout rootView;
+  private final ConstraintLayout rootView;
 
-  private FragmentProfileBinding(@NonNull FrameLayout rootView) {
+  @NonNull
+  public final FrameLayout FRAGMENTPLACEHOLDER;
+
+  @NonNull
+  public final TextView bio;
+
+  @NonNull
+  public final BottomNavigationView bottomNavigationView2;
+
+  @NonNull
+  public final TextView followers;
+
+  @NonNull
+  public final TextView followings;
+
+  @NonNull
+  public final ImageView imageView3;
+
+  @NonNull
+  public final ConstraintLayout linearLayout;
+
+  @NonNull
+  public final TextView posts;
+
+  @NonNull
+  public final TextView textView2;
+
+  @NonNull
+  public final TextView textView4;
+
+  @NonNull
+  public final TextView textView7;
+
+  @NonNull
+  public final TextView userName;
+
+  private FragmentProfileBinding(@NonNull ConstraintLayout rootView,
+      @NonNull FrameLayout FRAGMENTPLACEHOLDER, @NonNull TextView bio,
+      @NonNull BottomNavigationView bottomNavigationView2, @NonNull TextView followers,
+      @NonNull TextView followings, @NonNull ImageView imageView3,
+      @NonNull ConstraintLayout linearLayout, @NonNull TextView posts, @NonNull TextView textView2,
+      @NonNull TextView textView4, @NonNull TextView textView7, @NonNull TextView userName) {
     this.rootView = rootView;
+    this.FRAGMENTPLACEHOLDER = FRAGMENTPLACEHOLDER;
+    this.bio = bio;
+    this.bottomNavigationView2 = bottomNavigationView2;
+    this.followers = followers;
+    this.followings = followings;
+    this.imageView3 = imageView3;
+    this.linearLayout = linearLayout;
+    this.posts = posts;
+    this.textView2 = textView2;
+    this.textView4 = textView4;
+    this.textView7 = textView7;
+    this.userName = userName;
   }
 
   @Override
   @NonNull
-  public FrameLayout getRoot() {
+  public ConstraintLayout getRoot() {
     return rootView;
   }
 
@@ -43,10 +102,83 @@ public final class FragmentProfileBinding implements ViewBinding {
 
   @NonNull
   public static FragmentProfileBinding bind(@NonNull View rootView) {
-    if (rootView == null) {
-      throw new NullPointerException("rootView");
-    }
+    // The body of this method is generated in a way you would not otherwise write.
+    // This is done to optimize the compiled bytecode for size and performance.
+    int id;
+    missingId: {
+      id = R.id.FRAGMENT_PLACEHOLDER;
+      FrameLayout FRAGMENTPLACEHOLDER = ViewBindings.findChildViewById(rootView, id);
+      if (FRAGMENTPLACEHOLDER == null) {
+        break missingId;
+      }
 
-    return new FragmentProfileBinding((FrameLayout) rootView);
+      id = R.id.bio;
+      TextView bio = ViewBindings.findChildViewById(rootView, id);
+      if (bio == null) {
+        break missingId;
+      }
+
+      id = R.id.bottomNavigationView2;
+      BottomNavigationView bottomNavigationView2 = ViewBindings.findChildViewById(rootView, id);
+      if (bottomNavigationView2 == null) {
+        break missingId;
+      }
+
+      id = R.id.followers;
+      TextView followers = ViewBindings.findChildViewById(rootView, id);
+      if (followers == null) {
+        break missingId;
+      }
+
+      id = R.id.followings;
+      TextView followings = ViewBindings.findChildViewById(rootView, id);
+      if (followings == null) {
+        break missingId;
+      }
+
+      id = R.id.imageView3;
+      ImageView imageView3 = ViewBindings.findChildViewById(rootView, id);
+      if (imageView3 == null) {
+        break missingId;
+      }
+
+      ConstraintLayout linearLayout = (ConstraintLayout) rootView;
+
+      id = R.id.posts;
+      TextView posts = ViewBindings.findChildViewById(rootView, id);
+      if (posts == null) {
+        break missingId;
+      }
+
+      id = R.id.textView2;
+      TextView textView2 = ViewBindings.findChildViewById(rootView, id);
+      if (textView2 == null) {
+        break missingId;
+      }
+
+      id = R.id.textView4;
+      TextView textView4 = ViewBindings.findChildViewById(rootView, id);
+      if (textView4 == null) {
+        break missingId;
+      }
+
+      id = R.id.textView7;
+      TextView textView7 = ViewBindings.findChildViewById(rootView, id);
+      if (textView7 == null) {
+        break missingId;
+      }
+
+      id = R.id.userName;
+      TextView userName = ViewBindings.findChildViewById(rootView, id);
+      if (userName == null) {
+        break missingId;
+      }
+
+      return new FragmentProfileBinding((ConstraintLayout) rootView, FRAGMENTPLACEHOLDER, bio,
+          bottomNavigationView2, followers, followings, imageView3, linearLayout, posts, textView2,
+          textView4, textView7, userName);
+    }
+    String missingId = rootView.getResources().getResourceName(id);
+    throw new NullPointerException("Missing required view with ID: ".concat(missingId));
   }
 }
