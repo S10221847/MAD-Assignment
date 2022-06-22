@@ -32,25 +32,19 @@ public final class FragmentProfileBinding implements ViewBinding {
   public final BottomNavigationView bottomNavigationView2;
 
   @NonNull
-  public final TextView followers;
-
-  @NonNull
-  public final TextView followings;
-
-  @NonNull
   public final ImageView imageView3;
+
+  @NonNull
+  public final TextView likedReci;
 
   @NonNull
   public final ConstraintLayout linearLayout;
 
   @NonNull
-  public final TextView posts;
+  public final TextView personalReci;
 
   @NonNull
   public final TextView textView2;
-
-  @NonNull
-  public final TextView textView4;
 
   @NonNull
   public final TextView textView7;
@@ -60,21 +54,19 @@ public final class FragmentProfileBinding implements ViewBinding {
 
   private FragmentProfileBinding(@NonNull ConstraintLayout rootView,
       @NonNull FrameLayout FRAGMENTPLACEHOLDER, @NonNull TextView bio,
-      @NonNull BottomNavigationView bottomNavigationView2, @NonNull TextView followers,
-      @NonNull TextView followings, @NonNull ImageView imageView3,
-      @NonNull ConstraintLayout linearLayout, @NonNull TextView posts, @NonNull TextView textView2,
-      @NonNull TextView textView4, @NonNull TextView textView7, @NonNull TextView userName) {
+      @NonNull BottomNavigationView bottomNavigationView2, @NonNull ImageView imageView3,
+      @NonNull TextView likedReci, @NonNull ConstraintLayout linearLayout,
+      @NonNull TextView personalReci, @NonNull TextView textView2, @NonNull TextView textView7,
+      @NonNull TextView userName) {
     this.rootView = rootView;
     this.FRAGMENTPLACEHOLDER = FRAGMENTPLACEHOLDER;
     this.bio = bio;
     this.bottomNavigationView2 = bottomNavigationView2;
-    this.followers = followers;
-    this.followings = followings;
     this.imageView3 = imageView3;
+    this.likedReci = likedReci;
     this.linearLayout = linearLayout;
-    this.posts = posts;
+    this.personalReci = personalReci;
     this.textView2 = textView2;
-    this.textView4 = textView4;
     this.textView7 = textView7;
     this.userName = userName;
   }
@@ -124,41 +116,29 @@ public final class FragmentProfileBinding implements ViewBinding {
         break missingId;
       }
 
-      id = R.id.followers;
-      TextView followers = ViewBindings.findChildViewById(rootView, id);
-      if (followers == null) {
-        break missingId;
-      }
-
-      id = R.id.followings;
-      TextView followings = ViewBindings.findChildViewById(rootView, id);
-      if (followings == null) {
-        break missingId;
-      }
-
       id = R.id.imageView3;
       ImageView imageView3 = ViewBindings.findChildViewById(rootView, id);
       if (imageView3 == null) {
         break missingId;
       }
 
+      id = R.id.likedReci;
+      TextView likedReci = ViewBindings.findChildViewById(rootView, id);
+      if (likedReci == null) {
+        break missingId;
+      }
+
       ConstraintLayout linearLayout = (ConstraintLayout) rootView;
 
-      id = R.id.posts;
-      TextView posts = ViewBindings.findChildViewById(rootView, id);
-      if (posts == null) {
+      id = R.id.personalReci;
+      TextView personalReci = ViewBindings.findChildViewById(rootView, id);
+      if (personalReci == null) {
         break missingId;
       }
 
       id = R.id.textView2;
       TextView textView2 = ViewBindings.findChildViewById(rootView, id);
       if (textView2 == null) {
-        break missingId;
-      }
-
-      id = R.id.textView4;
-      TextView textView4 = ViewBindings.findChildViewById(rootView, id);
-      if (textView4 == null) {
         break missingId;
       }
 
@@ -175,8 +155,8 @@ public final class FragmentProfileBinding implements ViewBinding {
       }
 
       return new FragmentProfileBinding((ConstraintLayout) rootView, FRAGMENTPLACEHOLDER, bio,
-          bottomNavigationView2, followers, followings, imageView3, linearLayout, posts, textView2,
-          textView4, textView7, userName);
+          bottomNavigationView2, imageView3, likedReci, linearLayout, personalReci, textView2,
+          textView7, userName);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

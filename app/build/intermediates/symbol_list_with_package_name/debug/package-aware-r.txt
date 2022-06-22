@@ -2732,8 +2732,6 @@ id fitXY
 id fixed
 id flip
 id floating
-id followers
-id followings
 id forever
 id fragment_container_view_tag
 id frame_layout
@@ -2781,6 +2779,7 @@ id left
 id leftToRight
 id legacy
 id liked
+id likedReci
 id line1
 id line3
 id linear
@@ -2881,10 +2880,10 @@ id pathRelative
 id peekHeight
 id percent
 id personal
+id personalReci
 id pin
 id position
 id postLayout
-id posts
 id profile
 id progress_circular
 id progress_horizontal
