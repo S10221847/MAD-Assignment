@@ -30,12 +30,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_page);
 
-        /*try {
-            createInitialDatabase();
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }*/
-
         TextView newUser = findViewById(R.id.userSignup);
         newUser.setOnTouchListener(new View.OnTouchListener() {
             @Override
@@ -78,13 +72,11 @@ public class MainActivity extends AppCompatActivity {
         }
         return false;
     }
-    /*ImageView myImage = findViewById(R.id.imageView);*/
 
     public void createInitialDatabase() throws JSONException {
 
         Recipe recipeData = new Recipe(); //1st Recipe, should automatically be assigned incremented primary key
         recipeData.setName("Farro Salad with Asparagus and Parmesan");
-        recipeData.setImage('1');
         recipeData.setNoOfLikes(0);
         recipeData.setDescription("A light and delicious way to get your whole grains. Perfect salad for picnics, baby or bridal showers or just because!\n" +
                 "prep: 20 mins \n" +
@@ -106,10 +98,10 @@ public class MainActivity extends AppCompatActivity {
                 "Step 2: Fill a large pot with lightly salted water and bring to a rolling boil over high heat. Once the water is boiling, stir in the drained farro, and return to a boil. Reduce heat to medium, then cook the farro uncovered, stirring occasionally for 20 minutes. Reduce heat to low, cover, and continue simmering until tender, about 30 more minutes. Drain and allow to cool.\n" +
                 "Step 3: Bring a large pot of lightly salted water to a boil. Add the asparagus, and cook uncovered until tender, about 3 minutes. Drain in a colander, then immediately immerse in ice water for several minutes until cold to stop the cooking process. Once the asparagus is cold, drain well, and chop. Set aside.\n" +
                 "Step 4: Place farro, asparagus, tomatoes, walnuts, cranberries, parsley, and chives in a large bowl. Drizzle the balsamic vinaigrette over and sprinkle about 3/4 cups Parmesan cheese, then toss. Top with the remaining 1/4 cup of Parmesan cheese. Serve at room temperature.\n");
-        ArrayList<String> iList = new ArrayList<String>(Arrays.asList("Farro", "Asparagus", "Red and Yellow Cherry Tomatoes", "Walnuts", "Cranberries", "Parsley", "Chives", "Balsamic Vinaigrette", "Parmesan Cheese"));
+        /*ArrayList<String> iList = new ArrayList<String>(Arrays.asList("Farro", "Asparagus", "Red and Yellow Cherry Tomatoes", "Walnuts", "Cranberries", "Parsley", "Chives", "Balsamic Vinaigrette", "Parmesan Cheese"));
         recipeData.setIngredientList(iList);
         ArrayList<String> cList = new ArrayList<String>(Arrays.asList("Greek", "Italian"));
-        recipeData.setCuisineList(cList);
+        recipeData.setCuisineList(cList);*/
         //recipeData.setUserId(); only use when recipe is created by User, otherwise should automatically be null
         dbHandler.addRecipe(recipeData);
     }

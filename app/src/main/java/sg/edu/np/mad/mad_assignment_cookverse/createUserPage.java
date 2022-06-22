@@ -29,22 +29,14 @@ public class createUserPage extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 User userDBData = null;
-                try {
-                    userDBData = dbHandler.findUserByName(myCreateEmailAddress.getText().toString());
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
+                userDBData = dbHandler.findUserByName(myCreateEmailAddress.getText().toString());
                 if (userDBData == null) {
                     User userDataDB = new User();
                     userDataDB.setName(myCreateEmailAddress.getText().toString());
                     userDataDB.setPassword((myCreatePassword.getText().toString()));
-                    userDataDB.setLikedList(null);
-                    userDataDB.setCreatedList(null);
-                    try {
-                        dbHandler.addUser(userDataDB);
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
+                    /*userDataDB.setLikedList(null);
+                    userDataDB.setCreatedList(null);*/
+                    dbHandler.addUser(userDataDB);
                     Toast.makeText(createUserPage.this, "Account Created Successfully.", Toast.LENGTH_SHORT).show();
 
                     Intent myCreateIntent = new Intent(createUserPage.this, MainActivity.class);

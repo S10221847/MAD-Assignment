@@ -9,11 +9,11 @@ public class Recipe {
     private String description;
     private int recipeid;
     private int userid;
-    private List<String> cuisineList;
-    private List<String> ingredientList;
+    /*private List<String> cuisineList;
+    private List<String> ingredientList;*/
     private int nooflikes;
-    @DrawableRes
-    private int image; //represents drawable ID for image from res folder
+    /*@DrawableRes
+    private int image; //represents drawable ID for image from res folder*/
 
     public String getName() {
         return name;
@@ -45,7 +45,7 @@ public class Recipe {
         this.userid = userid;
     }
 
-    @DrawableRes
+    /*@DrawableRes
     public int getImage() {return image;}
 
     public void setImage(@DrawableRes int image){this.image = image;}
@@ -56,7 +56,7 @@ public class Recipe {
 
     public List<String> getIngredientList() { return ingredientList; }
 
-    public void setIngredientList(List<String> ingredientList) { this.ingredientList = ingredientList; }
+    public void setIngredientList(List<String> ingredientList) { this.ingredientList = ingredientList; }*/
 
     public int getNoOfLikes() { return nooflikes; }
 
