@@ -30,7 +30,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_page);
 
-        createInitialRecipe();
+        //createInitialRecipe();
+        //setRecipeTest();
 
         TextView newUser = findViewById(R.id.userSignup);
         newUser.setOnTouchListener(new View.OnTouchListener() {
@@ -76,12 +77,17 @@ public class MainActivity extends AppCompatActivity {
         return false;
     }
 
+    public void setRecipeTest(){
+        TextView myText = findViewById(R.id.RecipeTest);
+        myText.setText(dbHandler.findRecipe(0).getName());
+    }
+
     public void createInitialRecipe() {
 
         Recipe recipeData = new Recipe(); //1st Recipe, should automatically be assigned incremented primary key
         recipeData.setName("Farro Salad with Asparagus and Parmesan");
         recipeData.setNoOfLikes(0);
-        recipeData.setDescription("A light and delicious way to get your whole grains. Perfect salad for picnics, baby or bridal showers or just because!\n" +
+        /*recipeData.setDescription("A light and delicious way to get your whole grains. Perfect salad for picnics, baby or bridal showers or just because!\n" +
                 "prep: 20 mins \n" +
                 "\n" +
                 "cook: 55 mins \n" +
@@ -100,7 +106,7 @@ public class MainActivity extends AppCompatActivity {
                 "Step 1: Soak farro in a large bowl of water for at least 12 hours. Drain.\n" +
                 "Step 2: Fill a large pot with lightly salted water and bring to a rolling boil over high heat. Once the water is boiling, stir in the drained farro, and return to a boil. Reduce heat to medium, then cook the farro uncovered, stirring occasionally for 20 minutes. Reduce heat to low, cover, and continue simmering until tender, about 30 more minutes. Drain and allow to cool.\n" +
                 "Step 3: Bring a large pot of lightly salted water to a boil. Add the asparagus, and cook uncovered until tender, about 3 minutes. Drain in a colander, then immediately immerse in ice water for several minutes until cold to stop the cooking process. Once the asparagus is cold, drain well, and chop. Set aside.\n" +
-                "Step 4: Place farro, asparagus, tomatoes, walnuts, cranberries, parsley, and chives in a large bowl. Drizzle the balsamic vinaigrette over and sprinkle about 3/4 cups Parmesan cheese, then toss. Top with the remaining 1/4 cup of Parmesan cheese. Serve at room temperature.\n");
+                "Step 4: Place farro, asparagus, tomatoes, walnuts, cranberries, parsley, and chives in a large bowl. Drizzle the balsamic vinaigrette over and sprinkle about 3/4 cups Parmesan cheese, then toss. Top with the remaining 1/4 cup of Parmesan cheese. Serve at room temperature.\n");*/
         /*ArrayList<String> iList = new ArrayList<String>(Arrays.asList("Farro", "Asparagus", "Red and Yellow Cherry Tomatoes", "Walnuts", "Cranberries", "Parsley", "Chives", "Balsamic Vinaigrette", "Parmesan Cheese"));
         recipeData.setIngredientList(iList);
         ArrayList<String> cList = new ArrayList<String>(Arrays.asList("Greek", "Italian"));

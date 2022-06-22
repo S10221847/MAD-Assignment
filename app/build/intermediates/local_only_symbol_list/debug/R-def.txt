@@ -9,10 +9,13 @@ color teal_700
 color white
 drawable ic_launcher_background
 drawable ic_launcher_foreground
+drawable ic_search
 drawable pfp
 drawable pic
 drawable random_pic
 id FRAGMENT_PLACEHOLDER
+id RecipeTest
+id action_search
 id bio
 id bottomNavigationView
 id bottomNavigationView2
@@ -62,6 +65,7 @@ layout fragment_profile
 layout fragment_user_recipe
 menu bottom_nav_menu
 menu profile_nav_menu
+menu search_menu
 mipmap ic_launcher
 mipmap ic_launcher_round
 string app_name
