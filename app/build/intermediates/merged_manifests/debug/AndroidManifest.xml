@@ -20,10 +20,7 @@
         android:theme="@style/Theme.MADAssignmentCookverse" >
         <activity
             android:name="sg.edu.np.mad.mad_assignment_cookverse.MainFragment"
-            android:exported="false" />
-        <activity
-            android:name="sg.edu.np.mad.mad_assignment_cookverse.createUserPage"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name="sg.edu.np.mad.mad_assignment_cookverse.MainActivity"
             android:exported="true" >
