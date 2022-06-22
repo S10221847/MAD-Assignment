@@ -31,10 +31,10 @@ public final class ActivityCreaterUserPageBinding implements ViewBinding {
   public final ConstraintLayout coordinatorLayout2;
 
   @NonNull
-  public final EditText editTextTextEmailAddress;
+  public final EditText editPassword;
 
   @NonNull
-  public final EditText editTextTextPassword;
+  public final EditText editUsername;
 
   @NonNull
   public final TextView textView4;
@@ -47,15 +47,15 @@ public final class ActivityCreaterUserPageBinding implements ViewBinding {
 
   private ActivityCreaterUserPageBinding(@NonNull ConstraintLayout rootView,
       @NonNull Button buttonCancel, @NonNull Button buttonCreate,
-      @NonNull ConstraintLayout coordinatorLayout2, @NonNull EditText editTextTextEmailAddress,
-      @NonNull EditText editTextTextPassword, @NonNull TextView textView4,
-      @NonNull TextView textView5, @NonNull TextView textView6) {
+      @NonNull ConstraintLayout coordinatorLayout2, @NonNull EditText editPassword,
+      @NonNull EditText editUsername, @NonNull TextView textView4, @NonNull TextView textView5,
+      @NonNull TextView textView6) {
     this.rootView = rootView;
     this.buttonCancel = buttonCancel;
     this.buttonCreate = buttonCreate;
     this.coordinatorLayout2 = coordinatorLayout2;
-    this.editTextTextEmailAddress = editTextTextEmailAddress;
-    this.editTextTextPassword = editTextTextPassword;
+    this.editPassword = editPassword;
+    this.editUsername = editUsername;
     this.textView4 = textView4;
     this.textView5 = textView5;
     this.textView6 = textView6;
@@ -102,15 +102,15 @@ public final class ActivityCreaterUserPageBinding implements ViewBinding {
 
       ConstraintLayout coordinatorLayout2 = (ConstraintLayout) rootView;
 
-      id = R.id.editTextTextEmailAddress;
-      EditText editTextTextEmailAddress = ViewBindings.findChildViewById(rootView, id);
-      if (editTextTextEmailAddress == null) {
+      id = R.id.editPassword;
+      EditText editPassword = ViewBindings.findChildViewById(rootView, id);
+      if (editPassword == null) {
         break missingId;
       }
 
-      id = R.id.editTextTextPassword;
-      EditText editTextTextPassword = ViewBindings.findChildViewById(rootView, id);
-      if (editTextTextPassword == null) {
+      id = R.id.editUsername;
+      EditText editUsername = ViewBindings.findChildViewById(rootView, id);
+      if (editUsername == null) {
         break missingId;
       }
 
@@ -133,8 +133,8 @@ public final class ActivityCreaterUserPageBinding implements ViewBinding {
       }
 
       return new ActivityCreaterUserPageBinding((ConstraintLayout) rootView, buttonCancel,
-          buttonCreate, coordinatorLayout2, editTextTextEmailAddress, editTextTextPassword,
-          textView4, textView5, textView6);
+          buttonCreate, coordinatorLayout2, editPassword, editUsername, textView4, textView5,
+          textView6);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

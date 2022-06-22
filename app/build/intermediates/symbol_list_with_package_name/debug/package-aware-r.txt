@@ -2702,8 +2702,8 @@ id easeIn
 id easeInOut
 id easeOut
 id east
-id editTextTextEmailAddress
-id editTextTextPassword
+id editPassword
+id editUsername
 id edit_query
 id editmyEmailAdd
 id editmyPassword

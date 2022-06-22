@@ -2701,8 +2701,8 @@ int id easeIn 0x7f0800b6
 int id easeInOut 0x7f0800b7
 int id easeOut 0x7f0800b8
 int id east 0x7f0800b9
-int id editTextTextEmailAddress 0x7f0800ba
-int id editTextTextPassword 0x7f0800bb
+int id editPassword 0x7f08020d
+int id editUsername 0x7f08020e
 int id edit_query 0x7f0800bc
 int id editmyEmailAdd 0x7f0800bd
 int id editmyPassword 0x7f0800be

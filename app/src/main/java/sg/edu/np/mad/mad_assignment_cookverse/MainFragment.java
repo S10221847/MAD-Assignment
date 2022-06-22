@@ -12,6 +12,8 @@ import sp.edu.np.mad.myapplication.ProfileFragment;
 
 public class MainFragment extends AppCompatActivity {
     FragmentMainBinding binding;
+    DBHandler dbHandler = new DBHandler(this, null, null, 1);
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

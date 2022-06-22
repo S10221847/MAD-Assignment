@@ -1,5 +1,6 @@
 package sg.edu.np.mad.mad_assignment_cookverse;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,7 +14,9 @@ import androidx.fragment.app.Fragment;
  * Use the {@link DiscoverFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
+
 public class DiscoverFragment extends Fragment {
+
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -25,6 +28,7 @@ public class DiscoverFragment extends Fragment {
     private String mParam2;
 
     public DiscoverFragment() {
+
         // Required empty public constructor
     }
 
@@ -61,6 +65,7 @@ public class DiscoverFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_discover, container, false);
         TextView textView = view.findViewById(R.id.randomText);
+        DBHandler dbHandler = new DBHandler(getActivity(), null, null, 1);
         textView.setText("Hello");
         return view;
     }

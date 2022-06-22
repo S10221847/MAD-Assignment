@@ -30,6 +30,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_page);
 
+        createInitialRecipe();
+
         TextView newUser = findViewById(R.id.userSignup);
         newUser.setOnTouchListener(new View.OnTouchListener() {
             @Override
@@ -74,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
         return false;
     }
 
-    /*public void createInitialDatabase() {
+    public void createInitialRecipe() {
 
         Recipe recipeData = new Recipe(); //1st Recipe, should automatically be assigned incremented primary key
         recipeData.setName("Farro Salad with Asparagus and Parmesan");
@@ -104,6 +106,6 @@ public class MainActivity extends AppCompatActivity {
         ArrayList<String> cList = new ArrayList<String>(Arrays.asList("Greek", "Italian"));
         recipeData.setCuisineList(cList);*/
         //recipeData.setUserId(); only use when recipe is created by User, otherwise should automatically be null
-        /*dbHandler.addRecipe(recipeData);
-    }*/
+        dbHandler.addRecipe(recipeData);
+    }
 }
