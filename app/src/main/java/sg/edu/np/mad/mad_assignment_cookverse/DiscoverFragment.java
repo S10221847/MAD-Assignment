@@ -2,11 +2,21 @@ package sg.edu.np.mad.mad_assignment_cookverse;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import java.util.ArrayList;
+
+import sg.edu.np.mad.mad_assignment_cookverse.databinding.FragmentProfileBinding;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -14,7 +24,7 @@ import androidx.fragment.app.Fragment;
  * create an instance of this fragment.
  */
 public class DiscoverFragment extends Fragment {
-
+    FragmentProfileBinding binding;
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -55,6 +65,8 @@ public class DiscoverFragment extends Fragment {
         }
     }
 
+
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -62,6 +74,44 @@ public class DiscoverFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_discover, container, false);
         TextView textView = view.findViewById(R.id.randomText);
         textView.setText("Hello");
+
+        //make list to hold all recipe objects
+        ArrayList<Recipe> recipeList = new ArrayList<>();
+        //ADD CODE TO ADD ALL RECIPE ITEMS TO recipeList
+
+        //GO TO JAVIERS RECYCLER VIEW
+
+        /*RecyclerView recyclerView = findViewById(R.id.recyclerView);
+        mAdaptor = new myAdaptor(recipeList);
+        LinearLayoutManager mLayoutManager = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(mLayoutManager);
+        recyclerView.setAdapter(mAdaptor);*/
+
+        /*
+        @Override
+        public boolean onCreateOptionsMenu(Menu menu) {
+            MenuInflater inflater = getMenuInflater();
+            inflater.inflate(R.menu.search_menu, menu);
+
+            MenuItem searchItem = menu.findItem(R.id.action_search);
+            SearchView searchView = (SearchView) searchItem.getActionView();
+
+            searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+                @Override
+                public boolean onQueryTextSubmit(String query) {
+                    return false;
+                }
+
+                @Override
+                public boolean onQueryTextChange(String newText) {
+                    mAdaptor.getFilter().filter(newText);
+
+                    return false;
+                }
+            });
+            return true;
+        }*/
+
         return view;
     }
 

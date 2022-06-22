@@ -12,14 +12,8 @@
         android:theme="@style/Theme.MADAssignmentCookverse">
         <activity
             android:name=".MainFragment"
-            android:exported="false" />
-        <activity
-            android:name=".createUserPage"
-            android:exported="false" />
-        <activity
-            android:name=".HomeFragment"
-            android:exported="false"
-            tools:ignore="Instantiatable" />
+            android:exported="true" />
+
 
         <activity
             android:name=".MainActivity"
