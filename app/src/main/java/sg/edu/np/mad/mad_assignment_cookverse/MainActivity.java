@@ -30,8 +30,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_page);
 
-        //setRecipeTest();
-
         TextView newUser = findViewById(R.id.userSignup);
         newUser.setOnTouchListener(new View.OnTouchListener() {
             @Override
@@ -76,10 +74,6 @@ public class MainActivity extends AppCompatActivity {
         return false;
     }
 
-    public void setRecipeTest(){
-        TextView myText = findViewById(R.id.RecipeTest);
-        myText.setText(dbHandler.findRecipe(1).getName());
-    }
 
     public void createInitialRecipe() {
 

@@ -72,8 +72,9 @@ public class DiscoverFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_discover, container, false);
+        DBHandler dbHandler = new DBHandler(getActivity(), null, null, 1);
         TextView textView = view.findViewById(R.id.randomText);
-        textView.setText("Hello");
+        textView.setText(dbHandler.findRecipe(1).getName());
 
         //make list to hold all recipe objects
         ArrayList<Recipe> recipeList = new ArrayList<>();

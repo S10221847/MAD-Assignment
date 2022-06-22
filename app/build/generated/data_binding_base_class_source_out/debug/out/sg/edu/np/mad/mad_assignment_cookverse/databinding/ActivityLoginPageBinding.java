@@ -23,9 +23,6 @@ public final class ActivityLoginPageBinding implements ViewBinding {
   private final ConstraintLayout rootView;
 
   @NonNull
-  public final TextView RecipeTest;
-
-  @NonNull
   public final ConstraintLayout coordinatorLayout;
 
   @NonNull
@@ -52,13 +49,12 @@ public final class ActivityLoginPageBinding implements ViewBinding {
   @NonNull
   public final TextView userSignup;
 
-  private ActivityLoginPageBinding(@NonNull ConstraintLayout rootView, @NonNull TextView RecipeTest,
+  private ActivityLoginPageBinding(@NonNull ConstraintLayout rootView,
       @NonNull ConstraintLayout coordinatorLayout, @NonNull EditText editmyEmailAdd,
       @NonNull EditText editmyPassword, @NonNull ImageView imageView, @NonNull Button myLoginButton,
       @NonNull TextView textView, @NonNull TextView textView2, @NonNull TextView textView3,
       @NonNull TextView userSignup) {
     this.rootView = rootView;
-    this.RecipeTest = RecipeTest;
     this.coordinatorLayout = coordinatorLayout;
     this.editmyEmailAdd = editmyEmailAdd;
     this.editmyPassword = editmyPassword;
@@ -97,12 +93,6 @@ public final class ActivityLoginPageBinding implements ViewBinding {
     // This is done to optimize the compiled bytecode for size and performance.
     int id;
     missingId: {
-      id = R.id.RecipeTest;
-      TextView RecipeTest = ViewBindings.findChildViewById(rootView, id);
-      if (RecipeTest == null) {
-        break missingId;
-      }
-
       ConstraintLayout coordinatorLayout = (ConstraintLayout) rootView;
 
       id = R.id.editmyEmailAdd;
@@ -153,9 +143,9 @@ public final class ActivityLoginPageBinding implements ViewBinding {
         break missingId;
       }
 
-      return new ActivityLoginPageBinding((ConstraintLayout) rootView, RecipeTest,
-          coordinatorLayout, editmyEmailAdd, editmyPassword, imageView, myLoginButton, textView,
-          textView2, textView3, userSignup);
+      return new ActivityLoginPageBinding((ConstraintLayout) rootView, coordinatorLayout,
+          editmyEmailAdd, editmyPassword, imageView, myLoginButton, textView, textView2, textView3,
+          userSignup);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));
