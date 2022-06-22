@@ -48,12 +48,12 @@ public class MainActivity extends AppCompatActivity {
                 EditText etMyPassword = findViewById(R.id.editmyPassword);
 
                 if(isValidCredentials(etMyUserName.getText().toString(), etMyPassword.getText().toString())){
-                    Intent myIntent = new Intent(MainActivity.this, HomeFragment.class);
+                    Intent myIntent = new Intent(MainActivity.this, MainFragment.class);
                     startActivity(myIntent);
                     Toast.makeText(MainActivity.this,"Valid",Toast.LENGTH_SHORT).show();
                 }
                 else{
-                    Toast.makeText(MainActivity.this, "Invalid Login! Tray again!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this, "Invalid Login! Try again!", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -74,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
         return false;
     }
 
-    public void createInitialDatabase() {
+    /*public void createInitialDatabase() {
 
         Recipe recipeData = new Recipe(); //1st Recipe, should automatically be assigned incremented primary key
         recipeData.setName("Farro Salad with Asparagus and Parmesan");
@@ -104,6 +104,6 @@ public class MainActivity extends AppCompatActivity {
         ArrayList<String> cList = new ArrayList<String>(Arrays.asList("Greek", "Italian"));
         recipeData.setCuisineList(cList);*/
         //recipeData.setUserId(); only use when recipe is created by User, otherwise should automatically be null
-        dbHandler.addRecipe(recipeData);
-    }
+        /*dbHandler.addRecipe(recipeData);
+    }*/
 }

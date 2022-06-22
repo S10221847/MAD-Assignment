@@ -16,10 +16,6 @@
         <activity
             android:name=".createUserPage"
             android:exported="false" />
-        <activity
-            android:name=".HomeFragment"
-            android:exported="false"
-            tools:ignore="Instantiatable" />
 
         <activity
             android:name=".MainActivity"

@@ -21,8 +21,8 @@ public class createUserPage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_creater_user_page);
 
-        EditText myCreateUsername = findViewById(R.id.editmyEmailAdd);
-        EditText myCreatePassword = findViewById(R.id.editmyPassword);
+        EditText myCreateUsername = findViewById(R.id.editUsername);
+        EditText myCreatePassword = findViewById(R.id.editPassword);
 
         Button myButtonCreate = findViewById(R.id.buttonCreate);
         myButtonCreate.setOnClickListener(new View.OnClickListener() {
