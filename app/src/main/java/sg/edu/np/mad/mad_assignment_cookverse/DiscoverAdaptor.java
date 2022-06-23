@@ -53,7 +53,7 @@ public class DiscoverAdaptor extends RecyclerView.Adapter<DiscoverViewHolder> im
             if(constraint == null || constraint.length() == 0) {
                 filteredList.addAll(dataOriginal);
             }
-            else{ //makes the search non case sensitive
+            else{ // makes the search non case sensitive
                 String filterPattern = constraint.toString().toLowerCase().trim();
 
                 for(Recipe item : dataOriginal){
