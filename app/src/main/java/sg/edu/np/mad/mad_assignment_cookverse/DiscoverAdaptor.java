@@ -5,6 +5,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Filter;
 import android.widget.Filterable;
+import android.widget.Toast;
 
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -64,15 +65,14 @@ public class DiscoverAdaptor extends RecyclerView.Adapter<DiscoverViewHolder> im
 
             FilterResults results = new FilterResults();
             results.values = filteredList;
-
             return results;
         }
 
         @Override
         protected void publishResults(CharSequence constraint, FilterResults results) {
-            if((List)results.values != null) {
+            if(results.values != null) {
                 data.clear();
-                data.addAll((List) results.values);
+                data.addAll((List)results.values);
                 notifyDataSetChanged();
             }
             else{
