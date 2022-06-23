@@ -20,6 +20,8 @@ id bottomNavigationView
 id bottomNavigationView2
 id buttonCancel
 id buttonCreate
+id cardView
+id cardView2
 id coordinatorLayout
 id coordinatorLayout2
 id create
@@ -28,6 +30,7 @@ id editPassword
 id editUsername
 id editmyEmailAdd
 id editmyPassword
+id frameLayout
 id frame_layout
 id home
 id imageView
@@ -35,7 +38,12 @@ id imageView3
 id liked
 id likedReci
 id linearLayout
+id linearLayout2
+id linearLayout3
 id myLoginButton
+id onlinelikes
+id onlinerecRecyclerView
+id onlinerecipename
 id personal
 id personalReci
 id profile
@@ -43,6 +51,8 @@ id randomText
 id test
 id test2
 id textView
+id textView14
+id textView15
 id textView2
 id textView3
 id textView4
@@ -51,6 +61,9 @@ id textView6
 id textView7
 id userName
 id userSignup
+id usercreatedRecyclerView
+id usercreatedlikes
+id usercreatedname
 layout activity_creater_user_page
 layout activity_login_page
 layout activity_main
@@ -61,6 +74,8 @@ layout fragment_liked_recipe
 layout fragment_main
 layout fragment_profile
 layout fragment_user_recipe
+layout online_recipes
+layout usercreatedrecipes
 menu bottom_nav_menu
 menu profile_nav_menu
 menu search_menu

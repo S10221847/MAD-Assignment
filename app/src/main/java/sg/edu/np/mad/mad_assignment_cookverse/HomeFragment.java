@@ -6,13 +6,20 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link HomeFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
+
 public class HomeFragment extends Fragment {
+    public String TAG="Home page";
+
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -57,7 +64,29 @@ public class HomeFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        DBHandler dbHandler = new DBHandler(getActivity(), null, null, 1);
+        ArrayList<Recipe> rList=dbHandler.listRecipe();
+
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_home, container, false);
+        View view = inflater.inflate(R.layout.fragment_home, container, false);
+
+        RecyclerView orecyclerView=view.findViewById(R.id.onlinerecRecyclerView);
+        orecyclerView.setHasFixedSize(true);
+        OnlineRecipesAdapter oAdapter=new OnlineRecipesAdapter(rList);
+        LinearLayoutManager oLayoutManager=new LinearLayoutManager(getActivity(),LinearLayoutManager.HORIZONTAL,false);
+        orecyclerView.setLayoutManager(oLayoutManager);
+        orecyclerView.setAdapter(oAdapter);
+
+
+        RecyclerView urecyclerView=view.findViewById(R.id.usercreatedRecyclerView);
+        urecyclerView.setHasFixedSize(true);
+        UserCreatedAdapter uAdapter=new UserCreatedAdapter(rList);
+        LinearLayoutManager uLayoutManager=new LinearLayoutManager(getActivity(),LinearLayoutManager.HORIZONTAL,false);
+        urecyclerView.setLayoutManager(uLayoutManager);
+        urecyclerView.setAdapter(uAdapter);
+
+        return view;
+
+
     }
 }
