@@ -30,6 +30,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_page);
 
+        addVersionRecipes(); //only for pre-existing database
+
         TextView newUser = findViewById(R.id.userSignup);
         newUser.setOnTouchListener(new View.OnTouchListener() {
             @Override
@@ -72,6 +74,29 @@ public class MainActivity extends AppCompatActivity {
             }
         }
         return false;
+    }
+
+    public void addVersionRecipes(){
+        Recipe recipeData = dbHandler.findRecipe(2); //corresponds with next recipeId not in database
+        User userData = dbHandler.findUserById(1);
+
+        if(userData != null){
+            if(recipeData == null){
+                recipeData = new Recipe();
+                recipeData.setName("Avocado Deviled Eggs"); //recipeId is 2, won't run after 2nd launch
+                recipeData.setNoOfLikes(0);
+                dbHandler.addRecipe(recipeData);
+
+                recipeData.setName("Spicy Sweet Glazed Salmon");
+                dbHandler.addRecipe(recipeData);
+
+                recipeData.setName("Good Old Fashioned Pancakes");
+                dbHandler.addRecipe(recipeData);
+
+                recipeData.setName("Rhubarb Muffin");
+                dbHandler.addRecipe(recipeData);
+            }
+        }
     }
 
 

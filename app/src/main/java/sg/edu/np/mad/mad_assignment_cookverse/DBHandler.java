@@ -65,6 +65,18 @@ public class DBHandler extends SQLiteOpenHelper {
         values.put(COLUMN_LIKES, 0);
 
         db.insert(RECIPES, null, values);
+
+        values.put(COLUMN_RECIPENAME, "Avocado Deviled Eggs");
+        db.insert(RECIPES, null, values);
+
+        values.put(COLUMN_RECIPENAME, "Spicy Sweet Glazed Salmon");
+        db.insert(RECIPES, null, values);
+
+        values.put(COLUMN_RECIPENAME, "Good Old Fashioned Pancakes");
+        db.insert(RECIPES, null, values);
+
+        values.put(COLUMN_RECIPENAME, "Rhubarb Muffin");
+        db.insert(RECIPES, null, values);
     }
 
     @Override
@@ -221,10 +233,11 @@ public class DBHandler extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery(query, null);
 
-        User queryData = new User();
+        User queryData = null;
         ArrayList<User> uList = new ArrayList<>();
         if (cursor.moveToFirst()) {
             do {
+                queryData = new User();
                 queryData.setId(cursor.getInt(0));
                 queryData.setName(cursor.getString(1));
                 queryData.setPassword(cursor.getString(2));
@@ -285,7 +298,9 @@ public class DBHandler extends SQLiteOpenHelper {
         values.put(COLUMN_RECIPENAME, recipeData.getName());
         values.put(COLUMN_DESCRIPTION, recipeData.getDescription());
         // values.put(COLUMN_RECIPEID, recipeData.getRecipeId()); Primary Key Autoincrement
-        values.put(COLUMN_RECIPEUSERID, recipeData.getUserId());
+
+        if (recipeData.getUserId() != 0){
+            values.put(COLUMN_RECIPEUSERID, recipeData.getUserId());}
 
         /*JSONObject cjson = new JSONObject();
         cjson.put("uniqueArrays", new JSONArray(recipeData.getCuisineList()));
@@ -357,10 +372,11 @@ public class DBHandler extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery(query, null);
 
-        Recipe queryData = new Recipe();
+        Recipe queryData = null;
         ArrayList<Recipe> rList = new ArrayList<>();
         if (cursor.moveToFirst()) {
-            do {
+            while (!cursor.isAfterLast()) {
+                queryData = new Recipe();
                 queryData.setRecipeId(cursor.getInt(0));
                 queryData.setName(cursor.getString(1));
                 queryData.setDescription(cursor.getString(2));
@@ -368,7 +384,8 @@ public class DBHandler extends SQLiteOpenHelper {
                 queryData.setNoOfLikes(cursor.getInt(4));
                 rList.add(queryData);
 
-            } while (cursor.moveToNext());
+                cursor.moveToNext();
+            }
         }
         cursor.close();
 
