@@ -26,6 +26,7 @@ id coordinatorLayout
 id coordinatorLayout2
 id create
 id discover
+id discoverRecyclerView
 id editPassword
 id editUsername
 id editmyEmailAdd
@@ -47,7 +48,9 @@ id onlinerecipename
 id personal
 id personalReci
 id profile
-id randomText
+id rName
+id recipeDesc
+id recipeName
 id test
 id test2
 id textView
@@ -67,6 +70,8 @@ id usercreatedname
 layout activity_creater_user_page
 layout activity_login_page
 layout activity_main
+layout activity_recipe
+layout discover_layout
 layout fragment_create
 layout fragment_discover
 layout fragment_home

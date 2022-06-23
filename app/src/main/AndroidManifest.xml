@@ -11,12 +11,14 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MADAssignmentCookverse">
         <activity
+            android:name=".RecipeActivity"
+            android:exported="false" />
+        <activity
             android:name=".MainFragment"
             android:exported="true" />
         <activity
             android:name=".createUserPage"
             android:exported="true" />
-
         <activity
             android:name=".MainActivity"
             android:exported="true">
