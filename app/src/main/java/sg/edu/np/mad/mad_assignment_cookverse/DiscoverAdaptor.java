@@ -57,7 +57,7 @@ public class DiscoverAdaptor extends RecyclerView.Adapter<DiscoverViewHolder> im
                 String filterPattern = constraint.toString().toLowerCase().trim();
 
                 for(Recipe item : dataOriginal){
-                    if(item.getName().toLowerCase().contains(filterPattern) || item.getDescription().toLowerCase().contains(filterPattern)){
+                    if(item.getName().toLowerCase().contains(filterPattern)/* || item.getDescription().toLowerCase().contains(filterPattern)*/){
                         filteredList.add(item);
                     }
                 }
