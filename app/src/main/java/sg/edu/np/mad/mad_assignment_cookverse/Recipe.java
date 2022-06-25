@@ -1,5 +1,7 @@
 package sg.edu.np.mad.mad_assignment_cookverse;
 
+import android.graphics.Bitmap;
+
 import androidx.annotation.DrawableRes;
 
 import java.util.List;
@@ -14,8 +16,8 @@ public class Recipe {
     /*private List<String> cuisineList;
     private List<String> ingredientList;*/
     private int nooflikes;
-    /*@DrawableRes
-    private int image; //represents drawable ID for image from res folder*/
+    private Bitmap recipeimage;
+
 
     public String getName() {
         return name;
@@ -47,11 +49,7 @@ public class Recipe {
         this.userid = userid;
     }
 
-    /*@DrawableRes
-    public int getImage() {return image;}
-
-    public void setImage(@DrawableRes int image){this.image = image;}
-
+    /*
     public List<String> getCuisineList() { return cuisineList; }
 
     public void setCuisineList(List<String> cuisineList) { this.cuisineList = cuisineList; }
@@ -71,4 +69,8 @@ public class Recipe {
     public String getSteps() { return steps; }
 
     public void setSteps(String steps) { this.steps = steps; }
+
+    public Bitmap getRecipeImage() { return recipeimage; }
+
+    public void setRecipeImage(Bitmap recipeimage) { this.recipeimage = recipeimage; }
 }

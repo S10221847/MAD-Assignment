@@ -14,6 +14,7 @@ drawable pfp
 drawable pic
 drawable random_pic
 id FRAGMENT_PLACEHOLDER
+id ProfileImage
 id action_search
 id bio
 id bottomNavigationView
@@ -35,7 +36,6 @@ id frameLayout
 id frame_layout
 id home
 id imageView
-id imageView3
 id liked
 id likedReci
 id linearLayout

@@ -11,11 +11,13 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 
 
+import sg.edu.np.mad.mad_assignment_cookverse.DBHandler;
 import sg.edu.np.mad.mad_assignment_cookverse.LikedRecipeFragment;
 import sg.edu.np.mad.mad_assignment_cookverse.R;
 import sg.edu.np.mad.mad_assignment_cookverse.UserRecipeFragment;
@@ -74,6 +76,11 @@ public class ProfileFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_profile, container, false);
+        DBHandler dbHandler = new DBHandler(getActivity(), null, null, 1);
+
+        ImageView myImage = (ImageView) rootView.findViewById(R.id.ProfileImage);
+        myImage.setImageBitmap(dbHandler.findUserById(1).getUserImage());
+
         BottomNavigationView BNV = (BottomNavigationView) rootView.findViewById(R.id.bottomNavigationView2);
         BNV.setOnItemSelectedListener(item -> {
             switch (item.getItemId()){

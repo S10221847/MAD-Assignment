@@ -4,9 +4,13 @@ import static java.lang.Boolean.parseBoolean;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.res.Resources;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -21,6 +25,7 @@ public class DBHandler extends SQLiteOpenHelper {
     public static String COLUMN_USERNAME = "Username";
     public static String COLUMN_PASSWORD = "Password";
     public static String COLUMN_USERID = "Id";
+    public static String COLUMN_USERIMAGE = "UserImage";
     /*public static String COLUMN_LIKEDRECIPES = "LikedList";
     public static String COLUMN_CREATEDRECIPES = "CreatedList";*/
 
@@ -34,23 +39,26 @@ public class DBHandler extends SQLiteOpenHelper {
     /*public static String COLUMN_CUISINES = "CuisinesList";
     public static String COLUMN_INGREDIENTS = "IngredientsList";*/
     public static String COLUMN_LIKES = "NoOfLikes";
-    /*public static String COLUMN_IMAGEID = "ImageId";*/
+    public static String COLUMN_RECIPEIMAGE = "RecipeImage";
 
     public static int DATABASE_VERSION = 1;
+    Context context;
 
     public DBHandler(Context context, String name, SQLiteDatabase.CursorFactory factory, int version){
         super(context, DATABASE_NAME, factory, DATABASE_VERSION);
+
+        this.context = context;
     }
 
     @Override
     public void onCreate(SQLiteDatabase db){
         String CREATE_TABLE1 = "CREATE TABLE " + ACCOUNTS + "(" + COLUMN_USERID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
-                 + COLUMN_USERNAME + " TEXT," + COLUMN_PASSWORD + /*" TEXT," + COLUMN_LIKEDRECIPES +
-                " TEXT," + COLUMN_CREATEDRECIPES +*/ " TEXT)";
+                 + COLUMN_USERNAME + " TEXT," + COLUMN_PASSWORD + " TEXT," + COLUMN_USERIMAGE +
+                /*" TEXT," + COLUMN_CREATEDRECIPES +*/ " BLOB)";
         String CREATE_TABLE2 = "CREATE TABLE " + RECIPES + "(" + COLUMN_RECIPEID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
                 + COLUMN_RECIPENAME + " TEXT," + COLUMN_DESCRIPTION + " TEXT," + COLUMN_RECIPEUSERID
                 + " TEXT," + COLUMN_LIKES  + " TEXT," + COLUMN_STEPS  + " TEXT," + COLUMN_INGREDIENTS
-                + /*" TEXT," + COLUMN_IMAGEID +*/ " TEXT)";
+                + " TEXT," + COLUMN_RECIPEIMAGE + " BLOB)";
         db.execSQL(CREATE_TABLE1);
         db.execSQL(CREATE_TABLE2);
 
@@ -77,6 +85,7 @@ public class DBHandler extends SQLiteOpenHelper {
             queryData.setId(cursor.getInt(0));
             queryData.setName(cursor.getString(1));
             queryData.setPassword(cursor.getString(2));
+            queryData.setUserImage(DbBitmapUtility.getImage(cursor.getBlob(3)));
 
             /*JSONObject ljson = new JSONObject(cursor.getString(3));
             JSONArray ljArray = ljson.optJSONArray("unique");
@@ -116,6 +125,7 @@ public class DBHandler extends SQLiteOpenHelper {
             queryData.setId(cursor.getInt(0));
             queryData.setName(cursor.getString(1));
             queryData.setPassword(cursor.getString(2));
+            queryData.setUserImage(DbBitmapUtility.getImage(cursor.getBlob(3)));
 
             /*JSONObject ljson = new JSONObject(cursor.getString(3));
             JSONArray ljArray = ljson.optJSONArray("unique");
@@ -147,6 +157,7 @@ public class DBHandler extends SQLiteOpenHelper {
         ContentValues values = new ContentValues();
         values.put(COLUMN_USERNAME, userData.getName());
         values.put(COLUMN_PASSWORD, userData.getPassword());
+        values.put(COLUMN_USERIMAGE, DbBitmapUtility.getBytes(userData.getUserImage()));
         //values.put(COLUMN_USERID, userData.getId()); not necessary due to Integer Primary Key Autoincrementation
 
         /*JSONObject ljson = new JSONObject();
@@ -172,6 +183,7 @@ public class DBHandler extends SQLiteOpenHelper {
         values.put(COLUMN_USERNAME, userData.getName());
         values.put(COLUMN_PASSWORD, userData.getPassword());
         values.put(COLUMN_USERID, userData.getId()); //necessary to avoid auto incrementation
+        values.put(COLUMN_USERIMAGE, DbBitmapUtility.getBytes(userData.getUserImage()));
 
         /*JSONObject ljson = new JSONObject();
         ljson.put("uniqueArrays", new JSONArray(userData.getLikedList()));
@@ -220,6 +232,9 @@ public class DBHandler extends SQLiteOpenHelper {
                 queryData.setId(cursor.getInt(0));
                 queryData.setName(cursor.getString(1));
                 queryData.setPassword(cursor.getString(2));
+                if (cursor.getBlob(3) != null){
+                    queryData.setUserImage(DbBitmapUtility.getImage(cursor.getBlob(3)));
+                }
                 uList.add(queryData);
 
             } while (cursor.moveToNext());
@@ -245,6 +260,7 @@ public class DBHandler extends SQLiteOpenHelper {
             queryData.setNoOfLikes(cursor.getInt(4));
             queryData.setSteps(cursor.getString(5));
             queryData.setIngredients(cursor.getString(6));
+            queryData.setRecipeImage(DbBitmapUtility.getImage(cursor.getBlob(7)));
 
             /*JSONObject cjson = new JSONObject(cursor.getString(4));
             JSONArray cjArray = cjson.optJSONArray("unique");
@@ -262,9 +278,8 @@ public class DBHandler extends SQLiteOpenHelper {
                 String str_value =ijArray.optString(i);
                 iList.add(str_value);
             }
-            queryData.setIngredientList(iList);
+            queryData.setIngredientList(iList);*/
 
-            queryData.setImage(cursor.getInt(6));*/
             cursor.close();
         }
         else{
@@ -291,12 +306,12 @@ public class DBHandler extends SQLiteOpenHelper {
         JSONObject ijson = new JSONObject();
         ijson.put("uniqueArrays", new JSONArray(recipeData.getIngredientList()));
         String iList = ijson.toString();
-        values.put(COLUMN_INGREDIENTS, iList);
+        values.put(COLUMN_INGREDIENTS, iList);*/
 
-        values.put(COLUMN_IMAGEID, recipeData.getImage());*/
         values.put(COLUMN_LIKES, recipeData.getNoOfLikes());
         values.put(COLUMN_STEPS, recipeData.getSteps());
         values.put(COLUMN_INGREDIENTS, recipeData.getIngredients());
+        values.put(COLUMN_RECIPEIMAGE, DbBitmapUtility.getBytes(recipeData.getRecipeImage()));
 
         SQLiteDatabase db = this.getWritableDatabase();
         db.insert(RECIPES, null, values);
@@ -315,6 +330,7 @@ public class DBHandler extends SQLiteOpenHelper {
         values.put(COLUMN_LIKES, recipeData.getNoOfLikes());
         values.put(COLUMN_STEPS, recipeData.getSteps());
         values.put(COLUMN_INGREDIENTS, recipeData.getIngredients());
+        values.put(COLUMN_RECIPEIMAGE, DbBitmapUtility.getBytes(recipeData.getRecipeImage()));
 
         /*JSONObject cjson = new JSONObject();
         cjson.put("uniqueArrays", new JSONArray(recipeData.getCuisineList()));
@@ -324,9 +340,7 @@ public class DBHandler extends SQLiteOpenHelper {
         JSONObject ijson = new JSONObject();
         ijson.put("uniqueArrays", new JSONArray(recipeData.getIngredientList()));
         String iList = ijson.toString();
-        values.put(COLUMN_INGREDIENTS, iList);
-
-        values.put(COLUMN_IMAGEID, recipeData.getImage());*/
+        values.put(COLUMN_INGREDIENTS, iList);*/
 
         SQLiteDatabase db = this.getWritableDatabase();
         db.insert(RECIPES, null, values);
@@ -369,6 +383,9 @@ public class DBHandler extends SQLiteOpenHelper {
                 queryData.setNoOfLikes(cursor.getInt(4));
                 queryData.setSteps(cursor.getString(5));
                 queryData.setIngredients(cursor.getString(6));
+                if (cursor.getBlob(7) != null){
+                    queryData.setRecipeImage(DbBitmapUtility.getImage(cursor.getBlob(7)));
+                }
                 rList.add(queryData);
 
                 cursor.moveToNext();
@@ -400,6 +417,8 @@ public class DBHandler extends SQLiteOpenHelper {
         //values.put(COLUMN_RECIPEID, recipeData.getRecipeId()); Primary Key Autoincrement
         //values.put(COLUMN_RECIPEUSERID, recipeData.getUserId());
         values.put(COLUMN_LIKES, 0);
+        //Bitmap bm = BitmapFactory.decodeResource(context.getResources(), R.drawable.random_pic);
+        //values.put(COLUMN_RECIPEIMAGE, DbBitmapUtility.getBytes(bm));
         db.insert(RECIPES, null, values);
 
         values.put(COLUMN_RECIPENAME, "Avocado Deviled Eggs");
@@ -551,6 +570,9 @@ public class DBHandler extends SQLiteOpenHelper {
         ContentValues values = new ContentValues();
         values.put(COLUMN_USERNAME, "test");
         values.put(COLUMN_PASSWORD, "password");
+
+        Bitmap bm = BitmapFactory.decodeResource(context.getResources(), R.drawable.random_pic);
+        values.put(COLUMN_USERIMAGE, DbBitmapUtility.getBytes(bm));
         db.insert(ACCOUNTS, null, values);
     }
 }

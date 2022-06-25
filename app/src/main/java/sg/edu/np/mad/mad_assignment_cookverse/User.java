@@ -1,5 +1,7 @@
 package sg.edu.np.mad.mad_assignment_cookverse;
 
+import android.graphics.Bitmap;
+
 import java.util.List;
 
 public class User {
@@ -8,6 +10,7 @@ public class User {
     private int id; //username can arguably be used a primary key also
     /*private List<String> likedList;
     private List<String> createdList;*/
+    private Bitmap userImage;
 
     public String getName() {
         return username;
@@ -38,4 +41,8 @@ public class User {
     public List<String> getCreatedList() { return createdList; }
 
     public void setCreatedList(List<String> createdList) { this.createdList = createdList; }*/
+
+    public Bitmap getUserImage() { return userImage; }
+
+    public void setUserImage(Bitmap userImage) { this.userImage = userImage; }
 }

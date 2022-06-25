@@ -26,13 +26,13 @@ public final class FragmentProfileBinding implements ViewBinding {
   public final FrameLayout FRAGMENTPLACEHOLDER;
 
   @NonNull
+  public final ImageView ProfileImage;
+
+  @NonNull
   public final TextView bio;
 
   @NonNull
   public final BottomNavigationView bottomNavigationView2;
-
-  @NonNull
-  public final ImageView imageView3;
 
   @NonNull
   public final TextView likedReci;
@@ -53,16 +53,16 @@ public final class FragmentProfileBinding implements ViewBinding {
   public final TextView userName;
 
   private FragmentProfileBinding(@NonNull ConstraintLayout rootView,
-      @NonNull FrameLayout FRAGMENTPLACEHOLDER, @NonNull TextView bio,
-      @NonNull BottomNavigationView bottomNavigationView2, @NonNull ImageView imageView3,
+      @NonNull FrameLayout FRAGMENTPLACEHOLDER, @NonNull ImageView ProfileImage,
+      @NonNull TextView bio, @NonNull BottomNavigationView bottomNavigationView2,
       @NonNull TextView likedReci, @NonNull ConstraintLayout linearLayout,
       @NonNull TextView personalReci, @NonNull TextView textView2, @NonNull TextView textView7,
       @NonNull TextView userName) {
     this.rootView = rootView;
     this.FRAGMENTPLACEHOLDER = FRAGMENTPLACEHOLDER;
+    this.ProfileImage = ProfileImage;
     this.bio = bio;
     this.bottomNavigationView2 = bottomNavigationView2;
-    this.imageView3 = imageView3;
     this.likedReci = likedReci;
     this.linearLayout = linearLayout;
     this.personalReci = personalReci;
@@ -104,6 +104,12 @@ public final class FragmentProfileBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.ProfileImage;
+      ImageView ProfileImage = ViewBindings.findChildViewById(rootView, id);
+      if (ProfileImage == null) {
+        break missingId;
+      }
+
       id = R.id.bio;
       TextView bio = ViewBindings.findChildViewById(rootView, id);
       if (bio == null) {
@@ -113,12 +119,6 @@ public final class FragmentProfileBinding implements ViewBinding {
       id = R.id.bottomNavigationView2;
       BottomNavigationView bottomNavigationView2 = ViewBindings.findChildViewById(rootView, id);
       if (bottomNavigationView2 == null) {
-        break missingId;
-      }
-
-      id = R.id.imageView3;
-      ImageView imageView3 = ViewBindings.findChildViewById(rootView, id);
-      if (imageView3 == null) {
         break missingId;
       }
 
@@ -154,9 +154,9 @@ public final class FragmentProfileBinding implements ViewBinding {
         break missingId;
       }
 
-      return new FragmentProfileBinding((ConstraintLayout) rootView, FRAGMENTPLACEHOLDER, bio,
-          bottomNavigationView2, imageView3, likedReci, linearLayout, personalReci, textView2,
-          textView7, userName);
+      return new FragmentProfileBinding((ConstraintLayout) rootView, FRAGMENTPLACEHOLDER,
+          ProfileImage, bio, bottomNavigationView2, likedReci, linearLayout, personalReci,
+          textView2, textView7, userName);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));
