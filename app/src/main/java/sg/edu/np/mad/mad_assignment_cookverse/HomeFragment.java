@@ -1,15 +1,23 @@
 package sg.edu.np.mad.mad_assignment_cookverse;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import sg.edu.np.mad.mad_assignment_cookverse.databinding.FragmentProfileBinding;
+
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -17,8 +25,10 @@ import java.util.ArrayList;
  * create an instance of this fragment.
  */
 
-public class HomeFragment extends Fragment {
+public class HomeFragment extends Fragment implements RecyclerViewInterface{
     public String TAG="Home page";
+    OnlineRecipesAdapter oAdapter;
+    RecyclerViewInterface recyclerViewInterface;
 
 
     // TODO: Rename parameter arguments, choose names that match
@@ -66,14 +76,14 @@ public class HomeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         DBHandler dbHandler = new DBHandler(getActivity(), null, null, 1);
-        ArrayList<Recipe> rList=dbHandler.listRecipe();
+        List<Recipe> rList=dbHandler.listRecipe();
 
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_home, container, false);
 
         RecyclerView orecyclerView=view.findViewById(R.id.onlinerecRecyclerView);
         orecyclerView.setHasFixedSize(true);
-        OnlineRecipesAdapter oAdapter=new OnlineRecipesAdapter(rList);
+        oAdapter=new OnlineRecipesAdapter(rList,this );
         LinearLayoutManager oLayoutManager=new LinearLayoutManager(getActivity(),LinearLayoutManager.HORIZONTAL,false);
         orecyclerView.setLayoutManager(oLayoutManager);
         orecyclerView.setAdapter(oAdapter);
@@ -81,7 +91,7 @@ public class HomeFragment extends Fragment {
 
         RecyclerView urecyclerView=view.findViewById(R.id.usercreatedRecyclerView);
         urecyclerView.setHasFixedSize(true);
-        UserCreatedAdapter uAdapter=new UserCreatedAdapter(rList);
+        UserCreatedAdapter uAdapter=new UserCreatedAdapter(rList,this);
         LinearLayoutManager uLayoutManager=new LinearLayoutManager(getActivity(),LinearLayoutManager.HORIZONTAL,false);
         urecyclerView.setLayoutManager(uLayoutManager);
         urecyclerView.setAdapter(uAdapter);
@@ -89,5 +99,14 @@ public class HomeFragment extends Fragment {
         return view;
 
 
+    }
+    public void onItemClick(int pos){
+        Intent intent = new Intent(getActivity().getBaseContext(),
+                RecipeActivity.class);
+        DBHandler dbHandler = new DBHandler(getActivity(), null, null, 1);
+        intent.putExtra("recipeName", dbHandler.listRecipe().get(pos).getName());
+        intent.putExtra("recipeDesc", dbHandler.listRecipe().get(pos).getDescription());
+        intent.putExtra("recipeSteps", dbHandler.listRecipe().get(pos).getSteps());
+        getActivity().startActivity(intent);
     }
 }

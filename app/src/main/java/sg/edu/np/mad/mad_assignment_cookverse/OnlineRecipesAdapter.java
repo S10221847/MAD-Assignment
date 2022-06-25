@@ -8,16 +8,19 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class OnlineRecipesAdapter extends RecyclerView.Adapter<OnlineRecipesViewHolder>{
-    ArrayList<Recipe> data;
+    List<Recipe> data;
+    RecyclerViewInterface recyclerViewInterface;
 
-    public OnlineRecipesAdapter(ArrayList<Recipe>input){
+    public OnlineRecipesAdapter(List<Recipe>input,RecyclerViewInterface recyclerViewInterface){
         data=input;
+        this.recyclerViewInterface = recyclerViewInterface;
     }
-    public OnlineRecipesViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public OnlineRecipesViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View item= LayoutInflater.from(parent.getContext()).inflate(R.layout.online_recipes,parent,false);
-        return new OnlineRecipesViewHolder(item);
+        return new OnlineRecipesViewHolder(item,recyclerViewInterface);
     }
     public void onBindViewHolder(OnlineRecipesViewHolder holder,int position){
         Recipe r=data.get(position);

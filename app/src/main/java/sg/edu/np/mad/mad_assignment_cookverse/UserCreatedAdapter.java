@@ -8,16 +8,19 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class UserCreatedAdapter extends RecyclerView.Adapter<UserCreatedViewHolder>{
-    ArrayList<Recipe> data;
+    private List<Recipe> data;
+    private final RecyclerViewInterface recyclerViewInterface;
 
-    public UserCreatedAdapter(ArrayList<Recipe>input){
-        data=input;
+    public UserCreatedAdapter(List<Recipe> input, RecyclerViewInterface recyclerViewInterface){
+        this.data=input;
+        this.recyclerViewInterface = recyclerViewInterface;
     }
-    public UserCreatedViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public UserCreatedViewHolder onCreateViewHolder( ViewGroup parent, int viewType) {
         View item= LayoutInflater.from(parent.getContext()).inflate(R.layout.usercreatedrecipes,parent,false);
-        return new UserCreatedViewHolder(item);
+        return new UserCreatedViewHolder(item, recyclerViewInterface);
     }
     public void onBindViewHolder(UserCreatedViewHolder holder,int position){
         Recipe r=data.get(position);
