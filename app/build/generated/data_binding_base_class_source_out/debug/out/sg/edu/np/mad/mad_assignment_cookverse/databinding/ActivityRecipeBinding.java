@@ -22,9 +22,14 @@ public final class ActivityRecipeBinding implements ViewBinding {
   @NonNull
   public final TextView rName;
 
-  private ActivityRecipeBinding(@NonNull ConstraintLayout rootView, @NonNull TextView rName) {
+  @NonNull
+  public final TextView rSteps;
+
+  private ActivityRecipeBinding(@NonNull ConstraintLayout rootView, @NonNull TextView rName,
+      @NonNull TextView rSteps) {
     this.rootView = rootView;
     this.rName = rName;
+    this.rSteps = rSteps;
   }
 
   @Override
@@ -60,7 +65,13 @@ public final class ActivityRecipeBinding implements ViewBinding {
         break missingId;
       }
 
-      return new ActivityRecipeBinding((ConstraintLayout) rootView, rName);
+      id = R.id.rSteps;
+      TextView rSteps = ViewBindings.findChildViewById(rootView, id);
+      if (rSteps == null) {
+        break missingId;
+      }
+
+      return new ActivityRecipeBinding((ConstraintLayout) rootView, rName, rSteps);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

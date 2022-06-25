@@ -2896,6 +2896,7 @@ int id profile 0x7f080178
 int id progress_circular 0x7f080179
 int id progress_horizontal 0x7f08017a
 int id rName 0x7f08017b
+int id rSteps 0x7f08021d
 int id radio 0x7f08017c
 int id ratio 0x7f08017d
 int id recipeDesc 0x7f08017e
