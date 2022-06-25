@@ -7,6 +7,8 @@ import java.util.List;
 public class Recipe {
     private String name;
     private String description;
+    private String ingredients;
+    private String steps;
     private int recipeid;
     private int userid;
     /*private List<String> cuisineList;
@@ -61,4 +63,12 @@ public class Recipe {
     public int getNoOfLikes() { return nooflikes; }
 
     public void setNoOfLikes(int nooflikes) { this.nooflikes = nooflikes; }
+
+    public String getIngredients() { return ingredients; }
+
+    public void setIngredients(String ingredients) { this.ingredients = ingredients; }
+
+    public String getSteps() { return steps; }
+
+    public void setSteps(String steps) { this.steps = steps; }
 }

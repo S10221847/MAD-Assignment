@@ -15,8 +15,13 @@ public class RecipeActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         String recipeName = intent.getStringExtra("recipeName");
+        String recipeDescription = intent.getStringExtra("recipeDesc");
+        String recipeSteps = intent.getStringExtra("recipeSteps");
 
         TextView rName = findViewById(R.id.rName);
         rName.setText(recipeName);
+
+        TextView rSteps = findViewById(R.id.rSteps);
+        rSteps.setText(recipeSteps);
     }
 }
