@@ -9,8 +9,6 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import org.json.JSONException;
-
 public class createUserPage extends AppCompatActivity {
     public String TAG = "Create User Page";
     public String MY_USERNAME = "MyUsername";
@@ -29,20 +27,25 @@ public class createUserPage extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 User userDBData = dbHandler.findUserByName(myCreateUsername.getText().toString());
-                if (userDBData == null) {
-                    User userDataDB = new User();
-                    userDataDB.setName(myCreateUsername.getText().toString());
-                    userDataDB.setPassword((myCreatePassword.getText().toString()));
+                if (myCreateUsername.getText().toString().length() <= 20){
+                    if (userDBData == null) {
+                        User userDataDB = new User();
+                        userDataDB.setName(myCreateUsername.getText().toString());
+                        userDataDB.setPassword((myCreatePassword.getText().toString()));
                     /*userDataDB.setLikedList(null);
                     userDataDB.setCreatedList(null);*/
-                    dbHandler.addUser(userDataDB);
-                    Toast.makeText(createUserPage.this, "Account Created Successfully.", Toast.LENGTH_SHORT).show();
+                        dbHandler.addUser(userDataDB);
+                        Toast.makeText(createUserPage.this, "Account Created Successfully.", Toast.LENGTH_SHORT).show();
 
-                    Intent myCreateIntent = new Intent(createUserPage.this, MainActivity.class);
-                    startActivity(myCreateIntent);
+                        Intent myCreateIntent = new Intent(createUserPage.this, MainActivity.class);
+                        startActivity(myCreateIntent);
+                    }
+                    else {
+                        Toast.makeText(createUserPage.this, "User Already Exists! Try again!", Toast.LENGTH_SHORT).show();
+                    }
                 }
                 else {
-                    Toast.makeText(createUserPage.this, "User Already Exists! Try again!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(createUserPage.this, "Username must be within 20 characters!", Toast.LENGTH_SHORT).show();
                 }
             }
         });
