@@ -12,6 +12,7 @@ import androidx.fragment.app.Fragment;
  * Use the {@link LikedRecipeFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
+//Child fragment of ProfileFragment
 public class LikedRecipeFragment extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match

@@ -16,12 +16,12 @@ public class OnlineRecipesAdapter extends RecyclerView.Adapter<OnlineRecipesView
 
     public OnlineRecipesAdapter(List<Recipe>input,RecyclerViewInterface recyclerViewInterface){
         data=input;
-        for(int i=0;i<data.size();i++){
+        /*for(int i=0;i<data.size();i++){
             if((data.get(i).getUserId())!=null){
                 data.remove(i);
                 continue;
             }
-        }
+        }*/
         this.recyclerViewInterface = recyclerViewInterface;
     }
     public OnlineRecipesViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {

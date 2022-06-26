@@ -25,10 +25,10 @@
             android:name="sg.edu.np.mad.mad_assignment_cookverse.MainFragment"
             android:exported="true" />
         <activity
-            android:name="sg.edu.np.mad.mad_assignment_cookverse.createUserPage"
+            android:name="sg.edu.np.mad.mad_assignment_cookverse.CreateUserPage"
             android:exported="true" />
         <activity
-            android:name="sg.edu.np.mad.mad_assignment_cookverse.MainActivity"
+            android:name="sg.edu.np.mad.mad_assignment_cookverse.LoginPage"
             android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

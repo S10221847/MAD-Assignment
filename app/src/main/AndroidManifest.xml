@@ -17,10 +17,10 @@
             android:name=".MainFragment"
             android:exported="true" />
         <activity
-            android:name=".createUserPage"
+            android:name=".CreateUserPage"
             android:exported="true" />
         <activity
-            android:name=".MainActivity"
+            android:name=".LoginPage"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

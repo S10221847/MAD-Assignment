@@ -1,28 +1,18 @@
 package sg.edu.np.mad.mad_assignment_cookverse;
 
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
-
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
+
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.navigation.NavigationBarView;
 
-
-import sg.edu.np.mad.mad_assignment_cookverse.DBHandler;
-import sg.edu.np.mad.mad_assignment_cookverse.LikedRecipeFragment;
-import sg.edu.np.mad.mad_assignment_cookverse.R;
-import sg.edu.np.mad.mad_assignment_cookverse.User;
-import sg.edu.np.mad.mad_assignment_cookverse.UserRecipeFragment;
 import sg.edu.np.mad.mad_assignment_cookverse.databinding.FragmentProfileBinding;
 
 /**
@@ -69,7 +59,7 @@ public class ProfileFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
-        binding = FragmentProfileBinding.inflate(getLayoutInflater());
+        //Setting first fragment to show personal recipe
         replaceFragment(new UserRecipeFragment());
     }
 
@@ -81,17 +71,16 @@ public class ProfileFragment extends Fragment {
         DBHandler dbHandler = new DBHandler(getActivity(), null, null, 1);
         String currentUsername = getArguments().getString("username");
         TextView currentName =  rootView.findViewById(R.id.userName);
-        for (User i:dbHandler.listUser()){
-            if (currentUsername.equals(i.getName())){
-                User currentUser = i;
-                currentName.setText(currentUser.getName());
-                break;
-            }
-        }
+
+        //Find the current user among all the users in database
+        User currentUser = dbHandler.findUserByName(currentUsername);
+        currentName.setText(currentUser.getName());
         ImageView myImage =rootView.findViewById(R.id.ProfileImage);
+        //Sets image from bitmap in database
         myImage.setImageBitmap(dbHandler.findUserById(1).getUserImage());
 
         BottomNavigationView BNV =rootView.findViewById(R.id.bottomNavigationView2);
+        //Switch among fragments when clicking them
         BNV.setOnItemSelectedListener(item -> {
             switch (item.getItemId()){
                 case R.id.personal:
@@ -105,6 +94,7 @@ public class ProfileFragment extends Fragment {
         });
         return rootView;
     }
+    //Method for showing fragments
     private void replaceFragment(Fragment fragment){
         FragmentManager fragmentManager = getChildFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();

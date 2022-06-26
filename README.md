@@ -19,12 +19,12 @@ The Create page (TBA), allows Users to add their own recipes to the database whe
 Finally, the Profile Page which shows the User's profile data such as liked recipes (TBA) and created recipes (TBA). Users can also changed their profile picture to be whatever they like it to be (TBA).
 
 # Roles and contributions of each member
-Tran Huy Minh - Creation of database, DBHandler and all its methods, related classes such as DBHandlerUtility, User and Recipe classes, default recipes, lots of bug fixes for both related and unrelated to database for group. Lots of testing. Helped adding Ash's login and signup page with relevent fixes. Blob images in profile page and steps in recipe activity. The above description of app.
+Tran Huy Minh - Creation of database, DBHandler and all its methods, related classes such as DBHandlerUtility, User and Recipe classes, default recipes, lots of bug fixes for both related and unrelated to database for group. Lots of testing. Helped adding Ash's login and signup page with relevant fixes. Blob images in profile page and steps in recipe activity. The above description of app.
 
-Javier Koh -
+Javier Koh - Creation of homepage, separation of online recipe and user created recipe, horizontal recyclerview, switch between steps and ingredients, helping when there is error, event handling
 
-Ayrton -
+Ayrton - Creation of discover page, recyclerview, recipe activity, search functionality, helping when there is error, switch between steps and ingredients, multimedia, event handling
 
-Ash -
+Ash - Login page, signup page, helping when there is error, event handling
 
-Kok Kai -
+Kok Kai - Creation of user profile, all fragments, bottom navigation bar, helping when there is error, event handling, multimedia

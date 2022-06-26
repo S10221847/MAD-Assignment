@@ -8,7 +8,6 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import sg.edu.np.mad.mad_assignment_cookverse.databinding.FragmentMainBinding;
-import sg.edu.np.mad.mad_assignment_cookverse.ProfileFragment;
 
 public class MainFragment extends AppCompatActivity {
     FragmentMainBinding binding;
@@ -17,13 +16,17 @@ public class MainFragment extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //Get username from login page and send to profile fragment
         String currentUsername = getIntent().getStringExtra("username");
         bundle.putString("username", currentUsername);
         ProfileFragment profileFragment = new ProfileFragment();
         profileFragment.setArguments(bundle);
+
+        //Bind to xml and view for easier declarative layout
         binding = FragmentMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         replaceFragment(new HomeFragment());
+        //Switch fragment when clicked
         binding.bottomNavigationView.setOnItemSelectedListener(item -> {
             switch(item.getItemId()){
                 case R.id.home:
@@ -36,6 +39,7 @@ public class MainFragment extends AppCompatActivity {
                     replaceFragment(new CreateFragment());
                     break;
                 case R.id.profile:
+                    //replace with profile fragment that contained arguments
                     replaceFragment(profileFragment);
                     break;
             }
@@ -43,6 +47,7 @@ public class MainFragment extends AppCompatActivity {
             return true;
         });
     }
+    //method for showing fragments
     private void replaceFragment(Fragment fragment){
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
