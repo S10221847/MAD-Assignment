@@ -5,7 +5,7 @@ import android.graphics.BitmapFactory;
 
 import java.io.ByteArrayOutputStream;
 
-public class DbBitmapUtility {
+public class DbBitmapUtility { //Used for making Bitmaps suitable for Database storage
 
     //convert byte array to bitmap
     public static Bitmap getImage(byte[] image){

@@ -4,7 +4,7 @@ import android.graphics.Bitmap;
 
 import java.util.List;
 
-public class User {
+public class User { //User class which has Username, Password, ID and Image
     private String username;
     private String password;
     private int id; //username can arguably be used a primary key also
