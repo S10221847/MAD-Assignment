@@ -11,10 +11,10 @@ public class UserCreatedViewHolder extends RecyclerView.ViewHolder{
     TextView likes;
     public UserCreatedViewHolder(@NonNull View itemView, RecyclerViewInterface recyclerViewInterface){
         super(itemView);
-        Usercreatedrecname=itemView.findViewById(R.id.usercreatedname);
-        likes=itemView.findViewById(R.id.usercreatedlikes);
+        Usercreatedrecname=itemView.findViewById(R.id.usercreatedname); //find location of recipe name
+        likes=itemView.findViewById(R.id.usercreatedlikes); //find location of recipe number of likes
 
-        itemView.setOnClickListener(new View.OnClickListener() {
+        itemView.setOnClickListener(new View.OnClickListener() {  //onclick listener for each cardview containing recipe
             @Override
             public void onClick(View view) {
                 if (recyclerViewInterface != null) {

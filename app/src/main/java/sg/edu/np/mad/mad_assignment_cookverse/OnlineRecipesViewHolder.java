@@ -10,9 +10,9 @@ public class OnlineRecipesViewHolder extends RecyclerView.ViewHolder{
     TextView likes;
     public OnlineRecipesViewHolder(View itemView,RecyclerViewInterface recyclerViewInterface){
         super(itemView);
-        recname=itemView.findViewById(R.id.onlinerecipename);
-        likes=itemView.findViewById(R.id.onlinelikes);
-        itemView.setOnClickListener(new View.OnClickListener() {
+        recname=itemView.findViewById(R.id.onlinerecipename); //find location of recipe name
+        likes=itemView.findViewById(R.id.onlinelikes); //find location of recipe number of likes
+        itemView.setOnClickListener(new View.OnClickListener() { //onclick listener for each cardview containing recipes
             @Override
             public void onClick(View view) {
                 if(recyclerViewInterface != null){

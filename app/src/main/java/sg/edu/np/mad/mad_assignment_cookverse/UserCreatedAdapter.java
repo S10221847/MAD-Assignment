@@ -16,7 +16,7 @@ public class UserCreatedAdapter extends RecyclerView.Adapter<UserCreatedViewHold
     private Recipe x;
 
     public UserCreatedAdapter(List<Recipe> input, RecyclerViewInterface recyclerViewInterface){
-        data=input;
+        data=input;   //data consisting list of recipes
         for(int i=0;i<data.size();i++){
             if((data.get(i).getUserId())==null){
                 data.remove(i);
@@ -25,7 +25,7 @@ public class UserCreatedAdapter extends RecyclerView.Adapter<UserCreatedViewHold
         }
 
 
-        this.recyclerViewInterface = recyclerViewInterface;
+        this.recyclerViewInterface = recyclerViewInterface;   //calling recyclerview interface for onclick method
     }
     public UserCreatedViewHolder onCreateViewHolder( ViewGroup parent, int viewType) {
         View item= LayoutInflater.from(parent.getContext()).inflate(R.layout.usercreatedrecipes,parent,false);
@@ -33,12 +33,12 @@ public class UserCreatedAdapter extends RecyclerView.Adapter<UserCreatedViewHold
     }
     public void onBindViewHolder(UserCreatedViewHolder holder,int position){
         Recipe r=data.get(position);
-        holder.Usercreatedrecname.setText(r.getName());
-        holder.likes.setText(String.valueOf(r.getNoOfLikes()));
+        holder.Usercreatedrecname.setText(r.getName()); //set recipe name for each cardview
+        holder.likes.setText(String.valueOf(r.getNoOfLikes())); //set number of likes for each recipe in each cardview
 
     }
     public int getItemCount(){
-        return data.size();
+        return data.size(); //number of recyclerview items
 
     }
 }
