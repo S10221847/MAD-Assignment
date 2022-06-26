@@ -83,16 +83,14 @@ public class DiscoverFragment extends Fragment implements RecyclerViewInterface{
         return view;
     }
 
+
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        //MenuInflater inflater1 = getActivity().getMenuInflater();
-        //inflater.inflate(R.menu.search_menu, menu);
-        //super.onCreateOptionsMenu(menu,inflater);
-
         inflater.inflate(R.menu.search_menu, menu);
 
         MenuItem searchItem = menu.findItem(R.id.action_search);
         SearchView searchView = (SearchView) searchItem.getActionView();
+
 
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
@@ -100,6 +98,7 @@ public class DiscoverFragment extends Fragment implements RecyclerViewInterface{
                 return false;
             }
 
+            //filters the list in realtime, pass in user search text as newText
             @Override
             public boolean onQueryTextChange(String newText) {
                 dAdaptor.getFilter().filter(newText);
@@ -109,8 +108,9 @@ public class DiscoverFragment extends Fragment implements RecyclerViewInterface{
         });
     }
 
+    //pass values to RecipeActivity when itemView is clicked
     @Override
-    public void onItemClick(int pos){
+    public void onItemClick(int pos){ //do this when itemView in recycler view is clicked
         Intent intent = new Intent(getActivity().getBaseContext(),
                 RecipeActivity.class);
         DBHandler dbHandler = new DBHandler(getActivity(), null, null, 1);

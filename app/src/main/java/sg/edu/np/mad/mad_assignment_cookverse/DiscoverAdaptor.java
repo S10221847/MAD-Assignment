@@ -13,13 +13,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DiscoverAdaptor extends RecyclerView.Adapter<DiscoverViewHolder> implements Filterable {
-    private List<Recipe> data;
-    private List<Recipe> dataOriginal;
+    //data arraylist will be filtered, dataOriginal arraylist stores the original values of data
+    private ArrayList<Recipe> data;
+    private ArrayList<Recipe> dataOriginal;
     private final RecyclerViewInterface recyclerViewInterface;
 
-    public DiscoverAdaptor(List<Recipe> input, RecyclerViewInterface recyclerViewInterface) {
+    public DiscoverAdaptor(ArrayList<Recipe> input, RecyclerViewInterface recyclerViewInterface) {
         this.data = input;
-        //add this
+        //fill data original with same values as values in data
         dataOriginal = new ArrayList<>(input);
         this.recyclerViewInterface = recyclerViewInterface;
     }
@@ -34,7 +35,6 @@ public class DiscoverAdaptor extends RecyclerView.Adapter<DiscoverViewHolder> im
 
         holder.txt.setText(dish.getName());
         holder.txt2.setText(dish.getDescription());
-        //holder.img.setImageResource(R.drawable.ic_launcher_foreground);
     }
 
     public int getItemCount(){ return data.size(); }
@@ -46,16 +46,17 @@ public class DiscoverAdaptor extends RecyclerView.Adapter<DiscoverViewHolder> im
         return exampleFilter;
     }
     private Filter exampleFilter = new Filter() {
+        //filter data arraylist
         @Override
         protected FilterResults performFiltering(CharSequence constraint) {
-            List<Recipe> filteredList = new ArrayList<>();
+            ArrayList<Recipe> filteredList = new ArrayList<>();
 
             if(constraint == null || constraint.length() == 0) {
                 filteredList.addAll(dataOriginal);
             }
             else{ // makes the search non case sensitive
                 String filterPattern = constraint.toString().toLowerCase().trim();
-
+                //if recipe name or description follows the filter pattern, add to filteredList
                 for(Recipe item : dataOriginal){
                     if(item.getName().toLowerCase().contains(filterPattern) || item.getDescription().toLowerCase().contains(filterPattern)){
                         filteredList.add(item);
@@ -67,14 +68,15 @@ public class DiscoverAdaptor extends RecyclerView.Adapter<DiscoverViewHolder> im
             results.values = filteredList;
             return results;
         }
-
+        //display results on screen
         @Override
         protected void publishResults(CharSequence constraint, FilterResults results) {
             if(results.values != null) {
                 data.clear();
-                data.addAll((List)results.values);
+                data.addAll((ArrayList)results.values);
                 notifyDataSetChanged();
             }
+            //show nothing if no results
             else{
                 data.clear();
                 notifyDataSetChanged();

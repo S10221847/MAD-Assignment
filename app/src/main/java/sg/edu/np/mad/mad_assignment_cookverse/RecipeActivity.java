@@ -29,10 +29,10 @@ public class RecipeActivity extends AppCompatActivity {
         Button ingredStepsButton = findViewById(R.id.ingredStepsButton);
 
         if(showingSteps==true){
-            ingredStepsButton.setText("Show Steps");
+            ingredStepsButton.setText("Show Ingredients");
         }
         else{
-            ingredStepsButton.setText("Show ingredients");
+            ingredStepsButton.setText("Show steps");
         }
 
         ingredStepsButton.setOnClickListener(new View.OnClickListener() {
