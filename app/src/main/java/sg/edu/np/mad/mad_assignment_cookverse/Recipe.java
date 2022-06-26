@@ -12,7 +12,7 @@ public class Recipe { //Recipe class which has Name, Description, Ingredients, S
     private String ingredients;
     private String steps;
     private int recipeid;
-    private int userid;
+    private Integer userid;
     /*private List<String> cuisineList;*/
     private int nooflikes;
     private Bitmap recipeimage;
@@ -30,9 +30,9 @@ public class Recipe { //Recipe class which has Name, Description, Ingredients, S
 
     public void setRecipeId(int recipeid) { this.recipeid = recipeid; }
 
-    public int getUserId() { return userid; }
+    public Integer getUserId() { return userid; }
 
-    public void setUserId(int userid) { this.userid = userid; }
+    public void setUserId(Integer userid) { this.userid = userid; }
 
     /*
     public List<String> getCuisineList() { return cuisineList; }

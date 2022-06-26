@@ -76,22 +76,27 @@ public class HomeFragment extends Fragment implements RecyclerViewInterface{
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         DBHandler dbHandler = new DBHandler(getActivity(), null, null, 1);
-        List<Recipe> rList=dbHandler.listRecipe();
+
 
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_home, container, false);
 
-        RecyclerView orecyclerView=view.findViewById(R.id.onlinerecRecyclerView);
+        //RECYCLER VIEW FOR ONLINE RECIPES
+        RecyclerView orecyclerView=view.findViewById(R.id.onlinerecRecyclerView);   //instantiate recycler view for ONLINE RECIPES
         orecyclerView.setHasFixedSize(true);
-        oAdapter=new OnlineRecipesAdapter(rList,this );
+        List<Recipe>oList=dbHandler.listRecipe();;
+
+        oAdapter=new OnlineRecipesAdapter(oList,this );  //ONLINE RECIPE ADAPTER
         LinearLayoutManager oLayoutManager=new LinearLayoutManager(getActivity(),LinearLayoutManager.HORIZONTAL,false);
         orecyclerView.setLayoutManager(oLayoutManager);
         orecyclerView.setAdapter(oAdapter);
 
-
+        //RECYCLER VIEW FOR USER CREATED RECIPES (user.id of recipes=null)
         RecyclerView urecyclerView=view.findViewById(R.id.usercreatedRecyclerView);
         urecyclerView.setHasFixedSize(true);
-        UserCreatedAdapter uAdapter=new UserCreatedAdapter(rList,this);
+        List<Recipe>uList=dbHandler.listRecipe();
+
+        UserCreatedAdapter uAdapter=new UserCreatedAdapter(uList,this);
         LinearLayoutManager uLayoutManager=new LinearLayoutManager(getActivity(),LinearLayoutManager.HORIZONTAL,false);
         urecyclerView.setLayoutManager(uLayoutManager);
         urecyclerView.setAdapter(uAdapter);

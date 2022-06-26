@@ -16,6 +16,12 @@ public class OnlineRecipesAdapter extends RecyclerView.Adapter<OnlineRecipesView
 
     public OnlineRecipesAdapter(List<Recipe>input,RecyclerViewInterface recyclerViewInterface){
         data=input;
+        for(int i=0;i<data.size();i++){
+            if((data.get(i)!=null)){
+                data.remove(i);
+                continue;
+            }
+        }
         this.recyclerViewInterface = recyclerViewInterface;
     }
     public OnlineRecipesViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -28,6 +34,7 @@ public class OnlineRecipesAdapter extends RecyclerView.Adapter<OnlineRecipesView
         holder.likes.setText(String.valueOf(r.getNoOfLikes()));
     }
     public int getItemCount(){
+
         return data.size();
     }
 }

@@ -13,9 +13,18 @@ import java.util.List;
 public class UserCreatedAdapter extends RecyclerView.Adapter<UserCreatedViewHolder>{
     private List<Recipe> data;
     private final RecyclerViewInterface recyclerViewInterface;
+    private Recipe x;
 
     public UserCreatedAdapter(List<Recipe> input, RecyclerViewInterface recyclerViewInterface){
-        this.data=input;
+        data=input;
+        for(int i=0;i<data.size();i++){
+            if((data.get(i)==null)){
+                data.remove(i);
+                continue;
+            }
+        }
+
+
         this.recyclerViewInterface = recyclerViewInterface;
     }
     public UserCreatedViewHolder onCreateViewHolder( ViewGroup parent, int viewType) {
@@ -26,8 +35,10 @@ public class UserCreatedAdapter extends RecyclerView.Adapter<UserCreatedViewHold
         Recipe r=data.get(position);
         holder.Usercreatedrecname.setText(r.getName());
         holder.likes.setText(String.valueOf(r.getNoOfLikes()));
+
     }
     public int getItemCount(){
         return data.size();
+
     }
 }
