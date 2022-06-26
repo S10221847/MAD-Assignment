@@ -15,14 +15,14 @@ public class OnlineRecipesAdapter extends RecyclerView.Adapter<OnlineRecipesView
     RecyclerViewInterface recyclerViewInterface;
 
     public OnlineRecipesAdapter(List<Recipe>input,RecyclerViewInterface recyclerViewInterface){
-        data=input;
-        /*for(int i=0;i<data.size();i++){
+        data=input;  //list containing all recipes
+        for(int i=0;i<data.size();i++){
             if((data.get(i).getUserId())!=null){
                 data.remove(i);
                 continue;
             }
-        }*/
-        this.recyclerViewInterface = recyclerViewInterface;
+        }
+        this.recyclerViewInterface = recyclerViewInterface; //calling recyclerviewinterface for itemonclick
     }
     public OnlineRecipesViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View item= LayoutInflater.from(parent.getContext()).inflate(R.layout.online_recipes,parent,false);
@@ -30,12 +30,12 @@ public class OnlineRecipesAdapter extends RecyclerView.Adapter<OnlineRecipesView
     }
     public void onBindViewHolder(OnlineRecipesViewHolder holder,int position){
         Recipe r=data.get(position);
-        holder.recname.setText(r.getName());
-        holder.likes.setText(String.valueOf(r.getNoOfLikes()));
+        holder.recname.setText(r.getName()); //set recipe name for each cardview
+        holder.likes.setText(String.valueOf(r.getNoOfLikes())); //set recipe number of likes for each cardview
     }
     public int getItemCount(){
 
-        return data.size();
+        return data.size(); //number of recyclerview items
     }
 }
 

@@ -84,12 +84,7 @@ public class HomeFragment extends Fragment implements RecyclerViewInterface{
         //RECYCLER VIEW FOR ONLINE RECIPES
         RecyclerView orecyclerView=view.findViewById(R.id.onlinerecRecyclerView);   //instantiate recycler view for ONLINE RECIPES
         orecyclerView.setHasFixedSize(true);
-        List<Recipe>oList=dbHandler.listRecipe();
-        for(int i=0;i<oList.size();i++){
-            if((oList.get(i).getUserId())!=null){
-                oList.remove(i);
-            }
-        }
+        List<Recipe>oList=dbHandler.listRecipe();;
 
         oAdapter=new OnlineRecipesAdapter(oList,this );  //ONLINE RECIPE ADAPTER
         LinearLayoutManager oLayoutManager=new LinearLayoutManager(getActivity(),LinearLayoutManager.HORIZONTAL,false);
@@ -100,11 +95,6 @@ public class HomeFragment extends Fragment implements RecyclerViewInterface{
         RecyclerView urecyclerView=view.findViewById(R.id.usercreatedRecyclerView);
         urecyclerView.setHasFixedSize(true);
         List<Recipe>uList=dbHandler.listRecipe();
-        for(int i=0;i<uList.size();i++){
-            if((uList.get(i).getUserId())==null){
-                uList.remove(i);
-            }
-        }
 
         UserCreatedAdapter uAdapter=new UserCreatedAdapter(uList,this);
         LinearLayoutManager uLayoutManager=new LinearLayoutManager(getActivity(),LinearLayoutManager.HORIZONTAL,false);
