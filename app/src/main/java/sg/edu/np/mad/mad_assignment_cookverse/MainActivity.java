@@ -27,8 +27,7 @@ public class MainActivity extends AppCompatActivity {
     public String MY_PASSWORD = "MyPassword";
     DBHandler dbHandler = new DBHandler(this, null, null, 1);
 
-    Field field;
-
+    Field field; //Setting new size for Cursor for DBHandler to ignore large Bitmap size
     {
         try {
             field = CursorWindow.class.getDeclaredField("sCursorWindowSize");

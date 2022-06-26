@@ -21,6 +21,8 @@ import java.util.ArrayList;
 public class DBHandler extends SQLiteOpenHelper {
 
     public static String DATABASE_NAME = "CookverseDB.db";
+
+    //Accounts table storing User data
     public static String ACCOUNTS = "Accounts";
     public static String COLUMN_USERNAME = "Username";
     public static String COLUMN_PASSWORD = "Password";
@@ -29,6 +31,7 @@ public class DBHandler extends SQLiteOpenHelper {
     /*public static String COLUMN_LIKEDRECIPES = "LikedList";
     public static String COLUMN_CREATEDRECIPES = "CreatedList";*/
 
+    //Recipes table storing Recipe data
     public static String RECIPES = "Recipes";
     public static String COLUMN_RECIPENAME = "RecipeName";
     public static String COLUMN_DESCRIPTION = "Description";
@@ -60,19 +63,19 @@ public class DBHandler extends SQLiteOpenHelper {
         db.execSQL(CREATE_TABLE1);
         db.execSQL(CREATE_TABLE2);
 
-        //Creating initial
+        //Creating initial Accounts and Recipes data
         addDefaultAccounts(db);
         addDefaultRecipes(db);
     }
 
     @Override
-    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) { //Used when updating DB version
         db.execSQL("DROP TABLE IF EXISTS " + ACCOUNTS);
         db.execSQL("DROP TABLE IF EXISTS " + RECIPES);
         onCreate(db);
     }
 
-    public User findUserByName(String username){ //either username or Id is fine but both are necessary before the User class is substantiated
+    public User findUserByName(String username){ //Returns User object with specified username
         String query = "SELECT * FROM " + ACCOUNTS +
                 " WHERE " + COLUMN_USERNAME + "=\"" + username + "\"";
         SQLiteDatabase db = this.getReadableDatabase();
@@ -84,8 +87,8 @@ public class DBHandler extends SQLiteOpenHelper {
             queryData.setId(cursor.getInt(0));
             queryData.setName(cursor.getString(1));
             queryData.setPassword(cursor.getString(2));
-            if (cursor.getBlob(3) != null){
-                queryData.setUserImage(DbBitmapUtility.getImage(cursor.getBlob(3)));
+            if (cursor.getBlob(3) != null){ //checking if stored User has an image
+                queryData.setUserImage(DbBitmapUtility.getImage(cursor.getBlob(3))); //changing Blob from database to Bitmap
             }
 
             /*JSONObject ljson = new JSONObject(cursor.getString(3));
@@ -114,7 +117,7 @@ public class DBHandler extends SQLiteOpenHelper {
         return queryData;
     }
 
-    public User findUserById(int id){
+    public User findUserById(int id){ //Returns User object with specific ID
         String query = "SELECT * FROM " + ACCOUNTS +
                 " WHERE " + COLUMN_USERID + "=\"" + id + "\"";
         SQLiteDatabase db = this.getReadableDatabase();
@@ -156,12 +159,12 @@ public class DBHandler extends SQLiteOpenHelper {
         return queryData;
     }
 
-    public void addUser(User userData) {
+    public void addUser(User userData) { //Adds user data to database
         ContentValues values = new ContentValues();
         values.put(COLUMN_USERNAME, userData.getName());
         values.put(COLUMN_PASSWORD, userData.getPassword());
         if (userData.getUserImage() != null){
-            values.put(COLUMN_USERIMAGE, DbBitmapUtility.getBytes(userData.getUserImage()));
+            values.put(COLUMN_USERIMAGE, DbBitmapUtility.getBytes(userData.getUserImage())); //Changing Bitmap to Bytes to store inside Database
         }
         //values.put(COLUMN_USERID, userData.getId()); not necessary due to Integer Primary Key Autoincrementation
 
@@ -180,9 +183,9 @@ public class DBHandler extends SQLiteOpenHelper {
         db.close();
     }
 
-    public void updateUser(User userData){
+    public void updateUser(User userData){ //Replaces user database info with new user info
 
-        deleteUser(userData.getId());
+        deleteUser(userData.getId()); //Deletes user from database
 
         ContentValues values = new ContentValues();
         values.put(COLUMN_USERNAME, userData.getName());
@@ -207,7 +210,7 @@ public class DBHandler extends SQLiteOpenHelper {
         db.close();
     }
 
-    public void deleteUser(int id) {
+    public void deleteUser(int id) { //Deletes user from database with specified ID
 
         String query = "SELECT * FROM " + ACCOUNTS + " WHERE "
                 + COLUMN_USERID + " = \""
@@ -226,7 +229,7 @@ public class DBHandler extends SQLiteOpenHelper {
         db.close();
     }
 
-    public ArrayList<User> listUser(){
+    public ArrayList<User> listUser(){ //Returns a list with all users from the database
         String query = "SELECT * FROM " + RECIPES;
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery(query, null);
@@ -234,7 +237,7 @@ public class DBHandler extends SQLiteOpenHelper {
         User queryData = null;
         ArrayList<User> uList = new ArrayList<>();
         if (cursor.moveToFirst()) {
-            do {
+            do { //iterates through every row the query returned
                 queryData = new User();
                 queryData.setId(cursor.getInt(0));
                 queryData.setName(cursor.getString(1));
@@ -251,7 +254,7 @@ public class DBHandler extends SQLiteOpenHelper {
         return uList;
     }
 
-    public Recipe findRecipe(int recipeID){
+    public Recipe findRecipe(int recipeID){ //Returns recipe with specified recipe ID
         String query = "SELECT * FROM " + RECIPES +
                 " WHERE " + COLUMN_RECIPEID + "=\"" + recipeID + "\"";
         SQLiteDatabase db = this.getReadableDatabase();
@@ -299,7 +302,7 @@ public class DBHandler extends SQLiteOpenHelper {
         return queryData;
     }
 
-    public void addRecipe(Recipe recipeData){
+    public void addRecipe(Recipe recipeData){ //Adds recipe to database
         ContentValues values = new ContentValues();
         values.put(COLUMN_RECIPENAME, recipeData.getName());
         values.put(COLUMN_DESCRIPTION, recipeData.getDescription());
@@ -330,7 +333,7 @@ public class DBHandler extends SQLiteOpenHelper {
         db.close();
     }
 
-    public void updateRecipe(Recipe recipeData){
+    public void updateRecipe(Recipe recipeData){ //Replaces recipe database info with new recipe info
 
         deleteRecipe(recipeData.getRecipeId());
 
@@ -361,7 +364,7 @@ public class DBHandler extends SQLiteOpenHelper {
         db.close();
     }
 
-    public void deleteRecipe(int id) {
+    public void deleteRecipe(int id) { //Deletes recipe with specified ID
 
         String query = "SELECT * FROM " + RECIPES + " WHERE "
                 + COLUMN_RECIPEID + " = \""
@@ -380,7 +383,7 @@ public class DBHandler extends SQLiteOpenHelper {
         db.close();
     }
 
-    public ArrayList<Recipe> listRecipe(){
+    public ArrayList<Recipe> listRecipe(){ //Returns list of Recipes from database
         String query = "SELECT * FROM " + RECIPES;
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery(query, null);
@@ -410,7 +413,7 @@ public class DBHandler extends SQLiteOpenHelper {
         return rList;
     }
 
-    public void addDefaultRecipes(SQLiteDatabase db) {
+    public void addDefaultRecipes(SQLiteDatabase db) { //Method housing all default recipes to be added to database
         // create default Recipes
         ContentValues values = new ContentValues();
         values.put(COLUMN_RECIPENAME, "Farro Salad with Asparagus and Parmesan");
@@ -580,7 +583,7 @@ public class DBHandler extends SQLiteOpenHelper {
 
     }
 
-    public void addDefaultAccounts(SQLiteDatabase db){
+    public void addDefaultAccounts(SQLiteDatabase db){ //Method housing all default accounts to be added to Database
         ContentValues values = new ContentValues();
         values.put(COLUMN_USERNAME, "test");
         values.put(COLUMN_PASSWORD, "password");
