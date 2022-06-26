@@ -581,15 +581,107 @@ public class DBHandler extends SQLiteOpenHelper {
                 "1 slice mozzarella cheese, cut into 12 cubes ");
         db.insert(RECIPES, null, values);
 
+        values.put(COLUMN_RECIPENAME, "Creamy Pork Soup");
+        values.put(COLUMN_DESCRIPTION, "This creamy soup can be made with leftover pulled pork.");
+        values.put(COLUMN_STEPS, "Step 1: Combine milk and chicken broth in a large pot. Add pulled pork and barbecue sauce and stir. Stir in chili powder, black pepper, oregano, and salt. Let simmer over low heat, stirring occasionally, for 45 minutes.\n" +
+                "Step 2: Divide into 6 bowls and top with parsley.");
+        values.put(COLUMN_INGREDIENTS, "2 cups whole milk\n" +
+                "2 cups chicken broth\n" +
+                "1¾ cups cooked pulled pork\n" +
+                "2 tablespoons barbecue sauce\n" +
+                "2 teaspoons chili powder\n" +
+                "2 teaspoons ground black pepper\n" +
+                "1½ teaspoons dried oregano\n" +
+                "1 teaspoon salt\n" +
+                "2 tablespoons dried parsley ");
+        values.put(COLUMN_RECIPEUSERID, 2);
+        db.insert(RECIPES, null, values);
+
+        values.put(COLUMN_RECIPENAME, "Quick and Easy Pulled Pork Burritos");
+        values.put(COLUMN_DESCRIPTION, "A tasty way to use up your leftovers from a pulled pork! Goes well with a little coleslaw. ");
+        values.put(COLUMN_STEPS, "Step 1: Pour beans into a pot and bring to a simmer over medium-low heat.\n" +
+                "Step 2: Place a tortilla on a microwave-safe plate, sprinkle with onion, 2 tablespoons beans, and 2 to 3 tablespoons pulled pork. Sprinkle with Monterey Jack cheese, and roll the tortilla closed. Drizzle over 2 tablespoons of enchilada sauce, and sprinkle with more cheese.\n" +
+                "Step 3: Microwave until heated through and cheese is melted, about 1 minute. Repeat with remaining tortillas and filling ingredients.\n");
+        values.put(COLUMN_INGREDIENTS, "1 (16 ounce) can baked beans (such as Bush's® Grillin' Beans®)\n" +
+                "8 (10 inch) soft flour tortillas\n" +
+                "1 small onion, diced\n" +
+                "1 pound cooked pulled pork, heated\n" +
+                "1 (8 ounce) package shredded Monterey Jack cheese\n" +
+                "1 (16 ounce) can mild enchilada sauce ");
+        db.insert(RECIPES, null, values);
+
+        values.put(COLUMN_RECIPENAME, "Pulled Pork Meatloaf");
+        values.put(COLUMN_DESCRIPTION, "After you and the family have enjoyed all the pulled pork you can stand, use the last few cups in a pulled pork meatloaf. It's fantastic! ");
+        values.put(COLUMN_STEPS, "Step 1: Preheat oven to 350 degrees F (175 degrees C). Spray a loaf pan with cooking spray.\n" +
+                "Step 2: Whisk eggs and milk together in a bowl. Add pork, bread crumbs, bell pepper, green onion, mustard, and pepper; stir. Transfer pork mixture to the prepared loaf pan. Press pork tightly into pan and spread barbeque sauce on top.\n" +
+                "Step 3: Bake in the preheated oven until heated through, about 1 hour. Let meatloaf cool 5 to 10 minutes before slicing and serving.\n");
+        values.put(COLUMN_INGREDIENTS, "cooking spray\n" +
+                "2 eggs\n" +
+                "½ cup milk\n" +
+                "3 cups cooked pulled pork without sauce, chopped\n" +
+                "1 cup bread crumbs\n" +
+                "¼ green bell pepper, chopped\n" +
+                "1 green onion, chopped, or to taste\n" +
+                "1 teaspoon dry mustard\n" +
+                "1 teaspoon ground black pepper\n" +
+                "½ cup barbeque sauce ");
+        db.insert(RECIPES, null, values);
+
+        values.put(COLUMN_RECIPENAME, "Pulled Pork and Pumpkin Cornbread Torta");
+        values.put(COLUMN_DESCRIPTION, "Created this recipe from our family's favorite fall flavors. Pumpkin, pork, pecans, cornbread, and cranberries. All these flavors melt in your mouth, with the added flavors of fall and the slight chill in the air, bring an added warmth and smile to your hearts. ");
+        values.put(COLUMN_STEPS, "Step 1: Preheat the oven to 375 degrees F (190 degrees C). Spray the bottom and sides of 2 nonstick, 9-inch round baking pans with cooking spray.\n" +
+                "Step 2: Mix cornmeal, flour, baking powder, cinnamon, baking soda, salt, and nutmeg together in a large bowl until blended. Add pumpkin, sour cream, brown sugar, vegetable oil, and eggs; beat with an electric mixer on medium speed until blended and creamy, about 2 minutes.\n" +
+                "Step 3: Pour and evenly spoon equal portions of the batter mixture into the 2 prepared baking pans.\n" +
+                "Step 4: Bake in the preheated oven until golden brown and a toothpick inserted into the centers comes out clean, about 20 minutes. Place both over a wire cooling rack and let cool slightly, about 8 minutes. Carefully remove cornbread from pans and set aside.\n" +
+                "Step 5: Center one cornbread, top-side down, on a serving plate or platter. Spoon and evenly spread the warm pulled pork over top to cover, then carefully center the remaining cornbread on top.\n" +
+                "Step 6: Mix pepitas, cranberries, and pecans together in a small bowl. Spoon evenly over the top edges of the cornbread and add a little spoonful to the center. Cut the assembled torta into even slices and serve with barbeque sauce.\n");
+        values.put(COLUMN_INGREDIENTS, "nonstick cooking spray\n" +
+                "1 cup yellow cornmeal\n" +
+                "1 cup bread flour\n" +
+                "1 tablespoon baking powder\n" +
+                "1 teaspoon ground cinnamon\n" +
+                "½ teaspoon baking soda\n" +
+                "½ teaspoon salt\n" +
+                "¼ teaspoon freshly ground nutmeg\n" +
+                "1 cup solid-pack pumpkin\n" +
+                "½ cup sour cream\n" +
+                "½ cup packed brown sugar\n" +
+                "⅓ cup vegetable oil\n" +
+                "2 large eggs\n" +
+                "4 cups cooked pulled pork, heated\n" +
+                "½ cup toasted pepitas\n" +
+                "½ cup dried cranberries\n" +
+                "½ cup toasted chopped pecans\n" +
+                "½ cup barbeque sauce ");
+        db.insert(RECIPES, null, values);
+
+        values.put(COLUMN_RECIPENAME, "BBQ Pork Pizza");
+        values.put(COLUMN_DESCRIPTION, "A very easy way to make a delicious BBQ pork pizza in minutes! ");
+        values.put(COLUMN_STEPS, "Step 1: Preheat oven to 425 degrees F (220 degrees C). Grease a 9x13 inch baking pan.\n" +
+                "Step 2: Roll the dough out into the prepared pan. Top the dough with the barbecued pork. Sprinkle with the red onions, and layer on the dill pickle slices. Sprinkle mozzarella cheese evenly over the top.\n" +
+                "Step 3: Bake in the preheated oven until crust is golden and cheese is melted, about 18 minutes.\n");
+        values.put(COLUMN_INGREDIENTS, "1 (13.8 ounce) package refrigerated pizza dough\n" +
+                "1 (18 ounce) container barbequed pulled pork\n" +
+                "¼ red onion, thinly sliced\n" +
+                "½ cup dill pickle slices\n" +
+                "2 cups shredded mozzarella cheese ");
+        db.insert(RECIPES, null, values);
+
     }
 
     public void addDefaultAccounts(SQLiteDatabase db){ //Method housing all default accounts to be added to Database
         ContentValues values = new ContentValues();
+
         values.put(COLUMN_USERNAME, "test");
         values.put(COLUMN_PASSWORD, "password");
 
         Bitmap bm = BitmapFactory.decodeResource(context.getResources(), R.drawable.random_pic);
         values.put(COLUMN_USERIMAGE, DbBitmapUtility.getBytes(bm));
+        db.insert(ACCOUNTS, null, values);
+
+        values.put(COLUMN_USERNAME, "usercreated");
+        values.put(COLUMN_PASSWORD, "password");
+        values.putNull(COLUMN_USERIMAGE);
         db.insert(ACCOUNTS, null, values);
     }
 }
