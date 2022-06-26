@@ -117,6 +117,8 @@ public class DiscoverFragment extends Fragment implements RecyclerViewInterface{
         intent.putExtra("recipeName", dbHandler.listRecipe().get(pos).getName());
         intent.putExtra("recipeDesc", dbHandler.listRecipe().get(pos).getDescription());
         intent.putExtra("recipeSteps", dbHandler.listRecipe().get(pos).getSteps());
+        intent.putExtra("recipeIngred", dbHandler.listRecipe().get(pos).getIngredients());
+
         getActivity().startActivity(intent);
     }
 }

@@ -28,6 +28,7 @@ id coordinatorLayout2
 id create
 id discover
 id discoverRecyclerView
+id discover_layout
 id editPassword
 id editUsername
 id editmyEmailAdd
@@ -36,6 +37,8 @@ id frameLayout
 id frame_layout
 id home
 id imageView
+id imageView2
+id ingredStepsButton
 id liked
 id likedReci
 id linearLayout

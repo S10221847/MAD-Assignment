@@ -4,10 +4,11 @@ package sg.edu.np.mad.mad_assignment_cookverse.databinding;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
+import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.viewbinding.ViewBinding;
 import androidx.viewbinding.ViewBindings;
 import java.lang.NullPointerException;
@@ -17,7 +18,13 @@ import sg.edu.np.mad.mad_assignment_cookverse.R;
 
 public final class DiscoverLayoutBinding implements ViewBinding {
   @NonNull
-  private final LinearLayout rootView;
+  private final ConstraintLayout rootView;
+
+  @NonNull
+  public final ConstraintLayout discoverLayout;
+
+  @NonNull
+  public final ImageView imageView2;
 
   @NonNull
   public final TextView recipeDesc;
@@ -25,16 +32,19 @@ public final class DiscoverLayoutBinding implements ViewBinding {
   @NonNull
   public final TextView recipeName;
 
-  private DiscoverLayoutBinding(@NonNull LinearLayout rootView, @NonNull TextView recipeDesc,
-      @NonNull TextView recipeName) {
+  private DiscoverLayoutBinding(@NonNull ConstraintLayout rootView,
+      @NonNull ConstraintLayout discoverLayout, @NonNull ImageView imageView2,
+      @NonNull TextView recipeDesc, @NonNull TextView recipeName) {
     this.rootView = rootView;
+    this.discoverLayout = discoverLayout;
+    this.imageView2 = imageView2;
     this.recipeDesc = recipeDesc;
     this.recipeName = recipeName;
   }
 
   @Override
   @NonNull
-  public LinearLayout getRoot() {
+  public ConstraintLayout getRoot() {
     return rootView;
   }
 
@@ -59,6 +69,14 @@ public final class DiscoverLayoutBinding implements ViewBinding {
     // This is done to optimize the compiled bytecode for size and performance.
     int id;
     missingId: {
+      ConstraintLayout discoverLayout = (ConstraintLayout) rootView;
+
+      id = R.id.imageView2;
+      ImageView imageView2 = ViewBindings.findChildViewById(rootView, id);
+      if (imageView2 == null) {
+        break missingId;
+      }
+
       id = R.id.recipeDesc;
       TextView recipeDesc = ViewBindings.findChildViewById(rootView, id);
       if (recipeDesc == null) {
@@ -71,7 +89,8 @@ public final class DiscoverLayoutBinding implements ViewBinding {
         break missingId;
       }
 
-      return new DiscoverLayoutBinding((LinearLayout) rootView, recipeDesc, recipeName);
+      return new DiscoverLayoutBinding((ConstraintLayout) rootView, discoverLayout, imageView2,
+          recipeDesc, recipeName);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

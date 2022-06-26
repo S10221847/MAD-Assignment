@@ -4,6 +4,7 @@ package sg.edu.np.mad.mad_assignment_cookverse.databinding;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -20,14 +21,18 @@ public final class ActivityRecipeBinding implements ViewBinding {
   private final ConstraintLayout rootView;
 
   @NonNull
+  public final Button ingredStepsButton;
+
+  @NonNull
   public final TextView rName;
 
   @NonNull
   public final TextView rSteps;
 
-  private ActivityRecipeBinding(@NonNull ConstraintLayout rootView, @NonNull TextView rName,
-      @NonNull TextView rSteps) {
+  private ActivityRecipeBinding(@NonNull ConstraintLayout rootView,
+      @NonNull Button ingredStepsButton, @NonNull TextView rName, @NonNull TextView rSteps) {
     this.rootView = rootView;
+    this.ingredStepsButton = ingredStepsButton;
     this.rName = rName;
     this.rSteps = rSteps;
   }
@@ -59,6 +64,12 @@ public final class ActivityRecipeBinding implements ViewBinding {
     // This is done to optimize the compiled bytecode for size and performance.
     int id;
     missingId: {
+      id = R.id.ingredStepsButton;
+      Button ingredStepsButton = ViewBindings.findChildViewById(rootView, id);
+      if (ingredStepsButton == null) {
+        break missingId;
+      }
+
       id = R.id.rName;
       TextView rName = ViewBindings.findChildViewById(rootView, id);
       if (rName == null) {
@@ -71,7 +82,8 @@ public final class ActivityRecipeBinding implements ViewBinding {
         break missingId;
       }
 
-      return new ActivityRecipeBinding((ConstraintLayout) rootView, rName, rSteps);
+      return new ActivityRecipeBinding((ConstraintLayout) rootView, ingredStepsButton, rName,
+          rSteps);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

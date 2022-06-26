@@ -2692,6 +2692,7 @@ id disablePostScroll
 id disableScroll
 id discover
 id discoverRecyclerView
+id discover_layout
 id disjoint
 id dragAnticlockwise
 id dragClockwise
@@ -2764,9 +2765,11 @@ id ignore
 id ignoreRequest
 id image
 id imageView
+id imageView2
 id immediateStop
 id included
 id info
+id ingredStepsButton
 id invisible
 id inward
 id italic
