@@ -27,6 +27,7 @@ public class MainFragment extends AppCompatActivity {
         setContentView(binding.getRoot());
         replaceFragment(new HomeFragment());
         //Switch fragment when clicked
+        binding.bottomNavigationView.setItemIconTintList(null);
         binding.bottomNavigationView.setOnItemSelectedListener(item -> {
             switch(item.getItemId()){
                 case R.id.home:

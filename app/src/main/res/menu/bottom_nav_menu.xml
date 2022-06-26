@@ -1,13 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item android:title="Home"
-        android:id = "@+id/home"/>
+    <item
+        android:id="@+id/home"
+        android:icon="@drawable/home"
+        android:title="Home" />
     <item
         android:id="@+id/discover"
+        android:icon="@drawable/search2"
         android:title="Discover" />
-    <item android:title="Create"
-        android:id = "@+id/create"/>
-    <item android:title="Profile"
-        android:id = "@+id/profile"/>
+    <item
+        android:id="@+id/create"
+        android:icon="@drawable/create"
+        android:title="Create" />
+    <item
+        android:id="@+id/profile"
+        android:icon="@drawable/pfp"
+        android:title="Profile" />
 </menu>

@@ -7,12 +7,15 @@ color purple_700
 color teal_200
 color teal_700
 color white
+drawable create
+drawable home
 drawable ic_launcher_background
 drawable ic_launcher_foreground
 drawable ic_search
 drawable pfp
 drawable pic
 drawable random_pic
+drawable search2
 id FRAGMENT_PLACEHOLDER
 id ProfileImage
 id action_search
