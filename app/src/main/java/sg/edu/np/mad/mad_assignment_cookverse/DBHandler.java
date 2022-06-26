@@ -230,7 +230,7 @@ public class DBHandler extends SQLiteOpenHelper {
     }
 
     public ArrayList<User> listUser(){ //Returns a list with all users from the database
-        String query = "SELECT * FROM " + RECIPES;
+        String query = "SELECT * FROM " + ACCOUNTS;
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery(query, null);
 

@@ -8,15 +8,19 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import sg.edu.np.mad.mad_assignment_cookverse.databinding.FragmentMainBinding;
-import sp.edu.np.mad.myapplication.ProfileFragment;
+import sg.edu.np.mad.mad_assignment_cookverse.ProfileFragment;
 
 public class MainFragment extends AppCompatActivity {
     FragmentMainBinding binding;
     DBHandler dbHandler = new DBHandler(this, null, null, 1);
-
+    Bundle bundle = new Bundle();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        String currentUsername = getIntent().getStringExtra("username");
+        bundle.putString("username", currentUsername);
+        ProfileFragment profileFragment = new ProfileFragment();
+        profileFragment.setArguments(bundle);
         binding = FragmentMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         replaceFragment(new HomeFragment());
@@ -32,7 +36,7 @@ public class MainFragment extends AppCompatActivity {
                     replaceFragment(new CreateFragment());
                     break;
                 case R.id.profile:
-                    replaceFragment(new ProfileFragment());
+                    replaceFragment(profileFragment);
                     break;
             }
 

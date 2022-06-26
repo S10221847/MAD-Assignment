@@ -1,4 +1,4 @@
-package sp.edu.np.mad.myapplication;
+package sg.edu.np.mad.mad_assignment_cookverse;
 
 import android.os.Bundle;
 
@@ -12,6 +12,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
@@ -20,6 +21,7 @@ import com.google.android.material.navigation.NavigationBarView;
 import sg.edu.np.mad.mad_assignment_cookverse.DBHandler;
 import sg.edu.np.mad.mad_assignment_cookverse.LikedRecipeFragment;
 import sg.edu.np.mad.mad_assignment_cookverse.R;
+import sg.edu.np.mad.mad_assignment_cookverse.User;
 import sg.edu.np.mad.mad_assignment_cookverse.UserRecipeFragment;
 import sg.edu.np.mad.mad_assignment_cookverse.databinding.FragmentProfileBinding;
 
@@ -77,11 +79,19 @@ public class ProfileFragment extends Fragment {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_profile, container, false);
         DBHandler dbHandler = new DBHandler(getActivity(), null, null, 1);
-
-        ImageView myImage = (ImageView) rootView.findViewById(R.id.ProfileImage);
+        String currentUsername = getArguments().getString("username");
+        TextView currentName =  rootView.findViewById(R.id.userName);
+        for (User i:dbHandler.listUser()){
+            if (currentUsername.equals(i.getName())){
+                User currentUser = i;
+                currentName.setText(currentUser.getName());
+                break;
+            }
+        }
+        ImageView myImage =rootView.findViewById(R.id.ProfileImage);
         myImage.setImageBitmap(dbHandler.findUserById(1).getUserImage());
 
-        BottomNavigationView BNV = (BottomNavigationView) rootView.findViewById(R.id.bottomNavigationView2);
+        BottomNavigationView BNV =rootView.findViewById(R.id.bottomNavigationView2);
         BNV.setOnItemSelectedListener(item -> {
             switch (item.getItemId()){
                 case R.id.personal:

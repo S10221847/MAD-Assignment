@@ -27,7 +27,8 @@ public class MainActivity extends AppCompatActivity {
     public String MY_PASSWORD = "MyPassword";
     DBHandler dbHandler = new DBHandler(this, null, null, 1);
 
-    Field field; //Setting new size for Cursor for DBHandler to ignore large Bitmap size
+    Field field;
+
     {
         try {
             field = CursorWindow.class.getDeclaredField("sCursorWindowSize");
@@ -63,6 +64,7 @@ public class MainActivity extends AppCompatActivity {
 
                 if(isValidCredentials(etMyUserName.getText().toString(), etMyPassword.getText().toString())){
                     Intent myIntent = new Intent(MainActivity.this, MainFragment.class);
+                    myIntent.putExtra("username", etMyUserName.getText().toString());
                     startActivity(myIntent);
                     Toast.makeText(MainActivity.this,"Valid",Toast.LENGTH_SHORT).show();
                 }
