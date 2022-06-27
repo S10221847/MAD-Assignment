@@ -17,6 +17,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class DBHandler extends SQLiteOpenHelper {
 
@@ -54,11 +55,11 @@ public class DBHandler extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db){
         String CREATE_TABLE1 = "CREATE TABLE " + ACCOUNTS + "(" + COLUMN_USERID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
-                 + COLUMN_USERNAME + " TEXT," + COLUMN_PASSWORD + " TEXT," + COLUMN_USERIMAGE +
+                + COLUMN_USERNAME + " TEXT," + COLUMN_PASSWORD + " TEXT," + COLUMN_USERIMAGE +
                 /*" TEXT," + COLUMN_CREATEDRECIPES +*/ " BLOB)";
         String CREATE_TABLE2 = "CREATE TABLE " + RECIPES + "(" + COLUMN_RECIPEID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
                 + COLUMN_RECIPENAME + " TEXT," + COLUMN_DESCRIPTION + " TEXT," + COLUMN_RECIPEUSERID
-                + " TEXT," + COLUMN_LIKES  + " TEXT," + COLUMN_STEPS  + " TEXT," + COLUMN_INGREDIENTS
+                + " INTEGER," + COLUMN_LIKES  + " TEXT," + COLUMN_STEPS  + " TEXT," + COLUMN_INGREDIENTS
                 + " TEXT," + COLUMN_RECIPEIMAGE + " BLOB)";
         db.execSQL(CREATE_TABLE1);
         db.execSQL(CREATE_TABLE2);
@@ -390,6 +391,64 @@ public class DBHandler extends SQLiteOpenHelper {
 
         Recipe queryData = null;
         ArrayList<Recipe> rList = new ArrayList<>();
+        if (cursor.moveToFirst()) {
+            while (!cursor.isAfterLast()) {
+                queryData = new Recipe();
+                queryData.setRecipeId(cursor.getInt(0));
+                queryData.setName(cursor.getString(1));
+                queryData.setDescription(cursor.getString(2));
+                queryData.setUserId(cursor.getInt(3));
+                queryData.setNoOfLikes(cursor.getInt(4));
+                queryData.setSteps(cursor.getString(5));
+                queryData.setIngredients(cursor.getString(6));
+                if (cursor.getBlob(7) != null){
+                    queryData.setRecipeImage(DbBitmapUtility.getImage(cursor.getBlob(7)));
+                }
+                rList.add(queryData);
+
+                cursor.moveToNext();
+            }
+        }
+        cursor.close();
+
+        return rList;
+    }
+    public List<Recipe> listUserRecipe(){ //Returns list of Recipes from database
+        String query = "SELECT * FROM " +RECIPES+" WHERE " +COLUMN_RECIPEUSERID+" is not null";
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(query, null);
+
+        Recipe queryData = null;
+        List<Recipe> rList = new ArrayList<>();
+        if (cursor.moveToFirst()) {
+            while (!cursor.isAfterLast()) {
+                queryData = new Recipe();
+                queryData.setRecipeId(cursor.getInt(0));
+                queryData.setName(cursor.getString(1));
+                queryData.setDescription(cursor.getString(2));
+                queryData.setUserId(cursor.getInt(3));
+                queryData.setNoOfLikes(cursor.getInt(4));
+                queryData.setSteps(cursor.getString(5));
+                queryData.setIngredients(cursor.getString(6));
+                if (cursor.getBlob(7) != null){
+                    queryData.setRecipeImage(DbBitmapUtility.getImage(cursor.getBlob(7)));
+                }
+                rList.add(queryData);
+
+                cursor.moveToNext();
+            }
+        }
+        cursor.close();
+
+        return rList;
+    }
+    public List<Recipe> listOnlineRecipe(){ //Returns list of Recipes from database
+        String query = "SELECT * FROM " +RECIPES+" WHERE " +COLUMN_RECIPEUSERID+" is null";
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(query, null);
+
+        Recipe queryData = null;
+        List<Recipe> rList = new ArrayList<>();
         if (cursor.moveToFirst()) {
             while (!cursor.isAfterLast()) {
                 queryData = new Recipe();
