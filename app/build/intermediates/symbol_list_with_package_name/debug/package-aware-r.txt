@@ -2655,6 +2655,7 @@ id clip_horizontal
 id clip_vertical
 id clockwise
 id closest
+id cmgsoon
 id collapseActionView
 id compress
 id confirm_button

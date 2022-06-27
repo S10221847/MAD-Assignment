@@ -26,6 +26,7 @@ id buttonCancel
 id buttonCreate
 id cardView
 id cardView2
+id cmgsoon
 id coordinatorLayout
 id coordinatorLayout2
 id create
