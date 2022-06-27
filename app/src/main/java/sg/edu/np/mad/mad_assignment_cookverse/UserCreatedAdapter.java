@@ -17,12 +17,7 @@ public class UserCreatedAdapter extends RecyclerView.Adapter<UserCreatedViewHold
 
     public UserCreatedAdapter(List<Recipe> input, RecyclerViewInterface recyclerViewInterface){
         data=input;   //data consisting list of recipes
-        for(int i=0;i<data.size();i++){
-            if((data.get(i).getUserId())==null){
-                data.remove(i);
-                continue;
-            }
-        }
+
 
 
         this.recyclerViewInterface = recyclerViewInterface;   //calling recyclerview interface for onclick method
