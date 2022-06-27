@@ -100,12 +100,20 @@
         "source": "D:\\MAD\\MAD-Assignment-Cookverse\\app\\src\\main\\res\\mipmap-xhdpi\\ic_launcher.webp"
     },
     {
+        "merged": "D:\\MAD\\MAD-Assignment-Cookverse\\app\\build\\intermediates\\merged_res\\debug\\font_poppins.ttf.flat",
+        "source": "D:\\MAD\\MAD-Assignment-Cookverse\\app\\src\\main\\res\\font\\poppins.ttf"
+    },
+    {
         "merged": "D:\\MAD\\MAD-Assignment-Cookverse\\app\\build\\intermediates\\merged_res\\debug\\menu_profile_nav_menu.xml.flat",
         "source": "D:\\MAD\\MAD-Assignment-Cookverse\\app\\src\\main\\res\\menu\\profile_nav_menu.xml"
     },
     {
         "merged": "D:\\MAD\\MAD-Assignment-Cookverse\\app\\build\\intermediates\\merged_res\\debug\\drawable_create.png.flat",
         "source": "D:\\MAD\\MAD-Assignment-Cookverse\\app\\src\\main\\res\\drawable\\create.png"
+    },
+    {
+        "merged": "D:\\MAD\\MAD-Assignment-Cookverse\\app\\build\\intermediates\\merged_res\\debug\\drawable_applogo.jpeg.flat",
+        "source": "D:\\MAD\\MAD-Assignment-Cookverse\\app\\src\\main\\res\\drawable\\applogo.jpeg"
     },
     {
         "merged": "D:\\MAD\\MAD-Assignment-Cookverse\\app\\build\\intermediates\\merged_res\\debug\\mipmap-hdpi_ic_launcher.webp.flat",

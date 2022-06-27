@@ -1,12 +1,15 @@
 R_DEF: Internal format may change without notice
 local
 color black
+color cream
+color purple
 color purple_200
 color purple_500
 color purple_700
 color teal_200
 color teal_700
 color white
+drawable applogo
 drawable create
 drawable home
 drawable ic_launcher_background
@@ -16,6 +19,7 @@ drawable pfp
 drawable pic
 drawable random_pic
 drawable search2
+font poppins
 id FRAGMENT_PLACEHOLDER
 id ProfileImage
 id action_search
@@ -65,10 +69,7 @@ id textView
 id textView14
 id textView15
 id textView2
-id textView3
 id textView4
-id textView5
-id textView6
 id textView7
 id userName
 id userSignup

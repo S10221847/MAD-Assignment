@@ -25,12 +25,15 @@ import java.util.List;
  * create an instance of this fragment.
  */
 
-public class HomeFragment extends Fragment implements UserRecyclerViewInterface, OnlineRecyclerViewInterface{
+public class HomeFragment extends Fragment implements RecyclerViewInterface,UserRecyclerViewInterface{
     public String TAG="Home page";
     OnlineRecipesAdapter oAdapter;
     UserCreatedAdapter uAdapter;
-    UserRecyclerViewInterface userRecyclerViewInterface;
-    OnlineRecyclerViewInterface onlineRecyclerViewInterface;
+    RecyclerViewInterface RecyclerViewInterface;
+    UserRecyclerViewInterface UserRecyclerViewInterface;
+    List<Recipe> dataOriginal;
+    List<Recipe>uList;
+    DBHandler dbHandler;
 
 
     // TODO: Rename parameter arguments, choose names that match
@@ -112,28 +115,28 @@ public class HomeFragment extends Fragment implements UserRecyclerViewInterface,
     public void onItemClick(int pos){
         Intent intent = new Intent(getActivity().getBaseContext(),
                 RecipeActivity.class);
-        DBHandler dbHandler = new DBHandler(getActivity(), null, null, 1);
-        long x = oAdapter.getItemId(pos);
-        int i = (int) x;
-        intent.putExtra("recipeName", dbHandler.listRecipe().get(i).getName());
-        intent.putExtra("recipeDesc", dbHandler.listRecipe().get(i).getDescription());
-        intent.putExtra("recipeSteps", dbHandler.listRecipe().get(i).getSteps());
-        intent.putExtra("recipeIngred", dbHandler.listRecipe().get(i).getIngredients());
 
+        DBHandler dbHandler = new DBHandler(getActivity(), null, null, 1);
+        intent.putExtra("recipeName", dbHandler.listOnlineRecipe().get(pos).getName());
+        intent.putExtra("recipeDesc", dbHandler.listOnlineRecipe().get(pos).getDescription());
+        intent.putExtra("recipeSteps", dbHandler.listOnlineRecipe().get(pos).getSteps());
+        intent.putExtra("recipeIngred", dbHandler.listOnlineRecipe().get(pos).getIngredients());
         getActivity().startActivity(intent);
+
     }
+
+
 
     public void onItemClick2(int pos) {
         Intent intent = new Intent(getActivity().getBaseContext(),
                 RecipeActivity.class);
-        DBHandler dbHandler = new DBHandler(getActivity(), null, null, 1);
-        long x = uAdapter.getItemId(pos);
-        int i = (int) x;
-        intent.putExtra("recipeName", dbHandler.listRecipe().get(i).getName());
-        intent.putExtra("recipeDesc", dbHandler.listRecipe().get(i).getDescription());
-        intent.putExtra("recipeSteps", dbHandler.listRecipe().get(i).getSteps());
-        intent.putExtra("recipeIngred", dbHandler.listRecipe().get(i).getIngredients());
 
+        DBHandler dbHandler = new DBHandler(getActivity(), null, null, 1);
+        intent.putExtra("recipeName", dbHandler.listUserRecipe().get(pos).getName());
+        intent.putExtra("recipeDesc", dbHandler.listUserRecipe().get(pos).getDescription());
+        intent.putExtra("recipeSteps", dbHandler.listUserRecipe().get(pos).getSteps());
+        intent.putExtra("recipeIngred", dbHandler.listUserRecipe().get(pos).getIngredients());
         getActivity().startActivity(intent);
+
     }
 }

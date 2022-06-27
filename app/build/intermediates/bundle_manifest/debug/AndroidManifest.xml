@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="sg.edu.np.mad.mad_assignment_cookverse"
+    android:versionCode="3"
+    android:versionName="1.1" >
+
+    <uses-sdk
+        android:minSdkVersion="21"
+        android:targetSdkVersion="32" />
+
+    <application
+        android:allowBackup="true"
+        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+        android:debuggable="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.MADAssignmentCookverse" >
+        <activity
+            android:name="sg.edu.np.mad.mad_assignment_cookverse.RecipeActivity"
+            android:exported="false" />
+        <activity
+            android:name="sg.edu.np.mad.mad_assignment_cookverse.MainFragment"
+            android:exported="true" />
+        <activity
+            android:name="sg.edu.np.mad.mad_assignment_cookverse.CreateUserPage"
+            android:exported="true" />
+        <activity
+            android:name="sg.edu.np.mad.mad_assignment_cookverse.LoginPage"
+            android:exported="true" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <provider
+            android:name="androidx.startup.InitializationProvider"
+            android:authorities="sg.edu.np.mad.mad_assignment_cookverse.androidx-startup"
+            android:exported="false" >
+            <meta-data
+                android:name="androidx.emoji2.text.EmojiCompatInitializer"
+                android:value="androidx.startup" />
+            <meta-data
+                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
+                android:value="androidx.startup" />
+        </provider>
+    </application>
+
+</manifest>

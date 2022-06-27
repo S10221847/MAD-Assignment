@@ -9,7 +9,7 @@ import androidx.annotation.NonNull;
 public class UserCreatedViewHolder extends RecyclerView.ViewHolder{
     TextView Usercreatedrecname;
     TextView likes;
-    public UserCreatedViewHolder(@NonNull View itemView, UserRecyclerViewInterface userRecyclerViewInterface){
+    public UserCreatedViewHolder(@NonNull View itemView, UserRecyclerViewInterface UserRecyclerViewInterface){
         super(itemView);
         Usercreatedrecname=itemView.findViewById(R.id.usercreatedname); //find location of recipe name
         likes=itemView.findViewById(R.id.usercreatedlikes); //find location of recipe number of likes
@@ -17,11 +17,11 @@ public class UserCreatedViewHolder extends RecyclerView.ViewHolder{
         itemView.setOnClickListener(new View.OnClickListener() {  //onclick listener for each cardview containing recipe
             @Override
             public void onClick(View view) {
-                if (userRecyclerViewInterface != null) {
+                if (UserRecyclerViewInterface != null) {
                     int pos = getAdapterPosition();
 
                     if (pos != RecyclerView.NO_POSITION) {
-                        userRecyclerViewInterface.onItemClick2(pos);
+                        UserRecyclerViewInterface.onItemClick2(pos);
                     }
                 }
             }
