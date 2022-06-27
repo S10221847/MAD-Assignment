@@ -25,10 +25,12 @@ import java.util.List;
  * create an instance of this fragment.
  */
 
-public class HomeFragment extends Fragment implements RecyclerViewInterface{
+public class HomeFragment extends Fragment implements UserRecyclerViewInterface, OnlineRecyclerViewInterface{
     public String TAG="Home page";
     OnlineRecipesAdapter oAdapter;
-    RecyclerViewInterface recyclerViewInterface;
+    UserCreatedAdapter uAdapter;
+    UserRecyclerViewInterface userRecyclerViewInterface;
+    OnlineRecyclerViewInterface onlineRecyclerViewInterface;
 
 
     // TODO: Rename parameter arguments, choose names that match
@@ -80,6 +82,8 @@ public class HomeFragment extends Fragment implements RecyclerViewInterface{
 
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_home, container, false);
+        ArrayList<Recipe> dataOriginal = new ArrayList<>();
+        dataOriginal = dbHandler.listRecipe();
 
         //RECYCLER VIEW FOR ONLINE RECIPES
         RecyclerView orecyclerView=view.findViewById(R.id.onlinerecRecyclerView);   //instantiate recycler view for ONLINE RECIPES
@@ -96,7 +100,7 @@ public class HomeFragment extends Fragment implements RecyclerViewInterface{
         urecyclerView.setHasFixedSize(true);
         List<Recipe>uList=dbHandler.listUserRecipe();
 
-        UserCreatedAdapter uAdapter=new UserCreatedAdapter(uList,this);
+        uAdapter=new UserCreatedAdapter(uList,this);
         LinearLayoutManager uLayoutManager=new LinearLayoutManager(getActivity(),LinearLayoutManager.HORIZONTAL,false);
         urecyclerView.setLayoutManager(uLayoutManager);
         urecyclerView.setAdapter(uAdapter);
@@ -109,10 +113,27 @@ public class HomeFragment extends Fragment implements RecyclerViewInterface{
         Intent intent = new Intent(getActivity().getBaseContext(),
                 RecipeActivity.class);
         DBHandler dbHandler = new DBHandler(getActivity(), null, null, 1);
-        intent.putExtra("recipeName", dbHandler.listRecipe().get(pos).getName());
-        intent.putExtra("recipeDesc", dbHandler.listRecipe().get(pos).getDescription());
-        intent.putExtra("recipeSteps", dbHandler.listRecipe().get(pos).getSteps());
-        intent.putExtra("recipeIngred", dbHandler.listRecipe().get(pos).getIngredients());
+        long x = oAdapter.getItemId(pos);
+        int i = (int) x;
+        intent.putExtra("recipeName", dbHandler.listRecipe().get(i).getName());
+        intent.putExtra("recipeDesc", dbHandler.listRecipe().get(i).getDescription());
+        intent.putExtra("recipeSteps", dbHandler.listRecipe().get(i).getSteps());
+        intent.putExtra("recipeIngred", dbHandler.listRecipe().get(i).getIngredients());
+
+        getActivity().startActivity(intent);
+    }
+
+    public void onItemClick2(int pos) {
+        Intent intent = new Intent(getActivity().getBaseContext(),
+                RecipeActivity.class);
+        DBHandler dbHandler = new DBHandler(getActivity(), null, null, 1);
+        long x = uAdapter.getItemId(pos);
+        int i = (int) x;
+        intent.putExtra("recipeName", dbHandler.listRecipe().get(i).getName());
+        intent.putExtra("recipeDesc", dbHandler.listRecipe().get(i).getDescription());
+        intent.putExtra("recipeSteps", dbHandler.listRecipe().get(i).getSteps());
+        intent.putExtra("recipeIngred", dbHandler.listRecipe().get(i).getIngredients());
+
         getActivity().startActivity(intent);
     }
 }

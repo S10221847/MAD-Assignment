@@ -110,14 +110,16 @@ public class DiscoverFragment extends Fragment implements RecyclerViewInterface{
 
     //pass values to RecipeActivity when itemView is clicked
     @Override
-    public void onItemClick(int pos){ //do this when itemView in recycler view is clicked
+    public void onItemClick(int pos) {
         Intent intent = new Intent(getActivity().getBaseContext(),
                 RecipeActivity.class);
         DBHandler dbHandler = new DBHandler(getActivity(), null, null, 1);
-        intent.putExtra("recipeName", dbHandler.listRecipe().get(pos).getName());
-        intent.putExtra("recipeDesc", dbHandler.listRecipe().get(pos).getDescription());
-        intent.putExtra("recipeSteps", dbHandler.listRecipe().get(pos).getSteps());
-        intent.putExtra("recipeIngred", dbHandler.listRecipe().get(pos).getIngredients());
+        long x = dAdaptor.getItemId(pos);
+        int i = (int) x;
+        intent.putExtra("recipeName", dbHandler.listRecipe().get(i).getName());
+        intent.putExtra("recipeDesc", dbHandler.listRecipe().get(i).getDescription());
+        intent.putExtra("recipeSteps", dbHandler.listRecipe().get(i).getSteps());
+        intent.putExtra("recipeIngred", dbHandler.listRecipe().get(i).getIngredients());
 
         getActivity().startActivity(intent);
     }

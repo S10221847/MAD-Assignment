@@ -4,6 +4,9 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/MAD-Assignment-Cookverse.iml" filepath="$PROJECT_DIR$/.idea/modules/MAD-Assignment-Cookverse.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/MAD-Assignment-Cookverse.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/MAD-Assignment-Cookverse.app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/MAD-Assignment-Cookverse.app.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/MAD-Assignment-Cookverse.app.androidTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/MAD-Assignment-Cookverse.app.main.iml" filepath="$PROJECT_DIR$/.idea/modules/app/MAD-Assignment-Cookverse.app.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/MAD-Assignment-Cookverse.app.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/MAD-Assignment-Cookverse.app.unitTest.iml" />
     </modules>
   </component>
 </project>

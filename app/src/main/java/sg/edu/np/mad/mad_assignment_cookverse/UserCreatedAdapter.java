@@ -12,19 +12,20 @@ import java.util.List;
 
 public class UserCreatedAdapter extends RecyclerView.Adapter<UserCreatedViewHolder>{
     private List<Recipe> data;
-    private final RecyclerViewInterface recyclerViewInterface;
+    private List<Recipe> dataOriginal;
+    UserRecyclerViewInterface userRecyclerViewInterface;
     private Recipe x;
 
-    public UserCreatedAdapter(List<Recipe> input, RecyclerViewInterface recyclerViewInterface){
+    public UserCreatedAdapter(List<Recipe> input, UserRecyclerViewInterface userRecyclerViewInterface){
         data=input;   //data consisting list of recipes
+        dataOriginal = new ArrayList<>(input);
 
 
-
-        this.recyclerViewInterface = recyclerViewInterface;   //calling recyclerview interface for onclick method
+        this.userRecyclerViewInterface = userRecyclerViewInterface;   //calling recyclerview interface for onclick method
     }
     public UserCreatedViewHolder onCreateViewHolder( ViewGroup parent, int viewType) {
         View item= LayoutInflater.from(parent.getContext()).inflate(R.layout.usercreatedrecipes,parent,false);
-        return new UserCreatedViewHolder(item, recyclerViewInterface);
+        return new UserCreatedViewHolder(item, userRecyclerViewInterface);
     }
     public void onBindViewHolder(UserCreatedViewHolder holder,int position){
         Recipe r=data.get(position);
@@ -35,5 +36,21 @@ public class UserCreatedAdapter extends RecyclerView.Adapter<UserCreatedViewHold
     public int getItemCount(){
         return data.size(); //number of recyclerview items
 
+    }
+    @Override
+    public long getItemId(int position) {
+
+        int itemID;
+
+        // orig will be null only if we haven't filtered yet:
+        if (dataOriginal == null)
+        {
+            itemID = position;
+        }
+        else
+        {
+            itemID = dataOriginal.indexOf(data.get(position));
+        }
+        return itemID;
     }
 }

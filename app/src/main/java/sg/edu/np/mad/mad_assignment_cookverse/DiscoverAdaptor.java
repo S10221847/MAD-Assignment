@@ -39,6 +39,22 @@ public class DiscoverAdaptor extends RecyclerView.Adapter<DiscoverViewHolder> im
 
     public int getItemCount(){ return data.size(); }
 
+    @Override
+    public long getItemId(int position) {
+
+        int itemID;
+
+        // orig will be null only if we haven't filtered yet:
+        if (dataOriginal == null)
+        {
+            itemID = position;
+        }
+        else
+        {
+            itemID = dataOriginal.indexOf(data.get(position));
+        }
+        return itemID;
+    }
 
     //FILTERING
     @Override
@@ -58,7 +74,7 @@ public class DiscoverAdaptor extends RecyclerView.Adapter<DiscoverViewHolder> im
                 String filterPattern = constraint.toString().toLowerCase().trim();
                 //if recipe name or description follows the filter pattern, add to filteredList
                 for(Recipe item : dataOriginal){
-                    if(item.getName().toLowerCase().contains(filterPattern) || item.getDescription().toLowerCase().contains(filterPattern)){
+                    if(item.getName().toLowerCase().contains(filterPattern)){
                         filteredList.add(item);
                     }
                 }
