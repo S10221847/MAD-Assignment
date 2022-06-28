@@ -28,8 +28,6 @@ id bottomNavigationView
 id bottomNavigationView2
 id buttonCancel
 id buttonCreate
-id cardView
-id cardView2
 id cmgsoon
 id coordinatorLayout
 id coordinatorLayout2
@@ -46,6 +44,8 @@ id frame_layout
 id home
 id imageView
 id imageView2
+id imageView3
+id imageView4
 id ingredStepsButton
 id liked
 id likedReci
@@ -94,6 +94,8 @@ menu bottom_nav_menu
 menu profile_nav_menu
 menu search_menu
 mipmap ic_launcher
+mipmap ic_launcher_background
+mipmap ic_launcher_foreground
 mipmap ic_launcher_round
 string app_name
 style Theme.MADAssignmentCookverse

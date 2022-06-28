@@ -12,12 +12,12 @@
         "source": "D:\\MAD\\MAD-Assignment-Cookverse\\app\\src\\main\\res\\layout\\fragment_create.xml"
     },
     {
-        "merged": "D:\\MAD\\MAD-Assignment-Cookverse\\app\\build\\intermediates\\incremental\\mergeReleaseResources\\stripped.dir\\layout\\online_recipes.xml",
-        "source": "D:\\MAD\\MAD-Assignment-Cookverse\\app\\src\\main\\res\\layout\\online_recipes.xml"
-    },
-    {
         "merged": "D:\\MAD\\MAD-Assignment-Cookverse\\app\\build\\intermediates\\incremental\\mergeReleaseResources\\stripped.dir\\layout\\activity_main.xml",
         "source": "D:\\MAD\\MAD-Assignment-Cookverse\\app\\src\\main\\res\\layout\\activity_main.xml"
+    },
+    {
+        "merged": "D:\\MAD\\MAD-Assignment-Cookverse\\app\\build\\intermediates\\incremental\\mergeReleaseResources\\stripped.dir\\layout\\online_recipes.xml",
+        "source": "D:\\MAD\\MAD-Assignment-Cookverse\\app\\src\\main\\res\\layout\\online_recipes.xml"
     },
     {
         "merged": "D:\\MAD\\MAD-Assignment-Cookverse\\app\\build\\intermediates\\incremental\\mergeReleaseResources\\stripped.dir\\layout\\fragment_liked_recipe.xml",

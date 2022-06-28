@@ -2634,8 +2634,6 @@ id buttonPanel
 id cache_measures
 id callMeasure
 id cancel_button
-id cardView
-id cardView2
 id carryVelocity
 id center
 id centerCrop
@@ -2774,6 +2772,8 @@ id ignoreRequest
 id image
 id imageView
 id imageView2
+id imageView3
+id imageView4
 id immediateStop
 id included
 id info
@@ -3269,6 +3269,8 @@ menu example_menu2
 menu profile_nav_menu
 menu search_menu
 mipmap ic_launcher
+mipmap ic_launcher_background
+mipmap ic_launcher_foreground
 mipmap ic_launcher_round
 plurals mtrl_badge_content_description
 string abc_action_bar_home_description

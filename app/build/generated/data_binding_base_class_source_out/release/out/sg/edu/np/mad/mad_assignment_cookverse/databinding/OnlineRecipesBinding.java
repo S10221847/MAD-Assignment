@@ -4,6 +4,7 @@ package sg.edu.np.mad.mad_assignment_cookverse.databinding;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -20,7 +21,7 @@ public final class OnlineRecipesBinding implements ViewBinding {
   private final ConstraintLayout rootView;
 
   @NonNull
-  public final ConstraintLayout cardView;
+  public final ImageView imageView4;
 
   @NonNull
   public final ConstraintLayout linearLayout2;
@@ -31,11 +32,11 @@ public final class OnlineRecipesBinding implements ViewBinding {
   @NonNull
   public final TextView onlinerecipename;
 
-  private OnlineRecipesBinding(@NonNull ConstraintLayout rootView,
-      @NonNull ConstraintLayout cardView, @NonNull ConstraintLayout linearLayout2,
-      @NonNull TextView onlinelikes, @NonNull TextView onlinerecipename) {
+  private OnlineRecipesBinding(@NonNull ConstraintLayout rootView, @NonNull ImageView imageView4,
+      @NonNull ConstraintLayout linearLayout2, @NonNull TextView onlinelikes,
+      @NonNull TextView onlinerecipename) {
     this.rootView = rootView;
-    this.cardView = cardView;
+    this.imageView4 = imageView4;
     this.linearLayout2 = linearLayout2;
     this.onlinelikes = onlinelikes;
     this.onlinerecipename = onlinerecipename;
@@ -68,9 +69,9 @@ public final class OnlineRecipesBinding implements ViewBinding {
     // This is done to optimize the compiled bytecode for size and performance.
     int id;
     missingId: {
-      id = R.id.cardView;
-      ConstraintLayout cardView = ViewBindings.findChildViewById(rootView, id);
-      if (cardView == null) {
+      id = R.id.imageView4;
+      ImageView imageView4 = ViewBindings.findChildViewById(rootView, id);
+      if (imageView4 == null) {
         break missingId;
       }
 
@@ -88,7 +89,7 @@ public final class OnlineRecipesBinding implements ViewBinding {
         break missingId;
       }
 
-      return new OnlineRecipesBinding((ConstraintLayout) rootView, cardView, linearLayout2,
+      return new OnlineRecipesBinding((ConstraintLayout) rootView, imageView4, linearLayout2,
           onlinelikes, onlinerecipename);
     }
     String missingId = rootView.getResources().getResourceName(id);

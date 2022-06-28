@@ -4,6 +4,7 @@ package sg.edu.np.mad.mad_assignment_cookverse.databinding;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -20,7 +21,7 @@ public final class UsercreatedrecipesBinding implements ViewBinding {
   private final ConstraintLayout rootView;
 
   @NonNull
-  public final ConstraintLayout cardView2;
+  public final ImageView imageView3;
 
   @NonNull
   public final ConstraintLayout linearLayout3;
@@ -32,10 +33,10 @@ public final class UsercreatedrecipesBinding implements ViewBinding {
   public final TextView usercreatedname;
 
   private UsercreatedrecipesBinding(@NonNull ConstraintLayout rootView,
-      @NonNull ConstraintLayout cardView2, @NonNull ConstraintLayout linearLayout3,
+      @NonNull ImageView imageView3, @NonNull ConstraintLayout linearLayout3,
       @NonNull TextView usercreatedlikes, @NonNull TextView usercreatedname) {
     this.rootView = rootView;
-    this.cardView2 = cardView2;
+    this.imageView3 = imageView3;
     this.linearLayout3 = linearLayout3;
     this.usercreatedlikes = usercreatedlikes;
     this.usercreatedname = usercreatedname;
@@ -68,9 +69,9 @@ public final class UsercreatedrecipesBinding implements ViewBinding {
     // This is done to optimize the compiled bytecode for size and performance.
     int id;
     missingId: {
-      id = R.id.cardView2;
-      ConstraintLayout cardView2 = ViewBindings.findChildViewById(rootView, id);
-      if (cardView2 == null) {
+      id = R.id.imageView3;
+      ImageView imageView3 = ViewBindings.findChildViewById(rootView, id);
+      if (imageView3 == null) {
         break missingId;
       }
 
@@ -88,7 +89,7 @@ public final class UsercreatedrecipesBinding implements ViewBinding {
         break missingId;
       }
 
-      return new UsercreatedrecipesBinding((ConstraintLayout) rootView, cardView2, linearLayout3,
+      return new UsercreatedrecipesBinding((ConstraintLayout) rootView, imageView3, linearLayout3,
           usercreatedlikes, usercreatedname);
     }
     String missingId = rootView.getResources().getResourceName(id);
