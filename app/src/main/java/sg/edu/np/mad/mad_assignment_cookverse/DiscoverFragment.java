@@ -2,6 +2,7 @@ package sg.edu.np.mad.mad_assignment_cookverse;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -9,10 +10,20 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import sg.edu.np.mad.mad_assignment_cookverse.databinding.FragmentProfileBinding;
 
@@ -72,13 +83,35 @@ public class DiscoverFragment extends Fragment implements RecyclerViewInterface{
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_discover, container, false);
 
-        DBHandler dbHandler = new DBHandler(getActivity(), null, null, 1);
+        //DBHandler dbHandler = new DBHandler(getActivity(), null, null, 1);
+        RecyclerViewInterface rvi = this;
+
         RecyclerView discoverRecyclerView = view.findViewById(R.id.discoverRecyclerView);
-        dAdaptor = new DiscoverAdaptor(dbHandler.listRecipe(), this);
-        LinearLayoutManager dLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
-        discoverRecyclerView.setLayoutManager(dLayoutManager);
-        discoverRecyclerView.setAdapter(dAdaptor);
-        setHasOptionsMenu(true);
+
+
+        Query query = FirebaseDatabase.getInstance().getReference().child("Recipes");
+        ArrayList<Recipe> list = new ArrayList<>();
+        ValueEventListener eventListener = new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()) {
+                    for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                        Recipe r = snapshot.getValue(Recipe.class);
+                        list.add(r);
+                    }
+                }
+                dAdaptor = new DiscoverAdaptor(list, rvi);
+                LinearLayoutManager dLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
+                discoverRecyclerView.setLayoutManager(dLayoutManager);
+                discoverRecyclerView.setAdapter(dAdaptor);
+                setHasOptionsMenu(true);
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Log.v("Main", error.getMessage());
+            }
+        };
+        query.addValueEventListener(eventListener);
 
         return view;
     }
@@ -113,14 +146,33 @@ public class DiscoverFragment extends Fragment implements RecyclerViewInterface{
     public void onItemClick(int pos) {
         Intent intent = new Intent(getActivity().getBaseContext(),
                 RecipeActivity.class);
-        DBHandler dbHandler = new DBHandler(getActivity(), null, null, 1);
+        //DBHandler dbHandler = new DBHandler(getActivity(), null, null, 1);
         long x = dAdaptor.getItemId(pos);
         int i = (int) x;
-        intent.putExtra("recipeName", dbHandler.listRecipe().get(i).getName());
-        intent.putExtra("recipeDesc", dbHandler.listRecipe().get(i).getDescription());
-        intent.putExtra("recipeSteps", dbHandler.listRecipe().get(i).getSteps());
-        intent.putExtra("recipeIngred", dbHandler.listRecipe().get(i).getIngredients());
 
-        getActivity().startActivity(intent);
+        Query query = FirebaseDatabase.getInstance().getReference().child("Recipes");
+        List<Recipe> list = new ArrayList<>();
+        ValueEventListener eventListener = new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()) {
+                    for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                        Recipe r = snapshot.getValue(Recipe.class);
+                        list.add(r);
+                    }
+                }
+                intent.putExtra("recipeName", list.get(i).getName());
+                intent.putExtra("recipeDesc", list.get(i).getDescription());
+                intent.putExtra("recipeSteps", list.get(i).getSteps());
+                intent.putExtra("recipeIngred", list.get(i).getIngredients());
+
+                getActivity().startActivity(intent);
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Log.v("Main", error.getMessage());
+            }
+        };
+        query.addValueEventListener(eventListener);
     }
 }

@@ -6,52 +6,95 @@ import androidx.annotation.DrawableRes;
 
 import java.util.List;
 
-public class Recipe { //Recipe class which has Name, Description, Ingredients, Steps, RecipeID, UserID, Number of Likes and Image
+public class Recipe {
     private String name;
     private String description;
     private String ingredients;
     private String steps;
-    private int recipeid;
-    private Integer userid;
-    /*private List<String> cuisineList;*/
+    private int duration; //in minutes
+    private String rid;
+    private String uid;
+    private List<String> cuisineList;
     private int nooflikes;
-    private Bitmap recipeimage;
+    private String recipeimage;
 
+    public String getName() {
+        return name;
+    }
 
-    public String getName() { return name; }
+    public void setName(String name) {
+        this.name = name;
+    }
 
-    public void setName(String name) { this.name = name; }
+    public String getDescription() {
+        return description;
+    }
 
-    public String getDescription() { return description; }
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
-    public void setDescription(String description) { this.description = description; }
+    public String getIngredients() {
+        return ingredients;
+    }
 
-    public int getRecipeId() { return recipeid; }
+    public void setIngredients(String ingredients) {
+        this.ingredients = ingredients;
+    }
 
-    public void setRecipeId(int recipeid) { this.recipeid = recipeid; }
+    public String getSteps() {
+        return steps;
+    }
 
-    public Integer getUserId() { return userid; }
+    public void setSteps(String steps) {
+        this.steps = steps;
+    }
 
-    public void setUserId(Integer userid) { this.userid = userid; }
+    public int getDuration() {
+        return duration;
+    }
 
-    /*
-    public List<String> getCuisineList() { return cuisineList; }
+    public void setDuration(int duration) {
+        this.duration = duration;
+    }
 
-    public void setCuisineList(List<String> cuisineList) { this.cuisineList = cuisineList; }*/
+    public String getRid() {
+        return rid;
+    }
 
-    public int getNoOfLikes() { return nooflikes; }
+    public void setRid(String rid) {
+        this.rid = rid;
+    }
 
-    public void setNoOfLikes(int nooflikes) { this.nooflikes = nooflikes; }
+    public String getUid() {
+        return uid;
+    }
 
-    public String getIngredients() { return ingredients; }
+    public void setUid(String uid) {
+        this.uid = uid;
+    }
 
-    public void setIngredients(String ingredients) { this.ingredients = ingredients; }
+    public List<String> getCuisineList() {
+        return cuisineList;
+    }
 
-    public String getSteps() { return steps; }
+    public void setCuisineList(List<String> cuisineList) {
+        this.cuisineList = cuisineList;
+    }
 
-    public void setSteps(String steps) { this.steps = steps; }
+    public int getNooflikes() {
+        return nooflikes;
+    }
 
-    public Bitmap getRecipeImage() { return recipeimage; }
+    public void setNooflikes(int nooflikes) {
+        this.nooflikes = nooflikes;
+    }
 
-    public void setRecipeImage(Bitmap recipeimage) { this.recipeimage = recipeimage; }
+    public String getRecipeimage() {
+        return recipeimage;
+    }
+
+    public void setRecipeimage(String recipeimage) {
+        this.recipeimage = recipeimage;
+    }
 }

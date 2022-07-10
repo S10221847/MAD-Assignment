@@ -26,14 +26,12 @@ public class UserCreatedAdapter extends RecyclerView.Adapter<UserCreatedViewHold
     public void onBindViewHolder(UserCreatedViewHolder holder,int position){
         Recipe r=data.get(position);
         holder.Usercreatedrecname.setText(r.getName()); //set recipe name for each cardview
-        holder.likes.setText(String.valueOf(r.getNoOfLikes())); //set number of likes for each recipe in each cardview
+        holder.likes.setText(String.valueOf(r.getNooflikes())); //set number of likes for each recipe in each cardview
+        new ImageLoadTask(r.getRecipeimage(), holder.pic).execute();
 
     }
     public int getItemCount(){
         return data.size(); //number of recyclerview items
 
     }
-
-
-
 }

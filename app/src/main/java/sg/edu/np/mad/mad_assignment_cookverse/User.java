@@ -4,19 +4,19 @@ import android.graphics.Bitmap;
 
 import java.util.List;
 
-public class User { //User class which has Username, Password, ID and Image
-    private String username;
+public class User {
+    private String name;
     private String password;
-    private int id; //username can arguably be used a primary key also
-    /*private List<String> likedList;
-    private List<String> createdList;*/
-    private Bitmap userImage;
+    private String userImage;
+    private String bio;
 
     public String getName() {
-        return username;
+        return name;
     }
 
-    public void setName(String username) { this.username = username; }
+    public void setName(String name) {
+        this.name = name;
+    }
 
     public String getPassword() {
         return password;
@@ -26,23 +26,19 @@ public class User { //User class which has Username, Password, ID and Image
         this.password = password;
     }
 
-    public int getId() {
-        return id;
+    public String getUserImage() {
+        return userImage;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setUserImage(String userImage) {
+        this.userImage = userImage;
     }
 
-    /*public List<String> getLikedList() { return likedList; }
+    public String getBio() {
+        return bio;
+    }
 
-    public void setLikedList(List<String> likedList) { this.likedList = likedList; }
-
-    public List<String> getCreatedList() { return createdList; }
-
-    public void setCreatedList(List<String> createdList) { this.createdList = createdList; }*/
-
-    public Bitmap getUserImage() { return userImage; }
-
-    public void setUserImage(Bitmap userImage) { this.userImage = userImage; }
+    public void setBio(String bio) {
+        this.bio = bio;
+    }
 }

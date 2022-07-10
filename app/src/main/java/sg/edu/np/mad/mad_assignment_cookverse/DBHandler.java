@@ -29,8 +29,8 @@ public class DBHandler extends SQLiteOpenHelper {
     public static String COLUMN_PASSWORD = "Password";
     public static String COLUMN_USERID = "Id";
     public static String COLUMN_USERIMAGE = "UserImage";
-    /*public static String COLUMN_LIKEDRECIPES = "LikedList";
-    public static String COLUMN_CREATEDRECIPES = "CreatedList";*/
+    //public static String COLUMN_LIKEDRECIPES = "LikedList";
+    //public static String COLUMN_CREATEDRECIPES = "CreatedList";
 
     //Recipes table storing Recipe data
     public static String RECIPES = "Recipes";
@@ -40,7 +40,7 @@ public class DBHandler extends SQLiteOpenHelper {
     public static String COLUMN_INGREDIENTS = "Ingredients";
     public static String COLUMN_RECIPEID = "RecipeId";
     public static String COLUMN_RECIPEUSERID = "UserId";
-    /*public static String COLUMN_CUISINES = "CuisinesList";*/
+    //public static String COLUMN_CUISINES = "CuisinesList";
     public static String COLUMN_LIKES = "NoOfLikes";
     public static String COLUMN_RECIPEIMAGE = "RecipeImage";
 
@@ -56,7 +56,7 @@ public class DBHandler extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db){
         String CREATE_TABLE1 = "CREATE TABLE " + ACCOUNTS + "(" + COLUMN_USERID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
                 + COLUMN_USERNAME + " TEXT," + COLUMN_PASSWORD + " TEXT," + COLUMN_USERIMAGE +
-                /*" TEXT," + COLUMN_CREATEDRECIPES +*/ " BLOB)";
+                 " BLOB)";
         String CREATE_TABLE2 = "CREATE TABLE " + RECIPES + "(" + COLUMN_RECIPEID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
                 + COLUMN_RECIPENAME + " TEXT," + COLUMN_DESCRIPTION + " TEXT," + COLUMN_RECIPEUSERID
                 + " INTEGER," + COLUMN_LIKES  + " TEXT," + COLUMN_STEPS  + " TEXT," + COLUMN_INGREDIENTS
@@ -65,8 +65,8 @@ public class DBHandler extends SQLiteOpenHelper {
         db.execSQL(CREATE_TABLE2);
 
         //Creating initial Accounts and Recipes data
-        addDefaultAccounts(db);
-        addDefaultRecipes(db);
+        //addDefaultAccounts(db);
+        //addDefaultRecipes(db);
     }
 
     @Override
@@ -76,7 +76,7 @@ public class DBHandler extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public User findUserByName(String username){ //Returns User object with specified username
+    /*public User findUserByName(String username){ //Returns User object with specified username
         String query = "SELECT * FROM " + ACCOUNTS +
                 " WHERE " + COLUMN_USERNAME + "=\"" + username + "\"";
         SQLiteDatabase db = this.getReadableDatabase();
@@ -109,7 +109,7 @@ public class DBHandler extends SQLiteOpenHelper {
                 cList.add(str_value);
             }*/
 
-            cursor.close();
+            /*cursor.close();
         }
         else{
             queryData = null;
@@ -151,7 +151,7 @@ public class DBHandler extends SQLiteOpenHelper {
                 cList.add(str_value);
             }*/
 
-            cursor.close();
+            /*cursor.close();
         }
         else{
             queryData = null;
@@ -179,7 +179,7 @@ public class DBHandler extends SQLiteOpenHelper {
         String cList = cjson.toString();
         values.put(COLUMN_CREATEDRECIPES, cList);*/
 
-        SQLiteDatabase db = this.getWritableDatabase();
+        /*SQLiteDatabase db = this.getWritableDatabase();
         db.insert(ACCOUNTS, null, values);
         db.close();
     }
@@ -206,7 +206,7 @@ public class DBHandler extends SQLiteOpenHelper {
         String cList = cjson.toString();
         values.put(COLUMN_CREATEDRECIPES, cList);*/
 
-        SQLiteDatabase db = this.getWritableDatabase();
+        /*SQLiteDatabase db = this.getWritableDatabase();
         db.insert(ACCOUNTS, null, values);
         db.close();
     }
@@ -294,7 +294,7 @@ public class DBHandler extends SQLiteOpenHelper {
             }
             queryData.setIngredientList(iList);*/
 
-            cursor.close();
+            /*cursor.close();
         }
         else{
             queryData = null;
@@ -322,7 +322,7 @@ public class DBHandler extends SQLiteOpenHelper {
         String iList = ijson.toString();
         values.put(COLUMN_INGREDIENTS, iList);*/
 
-        values.put(COLUMN_LIKES, recipeData.getNoOfLikes());
+        /*values.put(COLUMN_LIKES, recipeData.getNoOfLikes());
         values.put(COLUMN_STEPS, recipeData.getSteps());
         values.put(COLUMN_INGREDIENTS, recipeData.getIngredients());
         if (recipeData.getRecipeImage() != null){
@@ -360,7 +360,7 @@ public class DBHandler extends SQLiteOpenHelper {
         String iList = ijson.toString();
         values.put(COLUMN_INGREDIENTS, iList);*/
 
-        SQLiteDatabase db = this.getWritableDatabase();
+        /*SQLiteDatabase db = this.getWritableDatabase();
         db.insert(RECIPES, null, values);
         db.close();
     }
@@ -742,5 +742,5 @@ public class DBHandler extends SQLiteOpenHelper {
         values.put(COLUMN_PASSWORD, "password");
         values.putNull(COLUMN_USERIMAGE);
         db.insert(ACCOUNTS, null, values);
-    }
+    }*/
 }

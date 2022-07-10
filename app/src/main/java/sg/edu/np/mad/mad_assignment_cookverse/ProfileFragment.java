@@ -1,5 +1,6 @@
 package sg.edu.np.mad.mad_assignment_cookverse;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -68,16 +69,25 @@ public class ProfileFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_profile, container, false);
-        DBHandler dbHandler = new DBHandler(getActivity(), null, null, 1);
-        String currentUsername = getArguments().getString("username");
+        //DBHandler dbHandler = new DBHandler(getActivity(), null, null, 1);
+
+        Intent receivingEnd = getActivity().getIntent();
+        String currentUsername = receivingEnd.getStringExtra("username");
+        String userpfp = receivingEnd.getStringExtra("image");
+        String userbio = receivingEnd.getStringExtra("bio");
         TextView currentName =  rootView.findViewById(R.id.userName);
+        TextView currentBio =  rootView.findViewById(R.id.bio);
+
+        User currentUser = new User();
+        currentUser.setName(currentUsername);
+        currentUser.setUserImage(userpfp);
+        currentUser.setBio(userbio);
 
         //Find the current user among all the users in database
-        User currentUser = dbHandler.findUserByName(currentUsername);
         currentName.setText(currentUser.getName());
+        currentBio.setText(currentUser.getBio());
         ImageView myImage =rootView.findViewById(R.id.ProfileImage);
-        //Sets image from bitmap in database
-        myImage.setImageBitmap(dbHandler.findUserById(1).getUserImage());
+        new ImageLoadTask(currentUser.getUserImage(), myImage).execute();
 
         BottomNavigationView BNV =rootView.findViewById(R.id.bottomNavigationView2);
         //Switch among fragments when clicking them

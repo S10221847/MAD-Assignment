@@ -20,6 +20,7 @@ drawable pic
 drawable random_pic
 drawable search2
 font poppins
+id CreateImage
 id FRAGMENT_PLACEHOLDER
 id ProfileImage
 id action_search
@@ -28,7 +29,8 @@ id bottomNavigationView
 id bottomNavigationView2
 id buttonCancel
 id buttonCreate
-id cmgsoon
+id buttonCreateRecipe
+id buttonImage
 id coordinatorLayout
 id coordinatorLayout2
 id create
@@ -36,6 +38,12 @@ id discover
 id discoverRecyclerView
 id discover_layout
 id editPassword
+id editRecipeCuisine
+id editRecipeDescription
+id editRecipeDuration
+id editRecipeIngredients
+id editRecipeName
+id editRecipeSteps
 id editUsername
 id editmyEmailAdd
 id editmyPassword
@@ -98,4 +106,12 @@ mipmap ic_launcher_background
 mipmap ic_launcher_foreground
 mipmap ic_launcher_round
 string app_name
+string default_web_client_id
+string firebase_database_url
+string gcm_defaultSenderId
+string google_api_key
+string google_app_id
+string google_crash_reporting_api_key
+string google_storage_bucket
+string project_id
 style Theme.MADAssignmentCookverse

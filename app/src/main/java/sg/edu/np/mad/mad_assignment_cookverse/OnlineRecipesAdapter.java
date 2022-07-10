@@ -27,7 +27,8 @@ public class OnlineRecipesAdapter extends RecyclerView.Adapter<OnlineRecipesView
     public void onBindViewHolder(OnlineRecipesViewHolder holder,int position){
         Recipe r=data.get(position);
         holder.recname.setText(r.getName()); //set recipe name for each cardview
-        holder.likes.setText(String.valueOf(r.getNoOfLikes())); //set recipe number of likes for each cardview
+        holder.likes.setText(String.valueOf(r.getNooflikes())); //set recipe number of likes for each cardview
+        new ImageLoadTask(r.getRecipeimage(), holder.pic).execute();
     }
     public int getItemCount(){
 

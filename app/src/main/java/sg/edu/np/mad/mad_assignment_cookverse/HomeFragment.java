@@ -2,6 +2,7 @@ package sg.edu.np.mad.mad_assignment_cookverse;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -9,10 +10,17 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
 import sg.edu.np.mad.mad_assignment_cookverse.databinding.FragmentProfileBinding;
 
@@ -33,7 +41,6 @@ public class HomeFragment extends Fragment implements RecyclerViewInterface,User
     UserRecyclerViewInterface UserRecyclerViewInterface;
     List<Recipe> dataOriginal;
     List<Recipe>uList;
-    DBHandler dbHandler;
 
 
     // TODO: Rename parameter arguments, choose names that match
@@ -80,33 +87,75 @@ public class HomeFragment extends Fragment implements RecyclerViewInterface,User
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        DBHandler dbHandler = new DBHandler(getActivity(), null, null, 1);
+        //DBHandler dbHandler = new DBHandler(getActivity(), null, null, 1);
+        RecyclerViewInterface rvi = this;
+        UserRecyclerViewInterface urvi = this;
 
 
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_home, container, false);
         ArrayList<Recipe> dataOriginal = new ArrayList<>();
-        dataOriginal = dbHandler.listRecipe();
+        //dataOriginal = dbHandler.listRecipe();
 
         //RECYCLER VIEW FOR ONLINE RECIPES
         RecyclerView orecyclerView=view.findViewById(R.id.onlinerecRecyclerView);   //instantiate recycler view for ONLINE RECIPES
         orecyclerView.setHasFixedSize(true);
-        List<Recipe>oList=dbHandler.listOnlineRecipe();;
 
-        oAdapter=new OnlineRecipesAdapter(oList,this );  //ONLINE RECIPE ADAPTER
-        LinearLayoutManager oLayoutManager=new LinearLayoutManager(getActivity(),LinearLayoutManager.HORIZONTAL,false);
-        orecyclerView.setLayoutManager(oLayoutManager);
-        orecyclerView.setAdapter(oAdapter);
+        RecyclerView urecyclerView=view.findViewById(R.id.usercreatedRecyclerView);
+        urecyclerView.setHasFixedSize(true);
+
+        Query query = FirebaseDatabase.getInstance().getReference().child("Recipes");
+        List<Recipe> list = new ArrayList<>();
+        ValueEventListener eventListener = new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()) {
+                    for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                        Recipe r = snapshot.getValue(Recipe.class);
+                        list.add(r);
+                    }
+                }
+                else{
+                    Log.v(TAG, "not working");
+                }
+                List<Recipe>oList=new ArrayList<>();
+                List<Recipe>uList=new ArrayList<>();
+
+                for (Recipe r : list){
+                    if (r.getUid() != null){
+                        uList.add(r);
+                    }
+                    else{
+                        oList.add(r);
+                    }
+                }
+
+                oAdapter=new OnlineRecipesAdapter(oList, rvi);  //ONLINE RECIPE ADAPTER
+                LinearLayoutManager oLayoutManager=new LinearLayoutManager(getActivity(),LinearLayoutManager.HORIZONTAL,false);
+                orecyclerView.setLayoutManager(oLayoutManager);
+                orecyclerView.setAdapter(oAdapter);
+
+                uAdapter=new UserCreatedAdapter(uList,urvi);
+                LinearLayoutManager uLayoutManager=new LinearLayoutManager(getActivity(),LinearLayoutManager.HORIZONTAL,false);
+                urecyclerView.setLayoutManager(uLayoutManager);
+                urecyclerView.setAdapter(uAdapter);
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Log.v(TAG, error.getMessage());
+            }
+        };
+        query.addValueEventListener(eventListener);
 
         //RECYCLER VIEW FOR USER CREATED RECIPES (user.id of recipes=null)
-        RecyclerView urecyclerView=view.findViewById(R.id.usercreatedRecyclerView);
+        /*RecyclerView urecyclerView=view.findViewById(R.id.usercreatedRecyclerView);
         urecyclerView.setHasFixedSize(true);
         List<Recipe>uList=dbHandler.listUserRecipe();
 
         uAdapter=new UserCreatedAdapter(uList,this);
         LinearLayoutManager uLayoutManager=new LinearLayoutManager(getActivity(),LinearLayoutManager.HORIZONTAL,false);
         urecyclerView.setLayoutManager(uLayoutManager);
-        urecyclerView.setAdapter(uAdapter);
+        urecyclerView.setAdapter(uAdapter);*/
 
         return view;
 
@@ -116,12 +165,41 @@ public class HomeFragment extends Fragment implements RecyclerViewInterface,User
         Intent intent = new Intent(getActivity().getBaseContext(),
                 RecipeActivity.class);
 
-        DBHandler dbHandler = new DBHandler(getActivity(), null, null, 1);
-        intent.putExtra("recipeName", dbHandler.listOnlineRecipe().get(pos).getName());
-        intent.putExtra("recipeDesc", dbHandler.listOnlineRecipe().get(pos).getDescription());
-        intent.putExtra("recipeSteps", dbHandler.listOnlineRecipe().get(pos).getSteps());
-        intent.putExtra("recipeIngred", dbHandler.listOnlineRecipe().get(pos).getIngredients());
-        getActivity().startActivity(intent);
+        //DBHandler dbHandler = new DBHandler(getActivity(), null, null, 1);
+        Query query = FirebaseDatabase.getInstance().getReference().child("Recipes");
+        List<Recipe> list = new ArrayList<>();
+        ValueEventListener eventListener = new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()) {
+                    for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                        Recipe r = snapshot.getValue(Recipe.class);
+                        list.add(r);
+                    }
+                }
+                else{
+                    Log.v(TAG, "not working");
+                }
+                List<Recipe>oList=new ArrayList<>();
+                for (Recipe r : list){
+                    if (r.getUid() != null){
+                    }
+                    else{
+                        oList.add(r);
+                    }
+                }
+                intent.putExtra("recipeName", oList.get(pos).getName());
+                intent.putExtra("recipeDesc", oList.get(pos).getDescription());
+                intent.putExtra("recipeSteps", oList.get(pos).getSteps());
+                intent.putExtra("recipeIngred", oList.get(pos).getIngredients());
+                getActivity().startActivity(intent);
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Log.v(TAG, error.getMessage());
+            }
+        };
+        query.addValueEventListener(eventListener);
 
     }
 
@@ -131,12 +209,39 @@ public class HomeFragment extends Fragment implements RecyclerViewInterface,User
         Intent intent = new Intent(getActivity().getBaseContext(),
                 RecipeActivity.class);
 
-        DBHandler dbHandler = new DBHandler(getActivity(), null, null, 1);
-        intent.putExtra("recipeName", dbHandler.listUserRecipe().get(pos).getName());
-        intent.putExtra("recipeDesc", dbHandler.listUserRecipe().get(pos).getDescription());
-        intent.putExtra("recipeSteps", dbHandler.listUserRecipe().get(pos).getSteps());
-        intent.putExtra("recipeIngred", dbHandler.listUserRecipe().get(pos).getIngredients());
-        getActivity().startActivity(intent);
-
+        //DBHandler dbHandler = new DBHandler(getActivity(), null, null, 1);
+        Query query = FirebaseDatabase.getInstance().getReference().child("Recipes");
+        List<Recipe> list = new ArrayList<>();
+        ValueEventListener eventListener = new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()) {
+                    for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                        Recipe r = snapshot.getValue(Recipe.class);
+                        list.add(r);
+                    }
+                }
+                else{
+                    Log.v(TAG, "not working");
+                }
+                List<Recipe>uList=new ArrayList<>();
+                for (Recipe r : list){
+                    if (r.getUid() != null){
+                        uList.add(r);
+                    }
+                }
+                intent.putExtra("recipeName", uList.get(pos).getName());
+                intent.putExtra("recipeDesc", uList.get(pos).getDescription());
+                intent.putExtra("recipeSteps", uList.get(pos).getSteps());
+                intent.putExtra("recipeIngred", uList.get(pos).getIngredients());
+                getActivity().startActivity(intent);
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Log.v(TAG, error.getMessage());
+            }
+        };
+        query.addValueEventListener(eventListener);
     }
+
 }

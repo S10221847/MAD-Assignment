@@ -4,10 +4,12 @@ package sg.edu.np.mad.mad_assignment_cookverse.databinding;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.FrameLayout;
-import android.widget.TextView;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.viewbinding.ViewBinding;
 import androidx.viewbinding.ViewBindings;
 import java.lang.NullPointerException;
@@ -17,19 +19,55 @@ import sg.edu.np.mad.mad_assignment_cookverse.R;
 
 public final class FragmentCreateBinding implements ViewBinding {
   @NonNull
-  private final FrameLayout rootView;
+  private final ConstraintLayout rootView;
 
   @NonNull
-  public final TextView cmgsoon;
+  public final ImageView CreateImage;
 
-  private FragmentCreateBinding(@NonNull FrameLayout rootView, @NonNull TextView cmgsoon) {
+  @NonNull
+  public final Button buttonCreateRecipe;
+
+  @NonNull
+  public final Button buttonImage;
+
+  @NonNull
+  public final EditText editRecipeCuisine;
+
+  @NonNull
+  public final EditText editRecipeDescription;
+
+  @NonNull
+  public final EditText editRecipeDuration;
+
+  @NonNull
+  public final EditText editRecipeIngredients;
+
+  @NonNull
+  public final EditText editRecipeName;
+
+  @NonNull
+  public final EditText editRecipeSteps;
+
+  private FragmentCreateBinding(@NonNull ConstraintLayout rootView, @NonNull ImageView CreateImage,
+      @NonNull Button buttonCreateRecipe, @NonNull Button buttonImage,
+      @NonNull EditText editRecipeCuisine, @NonNull EditText editRecipeDescription,
+      @NonNull EditText editRecipeDuration, @NonNull EditText editRecipeIngredients,
+      @NonNull EditText editRecipeName, @NonNull EditText editRecipeSteps) {
     this.rootView = rootView;
-    this.cmgsoon = cmgsoon;
+    this.CreateImage = CreateImage;
+    this.buttonCreateRecipe = buttonCreateRecipe;
+    this.buttonImage = buttonImage;
+    this.editRecipeCuisine = editRecipeCuisine;
+    this.editRecipeDescription = editRecipeDescription;
+    this.editRecipeDuration = editRecipeDuration;
+    this.editRecipeIngredients = editRecipeIngredients;
+    this.editRecipeName = editRecipeName;
+    this.editRecipeSteps = editRecipeSteps;
   }
 
   @Override
   @NonNull
-  public FrameLayout getRoot() {
+  public ConstraintLayout getRoot() {
     return rootView;
   }
 
@@ -54,13 +92,63 @@ public final class FragmentCreateBinding implements ViewBinding {
     // This is done to optimize the compiled bytecode for size and performance.
     int id;
     missingId: {
-      id = R.id.cmgsoon;
-      TextView cmgsoon = ViewBindings.findChildViewById(rootView, id);
-      if (cmgsoon == null) {
+      id = R.id.CreateImage;
+      ImageView CreateImage = ViewBindings.findChildViewById(rootView, id);
+      if (CreateImage == null) {
         break missingId;
       }
 
-      return new FragmentCreateBinding((FrameLayout) rootView, cmgsoon);
+      id = R.id.buttonCreateRecipe;
+      Button buttonCreateRecipe = ViewBindings.findChildViewById(rootView, id);
+      if (buttonCreateRecipe == null) {
+        break missingId;
+      }
+
+      id = R.id.buttonImage;
+      Button buttonImage = ViewBindings.findChildViewById(rootView, id);
+      if (buttonImage == null) {
+        break missingId;
+      }
+
+      id = R.id.editRecipeCuisine;
+      EditText editRecipeCuisine = ViewBindings.findChildViewById(rootView, id);
+      if (editRecipeCuisine == null) {
+        break missingId;
+      }
+
+      id = R.id.editRecipeDescription;
+      EditText editRecipeDescription = ViewBindings.findChildViewById(rootView, id);
+      if (editRecipeDescription == null) {
+        break missingId;
+      }
+
+      id = R.id.editRecipeDuration;
+      EditText editRecipeDuration = ViewBindings.findChildViewById(rootView, id);
+      if (editRecipeDuration == null) {
+        break missingId;
+      }
+
+      id = R.id.editRecipeIngredients;
+      EditText editRecipeIngredients = ViewBindings.findChildViewById(rootView, id);
+      if (editRecipeIngredients == null) {
+        break missingId;
+      }
+
+      id = R.id.editRecipeName;
+      EditText editRecipeName = ViewBindings.findChildViewById(rootView, id);
+      if (editRecipeName == null) {
+        break missingId;
+      }
+
+      id = R.id.editRecipeSteps;
+      EditText editRecipeSteps = ViewBindings.findChildViewById(rootView, id);
+      if (editRecipeSteps == null) {
+        break missingId;
+      }
+
+      return new FragmentCreateBinding((ConstraintLayout) rootView, CreateImage, buttonCreateRecipe,
+          buttonImage, editRecipeCuisine, editRecipeDescription, editRecipeDuration,
+          editRecipeIngredients, editRecipeName, editRecipeSteps);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));
