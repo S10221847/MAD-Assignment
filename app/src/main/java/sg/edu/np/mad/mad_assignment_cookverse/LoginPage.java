@@ -35,6 +35,9 @@ public class LoginPage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_page);
 
+
+        //addRecipe(r1);
+
         TextView newUser = findViewById(R.id.userSignup);
         newUser.setOnTouchListener(new View.OnTouchListener() {
             @Override
@@ -207,9 +210,40 @@ public class LoginPage extends AppCompatActivity {
         cList.add("Italian");
         r1.setCuisineList(cList);
         r1.setNooflikes(0);
+        r1.setServings(6);
         r1.setRecipeimage("https://imagesvc.meredithcorp.io/v3/mm/image?url=https%3A%2F%2Fimages.media-allrecipes.com%2Fuserphotos%2F9146205.jpg&w=595&h=595&c=sc&poi=face&q=60");
 
         return r1;
         //then call addRecipe(r1) method to add to firebase
+    }
+
+    public void baseRecipe(){
+        Recipe r1 = new Recipe();
+        r1.setName("");
+        r1.setDescription("");
+        ArrayList<String> sList = new ArrayList<>();
+        sList.add("");
+        sList.add("");
+        r1.setStepsList(sList);
+        ArrayList<String> iList = new ArrayList<>();
+        iList.add("");
+        iList.add("");
+        iList.add("");
+        iList.add("");
+        iList.add("");
+        iList.add("");
+        iList.add("");
+        iList.add("");
+        iList.add("");
+        r1.setIngredientsList(iList);
+        r1.setDuration(0);
+        //r1.setUid("test");
+        ArrayList<String> cList = new ArrayList<>();
+        cList.add("");
+        r1.setCuisineList(cList);
+        r1.setNooflikes(0);
+        r1.setServings(0);
+        r1.setRecipeimage("");
+
     }
 }

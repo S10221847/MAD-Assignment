@@ -17,6 +17,7 @@ public class Recipe {
     private List<String> stepsList;
     private int nooflikes;
     private String recipeimage;
+    private int servings;
 
     public String getName() {
         return name;
@@ -96,5 +97,13 @@ public class Recipe {
 
     public void setStepsList(List<String> stepsList) {
         this.stepsList = stepsList;
+    }
+
+    public int getServings() {
+        return servings;
+    }
+
+    public void setServings(int servings) {
+        this.servings = servings;
     }
 }
