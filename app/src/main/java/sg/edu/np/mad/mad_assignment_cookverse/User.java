@@ -9,6 +9,8 @@ public class User {
     private String password;
     private String userImage;
     private String bio;
+    private List<String> likedList;
+    private List<String> createdList;
 
     public String getName() {
         return name;
@@ -40,5 +42,21 @@ public class User {
 
     public void setBio(String bio) {
         this.bio = bio;
+    }
+
+    public List<String> getLikedList() {
+        return likedList;
+    }
+
+    public void setLikedList(List<String> likedList) {
+        this.likedList = likedList;
+    }
+
+    public List<String> getCreatedList() {
+        return createdList;
+    }
+
+    public void setCreatedList(List<String> createdList) {
+        this.createdList = createdList;
     }
 }

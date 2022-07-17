@@ -1,5 +1,7 @@
 package sg.edu.np.mad.mad_assignment_cookverse;
 
+import static android.content.ContentValues.TAG;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -16,6 +18,7 @@ import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
@@ -26,8 +29,6 @@ import java.util.List;
 
 public class LoginPage extends AppCompatActivity {
     public String TAG = "Main Activity";
-    //DBHandler dbHandler = new DBHandler(this, null, null, 1);
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,8 +59,6 @@ public class LoginPage extends AppCompatActivity {
     }
 
     public void isValidCredentials(String username, String password){
-        //User userDBData = dbHandler.findUserByName(username);
-
         Query query = FirebaseDatabase.getInstance().getReference().child("Accounts").child(username);
         List<User> list = new ArrayList<>();
 
@@ -91,5 +90,126 @@ public class LoginPage extends AppCompatActivity {
             }
         };
         query.addValueEventListener(eventListener);
+    }
+
+    public void addRecipe(Recipe r){
+        String rid = "";
+        DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
+        rid = rootRef.child("Recipes").push().getKey();
+        r.setRid(rid);
+        DatabaseReference ref = rootRef.child("Recipes").child(rid);
+        ref.setValue(r);
+    }
+    public void updateRecipe(Recipe r){
+        DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
+        String rid = r.getRid();
+        DatabaseReference ref = rootRef.child("Recipes").child(rid);
+        ref.setValue(r);
+    }
+
+    public void addUpdateUser(User u){ //both adds and updates user data within firebase
+        String username = u.getName();
+        DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
+        DatabaseReference ref = rootRef.child("Accounts").child(username);
+        ref.setValue(u);
+    }
+
+    public void findUser(User u){
+        String username = u.getName();
+        Query query = FirebaseDatabase.getInstance().getReference().child("Accounts").child(username);
+        List<User> list = new ArrayList<>();
+        ValueEventListener eventListener = new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()) {
+                    User u = dataSnapshot.getValue(User.class);
+                }
+                //ALL CODE THAT USES User object MUST BE HERE
+
+                //ALL CODE THAT USES User object MUST BE HERE
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Log.v(TAG, error.getMessage());
+            }
+        };
+        query.addValueEventListener(eventListener);
+    }
+
+    public void findRecipe(Recipe r){
+        String rid = r.getRid();
+        Query query = FirebaseDatabase.getInstance().getReference().child("Recipes").child(rid);
+        List<User> list = new ArrayList<>();
+        ValueEventListener eventListener = new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()) {
+                    Recipe r = dataSnapshot.getValue(Recipe.class);
+                }
+                //ALL CODE THAT USES Recipe object MUST BE HERE
+
+                //ALL CODE THAT USES Recipe object MUST BE HERE
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Log.v(TAG, error.getMessage());
+            }
+        };
+        query.addValueEventListener(eventListener);
+    }
+
+    public void listRecipe(){
+        Query query = FirebaseDatabase.getInstance().getReference().child("Recipes");
+        List<Recipe> list = new ArrayList<>();
+        ValueEventListener eventListener = new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()) {
+                    for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                        Recipe r = snapshot.getValue(Recipe.class);
+                        list.add(r);
+                    }
+                }
+                //ALL CODE THAT USES Recipe list MUST BE HERE
+
+                //ALL CODE THAT USES Recipe list MUST BE HERE
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Log.v(TAG, error.getMessage());
+            }
+        };
+        query.addValueEventListener(eventListener);
+    }
+
+    public Recipe basicRecipeExample(){
+        Recipe r1 = new Recipe();
+        r1.setName("Creamy Pulled Pork Soup");
+        r1.setDescription("This creamy soup can be made with leftover pulled pork. ");
+        ArrayList<String> sList = new ArrayList<>();
+        sList.add("Combine milk and chicken broth in a large pot. Add pulled pork and barbecue sauce and stir. Stir in chili powder, black pepper, oregano, and salt. Let simmer over low heat, stirring occasionally, for 45 minutes.");
+        sList.add("Divide into 6 bowls and top with parsley.");
+        r1.setStepsList(sList);
+        ArrayList<String> iList = new ArrayList<>();
+        iList.add("2 cups whole milk");
+        iList.add("2 cups chicken broth");
+        iList.add("1¾ cups cooked pulled pork");
+        iList.add("2 tablespoons barbecue sauce");
+        iList.add("2 teaspoons chili powder");
+        iList.add("2 teaspoons ground black pepper");
+        iList.add("1½ teaspoons dried oregano");
+        iList.add("1 teaspoon salt");
+        iList.add("2 tablespoons dried parsley");
+        r1.setIngredientsList(iList);
+        r1.setDuration(55);
+        r1.setUid("test");
+        ArrayList<String> cList = new ArrayList<>();
+        cList.add("Italian");
+        r1.setCuisineList(cList);
+        r1.setNooflikes(0);
+        r1.setRecipeimage("https://imagesvc.meredithcorp.io/v3/mm/image?url=https%3A%2F%2Fimages.media-allrecipes.com%2Fuserphotos%2F9146205.jpg&w=595&h=595&c=sc&poi=face&q=60");
+
+        return r1;
+        //then call addRecipe(r1) method to add to firebase
     }
 }

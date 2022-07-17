@@ -9,12 +9,12 @@ import java.util.List;
 public class Recipe {
     private String name;
     private String description;
-    private String ingredients;
-    private String steps;
     private int duration; //in minutes
     private String rid;
     private String uid;
     private List<String> cuisineList;
+    private List<String> ingredientsList;
+    private List<String> stepsList;
     private int nooflikes;
     private String recipeimage;
 
@@ -32,22 +32,6 @@ public class Recipe {
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public String getIngredients() {
-        return ingredients;
-    }
-
-    public void setIngredients(String ingredients) {
-        this.ingredients = ingredients;
-    }
-
-    public String getSteps() {
-        return steps;
-    }
-
-    public void setSteps(String steps) {
-        this.steps = steps;
     }
 
     public int getDuration() {
@@ -96,5 +80,21 @@ public class Recipe {
 
     public void setRecipeimage(String recipeimage) {
         this.recipeimage = recipeimage;
+    }
+
+    public List<String> getIngredientsList() {
+        return ingredientsList;
+    }
+
+    public void setIngredientsList(List<String> ingredientsList) {
+        this.ingredientsList = ingredientsList;
+    }
+
+    public List<String> getStepsList() {
+        return stepsList;
+    }
+
+    public void setStepsList(List<String> stepsList) {
+        this.stepsList = stepsList;
     }
 }

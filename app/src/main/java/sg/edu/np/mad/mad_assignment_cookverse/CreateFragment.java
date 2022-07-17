@@ -120,8 +120,8 @@ public class CreateFragment extends Fragment {
                 Recipe recipe = new Recipe();
                 recipe.setName(name.getText().toString());
                 recipe.setDescription(description.getText().toString());
-                recipe.setIngredients(ingredients.getText().toString());
-                recipe.setSteps(steps.getText().toString());
+                //recipe.setIngredients(ingredients.getText().toString());
+                //recipe.setSteps(steps.getText().toString());
                 try {
                     recipe.setDuration(Integer.parseInt(duration.getText().toString()));
                 } catch(NumberFormatException e) {
