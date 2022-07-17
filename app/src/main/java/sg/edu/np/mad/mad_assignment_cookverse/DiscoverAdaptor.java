@@ -35,6 +35,7 @@ public class DiscoverAdaptor extends RecyclerView.Adapter<DiscoverViewHolder> im
 
         holder.txt.setText(dish.getName());
         holder.txt2.setText(dish.getDescription());
+        new ImageLoadTask(dish.getRecipeimage(), holder.img).execute();
     }
 
     public int getItemCount(){ return data.size(); }
