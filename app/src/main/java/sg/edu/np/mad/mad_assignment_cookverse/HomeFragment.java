@@ -165,83 +165,16 @@ public class HomeFragment extends Fragment implements RecyclerViewInterface,User
         Intent intent = new Intent(getActivity().getBaseContext(),
                 RecipeActivity.class);
 
-        //DBHandler dbHandler = new DBHandler(getActivity(), null, null, 1);
-        Query query = FirebaseDatabase.getInstance().getReference().child("Recipes");
-        List<Recipe> list = new ArrayList<>();
-        ValueEventListener eventListener = new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if (dataSnapshot.exists()) {
-                    for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                        Recipe r = snapshot.getValue(Recipe.class);
-                        list.add(r);
-                    }
-                }
-                else{
-                    Log.v(TAG, "not working");
-                }
-                List<Recipe>oList=new ArrayList<>();
-                for (Recipe r : list){
-                    if (r.getUid() != null){
-                    }
-                    else{
-                        oList.add(r);
-                    }
-                }
-                intent.putExtra("recipeName", oList.get(pos).getName());
-                intent.putExtra("recipeDesc", oList.get(pos).getDescription());
-                intent.putExtra("recipeSteps", oList.get(pos).getSteps());
-                intent.putExtra("recipeIngred", oList.get(pos).getIngredients());
-                getActivity().startActivity(intent);
-            }
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                Log.v(TAG, error.getMessage());
-            }
-        };
-        query.addValueEventListener(eventListener);
-
+        intent.putExtra("recipePos", pos);
+        getActivity().startActivity(intent);
     }
-
-
 
     public void onItemClick2(int pos) {
         Intent intent = new Intent(getActivity().getBaseContext(),
                 RecipeActivity.class);
 
-        //DBHandler dbHandler = new DBHandler(getActivity(), null, null, 1);
-        Query query = FirebaseDatabase.getInstance().getReference().child("Recipes");
-        List<Recipe> list = new ArrayList<>();
-        ValueEventListener eventListener = new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if (dataSnapshot.exists()) {
-                    for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                        Recipe r = snapshot.getValue(Recipe.class);
-                        list.add(r);
-                    }
-                }
-                else{
-                    Log.v(TAG, "not working");
-                }
-                List<Recipe>uList=new ArrayList<>();
-                for (Recipe r : list){
-                    if (r.getUid() != null){
-                        uList.add(r);
-                    }
-                }
-                intent.putExtra("recipeName", uList.get(pos).getName());
-                intent.putExtra("recipeDesc", uList.get(pos).getDescription());
-                intent.putExtra("recipeSteps", uList.get(pos).getSteps());
-                intent.putExtra("recipeIngred", uList.get(pos).getIngredients());
-                getActivity().startActivity(intent);
-            }
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                Log.v(TAG, error.getMessage());
-            }
-        };
-        query.addValueEventListener(eventListener);
+        intent.putExtra("recipePos", pos);
+        getActivity().startActivity(intent);
     }
 
 }

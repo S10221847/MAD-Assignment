@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "145660803198",
+    "firebase_url": "https://mad-cookverse-f58e3-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "mad-cookverse-f58e3",
+    "storage_bucket": "mad-cookverse-f58e3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:145660803198:android:7c6119222a3229f227402f",
+        "android_client_info": {
+          "package_name": "sg.edu.np.mad.mad_assignment_cookverse"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "145660803198-98fm2kcgoqu4nl659qkniobuvgiiud20.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAjN8r1Mt9Pr47rWqhO_UP9hhoHjRSTw9U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "145660803198-98fm2kcgoqu4nl659qkniobuvgiiud20.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

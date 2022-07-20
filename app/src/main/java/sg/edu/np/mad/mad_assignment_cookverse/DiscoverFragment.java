@@ -150,7 +150,10 @@ public class DiscoverFragment extends Fragment implements RecyclerViewInterface{
         long x = dAdaptor.getItemId(pos);
         int i = (int) x;
 
-        Query query = FirebaseDatabase.getInstance().getReference().child("Recipes");
+        intent.putExtra("recipePos", i);
+        getActivity().startActivity(intent);
+
+        /*Query query = FirebaseDatabase.getInstance().getReference().child("Recipes");
         List<Recipe> list = new ArrayList<>();
         ValueEventListener eventListener = new ValueEventListener() {
             @Override
@@ -173,6 +176,6 @@ public class DiscoverFragment extends Fragment implements RecyclerViewInterface{
                 Log.v("Main", error.getMessage());
             }
         };
-        query.addValueEventListener(eventListener);
+        query.addValueEventListener(eventListener);*/
     }
 }
