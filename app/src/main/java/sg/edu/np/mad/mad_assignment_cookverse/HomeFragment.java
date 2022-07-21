@@ -130,12 +130,12 @@ public class HomeFragment extends Fragment implements RecyclerViewInterface,User
                     }
                 }
 
-                oAdapter=new OnlineRecipesAdapter(oList, rvi);  //ONLINE RECIPE ADAPTER
+                oAdapter=new OnlineRecipesAdapter(oList, rvi,list);  //ONLINE RECIPE ADAPTER
                 LinearLayoutManager oLayoutManager=new LinearLayoutManager(getActivity(),LinearLayoutManager.HORIZONTAL,false);
                 orecyclerView.setLayoutManager(oLayoutManager);
                 orecyclerView.setAdapter(oAdapter);
 
-                uAdapter=new UserCreatedAdapter(uList,urvi);
+                uAdapter=new UserCreatedAdapter(uList,urvi,list);
                 LinearLayoutManager uLayoutManager=new LinearLayoutManager(getActivity(),LinearLayoutManager.HORIZONTAL,false);
                 urecyclerView.setLayoutManager(uLayoutManager);
                 urecyclerView.setAdapter(uAdapter);
@@ -164,16 +164,20 @@ public class HomeFragment extends Fragment implements RecyclerViewInterface,User
     public void onItemClick(int pos){
         Intent intent = new Intent(getActivity().getBaseContext(),
                 RecipeActivity.class);
+        long x = oAdapter.getItemId(pos);
+        int i = (int) x;
 
-        intent.putExtra("recipePos", pos);
+        intent.putExtra("recipePos", i);
         getActivity().startActivity(intent);
     }
 
     public void onItemClick2(int pos) {
         Intent intent = new Intent(getActivity().getBaseContext(),
                 RecipeActivity.class);
+        long x = uAdapter.getItemId(pos);
+        int i = (int) x;
 
-        intent.putExtra("recipePos", pos);
+        intent.putExtra("recipePos", i);
         getActivity().startActivity(intent);
     }
 
