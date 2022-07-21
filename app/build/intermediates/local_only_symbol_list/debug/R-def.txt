@@ -19,11 +19,11 @@ drawable pfp
 drawable pic
 drawable random_pic
 drawable search2
+drawable search_view_bg
 font poppins
 id CreateImage
 id FRAGMENT_PLACEHOLDER
 id ProfileImage
-id action_search
 id bio
 id bottomNavigationView
 id bottomNavigationView2
@@ -48,6 +48,7 @@ id editUsername
 id editmyEmailAdd
 id editmyPassword
 id frameLayout
+id frameLayout2
 id frame_layout
 id home
 id imageView
@@ -71,6 +72,7 @@ id rName
 id rSteps
 id recipeDesc
 id recipeName
+id searchbar
 id test
 id test2
 id textView
@@ -100,7 +102,6 @@ layout online_recipes
 layout usercreatedrecipes
 menu bottom_nav_menu
 menu profile_nav_menu
-menu search_menu
 mipmap ic_launcher
 mipmap ic_launcher_background
 mipmap ic_launcher_foreground

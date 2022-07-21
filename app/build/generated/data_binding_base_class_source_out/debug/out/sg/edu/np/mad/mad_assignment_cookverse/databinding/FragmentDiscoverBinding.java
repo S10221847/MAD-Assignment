@@ -4,9 +4,10 @@ package sg.edu.np.mad.mad_assignment_cookverse.databinding;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.FrameLayout;
+import android.widget.SearchView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewbinding.ViewBinding;
 import androidx.viewbinding.ViewBindings;
@@ -17,20 +18,29 @@ import sg.edu.np.mad.mad_assignment_cookverse.R;
 
 public final class FragmentDiscoverBinding implements ViewBinding {
   @NonNull
-  private final FrameLayout rootView;
+  private final ConstraintLayout rootView;
 
   @NonNull
   public final RecyclerView discoverRecyclerView;
 
-  private FragmentDiscoverBinding(@NonNull FrameLayout rootView,
-      @NonNull RecyclerView discoverRecyclerView) {
+  @NonNull
+  public final ConstraintLayout frameLayout2;
+
+  @NonNull
+  public final SearchView searchbar;
+
+  private FragmentDiscoverBinding(@NonNull ConstraintLayout rootView,
+      @NonNull RecyclerView discoverRecyclerView, @NonNull ConstraintLayout frameLayout2,
+      @NonNull SearchView searchbar) {
     this.rootView = rootView;
     this.discoverRecyclerView = discoverRecyclerView;
+    this.frameLayout2 = frameLayout2;
+    this.searchbar = searchbar;
   }
 
   @Override
   @NonNull
-  public FrameLayout getRoot() {
+  public ConstraintLayout getRoot() {
     return rootView;
   }
 
@@ -61,7 +71,16 @@ public final class FragmentDiscoverBinding implements ViewBinding {
         break missingId;
       }
 
-      return new FragmentDiscoverBinding((FrameLayout) rootView, discoverRecyclerView);
+      ConstraintLayout frameLayout2 = (ConstraintLayout) rootView;
+
+      id = R.id.searchbar;
+      SearchView searchbar = ViewBindings.findChildViewById(rootView, id);
+      if (searchbar == null) {
+        break missingId;
+      }
+
+      return new FragmentDiscoverBinding((ConstraintLayout) rootView, discoverRecyclerView,
+          frameLayout2, searchbar);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));
