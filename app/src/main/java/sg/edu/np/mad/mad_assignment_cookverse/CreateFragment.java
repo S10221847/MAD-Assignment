@@ -5,6 +5,7 @@ import static android.app.Activity.RESULT_OK;
 import android.content.ContentResolver;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -12,13 +13,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.MimeTypeMap;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -30,6 +34,7 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -58,6 +63,13 @@ public class CreateFragment extends Fragment {
     private Uri mImageUri;
     private StorageReference mStorageRef;
     private DatabaseReference mDatabaseRef;
+    private Button addIngred;
+    private Button addStep;
+    private Button addCuisi;
+    private LinearLayout ingredList;
+    private LinearLayout stepList;
+    private LinearLayout cuisiList;
+
 
     /**
      * Use this factory method to create a new instance of
@@ -94,16 +106,23 @@ public class CreateFragment extends Fragment {
         mButtonChooseImage = view.findViewById(R.id.buttonImage);
         mButtonCreateRecipe = view.findViewById(R.id.buttonCreateRecipe);
         mImageView = view.findViewById(R.id.CreateImage);
+        addIngred = view.findViewById(R.id.addIngredientsButton);
+        addStep = view.findViewById(R.id.addStepsButton);
+        addCuisi = view.findViewById(R.id.addCuisineButton);
+        ingredList = view.findViewById(R.id.ingredList);
+        stepList = view.findViewById(R.id.stepList);
+        cuisiList = view.findViewById(R.id.cuisineList);
 
         Intent receivingEnd = getActivity().getIntent();
         String currentUsername = receivingEnd.getStringExtra("username");
 
         TextView name = view.findViewById(R.id.editRecipeName);
         TextView description = view.findViewById(R.id.editRecipeDescription);
-        TextView ingredients = view.findViewById(R.id.editRecipeIngredients);
-        TextView steps = view.findViewById(R.id.editRecipeSteps);
+        //TextView ingredients = view.findViewById(R.id.addIngredient);
+        //TextView steps = view.findViewById(R.id.addSteps);
         TextView duration = view.findViewById(R.id.editRecipeDuration);
-        TextView cuisine = view.findViewById(R.id.editRecipeCuisine);
+        //TextView cuisine = view.findViewById(R.id.addCuisine);
+        TextView servings = view.findViewById(R.id.editRecipeServings);
 
         mStorageRef = FirebaseStorage.getInstance().getReference("images");
 
@@ -120,25 +139,84 @@ public class CreateFragment extends Fragment {
                 Recipe recipe = new Recipe();
                 recipe.setName(name.getText().toString());
                 recipe.setDescription(description.getText().toString());
-                //recipe.setIngredients(ingredients.getText().toString());
-                //recipe.setSteps(steps.getText().toString());
                 try {
                     recipe.setDuration(Integer.parseInt(duration.getText().toString()));
+                    recipe.setServings(Integer.parseInt(servings.getText().toString()));
                 } catch(NumberFormatException e) {
                     System.out.println("Could not parse " + e);
                 }
-                ArrayList<String> cList = new ArrayList<>();
-                cList.add(cuisine.getText().toString());
-                recipe.setCuisineList(cList);
                 recipe.setUid(currentUsername);
                 recipe.setNooflikes(0);
-                if (recipe.getName() != null) {
+
+                List<String> RecipeIngred = new ArrayList<>();
+                for (int i = 0; i < ingredList.getChildCount(); i++){
+                    Log.v("Main", i + "s");
+                    try {
+                        EditText et = (EditText) ingredList.getChildAt(i).findViewById(R.id.addIngredient);
+                        Log.v("Main", et.getText().toString());
+                        RecipeIngred.add(et.getText().toString());
+                    }
+                    catch(Exception e){
+                        Log.v("Main", "fail");
+                    }
+                }
+                recipe.setIngredientsList(RecipeIngred);
+
+                List<String> RecipeStep = new ArrayList<>();
+                for (int i = 0; i < stepList.getChildCount(); i++){
+                    Log.v("Main", i + "s");
+                    try {
+                        EditText et = (EditText) stepList.getChildAt(i).findViewById(R.id.addSteps);
+                        Log.v("Main", et.getText().toString());
+                        RecipeStep.add(et.getText().toString());
+                    }
+                    catch(Exception e){
+                        Log.v("Main", "fail");
+                    }
+                }
+                recipe.setStepsList(RecipeStep);
+
+                List<String> RecipeCuisi = new ArrayList<>();
+                for (int i = 0; i < cuisiList.getChildCount(); i++){
+                    Log.v("Main", i + "s");
+                    try {
+                        EditText et = (EditText) cuisiList.getChildAt(i).findViewById(R.id.addCuisine);
+                        Log.v("Main", et.getText().toString());
+                        RecipeCuisi.add(et.getText().toString());
+                    }
+                    catch(Exception e){
+                        Log.v("Main", "fail");
+                    }
+                }
+                recipe.setCuisineList(RecipeCuisi);
+
+                if (recipe.getName() != null && recipe.getIngredientsList() != null) {
                     createRecipe(recipe);
                 }
-                Toast.makeText(getActivity(), "Recipe Created Successfully.", Toast.LENGTH_SHORT).show();
 
-                Intent myCreateIntent = new Intent(getActivity(), MainFragment.class);
-                startActivity(myCreateIntent);
+                FragmentTransaction ft = getFragmentManager().beginTransaction();
+                ft.detach(CreateFragment.this).attach(CreateFragment.this).commit();
+            }
+        });
+
+        addIngred.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                addIngredientView();
+            }
+        });
+
+        addStep.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                addStepView();
+            }
+        });
+
+        addCuisi.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                addCuisineView();
             }
         });
 
@@ -169,6 +247,60 @@ public class CreateFragment extends Fragment {
         return mime.getExtensionFromMimeType(cR.getType(uri));
     }
 
+    private void addIngredientView(){
+        final View ingredView = getLayoutInflater().inflate(R.layout.add_ingredients, null, false);
+        ImageView delete = (ImageView) ingredView.findViewById(R.id.deleteIngredient);
+        delete.setVisibility(View.VISIBLE);
+
+        delete.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+                removeIngredView(ingredView);
+            }
+        });
+        ingredList.addView(ingredView);
+    }
+
+    private void removeIngredView(View view){
+        ingredList.removeView(view);
+    }
+
+    private void addStepView(){
+        final View stepView = getLayoutInflater().inflate(R.layout.add_steps, null, false);
+        ImageView delete = (ImageView) stepView.findViewById(R.id.deleteStep);
+        delete.setVisibility(View.VISIBLE);
+
+        delete.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+                removeStepView(stepView);
+            }
+        });
+        stepList.addView(stepView);
+    }
+
+    private void removeStepView(View view){
+        stepList.removeView(view);
+    }
+
+    private void addCuisineView(){
+        final View cuisiView = getLayoutInflater().inflate(R.layout.add_cuisine, null, false);
+        ImageView delete = (ImageView) cuisiView.findViewById(R.id.deleteCuisine);
+        delete.setVisibility(View.VISIBLE);
+
+        delete.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+                removeCuisiView(cuisiView);
+            }
+        });
+        cuisiList.addView(cuisiView);
+    }
+
+    private void removeCuisiView(View view){
+        cuisiList.removeView(view);
+    }
+
     private void createRecipe(Recipe r){
         if (mImageUri != null){
             String fileName = System.currentTimeMillis() + "." + getFileExtension(mImageUri);
@@ -197,6 +329,7 @@ public class CreateFragment extends Fragment {
                                     r.setRid(rid);
                                     DatabaseReference ref = rootRef.child("Recipes").child(rid);
                                     ref.setValue(r);
+                                    Toast.makeText(getActivity(), "Recipe Created Successfully.", Toast.LENGTH_SHORT).show();
                                 }
                             }).addOnFailureListener(new OnFailureListener() {
                                 @Override
