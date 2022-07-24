@@ -2637,6 +2637,12 @@ id action_text
 id actions
 id activity_chooser_view_content
 id add
+id addCuisine
+id addCuisineButton
+id addIngredient
+id addIngredientsButton
+id addSteps
+id addStepsButton
 id adjust_height
 id adjust_width
 id alertTitle
@@ -2715,6 +2721,7 @@ id coordinatorLayout2
 id cos
 id counterclockwise
 id create
+id cuisineList
 id currentState
 id custom
 id customPanel
@@ -2725,6 +2732,9 @@ id decelerate
 id decelerateAndComplete
 id decor_content_parent
 id default_activity_button
+id deleteCuisine
+id deleteIngredient
+id deleteStep
 id deltaRelative
 id dependency_ordering
 id design_bottom_sheet
@@ -2759,12 +2769,10 @@ id easeInOut
 id easeOut
 id east
 id editPassword
-id editRecipeCuisine
 id editRecipeDescription
 id editRecipeDuration
-id editRecipeIngredients
 id editRecipeName
-id editRecipeSteps
+id editRecipeServings
 id editUsername
 id edit_query
 id editmyEmailAdd
@@ -2828,6 +2836,7 @@ id imageView4
 id immediateStop
 id included
 id info
+id ingredList
 id ingredStepsButton
 id invisible
 id inward
@@ -3030,6 +3039,7 @@ id startToEnd
 id startVertical
 id staticLayout
 id staticPostLayout
+id stepList
 id stop
 id stretch
 id submenuarrow
@@ -3218,6 +3228,9 @@ layout activity_creater_user_page
 layout activity_login_page
 layout activity_main
 layout activity_recipe
+layout add_cuisine
+layout add_ingredients
+layout add_steps
 layout custom_dialog
 layout design_bottom_navigation_item
 layout design_bottom_sheet_dialog

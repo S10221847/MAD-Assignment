@@ -12,7 +12,6 @@
         android:layout_width="280dp"
         android:layout_height="wrap_content"
         android:hint="Cuisine (optional)"
-        android:maxLength="11"
         android:textColorHint="@color/black"
         tools:layout_editor_absoluteY="5dp"></EditText>
 
