@@ -15,9 +15,9 @@ public class OnlineRecipesAdapter extends RecyclerView.Adapter<OnlineRecipesView
     List<Recipe> dataOriginal;
     RecyclerViewInterface RecyclerViewInterface;
 
-    public OnlineRecipesAdapter(List<Recipe>input,RecyclerViewInterface RecyclerViewInterface){
+    public OnlineRecipesAdapter(List<Recipe>input,RecyclerViewInterface RecyclerViewInterface, List<Recipe> og){
         data=input;  //list containing all recipes
-        dataOriginal = new ArrayList<>(input);
+        dataOriginal = og;
         this.RecyclerViewInterface = RecyclerViewInterface; //calling recyclerviewinterface for itemonclick
     }
     public OnlineRecipesViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -33,6 +33,17 @@ public class OnlineRecipesAdapter extends RecyclerView.Adapter<OnlineRecipesView
     public int getItemCount(){
 
         return data.size(); //number of recyclerview items
+    }
+
+    @Override
+    public long getItemId(int position) {
+
+        int itemID;
+
+        itemID = dataOriginal.indexOf(data.get(position));
+
+
+        return itemID;
     }
 
 }

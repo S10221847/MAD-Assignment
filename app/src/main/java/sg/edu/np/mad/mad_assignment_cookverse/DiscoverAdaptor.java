@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DiscoverAdaptor extends RecyclerView.Adapter<DiscoverViewHolder> implements Filterable {
+public class DiscoverAdaptor extends RecyclerView.Adapter<DiscoverViewHolder>{
     //data arraylist will be filtered, dataOriginal arraylist stores the original values of data
     private ArrayList<Recipe> data;
     private ArrayList<Recipe> dataOriginal;
@@ -56,7 +56,7 @@ public class DiscoverAdaptor extends RecyclerView.Adapter<DiscoverViewHolder> im
         }
         return itemID;
     }
-
+    /*
     //FILTERING
     @Override
     public Filter getFilter() {
@@ -99,5 +99,9 @@ public class DiscoverAdaptor extends RecyclerView.Adapter<DiscoverViewHolder> im
                 notifyDataSetChanged();
             }
         }
-    };
+    };*/
+    public void filterList(ArrayList<Recipe> list){
+        this.data = list;
+        notifyDataSetChanged();
+    }
 }

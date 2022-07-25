@@ -12,11 +12,13 @@ import java.util.List;
 
 public class UserCreatedAdapter extends RecyclerView.Adapter<UserCreatedViewHolder>{
     private List<Recipe> data;
+    List<Recipe> dataOriginal;
     UserRecyclerViewInterface UserRecyclerViewInterface;
     private Recipe x;
 
-    public UserCreatedAdapter(List<Recipe> input, UserRecyclerViewInterface UserRecyclerViewInterface){
+    public UserCreatedAdapter(List<Recipe> input, UserRecyclerViewInterface UserRecyclerViewInterface, List<Recipe> og){
         data=input;   //data consisting list of recipes
+        dataOriginal = og;
         this.UserRecyclerViewInterface = UserRecyclerViewInterface;   //calling recyclerview interface for onclick method
     }
     public UserCreatedViewHolder onCreateViewHolder( ViewGroup parent, int viewType) {
@@ -33,5 +35,15 @@ public class UserCreatedAdapter extends RecyclerView.Adapter<UserCreatedViewHold
     public int getItemCount(){
         return data.size(); //number of recyclerview items
 
+    }
+
+    @Override
+    public long getItemId(int position) {
+
+        int itemID;
+
+        itemID = dataOriginal.indexOf(data.get(position));
+
+        return itemID;
     }
 }

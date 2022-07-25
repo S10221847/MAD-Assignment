@@ -11,7 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.widget.SearchView;
+import android.widget.SearchView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -24,6 +24,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import sg.edu.np.mad.mad_assignment_cookverse.databinding.FragmentProfileBinding;
 
@@ -36,6 +37,7 @@ public class DiscoverFragment extends Fragment implements RecyclerViewInterface{
     FragmentProfileBinding binding;
     DiscoverAdaptor dAdaptor;
     RecyclerViewInterface recyclerViewInterface;
+    //SearchView searchView;
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -74,6 +76,7 @@ public class DiscoverFragment extends Fragment implements RecyclerViewInterface{
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
     }
 
 
@@ -87,7 +90,7 @@ public class DiscoverFragment extends Fragment implements RecyclerViewInterface{
         RecyclerViewInterface rvi = this;
 
         RecyclerView discoverRecyclerView = view.findViewById(R.id.discoverRecyclerView);
-
+        SearchView searchView = view.findViewById(R.id.searchbar);
 
         Query query = FirebaseDatabase.getInstance().getReference().child("Recipes");
         ArrayList<Recipe> list = new ArrayList<>();
@@ -100,6 +103,7 @@ public class DiscoverFragment extends Fragment implements RecyclerViewInterface{
                         list.add(r);
                     }
                 }
+
                 dAdaptor = new DiscoverAdaptor(list, rvi);
                 LinearLayoutManager dLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
                 discoverRecyclerView.setLayoutManager(dLayoutManager);
@@ -113,16 +117,42 @@ public class DiscoverFragment extends Fragment implements RecyclerViewInterface{
         };
         query.addValueEventListener(eventListener);
 
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                filter(newText, list);
+                return false;
+            }
+        });
+
         return view;
     }
 
+    private void filter(String newText, ArrayList<Recipe> list) {
+        ArrayList<Recipe> filteredList = new ArrayList<>();
+        for(Recipe item:list){
+            if(item.getName().toLowerCase().contains(newText.toLowerCase())){
+                filteredList.add(item);
+            }
+        }
+        dAdaptor.filterList(filteredList);
+    }
 
+    /*
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+
         inflater.inflate(R.menu.search_menu, menu);
 
         MenuItem searchItem = menu.findItem(R.id.action_search);
         SearchView searchView = (SearchView) searchItem.getActionView();
+
 
 
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
@@ -139,7 +169,7 @@ public class DiscoverFragment extends Fragment implements RecyclerViewInterface{
                 return false;
             }
         });
-    }
+    }*/
 
     //pass values to RecipeActivity when itemView is clicked
     @Override

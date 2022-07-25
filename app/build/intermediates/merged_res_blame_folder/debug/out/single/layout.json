@@ -4,6 +4,10 @@
         "source": "C:\\Users\\65866\\Desktop\\MAD\\MAD-Assignment\\app\\src\\main\\res\\layout\\activity_creater_user_page.xml"
     },
     {
+        "merged": "C:\\Users\\65866\\Desktop\\MAD\\MAD-Assignment\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\add_steps.xml",
+        "source": "C:\\Users\\65866\\Desktop\\MAD\\MAD-Assignment\\app\\src\\main\\res\\layout\\add_steps.xml"
+    },
+    {
         "merged": "C:\\Users\\65866\\Desktop\\MAD\\MAD-Assignment\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\activity_login_page.xml",
         "source": "C:\\Users\\65866\\Desktop\\MAD\\MAD-Assignment\\app\\src\\main\\res\\layout\\activity_login_page.xml"
     },
@@ -20,8 +24,16 @@
         "source": "C:\\Users\\65866\\Desktop\\MAD\\MAD-Assignment\\app\\src\\main\\res\\layout\\fragment_home.xml"
     },
     {
+        "merged": "C:\\Users\\65866\\Desktop\\MAD\\MAD-Assignment\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\add_ingredients.xml",
+        "source": "C:\\Users\\65866\\Desktop\\MAD\\MAD-Assignment\\app\\src\\main\\res\\layout\\add_ingredients.xml"
+    },
+    {
         "merged": "C:\\Users\\65866\\Desktop\\MAD\\MAD-Assignment\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\discover_layout.xml",
         "source": "C:\\Users\\65866\\Desktop\\MAD\\MAD-Assignment\\app\\src\\main\\res\\layout\\discover_layout.xml"
+    },
+    {
+        "merged": "C:\\Users\\65866\\Desktop\\MAD\\MAD-Assignment\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\add_cuisine.xml",
+        "source": "C:\\Users\\65866\\Desktop\\MAD\\MAD-Assignment\\app\\src\\main\\res\\layout\\add_cuisine.xml"
     },
     {
         "merged": "C:\\Users\\65866\\Desktop\\MAD\\MAD-Assignment\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\fragment_discover.xml",
