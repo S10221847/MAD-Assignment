@@ -35,6 +35,8 @@ public class LoginPage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_page);
 
+
+
         TextView newUser = findViewById(R.id.userSignup);
         newUser.setOnTouchListener(new View.OnTouchListener() {
             @Override
@@ -92,7 +94,7 @@ public class LoginPage extends AppCompatActivity {
         query.addValueEventListener(eventListener);
     }
 
-    public void addRecipe(Recipe r){
+    public void addRecipe(Recipe r){  //Use as method
         String rid = "";
         DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
         rid = rootRef.child("Recipes").push().getKey();
@@ -158,7 +160,7 @@ public class LoginPage extends AppCompatActivity {
         query.addValueEventListener(eventListener);
     }
 
-    public void listRecipe(){
+    public void listRecipe(){   //Cannot use as method (copy code below)
         Query query = FirebaseDatabase.getInstance().getReference().child("Recipes");
         List<Recipe> list = new ArrayList<>();
         ValueEventListener eventListener = new ValueEventListener() {

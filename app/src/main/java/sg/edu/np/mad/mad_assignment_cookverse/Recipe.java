@@ -19,91 +19,80 @@ public class Recipe {
     private String recipeimage;
     private int servings;
 
-    public String getName() {
-        return name;
-    }
+    private boolean vegetarian;
+    private boolean vegan;
+    private boolean glutenFree;
+    private boolean dairyFree;
+    private boolean healthy;
+    private boolean cheap;
+    private boolean popular;
 
-    public void setName(String name) {
-        this.name = name;
-    }
 
-    public String getDescription() {
-        return description;
-    }
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
 
-    public int getDuration() {
-        return duration;
-    }
+    public boolean isVegetarian(){return vegetarian;}
+    public void setVegetarian(boolean b){this.vegetarian=b;}
 
-    public void setDuration(int duration) {
-        this.duration = duration;
-    }
+    public boolean isVegan(){return vegan;}
+    public void setVegan(boolean b){this.vegan=b;}
 
-    public String getRid() {
-        return rid;
-    }
+    public boolean isGlutenFree(){return glutenFree;}
+    public void setGlutenFree(boolean b){this.glutenFree=b;}
 
-    public void setRid(String rid) {
-        this.rid = rid;
-    }
+    public boolean isDairyFree(){return dairyFree;}
+    public void setDairyFree(boolean b){this.dairyFree=b;}
 
-    public String getUid() {
-        return uid;
-    }
+    public boolean isHealthy(){return healthy;}
+    public void setHealthy(boolean b){this.healthy=b;}
 
-    public void setUid(String uid) {
-        this.uid = uid;
-    }
+    public boolean isCheap(){return cheap;}
+    public void setCheap(boolean b){this.cheap=b;}
 
-    public List<String> getCuisineList() {
-        return cuisineList;
-    }
+    public boolean isPopular(){return popular;}
+    public void setPopular(boolean b){this.popular=b;}
 
-    public void setCuisineList(List<String> cuisineList) {
-        this.cuisineList = cuisineList;
-    }
 
-    public int getNooflikes() {
-        return nooflikes;
-    }
+    public String getName() { return name; }
 
-    public void setNooflikes(int nooflikes) {
-        this.nooflikes = nooflikes;
-    }
+    public void setName(String name) { this.name = name; }
 
-    public String getRecipeimage() {
-        return recipeimage;
-    }
+    public String getDescription() { return description; }
 
-    public void setRecipeimage(String recipeimage) {
-        this.recipeimage = recipeimage;
-    }
+    public void setDescription(String description) { this.description = description; }
 
-    public List<String> getIngredientsList() {
-        return ingredientsList;
-    }
+    public int getDuration() { return duration; }
 
-    public void setIngredientsList(List<String> ingredientsList) {
-        this.ingredientsList = ingredientsList;
-    }
+    public void setDuration(int duration) { this.duration = duration; }
 
-    public List<String> getStepsList() {
-        return stepsList;
-    }
+    public String getRid() { return rid; }
 
-    public void setStepsList(List<String> stepsList) {
-        this.stepsList = stepsList;
-    }
+    public void setRid(String rid) { this.rid = rid; }
 
-    public int getServings() {
-        return servings;
-    }
+    public String getUid() { return uid; }
 
-    public void setServings(int servings) {
-        this.servings = servings;
-    }
+    public void setUid(String uid) { this.uid = uid; }
+
+    public List<String> getCuisineList() { return cuisineList; }
+
+    public void setCuisineList(List<String> cuisineList) { this.cuisineList = cuisineList; }
+
+    public int getNooflikes() { return nooflikes; }
+
+    public void setNooflikes(int nooflikes) { this.nooflikes = nooflikes; }
+
+    public String getRecipeimage() { return recipeimage; }
+
+    public void setRecipeimage(String recipeimage) { this.recipeimage = recipeimage; }
+
+    public List<String> getIngredientsList() { return ingredientsList; }
+
+    public void setIngredientsList(List<String> ingredientsList) { this.ingredientsList = ingredientsList; }
+
+    public List<String> getStepsList() { return stepsList; }
+
+    public void setStepsList(List<String> stepsList) { this.stepsList = stepsList; }
+
+    public int getServings() { return servings; }
+
+    public void setServings(int servings) { this.servings = servings; }
 }
