@@ -1,15 +1,15 @@
 [
     {
-        "merged": "D:\\MAD\\MAD-Assignment-Cookverse\\app\\build\\intermediates\\merged_res\\debug\\mipmap-mdpi_ic_launcher_background.png.flat",
-        "source": "D:\\MAD\\MAD-Assignment-Cookverse\\app\\src\\main\\res\\mipmap-mdpi\\ic_launcher_background.png"
+        "merged": "D:\\MAD\\MAD-Assignment-Cookverse\\app\\build\\intermediates\\merged_res\\debug\\drawable_random_pic.png.flat",
+        "source": "D:\\MAD\\MAD-Assignment-Cookverse\\app\\src\\main\\res\\drawable\\random_pic.png"
     },
     {
         "merged": "D:\\MAD\\MAD-Assignment-Cookverse\\app\\build\\intermediates\\merged_res\\debug\\layout_usercreatedrecipes.xml.flat",
         "source": "D:\\MAD\\MAD-Assignment-Cookverse\\app\\src\\main\\res\\layout\\usercreatedrecipes.xml"
     },
     {
-        "merged": "D:\\MAD\\MAD-Assignment-Cookverse\\app\\build\\intermediates\\merged_res\\debug\\drawable_random_pic.png.flat",
-        "source": "D:\\MAD\\MAD-Assignment-Cookverse\\app\\src\\main\\res\\drawable\\random_pic.png"
+        "merged": "D:\\MAD\\MAD-Assignment-Cookverse\\app\\build\\intermediates\\merged_res\\debug\\mipmap-mdpi_ic_launcher_background.png.flat",
+        "source": "D:\\MAD\\MAD-Assignment-Cookverse\\app\\src\\main\\res\\mipmap-mdpi\\ic_launcher_background.png"
     },
     {
         "merged": "D:\\MAD\\MAD-Assignment-Cookverse\\app\\build\\intermediates\\merged_res\\debug\\layout_fragment_main.xml.flat",
@@ -28,20 +28,20 @@
         "source": "D:\\MAD\\MAD-Assignment-Cookverse\\app\\src\\main\\res\\layout\\fragment_discover.xml"
     },
     {
-        "merged": "D:\\MAD\\MAD-Assignment-Cookverse\\app\\build\\intermediates\\merged_res\\debug\\layout_discover_layout.xml.flat",
-        "source": "D:\\MAD\\MAD-Assignment-Cookverse\\app\\src\\main\\res\\layout\\discover_layout.xml"
-    },
-    {
         "merged": "D:\\MAD\\MAD-Assignment-Cookverse\\app\\build\\intermediates\\merged_res\\debug\\layout_activity_recipe.xml.flat",
         "source": "D:\\MAD\\MAD-Assignment-Cookverse\\app\\src\\main\\res\\layout\\activity_recipe.xml"
     },
     {
-        "merged": "D:\\MAD\\MAD-Assignment-Cookverse\\app\\build\\intermediates\\merged_res\\debug\\layout_activity_main.xml.flat",
-        "source": "D:\\MAD\\MAD-Assignment-Cookverse\\app\\src\\main\\res\\layout\\activity_main.xml"
+        "merged": "D:\\MAD\\MAD-Assignment-Cookverse\\app\\build\\intermediates\\merged_res\\debug\\layout_discover_layout.xml.flat",
+        "source": "D:\\MAD\\MAD-Assignment-Cookverse\\app\\src\\main\\res\\layout\\discover_layout.xml"
     },
     {
         "merged": "D:\\MAD\\MAD-Assignment-Cookverse\\app\\build\\intermediates\\merged_res\\debug\\layout_activity_login_page.xml.flat",
         "source": "D:\\MAD\\MAD-Assignment-Cookverse\\app\\src\\main\\res\\layout\\activity_login_page.xml"
+    },
+    {
+        "merged": "D:\\MAD\\MAD-Assignment-Cookverse\\app\\build\\intermediates\\merged_res\\debug\\layout_activity_main.xml.flat",
+        "source": "D:\\MAD\\MAD-Assignment-Cookverse\\app\\src\\main\\res\\layout\\activity_main.xml"
     },
     {
         "merged": "D:\\MAD\\MAD-Assignment-Cookverse\\app\\build\\intermediates\\merged_res\\debug\\layout_add_cuisine.xml.flat",
