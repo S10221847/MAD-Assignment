@@ -23,9 +23,6 @@ import java.util.List;
 
 public class CreateUserPage extends AppCompatActivity {
     public String TAG = "Create User Page";
-    public String MY_USERNAME = "MyUsername";
-    public String MY_PASSWORD = "MyPassword";
-    //DBHandler dbHandler = new DBHandler(this,null,null,1);
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

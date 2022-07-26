@@ -4,6 +4,7 @@ import android.graphics.Bitmap;
 
 import androidx.annotation.DrawableRes;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Recipe {
@@ -12,9 +13,9 @@ public class Recipe {
     private int duration; //in minutes
     private String rid;
     private String uid;
-    private List<String> cuisineList;
-    private List<String> ingredientsList;
-    private List<String> stepsList;
+    private List<String> cuisineList = new ArrayList<>();
+    private List<String> ingredientsList = new ArrayList<>();
+    private List<String> stepsList = new ArrayList<>();
     private int nooflikes;
     private String recipeimage;
     private int servings;

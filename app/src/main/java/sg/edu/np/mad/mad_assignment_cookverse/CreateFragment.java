@@ -69,6 +69,7 @@ public class CreateFragment extends Fragment {
     private LinearLayout ingredList;
     private LinearLayout stepList;
     private LinearLayout cuisiList;
+    private FBHandler fbHandler;
 
 
     /**
@@ -113,8 +114,8 @@ public class CreateFragment extends Fragment {
         stepList = view.findViewById(R.id.stepList);
         cuisiList = view.findViewById(R.id.cuisineList);
 
-        Intent receivingEnd = getActivity().getIntent();
-        String currentUsername = receivingEnd.getStringExtra("username");
+        //Intent receivingEnd = getActivity().getIntent();
+        //String currentUsername = receivingEnd.getStringExtra("username");
 
         TextView name = view.findViewById(R.id.editRecipeName);
         TextView description = view.findViewById(R.id.editRecipeDescription);
@@ -145,7 +146,7 @@ public class CreateFragment extends Fragment {
                 } catch(NumberFormatException e) {
                     System.out.println("Could not parse " + e);
                 }
-                recipe.setUid(currentUsername);
+                recipe.setUid(LoginPage.mainUser.getName());
                 recipe.setNooflikes(0);
 
                 List<String> RecipeIngred = new ArrayList<>();
@@ -323,12 +324,7 @@ public class CreateFragment extends Fragment {
                                     // Got the download URL for 'users/me/profile.png' in uri
                                     r.setRecipeimage(uri.toString());
                                     Log.v("MAIN", uri.toString());
-                                    DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
-                                    String rid = "";
-                                    rid = rootRef.child("Recipes").push().getKey();
-                                    r.setRid(rid);
-                                    DatabaseReference ref = rootRef.child("Recipes").child(rid);
-                                    ref.setValue(r);
+                                    fbHandler.addRecipe(r);
                                     Toast.makeText(getActivity(), "Recipe Created Successfully.", Toast.LENGTH_SHORT).show();
                                 }
                             }).addOnFailureListener(new OnFailureListener() {
@@ -355,12 +351,7 @@ public class CreateFragment extends Fragment {
         }
         else{
             Toast.makeText(getActivity(), "No image for this recipe",Toast.LENGTH_SHORT).show();
-            DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
-            String rid = "";
-            rid = rootRef.child("Recipes").push().getKey();
-            r.setRid(rid);
-            DatabaseReference ref = rootRef.child("Recipes").child(rid);
-            ref.setValue(r);
+            fbHandler.addRecipe(r);
         }
     }
 }

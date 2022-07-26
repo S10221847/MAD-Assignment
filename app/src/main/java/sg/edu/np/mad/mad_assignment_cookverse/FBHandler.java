@@ -72,6 +72,9 @@ public class FBHandler {
         r.setRid(rid);
         DatabaseReference ref = rootRef.child("Recipes").child(rid);
         ref.setValue(r);
+
+        LoginPage.mainUser.getCreatedList().add(rid);
+        addUpdateUser(LoginPage.mainUser);
     }
     public void updateRecipe(Recipe r){
         DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();

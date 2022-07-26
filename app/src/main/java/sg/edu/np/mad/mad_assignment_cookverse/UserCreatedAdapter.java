@@ -34,16 +34,12 @@ public class UserCreatedAdapter extends RecyclerView.Adapter<UserCreatedViewHold
     }
     public int getItemCount(){
         return data.size(); //number of recyclerview items
-
     }
 
-    @Override
-    public long getItemId(int position) {
+    public String getRid(int position) {
 
-        int itemID;
+        String recipeid = data.get(position).getRid();
 
-        itemID = dataOriginal.indexOf(data.get(position));
-
-        return itemID;
+        return recipeid;
     }
 }
