@@ -15,7 +15,7 @@ public class DiscoverViewHolder extends RecyclerView.ViewHolder{
     public DiscoverViewHolder(@NonNull View itemView, RecyclerViewInterface recyclerViewInterface) {
         super(itemView);
         txt = itemView.findViewById(R.id.recipeName);
-        txt2 = itemView.findViewById(R.id.recipeDesc);
+        //txt2 = itemView.findViewById(R.id.recipeDesc);
         img = itemView.findViewById(R.id.imageView2);
 
         //attach onClickListener for itemView

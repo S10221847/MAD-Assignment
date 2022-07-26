@@ -27,18 +27,14 @@ public final class DiscoverLayoutBinding implements ViewBinding {
   public final ImageView imageView2;
 
   @NonNull
-  public final TextView recipeDesc;
-
-  @NonNull
   public final TextView recipeName;
 
   private DiscoverLayoutBinding(@NonNull ConstraintLayout rootView,
       @NonNull ConstraintLayout discoverLayout, @NonNull ImageView imageView2,
-      @NonNull TextView recipeDesc, @NonNull TextView recipeName) {
+      @NonNull TextView recipeName) {
     this.rootView = rootView;
     this.discoverLayout = discoverLayout;
     this.imageView2 = imageView2;
-    this.recipeDesc = recipeDesc;
     this.recipeName = recipeName;
   }
 
@@ -77,12 +73,6 @@ public final class DiscoverLayoutBinding implements ViewBinding {
         break missingId;
       }
 
-      id = R.id.recipeDesc;
-      TextView recipeDesc = ViewBindings.findChildViewById(rootView, id);
-      if (recipeDesc == null) {
-        break missingId;
-      }
-
       id = R.id.recipeName;
       TextView recipeName = ViewBindings.findChildViewById(rootView, id);
       if (recipeName == null) {
@@ -90,7 +80,7 @@ public final class DiscoverLayoutBinding implements ViewBinding {
       }
 
       return new DiscoverLayoutBinding((ConstraintLayout) rootView, discoverLayout, imageView2,
-          recipeDesc, recipeName);
+          recipeName);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

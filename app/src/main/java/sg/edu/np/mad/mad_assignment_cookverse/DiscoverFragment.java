@@ -15,6 +15,7 @@ import android.widget.SearchView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -106,7 +107,7 @@ public class DiscoverFragment extends Fragment implements RecyclerViewInterface{
 
                 dAdaptor = new DiscoverAdaptor(list, rvi);
                 LinearLayoutManager dLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
-                discoverRecyclerView.setLayoutManager(dLayoutManager);
+                discoverRecyclerView.setLayoutManager(new StaggeredGridLayoutManager(2, dLayoutManager.VERTICAL));
                 discoverRecyclerView.setAdapter(dAdaptor);
                 setHasOptionsMenu(true);
             }

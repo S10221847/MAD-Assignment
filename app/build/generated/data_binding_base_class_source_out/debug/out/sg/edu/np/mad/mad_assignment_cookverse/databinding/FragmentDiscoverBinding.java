@@ -4,6 +4,7 @@ package sg.edu.np.mad.mad_assignment_cookverse.databinding;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.SearchView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -21,6 +22,9 @@ public final class FragmentDiscoverBinding implements ViewBinding {
   private final ConstraintLayout rootView;
 
   @NonNull
+  public final ImageView discoverFilter;
+
+  @NonNull
   public final RecyclerView discoverRecyclerView;
 
   @NonNull
@@ -30,9 +34,10 @@ public final class FragmentDiscoverBinding implements ViewBinding {
   public final SearchView searchbar;
 
   private FragmentDiscoverBinding(@NonNull ConstraintLayout rootView,
-      @NonNull RecyclerView discoverRecyclerView, @NonNull ConstraintLayout frameLayout2,
-      @NonNull SearchView searchbar) {
+      @NonNull ImageView discoverFilter, @NonNull RecyclerView discoverRecyclerView,
+      @NonNull ConstraintLayout frameLayout2, @NonNull SearchView searchbar) {
     this.rootView = rootView;
+    this.discoverFilter = discoverFilter;
     this.discoverRecyclerView = discoverRecyclerView;
     this.frameLayout2 = frameLayout2;
     this.searchbar = searchbar;
@@ -65,6 +70,12 @@ public final class FragmentDiscoverBinding implements ViewBinding {
     // This is done to optimize the compiled bytecode for size and performance.
     int id;
     missingId: {
+      id = R.id.discoverFilter;
+      ImageView discoverFilter = ViewBindings.findChildViewById(rootView, id);
+      if (discoverFilter == null) {
+        break missingId;
+      }
+
       id = R.id.discoverRecyclerView;
       RecyclerView discoverRecyclerView = ViewBindings.findChildViewById(rootView, id);
       if (discoverRecyclerView == null) {
@@ -79,8 +90,8 @@ public final class FragmentDiscoverBinding implements ViewBinding {
         break missingId;
       }
 
-      return new FragmentDiscoverBinding((ConstraintLayout) rootView, discoverRecyclerView,
-          frameLayout2, searchbar);
+      return new FragmentDiscoverBinding((ConstraintLayout) rootView, discoverFilter,
+          discoverRecyclerView, frameLayout2, searchbar);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

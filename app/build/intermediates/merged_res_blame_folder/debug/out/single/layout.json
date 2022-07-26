@@ -1,70 +1,70 @@
 [
     {
-        "merged": "D:\\MAD\\MAD-Assignment-Cookverse\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\usercreatedrecipes.xml",
-        "source": "D:\\MAD\\MAD-Assignment-Cookverse\\app\\src\\main\\res\\layout\\usercreatedrecipes.xml"
+        "merged": "C:\\Users\\ayrto\\Documents\\poly_life\\MAD\\MAD-Assignment\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\fragment_liked_recipe.xml",
+        "source": "C:\\Users\\ayrto\\Documents\\poly_life\\MAD\\MAD-Assignment\\app\\src\\main\\res\\layout\\fragment_liked_recipe.xml"
     },
     {
-        "merged": "D:\\MAD\\MAD-Assignment-Cookverse\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\fragment_create.xml",
-        "source": "D:\\MAD\\MAD-Assignment-Cookverse\\app\\src\\main\\res\\layout\\fragment_create.xml"
+        "merged": "C:\\Users\\ayrto\\Documents\\poly_life\\MAD\\MAD-Assignment\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\fragment_discover.xml",
+        "source": "C:\\Users\\ayrto\\Documents\\poly_life\\MAD\\MAD-Assignment\\app\\src\\main\\res\\layout\\fragment_discover.xml"
     },
     {
-        "merged": "D:\\MAD\\MAD-Assignment-Cookverse\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\discover_layout.xml",
-        "source": "D:\\MAD\\MAD-Assignment-Cookverse\\app\\src\\main\\res\\layout\\discover_layout.xml"
+        "merged": "C:\\Users\\ayrto\\Documents\\poly_life\\MAD\\MAD-Assignment\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\add_ingredients.xml",
+        "source": "C:\\Users\\ayrto\\Documents\\poly_life\\MAD\\MAD-Assignment\\app\\src\\main\\res\\layout\\add_ingredients.xml"
     },
     {
-        "merged": "D:\\MAD\\MAD-Assignment-Cookverse\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\fragment_discover.xml",
-        "source": "D:\\MAD\\MAD-Assignment-Cookverse\\app\\src\\main\\res\\layout\\fragment_discover.xml"
+        "merged": "C:\\Users\\ayrto\\Documents\\poly_life\\MAD\\MAD-Assignment\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\fragment_create.xml",
+        "source": "C:\\Users\\ayrto\\Documents\\poly_life\\MAD\\MAD-Assignment\\app\\src\\main\\res\\layout\\fragment_create.xml"
     },
     {
-        "merged": "D:\\MAD\\MAD-Assignment-Cookverse\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\online_recipes.xml",
-        "source": "D:\\MAD\\MAD-Assignment-Cookverse\\app\\src\\main\\res\\layout\\online_recipes.xml"
+        "merged": "C:\\Users\\ayrto\\Documents\\poly_life\\MAD\\MAD-Assignment\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\discover_layout.xml",
+        "source": "C:\\Users\\ayrto\\Documents\\poly_life\\MAD\\MAD-Assignment\\app\\src\\main\\res\\layout\\discover_layout.xml"
     },
     {
-        "merged": "D:\\MAD\\MAD-Assignment-Cookverse\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\fragment_liked_recipe.xml",
-        "source": "D:\\MAD\\MAD-Assignment-Cookverse\\app\\src\\main\\res\\layout\\fragment_liked_recipe.xml"
+        "merged": "C:\\Users\\ayrto\\Documents\\poly_life\\MAD\\MAD-Assignment\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\fragment_main.xml",
+        "source": "C:\\Users\\ayrto\\Documents\\poly_life\\MAD\\MAD-Assignment\\app\\src\\main\\res\\layout\\fragment_main.xml"
     },
     {
-        "merged": "D:\\MAD\\MAD-Assignment-Cookverse\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\activity_creater_user_page.xml",
-        "source": "D:\\MAD\\MAD-Assignment-Cookverse\\app\\src\\main\\res\\layout\\activity_creater_user_page.xml"
+        "merged": "C:\\Users\\ayrto\\Documents\\poly_life\\MAD\\MAD-Assignment\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\activity_login_page.xml",
+        "source": "C:\\Users\\ayrto\\Documents\\poly_life\\MAD\\MAD-Assignment\\app\\src\\main\\res\\layout\\activity_login_page.xml"
     },
     {
-        "merged": "D:\\MAD\\MAD-Assignment-Cookverse\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\activity_login_page.xml",
-        "source": "D:\\MAD\\MAD-Assignment-Cookverse\\app\\src\\main\\res\\layout\\activity_login_page.xml"
+        "merged": "C:\\Users\\ayrto\\Documents\\poly_life\\MAD\\MAD-Assignment\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\online_recipes.xml",
+        "source": "C:\\Users\\ayrto\\Documents\\poly_life\\MAD\\MAD-Assignment\\app\\src\\main\\res\\layout\\online_recipes.xml"
     },
     {
-        "merged": "D:\\MAD\\MAD-Assignment-Cookverse\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\fragment_home.xml",
-        "source": "D:\\MAD\\MAD-Assignment-Cookverse\\app\\src\\main\\res\\layout\\fragment_home.xml"
+        "merged": "C:\\Users\\ayrto\\Documents\\poly_life\\MAD\\MAD-Assignment\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\activity_recipe.xml",
+        "source": "C:\\Users\\ayrto\\Documents\\poly_life\\MAD\\MAD-Assignment\\app\\src\\main\\res\\layout\\activity_recipe.xml"
     },
     {
-        "merged": "D:\\MAD\\MAD-Assignment-Cookverse\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\fragment_main.xml",
-        "source": "D:\\MAD\\MAD-Assignment-Cookverse\\app\\src\\main\\res\\layout\\fragment_main.xml"
+        "merged": "C:\\Users\\ayrto\\Documents\\poly_life\\MAD\\MAD-Assignment\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\add_steps.xml",
+        "source": "C:\\Users\\ayrto\\Documents\\poly_life\\MAD\\MAD-Assignment\\app\\src\\main\\res\\layout\\add_steps.xml"
     },
     {
-        "merged": "D:\\MAD\\MAD-Assignment-Cookverse\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\add_ingredients.xml",
-        "source": "D:\\MAD\\MAD-Assignment-Cookverse\\app\\src\\main\\res\\layout\\add_ingredients.xml"
+        "merged": "C:\\Users\\ayrto\\Documents\\poly_life\\MAD\\MAD-Assignment\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\fragment_user_recipe.xml",
+        "source": "C:\\Users\\ayrto\\Documents\\poly_life\\MAD\\MAD-Assignment\\app\\src\\main\\res\\layout\\fragment_user_recipe.xml"
     },
     {
-        "merged": "D:\\MAD\\MAD-Assignment-Cookverse\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\fragment_user_recipe.xml",
-        "source": "D:\\MAD\\MAD-Assignment-Cookverse\\app\\src\\main\\res\\layout\\fragment_user_recipe.xml"
+        "merged": "C:\\Users\\ayrto\\Documents\\poly_life\\MAD\\MAD-Assignment\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\fragment_profile.xml",
+        "source": "C:\\Users\\ayrto\\Documents\\poly_life\\MAD\\MAD-Assignment\\app\\src\\main\\res\\layout\\fragment_profile.xml"
     },
     {
-        "merged": "D:\\MAD\\MAD-Assignment-Cookverse\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\activity_recipe.xml",
-        "source": "D:\\MAD\\MAD-Assignment-Cookverse\\app\\src\\main\\res\\layout\\activity_recipe.xml"
+        "merged": "C:\\Users\\ayrto\\Documents\\poly_life\\MAD\\MAD-Assignment\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\add_cuisine.xml",
+        "source": "C:\\Users\\ayrto\\Documents\\poly_life\\MAD\\MAD-Assignment\\app\\src\\main\\res\\layout\\add_cuisine.xml"
     },
     {
-        "merged": "D:\\MAD\\MAD-Assignment-Cookverse\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\activity_main.xml",
-        "source": "D:\\MAD\\MAD-Assignment-Cookverse\\app\\src\\main\\res\\layout\\activity_main.xml"
+        "merged": "C:\\Users\\ayrto\\Documents\\poly_life\\MAD\\MAD-Assignment\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\fragment_home.xml",
+        "source": "C:\\Users\\ayrto\\Documents\\poly_life\\MAD\\MAD-Assignment\\app\\src\\main\\res\\layout\\fragment_home.xml"
     },
     {
-        "merged": "D:\\MAD\\MAD-Assignment-Cookverse\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\fragment_profile.xml",
-        "source": "D:\\MAD\\MAD-Assignment-Cookverse\\app\\src\\main\\res\\layout\\fragment_profile.xml"
+        "merged": "C:\\Users\\ayrto\\Documents\\poly_life\\MAD\\MAD-Assignment\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\usercreatedrecipes.xml",
+        "source": "C:\\Users\\ayrto\\Documents\\poly_life\\MAD\\MAD-Assignment\\app\\src\\main\\res\\layout\\usercreatedrecipes.xml"
     },
     {
-        "merged": "D:\\MAD\\MAD-Assignment-Cookverse\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\add_cuisine.xml",
-        "source": "D:\\MAD\\MAD-Assignment-Cookverse\\app\\src\\main\\res\\layout\\add_cuisine.xml"
+        "merged": "C:\\Users\\ayrto\\Documents\\poly_life\\MAD\\MAD-Assignment\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\activity_main.xml",
+        "source": "C:\\Users\\ayrto\\Documents\\poly_life\\MAD\\MAD-Assignment\\app\\src\\main\\res\\layout\\activity_main.xml"
     },
     {
-        "merged": "D:\\MAD\\MAD-Assignment-Cookverse\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\add_steps.xml",
-        "source": "D:\\MAD\\MAD-Assignment-Cookverse\\app\\src\\main\\res\\layout\\add_steps.xml"
+        "merged": "C:\\Users\\ayrto\\Documents\\poly_life\\MAD\\MAD-Assignment\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\activity_creater_user_page.xml",
+        "source": "C:\\Users\\ayrto\\Documents\\poly_life\\MAD\\MAD-Assignment\\app\\src\\main\\res\\layout\\activity_creater_user_page.xml"
     }
 ]

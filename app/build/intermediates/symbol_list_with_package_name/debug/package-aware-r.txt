@@ -2501,6 +2501,7 @@ drawable googleg_disabled_color_18
 drawable googleg_standard_color_18
 drawable home
 drawable ic_clock_black_24dp
+drawable ic_filter
 drawable ic_keyboard_black_24dp
 drawable ic_launcher_background
 drawable ic_launcher_foreground
@@ -2750,6 +2751,7 @@ id disableIntraAutoTransition
 id disablePostScroll
 id disableScroll
 id discover
+id discoverFilter
 id discoverRecyclerView
 id discover_layout
 id disjoint
@@ -2972,7 +2974,6 @@ id rName
 id rSteps
 id radio
 id ratio
-id recipeDesc
 id recipeName
 id rectangles
 id reverseSawtooth

@@ -12,6 +12,7 @@ color white
 drawable applogo
 drawable create
 drawable home
+drawable ic_filter
 drawable ic_launcher_background
 drawable ic_launcher_foreground
 drawable ic_search
@@ -45,6 +46,7 @@ id deleteCuisine
 id deleteIngredient
 id deleteStep
 id discover
+id discoverFilter
 id discoverRecyclerView
 id discover_layout
 id editPassword
@@ -79,7 +81,6 @@ id personalReci
 id profile
 id rName
 id rSteps
-id recipeDesc
 id recipeName
 id searchbar
 id stepList
