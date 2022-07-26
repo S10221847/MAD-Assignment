@@ -2491,7 +2491,6 @@ drawable common_google_signin_btn_text_light
 drawable common_google_signin_btn_text_light_focused
 drawable common_google_signin_btn_text_light_normal
 drawable common_google_signin_btn_text_light_normal_background
-drawable create
 drawable design_fab_background
 drawable design_ic_visibility
 drawable design_ic_visibility_off
@@ -2499,7 +2498,11 @@ drawable design_password_eye
 drawable design_snackbar_background
 drawable googleg_disabled_color_18
 drawable googleg_standard_color_18
-drawable home
+drawable ic_baseline_account_circle_24
+drawable ic_baseline_add_24
+drawable ic_baseline_edit_24
+drawable ic_baseline_home_24
+drawable ic_baseline_search_24
 drawable ic_clock_black_24dp
 drawable ic_filter
 drawable ic_keyboard_black_24dp
@@ -2557,7 +2560,6 @@ drawable notify_panel_notification_icon_bg
 drawable pfp
 drawable pic
 drawable random_pic
-drawable search2
 drawable search_view_bg
 drawable test_custom_background
 drawable test_level_drawable
@@ -2770,11 +2772,18 @@ id easeIn
 id easeInOut
 id easeOut
 id east
+id editBio
+id editCancel
+id editName
 id editPassword
+id editPic
+id editPicButton
+id editProfile
 id editRecipeDescription
 id editRecipeDuration
 id editRecipeName
 id editRecipeServings
+id editSave
 id editUsername
 id edit_query
 id editmyEmailAdd
@@ -3079,6 +3088,8 @@ id textView15
 id textView2
 id textView3
 id textView4
+id textView5
+id textView6
 id textView7
 id text_input_end_icon
 id text_input_error_icon
@@ -3227,6 +3238,7 @@ layout abc_search_view
 layout abc_select_dialog_material
 layout abc_tooltip
 layout activity_creater_user_page
+layout activity_edit_profile
 layout activity_login_page
 layout activity_main
 layout activity_recipe

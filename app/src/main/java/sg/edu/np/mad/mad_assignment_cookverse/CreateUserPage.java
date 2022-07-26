@@ -55,7 +55,7 @@ public class CreateUserPage extends AppCompatActivity {
                                 User userDataDB = new User();
                                 userDataDB.setName(myCreateUsername.getText().toString());
                                 userDataDB.setPassword((myCreatePassword.getText().toString()));
-                                userDataDB.setUserImage("https://upload.wikimedia.org/wikipedia/commons/a/ac/Default_pfp.jpg");
+                                /*userDataDB.setUserImage("https://upload.wikimedia.org/wikipedia/commons/a/ac/Default_pfp.jpg");*/
                                 userDataDB.setBio("Your own bio");
 
                                 DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
