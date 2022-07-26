@@ -36,17 +36,6 @@ public class LoginPage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_page);
 
-        sharedPreferences = getSharedPreferences(GLOBAL_PREF, MODE_PRIVATE);
-        int sharedDBVersion = sharedPreferences.getInt(DATABASE_VERSION, 2);
-        sharedDBVersion += 1;
-        DBHandler dbHandler = new DBHandler(this, null, null, sharedDBVersion);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putInt(DATABASE_VERSION, sharedDBVersion);
-        editor.apply();
-        FBHandler fbHandler = new FBHandler(dbHandler);
-        fbHandler.retrieveFBUserData();
-        fbHandler.retrieveFBRecipeData();
-
         TextView newUser = findViewById(R.id.userSignup);
         newUser.setOnTouchListener(new View.OnTouchListener() {
             @Override

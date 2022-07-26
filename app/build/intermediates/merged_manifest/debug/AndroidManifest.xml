@@ -25,6 +25,15 @@
         android:testOnly="true"
         android:theme="@style/Theme.MADAssignmentCookverse" >
         <activity
+            android:name="sg.edu.np.mad.mad_assignment_cookverse.Splash_Screen"
+            android:exported="true" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
             android:name="sg.edu.np.mad.mad_assignment_cookverse.EditProfile"
             android:exported="false" />
         <activity

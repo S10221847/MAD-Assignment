@@ -24,6 +24,10 @@
         "source": "C:\\Users\\65866\\Desktop\\MAD\\MAD-Assignment\\app\\src\\main\\res\\mipmap-xxxhdpi\\ic_launcher_round.webp"
     },
     {
+        "merged": "C:\\Users\\65866\\Desktop\\MAD\\MAD-Assignment\\app\\build\\intermediates\\merged_res\\debug\\layout_activity_splash_screen.xml.flat",
+        "source": "C:\\Users\\65866\\Desktop\\MAD\\MAD-Assignment\\app\\src\\main\\res\\layout\\activity_splash_screen.xml"
+    },
+    {
         "merged": "C:\\Users\\65866\\Desktop\\MAD\\MAD-Assignment\\app\\build\\intermediates\\merged_res\\debug\\layout_add_steps.xml.flat",
         "source": "C:\\Users\\65866\\Desktop\\MAD\\MAD-Assignment\\app\\src\\main\\res\\layout\\add_steps.xml"
     },

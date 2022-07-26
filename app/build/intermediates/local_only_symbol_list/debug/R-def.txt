@@ -74,6 +74,7 @@ id imageView
 id imageView2
 id imageView3
 id imageView4
+id imageView5
 id ingredList
 id ingredStepsButton
 id liked
@@ -104,6 +105,7 @@ id textView4
 id textView5
 id textView6
 id textView7
+id textView8
 id userName
 id userSignup
 id usercreatedRecyclerView
@@ -114,6 +116,7 @@ layout activity_edit_profile
 layout activity_login_page
 layout activity_main
 layout activity_recipe
+layout activity_splash_screen
 layout add_cuisine
 layout add_ingredients
 layout add_steps

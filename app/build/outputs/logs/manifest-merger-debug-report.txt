@@ -1,9 +1,9 @@
 -- Merging decision tree log ---
 manifest
-ADDED from C:\Users\65866\Desktop\MAD\MAD-Assignment\app\src\main\AndroidManifest.xml:2:1-37:12
-INJECTED from C:\Users\65866\Desktop\MAD\MAD-Assignment\app\src\main\AndroidManifest.xml:2:1-37:12
-INJECTED from C:\Users\65866\Desktop\MAD\MAD-Assignment\app\src\main\AndroidManifest.xml:2:1-37:12
-INJECTED from C:\Users\65866\Desktop\MAD\MAD-Assignment\app\src\main\AndroidManifest.xml:2:1-37:12
+ADDED from C:\Users\65866\Desktop\MAD\MAD-Assignment\app\src\main\AndroidManifest.xml:2:1-47:12
+INJECTED from C:\Users\65866\Desktop\MAD\MAD-Assignment\app\src\main\AndroidManifest.xml:2:1-47:12
+INJECTED from C:\Users\65866\Desktop\MAD\MAD-Assignment\app\src\main\AndroidManifest.xml:2:1-47:12
+INJECTED from C:\Users\65866\Desktop\MAD\MAD-Assignment\app\src\main\AndroidManifest.xml:2:1-47:12
 MERGED from [androidx.databinding:viewbinding:7.1.3] C:\Users\65866\.gradle\caches\transforms-3\4af425911d590c861069a4be01949aa7\transformed\viewbinding-7.1.3\AndroidManifest.xml:17:1-24:12
 MERGED from [com.google.android.material:material:1.6.0] C:\Users\65866\.gradle\caches\transforms-3\84b6c140ff5d351a3cdb5f3505dd6d86\transformed\material-1.6.0\AndroidManifest.xml:17:1-26:12
 MERGED from [androidx.constraintlayout:constraintlayout:2.1.4] C:\Users\65866\.gradle\caches\transforms-3\758dc692c2ac2287cd8763300629116b\transformed\constraintlayout-2.1.4\AndroidManifest.xml:2:1-11:12
@@ -55,35 +55,35 @@ MERGED from [androidx.documentfile:documentfile:1.0.0] C:\Users\65866\.gradle\ca
 MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] C:\Users\65866\.gradle\caches\transforms-3\1f310b4bd43959b4eb9fba752f1afaa1\transformed\localbroadcastmanager-1.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.print:print:1.0.0] C:\Users\65866\.gradle\caches\transforms-3\62db4ae9e3e356fe261461a62aa1449f\transformed\print-1.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.annotation:annotation-experimental:1.1.0] C:\Users\65866\.gradle\caches\transforms-3\b8cc1992ac5061931f3798174aa7f68a\transformed\annotation-experimental-1.1.0\AndroidManifest.xml:17:1-24:12
-INJECTED from C:\Users\65866\Desktop\MAD\MAD-Assignment\app\src\main\AndroidManifest.xml:2:1-37:12
-INJECTED from C:\Users\65866\Desktop\MAD\MAD-Assignment\app\src\main\AndroidManifest.xml:2:1-37:12
-INJECTED from C:\Users\65866\Desktop\MAD\MAD-Assignment\app\src\main\AndroidManifest.xml:2:1-37:12
+INJECTED from C:\Users\65866\Desktop\MAD\MAD-Assignment\app\src\main\AndroidManifest.xml:2:1-47:12
+INJECTED from C:\Users\65866\Desktop\MAD\MAD-Assignment\app\src\main\AndroidManifest.xml:2:1-47:12
+INJECTED from C:\Users\65866\Desktop\MAD\MAD-Assignment\app\src\main\AndroidManifest.xml:2:1-47:12
 	package
 		ADDED from C:\Users\65866\Desktop\MAD\MAD-Assignment\app\src\main\AndroidManifest.xml:4:5-53
 		INJECTED from C:\Users\65866\Desktop\MAD\MAD-Assignment\app\src\main\AndroidManifest.xml
 		INJECTED from C:\Users\65866\Desktop\MAD\MAD-Assignment\app\src\main\AndroidManifest.xml
 	android:versionName
 		INJECTED from C:\Users\65866\Desktop\MAD\MAD-Assignment\app\src\main\AndroidManifest.xml
-		ADDED from C:\Users\65866\Desktop\MAD\MAD-Assignment\app\src\main\AndroidManifest.xml:2:1-37:12
+		ADDED from C:\Users\65866\Desktop\MAD\MAD-Assignment\app\src\main\AndroidManifest.xml:2:1-47:12
 		INJECTED from C:\Users\65866\Desktop\MAD\MAD-Assignment\app\src\main\AndroidManifest.xml
 	xmlns:tools
 		ADDED from C:\Users\65866\Desktop\MAD\MAD-Assignment\app\src\main\AndroidManifest.xml:3:5-51
 	android:versionCode
 		INJECTED from C:\Users\65866\Desktop\MAD\MAD-Assignment\app\src\main\AndroidManifest.xml
-		ADDED from C:\Users\65866\Desktop\MAD\MAD-Assignment\app\src\main\AndroidManifest.xml:2:1-37:12
+		ADDED from C:\Users\65866\Desktop\MAD\MAD-Assignment\app\src\main\AndroidManifest.xml:2:1-47:12
 		INJECTED from C:\Users\65866\Desktop\MAD\MAD-Assignment\app\src\main\AndroidManifest.xml
 	xmlns:android
 		ADDED from C:\Users\65866\Desktop\MAD\MAD-Assignment\app\src\main\AndroidManifest.xml:2:11-69
 uses-permission#android.permission.INTERNET
-ADDED from C:\Users\65866\Desktop\MAD\MAD-Assignment\app\src\main\AndroidManifest.xml:5:5-67
+ADDED from C:\Users\65866\Desktop\MAD\MAD-Assignment\app\src\main\AndroidManifest.xml:6:5-67
 MERGED from [com.google.firebase:firebase-database:20.0.5] C:\Users\65866\.gradle\caches\transforms-3\41611160552d14d994ceda2585af7bd4\transformed\firebase-database-20.0.5\AndroidManifest.xml:26:5-67
 MERGED from [com.google.firebase:firebase-database:20.0.5] C:\Users\65866\.gradle\caches\transforms-3\41611160552d14d994ceda2585af7bd4\transformed\firebase-database-20.0.5\AndroidManifest.xml:26:5-67
 MERGED from [com.google.firebase:firebase-storage:20.0.1] C:\Users\65866\.gradle\caches\transforms-3\d4f89dfeba0fe6e6de0c46314446233b\transformed\firebase-storage-20.0.1\AndroidManifest.xml:27:5-67
 MERGED from [com.google.firebase:firebase-storage:20.0.1] C:\Users\65866\.gradle\caches\transforms-3\d4f89dfeba0fe6e6de0c46314446233b\transformed\firebase-storage-20.0.1\AndroidManifest.xml:27:5-67
 	android:name
-		ADDED from C:\Users\65866\Desktop\MAD\MAD-Assignment\app\src\main\AndroidManifest.xml:5:22-64
+		ADDED from C:\Users\65866\Desktop\MAD\MAD-Assignment\app\src\main\AndroidManifest.xml:6:22-64
 application
-ADDED from C:\Users\65866\Desktop\MAD\MAD-Assignment\app\src\main\AndroidManifest.xml:7:5-35:19
+ADDED from C:\Users\65866\Desktop\MAD\MAD-Assignment\app\src\main\AndroidManifest.xml:8:5-45:19
 MERGED from [com.google.android.material:material:1.6.0] C:\Users\65866\.gradle\caches\transforms-3\84b6c140ff5d351a3cdb5f3505dd6d86\transformed\material-1.6.0\AndroidManifest.xml:24:5-20
 MERGED from [com.google.android.material:material:1.6.0] C:\Users\65866\.gradle\caches\transforms-3\84b6c140ff5d351a3cdb5f3505dd6d86\transformed\material-1.6.0\AndroidManifest.xml:24:5-20
 MERGED from [androidx.constraintlayout:constraintlayout:2.1.4] C:\Users\65866\.gradle\caches\transforms-3\758dc692c2ac2287cd8763300629116b\transformed\constraintlayout-2.1.4\AndroidManifest.xml:9:5-20
@@ -117,57 +117,63 @@ MERGED from [androidx.startup:startup-runtime:1.0.0] C:\Users\65866\.gradle\cach
 	android:appComponentFactory
 		ADDED from [androidx.core:core:1.7.0] C:\Users\65866\.gradle\caches\transforms-3\ea18ebfeb6c3b172f1e253da8c4eee22\transformed\core-1.7.0\AndroidManifest.xml:24:18-86
 	android:supportsRtl
-		ADDED from C:\Users\65866\Desktop\MAD\MAD-Assignment\app\src\main\AndroidManifest.xml:12:9-35
+		ADDED from C:\Users\65866\Desktop\MAD\MAD-Assignment\app\src\main\AndroidManifest.xml:13:9-35
 	android:label
-		ADDED from C:\Users\65866\Desktop\MAD\MAD-Assignment\app\src\main\AndroidManifest.xml:10:9-41
+		ADDED from C:\Users\65866\Desktop\MAD\MAD-Assignment\app\src\main\AndroidManifest.xml:11:9-41
 	android:roundIcon
-		ADDED from C:\Users\65866\Desktop\MAD\MAD-Assignment\app\src\main\AndroidManifest.xml:11:9-54
+		ADDED from C:\Users\65866\Desktop\MAD\MAD-Assignment\app\src\main\AndroidManifest.xml:12:9-54
 	android:icon
-		ADDED from C:\Users\65866\Desktop\MAD\MAD-Assignment\app\src\main\AndroidManifest.xml:9:9-43
+		ADDED from C:\Users\65866\Desktop\MAD\MAD-Assignment\app\src\main\AndroidManifest.xml:10:9-43
 	android:allowBackup
-		ADDED from C:\Users\65866\Desktop\MAD\MAD-Assignment\app\src\main\AndroidManifest.xml:8:9-35
+		ADDED from C:\Users\65866\Desktop\MAD\MAD-Assignment\app\src\main\AndroidManifest.xml:9:9-35
 	android:theme
-		ADDED from C:\Users\65866\Desktop\MAD\MAD-Assignment\app\src\main\AndroidManifest.xml:13:9-60
-activity#sg.edu.np.mad.mad_assignment_cookverse.EditProfile
-ADDED from C:\Users\65866\Desktop\MAD\MAD-Assignment\app\src\main\AndroidManifest.xml:14:9-16:40
+		ADDED from C:\Users\65866\Desktop\MAD\MAD-Assignment\app\src\main\AndroidManifest.xml:14:9-60
+activity#sg.edu.np.mad.mad_assignment_cookverse.Splash_Screen
+ADDED from C:\Users\65866\Desktop\MAD\MAD-Assignment\app\src\main\AndroidManifest.xml:15:9-23:20
 	android:exported
-		ADDED from C:\Users\65866\Desktop\MAD\MAD-Assignment\app\src\main\AndroidManifest.xml:16:13-37
+		ADDED from C:\Users\65866\Desktop\MAD\MAD-Assignment\app\src\main\AndroidManifest.xml:17:13-36
 	android:name
-		ADDED from C:\Users\65866\Desktop\MAD\MAD-Assignment\app\src\main\AndroidManifest.xml:15:13-40
-activity#sg.edu.np.mad.mad_assignment_cookverse.RecipeActivity
-ADDED from C:\Users\65866\Desktop\MAD\MAD-Assignment\app\src\main\AndroidManifest.xml:17:9-19:40
-	android:exported
-		ADDED from C:\Users\65866\Desktop\MAD\MAD-Assignment\app\src\main\AndroidManifest.xml:19:13-37
-	android:name
-		ADDED from C:\Users\65866\Desktop\MAD\MAD-Assignment\app\src\main\AndroidManifest.xml:18:13-43
-activity#sg.edu.np.mad.mad_assignment_cookverse.MainFragment
-ADDED from C:\Users\65866\Desktop\MAD\MAD-Assignment\app\src\main\AndroidManifest.xml:20:9-22:39
-	android:exported
-		ADDED from C:\Users\65866\Desktop\MAD\MAD-Assignment\app\src\main\AndroidManifest.xml:22:13-36
-	android:name
-		ADDED from C:\Users\65866\Desktop\MAD\MAD-Assignment\app\src\main\AndroidManifest.xml:21:13-41
-activity#sg.edu.np.mad.mad_assignment_cookverse.CreateUserPage
-ADDED from C:\Users\65866\Desktop\MAD\MAD-Assignment\app\src\main\AndroidManifest.xml:23:9-25:39
-	android:exported
-		ADDED from C:\Users\65866\Desktop\MAD\MAD-Assignment\app\src\main\AndroidManifest.xml:25:13-36
-	android:name
-		ADDED from C:\Users\65866\Desktop\MAD\MAD-Assignment\app\src\main\AndroidManifest.xml:24:13-43
-activity#sg.edu.np.mad.mad_assignment_cookverse.LoginPage
-ADDED from C:\Users\65866\Desktop\MAD\MAD-Assignment\app\src\main\AndroidManifest.xml:26:9-34:20
-	android:exported
-		ADDED from C:\Users\65866\Desktop\MAD\MAD-Assignment\app\src\main\AndroidManifest.xml:28:13-36
-	android:name
-		ADDED from C:\Users\65866\Desktop\MAD\MAD-Assignment\app\src\main\AndroidManifest.xml:27:13-38
+		ADDED from C:\Users\65866\Desktop\MAD\MAD-Assignment\app\src\main\AndroidManifest.xml:16:13-42
 intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
-ADDED from C:\Users\65866\Desktop\MAD\MAD-Assignment\app\src\main\AndroidManifest.xml:29:13-33:29
+ADDED from C:\Users\65866\Desktop\MAD\MAD-Assignment\app\src\main\AndroidManifest.xml:18:13-22:29
 action#android.intent.action.MAIN
-ADDED from C:\Users\65866\Desktop\MAD\MAD-Assignment\app\src\main\AndroidManifest.xml:30:17-69
+ADDED from C:\Users\65866\Desktop\MAD\MAD-Assignment\app\src\main\AndroidManifest.xml:19:17-69
 	android:name
-		ADDED from C:\Users\65866\Desktop\MAD\MAD-Assignment\app\src\main\AndroidManifest.xml:30:25-66
+		ADDED from C:\Users\65866\Desktop\MAD\MAD-Assignment\app\src\main\AndroidManifest.xml:19:25-66
 category#android.intent.category.LAUNCHER
-ADDED from C:\Users\65866\Desktop\MAD\MAD-Assignment\app\src\main\AndroidManifest.xml:32:17-77
+ADDED from C:\Users\65866\Desktop\MAD\MAD-Assignment\app\src\main\AndroidManifest.xml:21:17-77
 	android:name
-		ADDED from C:\Users\65866\Desktop\MAD\MAD-Assignment\app\src\main\AndroidManifest.xml:32:27-74
+		ADDED from C:\Users\65866\Desktop\MAD\MAD-Assignment\app\src\main\AndroidManifest.xml:21:27-74
+activity#sg.edu.np.mad.mad_assignment_cookverse.EditProfile
+ADDED from C:\Users\65866\Desktop\MAD\MAD-Assignment\app\src\main\AndroidManifest.xml:24:9-26:40
+	android:exported
+		ADDED from C:\Users\65866\Desktop\MAD\MAD-Assignment\app\src\main\AndroidManifest.xml:26:13-37
+	android:name
+		ADDED from C:\Users\65866\Desktop\MAD\MAD-Assignment\app\src\main\AndroidManifest.xml:25:13-40
+activity#sg.edu.np.mad.mad_assignment_cookverse.RecipeActivity
+ADDED from C:\Users\65866\Desktop\MAD\MAD-Assignment\app\src\main\AndroidManifest.xml:27:9-29:40
+	android:exported
+		ADDED from C:\Users\65866\Desktop\MAD\MAD-Assignment\app\src\main\AndroidManifest.xml:29:13-37
+	android:name
+		ADDED from C:\Users\65866\Desktop\MAD\MAD-Assignment\app\src\main\AndroidManifest.xml:28:13-43
+activity#sg.edu.np.mad.mad_assignment_cookverse.MainFragment
+ADDED from C:\Users\65866\Desktop\MAD\MAD-Assignment\app\src\main\AndroidManifest.xml:30:9-32:39
+	android:exported
+		ADDED from C:\Users\65866\Desktop\MAD\MAD-Assignment\app\src\main\AndroidManifest.xml:32:13-36
+	android:name
+		ADDED from C:\Users\65866\Desktop\MAD\MAD-Assignment\app\src\main\AndroidManifest.xml:31:13-41
+activity#sg.edu.np.mad.mad_assignment_cookverse.CreateUserPage
+ADDED from C:\Users\65866\Desktop\MAD\MAD-Assignment\app\src\main\AndroidManifest.xml:33:9-35:39
+	android:exported
+		ADDED from C:\Users\65866\Desktop\MAD\MAD-Assignment\app\src\main\AndroidManifest.xml:35:13-36
+	android:name
+		ADDED from C:\Users\65866\Desktop\MAD\MAD-Assignment\app\src\main\AndroidManifest.xml:34:13-43
+activity#sg.edu.np.mad.mad_assignment_cookverse.LoginPage
+ADDED from C:\Users\65866\Desktop\MAD\MAD-Assignment\app\src\main\AndroidManifest.xml:36:9-44:20
+	android:exported
+		ADDED from C:\Users\65866\Desktop\MAD\MAD-Assignment\app\src\main\AndroidManifest.xml:38:13-36
+	android:name
+		ADDED from C:\Users\65866\Desktop\MAD\MAD-Assignment\app\src\main\AndroidManifest.xml:37:13-38
 uses-sdk
 INJECTED from C:\Users\65866\Desktop\MAD\MAD-Assignment\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from C:\Users\65866\Desktop\MAD\MAD-Assignment\app\src\main\AndroidManifest.xml

@@ -2843,6 +2843,7 @@ int id imageView 0x7f090112
 int id imageView2 0x7f090113
 int id imageView3 0x7f090114
 int id imageView4 0x7f090115
+int id imageView5 0x7f090242
 int id immediateStop 0x7f090116
 int id included 0x7f090117
 int id info 0x7f090118
@@ -3090,6 +3091,7 @@ int id textView4 0x7f090209
 int id textView5 0x7f09020a
 int id textView6 0x7f09020b
 int id textView7 0x7f09020c
+int id textView8 0x7f090243
 int id text_input_end_icon 0x7f09020d
 int id text_input_error_icon 0x7f09020e
 int id text_input_start_icon 0x7f09020f
@@ -3241,6 +3243,7 @@ int layout activity_edit_profile 0x7f0c001d
 int layout activity_login_page 0x7f0c001e
 int layout activity_main 0x7f0c001f
 int layout activity_recipe 0x7f0c0020
+int layout activity_splash_screen 0x7f0c0088
 int layout add_cuisine 0x7f0c0021
 int layout add_ingredients 0x7f0c0022
 int layout add_steps 0x7f0c0023

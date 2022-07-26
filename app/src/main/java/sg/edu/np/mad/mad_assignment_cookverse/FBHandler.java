@@ -45,8 +45,8 @@ public class FBHandler {
         query.addValueEventListener(eventListener);
     }
 
-    public void retrieveFBRecipeData(){
-        Query query = FirebaseDatabase.getInstance().getReference().child("Recipes").limitToFirst(10);
+    public void retrieveFBRecipeData(Context context){
+        Query query = FirebaseDatabase.getInstance().getReference().child("Recipes");//.limitToFirst(50);
         ValueEventListener eventListener = new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -56,6 +56,8 @@ public class FBHandler {
                         dbHandler.addRecipe(r);
                     }
                 }
+                Intent myIntent = new Intent(context, LoginPage.class);
+                context.startActivity(myIntent);
             }
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
