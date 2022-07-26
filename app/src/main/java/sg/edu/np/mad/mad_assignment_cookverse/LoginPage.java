@@ -1,6 +1,7 @@
 package sg.edu.np.mad.mad_assignment_cookverse;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MotionEvent;
@@ -25,11 +26,26 @@ import java.util.List;
 public class LoginPage extends AppCompatActivity {
     public String TAG = "Main Activity";
     public static User mainUser = new User();
-    //DBHandler dbHandler = new DBHandler(this, null, null, 1);
+    public String GLOBAL_PREF = "MyPrefs";
+    public String DATABASE_VERSION = "MyDatabaseVersion";
+    SharedPreferences sharedPreferences;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_page);
+
+        sharedPreferences = getSharedPreferences(GLOBAL_PREF, MODE_PRIVATE);
+        int sharedDBVersion = sharedPreferences.getInt(DATABASE_VERSION, 2);
+        sharedDBVersion += 1;
+        DBHandler dbHandler = new DBHandler(this, null, null, sharedDBVersion);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putInt(DATABASE_VERSION, sharedDBVersion);
+        editor.apply();
+        FBHandler fbHandler = new FBHandler(dbHandler);
+        fbHandler.retrieveFBUserData();
+        fbHandler.retrieveFBRecipeData();
 
         TextView newUser = findViewById(R.id.userSignup);
         newUser.setOnTouchListener(new View.OnTouchListener() {

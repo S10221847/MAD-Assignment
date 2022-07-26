@@ -11,6 +11,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
+import android.util.Log;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -26,165 +27,193 @@ public class DBHandler extends SQLiteOpenHelper {
     //Accounts table storing User data
     public static String ACCOUNTS = "Accounts";
     public static String COLUMN_USERNAME = "Username";
-    public static String COLUMN_PASSWORD = "Password";
-    public static String COLUMN_USERID = "Id";
+    //public static String COLUMN_PASSWORD = "Password"; Don't store password in local database
+    public static String COLUMN_BIO= "Bio";
     public static String COLUMN_USERIMAGE = "UserImage";
-    //public static String COLUMN_LIKEDRECIPES = "LikedList";
-    //public static String COLUMN_CREATEDRECIPES = "CreatedList";
+
+    //Liked Recipes table storing User's liked recipes list
+    public static String LIKEDRECIPES = "LikedRecipes";
+    //Use COLUMN_USERNAME and COLUMN_RECIPEID as composite key
+
+    //Created Recipes table storing User's created recipes list
+    public static String CREATEDRECIPES = "CreatedRecipes";
+    //Use COLUMN_USERNAME and COLUMN_RECIPEID as composite key
+
 
     //Recipes table storing Recipe data
     public static String RECIPES = "Recipes";
+    public static String COLUMN_RECIPEID = "RecipeId";
     public static String COLUMN_RECIPENAME = "RecipeName";
     public static String COLUMN_DESCRIPTION = "Description";
-    public static String COLUMN_STEPS = "Steps";
-    public static String COLUMN_INGREDIENTS = "Ingredients";
-    public static String COLUMN_RECIPEID = "RecipeId";
-    public static String COLUMN_RECIPEUSERID = "UserId";
-    //public static String COLUMN_CUISINES = "CuisinesList";
+    public static String COLUMN_DURATION = "Duration";
+    //Use COLUMN_USERNAME as Recipe's uid
     public static String COLUMN_LIKES = "NoOfLikes";
     public static String COLUMN_RECIPEIMAGE = "RecipeImage";
+    public static String COLUMN_SERVINGS = "Servings";
 
-    public static int DATABASE_VERSION = 1;
+    //Cuisines table storing Recipe's cuisine list
+    public static String CUISINE = "Cuisine";
+    public static String COLUMN_RECIPECUISINE = "RecipeCuisine";
+    //Use COLUMN_RECIPEID in conjunction as composite key
+
+    //Ingredients table storing Recipe's cuisine list
+    public static String INGREDIENT = "Ingredient";
+    public static String COLUMN_RECIPEINGREDIENT = "RecipeIngredient";
+    //Use COLUMN_RECIPEID in conjunction as composite key
+
+    //Steps table storing Recipe's cuisine list
+    public static String STEPS = "Steps";
+    public static String COLUMN_RECIPESTEPS = "RecipeSteps";
+    //Use COLUMN_RECIPEID in conjunction as composite key
+
     Context context;
 
     public DBHandler(Context context, String name, SQLiteDatabase.CursorFactory factory, int version){
-        super(context, DATABASE_NAME, factory, DATABASE_VERSION);
+        super(context, DATABASE_NAME, factory, version);
         this.context = context;
     }
 
     @Override
     public void onCreate(SQLiteDatabase db){
-        String CREATE_TABLE1 = "CREATE TABLE " + ACCOUNTS + "(" + COLUMN_USERID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
-                + COLUMN_USERNAME + " TEXT," + COLUMN_PASSWORD + " TEXT," + COLUMN_USERIMAGE +
-                 " BLOB)";
-        String CREATE_TABLE2 = "CREATE TABLE " + RECIPES + "(" + COLUMN_RECIPEID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
-                + COLUMN_RECIPENAME + " TEXT," + COLUMN_DESCRIPTION + " TEXT," + COLUMN_RECIPEUSERID
-                + " INTEGER," + COLUMN_LIKES  + " TEXT," + COLUMN_STEPS  + " TEXT," + COLUMN_INGREDIENTS
-                + " TEXT," + COLUMN_RECIPEIMAGE + " BLOB)";
+        String CREATE_TABLE1 = "CREATE TABLE " + ACCOUNTS + "(" + COLUMN_USERNAME + " TEXT," /*+ COLUMN_PASSWORD + " TEXT,"*/
+                + COLUMN_BIO + " TEXT," + COLUMN_USERIMAGE + " TEXT)";
+        String CREATE_TABLE2 = "CREATE TABLE " + LIKEDRECIPES + "(" + COLUMN_USERNAME + " TEXT," + COLUMN_RECIPEID + " TEXT)";
+        String CREATE_TABLE3 = "CREATE TABLE " + CREATEDRECIPES + "(" + COLUMN_USERNAME + " TEXT," + COLUMN_RECIPEID + " TEXT)";
+        String CREATE_TABLE4 = "CREATE TABLE " + RECIPES + "(" + COLUMN_RECIPEID + " TEXT,"
+                + COLUMN_RECIPENAME + " TEXT," + COLUMN_DESCRIPTION + " TEXT," + COLUMN_DURATION
+                + " INTEGER," + COLUMN_USERNAME  + " TEXT," + COLUMN_LIKES  + " INTEGER," + COLUMN_RECIPEIMAGE +
+                " TEXT," + COLUMN_SERVINGS + " INTEGER)";
+        String CREATE_TABLE5 = "CREATE TABLE " + CUISINE + "(" + COLUMN_RECIPECUISINE + " TEXT," + COLUMN_RECIPEID + " TEXT)";
+        String CREATE_TABLE6 = "CREATE TABLE " + INGREDIENT + "(" + COLUMN_RECIPEINGREDIENT + " TEXT," + COLUMN_RECIPEID + " TEXT)";
+        String CREATE_TABLE7 = "CREATE TABLE " + STEPS + "(" + COLUMN_RECIPESTEPS + " TEXT," + COLUMN_RECIPEID + " TEXT)";
+
         db.execSQL(CREATE_TABLE1);
         db.execSQL(CREATE_TABLE2);
-
-        //Creating initial Accounts and Recipes data
-        //addDefaultAccounts(db);
-        //addDefaultRecipes(db);
+        db.execSQL(CREATE_TABLE3);
+        db.execSQL(CREATE_TABLE4);
+        db.execSQL(CREATE_TABLE5);
+        db.execSQL(CREATE_TABLE6);
+        db.execSQL(CREATE_TABLE7);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) { //Used when updating DB version
         db.execSQL("DROP TABLE IF EXISTS " + ACCOUNTS);
         db.execSQL("DROP TABLE IF EXISTS " + RECIPES);
+        db.execSQL("DROP TABLE IF EXISTS " + LIKEDRECIPES);
+        db.execSQL("DROP TABLE IF EXISTS " + CREATEDRECIPES);
+        db.execSQL("DROP TABLE IF EXISTS " + CUISINE);
+        db.execSQL("DROP TABLE IF EXISTS " + INGREDIENT);
+        db.execSQL("DROP TABLE IF EXISTS " + STEPS);
         onCreate(db);
     }
 
-    /*public User findUserByName(String username){ //Returns User object with specified username
+    public User findUser(String username){ //Returns User object with specified username
         String query = "SELECT * FROM " + ACCOUNTS +
                 " WHERE " + COLUMN_USERNAME + "=\"" + username + "\"";
         SQLiteDatabase db = this.getReadableDatabase();
-        Cursor cursor =db.rawQuery(query, null);
+        Cursor cursor = db.rawQuery(query, null);
 
         User queryData = new User();
 
         if (cursor.moveToFirst()){
-            queryData.setId(cursor.getInt(0));
-            queryData.setName(cursor.getString(1));
-            queryData.setPassword(cursor.getString(2));
-            if (cursor.getBlob(3) != null){ //checking if stored User has an image
-                queryData.setUserImage(DbBitmapUtility.getImage(cursor.getBlob(3))); //changing Blob from database to Bitmap
-            }
+            queryData.setName(cursor.getString(0));
+            queryData.setBio(cursor.getString(1));
+            queryData.setUserImage(cursor.getString(2));
 
-            /*JSONObject ljson = new JSONObject(cursor.getString(3));
-            JSONArray ljArray = ljson.optJSONArray("unique");
-            ArrayList<String> lList = new ArrayList<String>();
-            for (int i =0;i<ljArray.length();i++){
-                String str_value =ljArray.optString(i);
-                lList.add(str_value);
-            }
-            queryData.setLikedList(lList);
-
-            JSONObject cjson = new JSONObject(cursor.getString(4));
-            JSONArray cjArray = cjson.optJSONArray("unique");
-            ArrayList<String> cList = new ArrayList<String>();
-            for (int i =0;i<cjArray.length();i++){
-                String str_value =cjArray.optString(i);
-                cList.add(str_value);
-            }*/
-
-            /*cursor.close();
+            cursor.close();
         }
         else{
             queryData = null;
         }
-        db.close();
-        return queryData;
-    }
 
-    public User findUserById(int id){ //Returns User object with specific ID
-        String query = "SELECT * FROM " + ACCOUNTS +
-                " WHERE " + COLUMN_USERID + "=\"" + id + "\"";
-        SQLiteDatabase db = this.getReadableDatabase();
-        Cursor cursor =db.rawQuery(query, null);
+        query = "SELECT * FROM " + LIKEDRECIPES +
+                " WHERE " + COLUMN_USERNAME + "=\"" + username + "\"";
+        cursor = db.rawQuery(query, null);
+        ArrayList<String> lList = new ArrayList<>();
+        String likedRecipeID;
+        if (cursor.moveToFirst()) {
+            while (!cursor.isAfterLast()) {
+                likedRecipeID = cursor.getString(1);
+                lList.add(likedRecipeID);
 
-        User queryData = new User();
-
-        if (cursor.moveToFirst()){
-            queryData.setId(cursor.getInt(0));
-            queryData.setName(cursor.getString(1));
-            queryData.setPassword(cursor.getString(2));
-            if (cursor.getBlob(3) != null){
-                queryData.setUserImage(DbBitmapUtility.getImage(cursor.getBlob(3)));
+                cursor.moveToNext();
             }
-
-            /*JSONObject ljson = new JSONObject(cursor.getString(3));
-            JSONArray ljArray = ljson.optJSONArray("unique");
-            ArrayList<String> lList = new ArrayList<String>();
-            for (int i =0;i<ljArray.length();i++){
-                String str_value =ljArray.optString(i);
-                lList.add(str_value);
-            }
-            queryData.setLikedList(lList);
-
-            JSONObject cjson = new JSONObject(cursor.getString(4));
-            JSONArray cjArray = cjson.optJSONArray("unique");
-            ArrayList<String> cList = new ArrayList<String>();
-            for (int i =0;i<cjArray.length();i++){
-                String str_value =cjArray.optString(i);
-                cList.add(str_value);
-            }*/
-
-            /*cursor.close();
         }
         else{
-            queryData = null;
+            lList = null;
         }
+        cursor.close();
+        queryData.setLikedList(lList);
+
+        query = "SELECT * FROM " + CREATEDRECIPES +
+                " WHERE " + COLUMN_USERNAME + "=\"" + username + "\"";
+        cursor = db.rawQuery(query, null);
+        ArrayList<String> cList = new ArrayList<>();
+        String createdRecipeID;
+        if (cursor.moveToFirst()) {
+            while (!cursor.isAfterLast()) {
+                createdRecipeID = cursor.getString(1);
+                cList.add(createdRecipeID);
+
+                cursor.moveToNext();
+            }
+        }
+        else{
+            cList = null;
+        }
+        cursor.close();
+        queryData.setCreatedList(cList);
+
         db.close();
+
         return queryData;
     }
 
     public void addUser(User userData) { //Adds user data to database
-        ContentValues values = new ContentValues();
-        values.put(COLUMN_USERNAME, userData.getName());
-        values.put(COLUMN_PASSWORD, userData.getPassword());
-        if (userData.getUserImage() != null){
-            values.put(COLUMN_USERIMAGE, DbBitmapUtility.getBytes(userData.getUserImage())); //Changing Bitmap to Bytes to store inside Database
+        ContentValues Values = new ContentValues();
+        Values.put(COLUMN_USERNAME, userData.getName());
+        Values.put(COLUMN_BIO, userData.getBio());
+        Values.put(COLUMN_USERIMAGE, userData.getUserImage());
+
+        if (userData.getLikedList() != null){
+            for (String rid : userData.getLikedList()){
+                addLikedRecipes(rid, userData.getName());
+            }
         }
-        //values.put(COLUMN_USERID, userData.getId()); not necessary due to Integer Primary Key Autoincrementation
 
-        /*JSONObject ljson = new JSONObject();
-        ljson.put("uniqueArrays", new JSONArray(userData.getLikedList()));
-        String lList = ljson.toString();
-        values.put(COLUMN_LIKEDRECIPES, lList);
+        if (userData.getCreatedList() != null){
+            for (String rid : userData.getCreatedList()){
+                addCreatedRecipes(rid, userData.getName());
+            }
+        }
 
-        JSONObject cjson = new JSONObject();
-        cjson.put("uniqueArrays", new JSONArray(userData.getCreatedList()));
-        String cList = cjson.toString();
-        values.put(COLUMN_CREATEDRECIPES, cList);*/
-
-        /*SQLiteDatabase db = this.getWritableDatabase();
-        db.insert(ACCOUNTS, null, values);
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.insert(ACCOUNTS, null, Values);
         db.close();
     }
 
-    public void updateUser(User userData){ //Replaces user database info with new user info
+    public void addLikedRecipes(String rid, String username){
+        ContentValues Values = new ContentValues();
+        Values.put(COLUMN_USERNAME, username);
+        Values.put(COLUMN_RECIPEID, rid);
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.insert(LIKEDRECIPES, null, Values);
+        db.close();
+    }
+
+    public void addCreatedRecipes(String rid, String username){
+        ContentValues Values = new ContentValues();
+        Values.put(COLUMN_USERNAME, username);
+        Values.put(COLUMN_RECIPEID, rid);
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.insert(CREATEDRECIPES, null, Values);
+        db.close();
+    }
+
+    /*public void updateUser(User userData){ //Replaces user database info with new user info
 
         deleteUser(userData.getId()); //Deletes user from database
 
@@ -196,17 +225,7 @@ public class DBHandler extends SQLiteOpenHelper {
             values.put(COLUMN_USERIMAGE, DbBitmapUtility.getBytes(userData.getUserImage()));
         }
 
-        /*JSONObject ljson = new JSONObject();
-        ljson.put("uniqueArrays", new JSONArray(userData.getLikedList()));
-        String lList = ljson.toString();
-        values.put(COLUMN_LIKEDRECIPES, lList);
-
-        JSONObject cjson = new JSONObject();
-        cjson.put("uniqueArrays", new JSONArray(userData.getCreatedList()));
-        String cList = cjson.toString();
-        values.put(COLUMN_CREATEDRECIPES, cList);*/
-
-        /*SQLiteDatabase db = this.getWritableDatabase();
+        SQLiteDatabase db = this.getWritableDatabase();
         db.insert(ACCOUNTS, null, values);
         db.close();
     }
@@ -228,24 +247,69 @@ public class DBHandler extends SQLiteOpenHelper {
             cursor.close();
         }
         db.close();
-    }
+    }*/
 
     public ArrayList<User> listUser(){ //Returns a list with all users from the database
         String query = "SELECT * FROM " + ACCOUNTS;
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery(query, null);
 
-        User queryData = null;
+        User queryData;
+        String username;
+        String query2;
+        String query3;
+        Cursor cursor2;
+        Cursor cursor3;
+        String createdRecipeID;
+        ArrayList<String> cList;
+        String likedRecipeID;
+        ArrayList<String> lList;
         ArrayList<User> uList = new ArrayList<>();
         if (cursor.moveToFirst()) {
             do { //iterates through every row the query returned
                 queryData = new User();
-                queryData.setId(cursor.getInt(0));
-                queryData.setName(cursor.getString(1));
-                queryData.setPassword(cursor.getString(2));
-                if (cursor.getBlob(3) != null){
-                    queryData.setUserImage(DbBitmapUtility.getImage(cursor.getBlob(3)));
+
+                username = cursor.getString(0);
+                queryData.setName(username);
+                queryData.setBio(cursor.getString(1));
+                queryData.setUserImage(cursor.getString(2));
+
+
+                query2 = "SELECT * FROM " + LIKEDRECIPES +
+                        " WHERE " + COLUMN_USERNAME + "=\"" + username + "\"";
+                cursor2 = db.rawQuery(query2, null);
+                lList = new ArrayList<>();
+                if (cursor2.moveToFirst()) {
+                    while (!cursor2.isAfterLast()) {
+                        likedRecipeID = cursor2.getString(1);
+                        lList.add(likedRecipeID);
+
+                        cursor2.moveToNext();
+                    }
                 }
+                else{
+                    lList = null;
+                }
+                cursor2.close();
+                queryData.setLikedList(lList);
+
+                query3 = "SELECT * FROM " + CREATEDRECIPES +
+                        " WHERE " + COLUMN_USERNAME + "=\"" + username + "\"";
+                cursor3 = db.rawQuery(query3, null);
+                cList = new ArrayList<>();
+                if (cursor3.moveToFirst()) {
+                    while (!cursor3.isAfterLast()) {
+                        createdRecipeID = cursor3.getString(1);
+                        cList.add(createdRecipeID);
+
+                        cursor3.moveToNext();
+                    }
+                }
+                else{
+                    cList = null;
+                }
+                cursor3.close();
+                queryData.setCreatedList(cList);
                 uList.add(queryData);
 
             } while (cursor.moveToNext());
@@ -255,7 +319,7 @@ public class DBHandler extends SQLiteOpenHelper {
         return uList;
     }
 
-    public Recipe findRecipe(int recipeID){ //Returns recipe with specified recipe ID
+    public Recipe findRecipe(String recipeID){ //Returns recipe with specified recipe ID
         String query = "SELECT * FROM " + RECIPES +
                 " WHERE " + COLUMN_RECIPEID + "=\"" + recipeID + "\"";
         SQLiteDatabase db = this.getReadableDatabase();
@@ -264,69 +328,109 @@ public class DBHandler extends SQLiteOpenHelper {
         Recipe queryData = new Recipe();
 
         if (cursor.moveToFirst()){
-            queryData.setRecipeId(cursor.getInt(0));
+            queryData.setRid(cursor.getString(0));
             queryData.setName(cursor.getString(1));
             queryData.setDescription(cursor.getString(2));
-            queryData.setUserId(cursor.getInt(3));
-            queryData.setNoOfLikes(cursor.getInt(4));
-            queryData.setSteps(cursor.getString(5));
-            queryData.setIngredients(cursor.getString(6));
-            if (cursor.getBlob(7) != null){
-                queryData.setRecipeImage(DbBitmapUtility.getImage(cursor.getBlob(7)));
+            queryData.setDuration(cursor.getInt(3));
+            queryData.setUid(cursor.getString(4));
+            queryData.setNooflikes(cursor.getInt(5));
+            queryData.setRecipeimage(cursor.getString(6));
+            queryData.setServings(cursor.getInt(7));
 
-            }
-
-            /*JSONObject cjson = new JSONObject(cursor.getString(4));
-            JSONArray cjArray = cjson.optJSONArray("unique");
-            ArrayList<String> cList = new ArrayList<String>();
-            for (int i =0;i<cjArray.length();i++){
-                String str_value =cjArray.optString(i);
-                cList.add(str_value);
-            }
-            queryData.setCuisineList(cList);
-
-            JSONObject ijson = new JSONObject(cursor.getString(5));
-            JSONArray ijArray = ijson.optJSONArray("unique");
-            ArrayList<String> iList = new ArrayList<String>();
-            for (int i =0;i<ijArray.length();i++){
-                String str_value =ijArray.optString(i);
-                iList.add(str_value);
-            }
-            queryData.setIngredientList(iList);*/
-
-            /*cursor.close();
+            cursor.close();
         }
         else{
             queryData = null;
         }
+
+        query = "SELECT * FROM " + CUISINE +
+                " WHERE " + COLUMN_RECIPEID + "=\"" + recipeID + "\"";
+        cursor = db.rawQuery(query, null);
+        ArrayList<String> cList = new ArrayList<>();
+        String cuisine;
+        if (cursor.moveToFirst()) {
+            while (!cursor.isAfterLast()) {
+                cuisine = cursor.getString(0);
+                cList.add(cuisine);
+
+                cursor.moveToNext();
+            }
+        }
+        else{
+            cList = null;
+        }
+        cursor.close();
+        queryData.setCuisineList(cList);
+
+        query = "SELECT * FROM " + INGREDIENT +
+                " WHERE " + COLUMN_RECIPEID + "=\"" + recipeID + "\"";
+        cursor = db.rawQuery(query, null);
+        ArrayList<String> iList = new ArrayList<>();
+        String ingredient;
+        if (cursor.moveToFirst()) {
+            while (!cursor.isAfterLast()) {
+                ingredient = cursor.getString(0);
+                iList.add(ingredient);
+
+                cursor.moveToNext();
+            }
+        }
+        else{
+            iList = null;
+        }
+        cursor.close();
+        queryData.setIngredientsList(iList);
+
+        query = "SELECT * FROM " + STEPS +
+                " WHERE " + COLUMN_RECIPEID + "=\"" + recipeID + "\"";
+        cursor = db.rawQuery(query, null);
+        ArrayList<String> sList = new ArrayList<>();
+        String step;
+        if (cursor.moveToFirst()) {
+            while (!cursor.isAfterLast()) {
+                step = cursor.getString(0);
+                sList.add(step);
+
+                cursor.moveToNext();
+            }
+        }
+        else{
+            sList = null;
+        }
+        cursor.close();
+        queryData.setStepsList(sList);
+
         db.close();
         return queryData;
     }
 
     public void addRecipe(Recipe recipeData){ //Adds recipe to database
         ContentValues values = new ContentValues();
+        values.put(COLUMN_RECIPEID, recipeData.getRid());
         values.put(COLUMN_RECIPENAME, recipeData.getName());
         values.put(COLUMN_DESCRIPTION, recipeData.getDescription());
-        // values.put(COLUMN_RECIPEID, recipeData.getRecipeId()); Primary Key Autoincrement
+        values.put(COLUMN_DURATION, recipeData.getDuration());
+        values.put(COLUMN_USERNAME, recipeData.getUid());
+        values.put(COLUMN_LIKES, recipeData.getNooflikes());
+        values.put(COLUMN_RECIPEIMAGE, recipeData.getRecipeimage());
+        values.put(COLUMN_SERVINGS, recipeData.getServings());
 
-        if (recipeData.getUserId() != 0){
-            values.put(COLUMN_RECIPEUSERID, recipeData.getUserId());}
+        if (recipeData.getCuisineList() != null){
+            for (String cuisi : recipeData.getCuisineList()){
+                addCuisines(recipeData.getRid(), cuisi);
+            }
+        }
 
-        /*JSONObject cjson = new JSONObject();
-        cjson.put("uniqueArrays", new JSONArray(recipeData.getCuisineList()));
-        String cList = cjson.toString();
-        values.put(COLUMN_CUISINES, cList);
+        if(recipeData.getIngredientsList() != null){
+            for (String ingred : recipeData.getIngredientsList()){
+                addIngredients(recipeData.getRid(), ingred);
+            }
+        }
 
-        JSONObject ijson = new JSONObject();
-        ijson.put("uniqueArrays", new JSONArray(recipeData.getIngredientList()));
-        String iList = ijson.toString();
-        values.put(COLUMN_INGREDIENTS, iList);*/
-
-        /*values.put(COLUMN_LIKES, recipeData.getNoOfLikes());
-        values.put(COLUMN_STEPS, recipeData.getSteps());
-        values.put(COLUMN_INGREDIENTS, recipeData.getIngredients());
-        if (recipeData.getRecipeImage() != null){
-            values.put(COLUMN_RECIPEIMAGE, DbBitmapUtility.getBytes(recipeData.getRecipeImage()));
+        if(recipeData.getStepsList() != null){
+            for (String step : recipeData.getStepsList()){
+                addSteps(recipeData.getRid(), step);
+            }
         }
 
         SQLiteDatabase db = this.getWritableDatabase();
@@ -334,7 +438,37 @@ public class DBHandler extends SQLiteOpenHelper {
         db.close();
     }
 
-    public void updateRecipe(Recipe recipeData){ //Replaces recipe database info with new recipe info
+    public void addCuisines(String rid, String cuisine){
+        ContentValues Values = new ContentValues();
+        Values.put(COLUMN_RECIPECUISINE, cuisine);
+        Values.put(COLUMN_RECIPEID, rid);
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.insert(CUISINE, null, Values);
+        db.close();
+    }
+
+    public void addIngredients(String rid, String ingredient){
+        ContentValues Values = new ContentValues();
+        Values.put(COLUMN_RECIPEINGREDIENT, ingredient);
+        Values.put(COLUMN_RECIPEID, rid);
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.insert(INGREDIENT, null, Values);
+        db.close();
+    }
+
+    public void addSteps(String rid, String step){
+        ContentValues Values = new ContentValues();
+        Values.put(COLUMN_RECIPESTEPS, step);
+        Values.put(COLUMN_RECIPEID, rid);
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.insert(STEPS, null, Values);
+        db.close();
+    }
+
+    /*public void updateRecipe(Recipe recipeData){ //Replaces recipe database info with new recipe info
 
         deleteRecipe(recipeData.getRecipeId());
 
@@ -350,17 +484,7 @@ public class DBHandler extends SQLiteOpenHelper {
             values.put(COLUMN_RECIPEIMAGE, DbBitmapUtility.getBytes(recipeData.getRecipeImage()));
         }
 
-        /*JSONObject cjson = new JSONObject();
-        cjson.put("uniqueArrays", new JSONArray(recipeData.getCuisineList()));
-        String cList = cjson.toString();
-        values.put(COLUMN_CUISINES, cList);
-
-        JSONObject ijson = new JSONObject();
-        ijson.put("uniqueArrays", new JSONArray(recipeData.getIngredientList()));
-        String iList = ijson.toString();
-        values.put(COLUMN_INGREDIENTS, iList);*/
-
-        /*SQLiteDatabase db = this.getWritableDatabase();
+        SQLiteDatabase db = this.getWritableDatabase();
         db.insert(RECIPES, null, values);
         db.close();
     }
@@ -382,28 +506,113 @@ public class DBHandler extends SQLiteOpenHelper {
             cursor.close();
         }
         db.close();
+    }*/
+    public ArrayList<Recipe> listAllRecipe(){ //Returns list of all Recipes from database
+        String query = "SELECT * FROM " + RECIPES;
+
+        return baseListRecipe(query);
+    }
+    public ArrayList<Recipe> listUserRecipe(){ //Returns list of User created Recipes from database
+        String query = "SELECT * FROM " +RECIPES+" WHERE " +COLUMN_USERNAME+" is not null";
+
+        return baseListRecipe(query);
+    }
+    public ArrayList<Recipe> listOnlineRecipe(){ //Returns list of Default online Recipes from database
+        String query = "SELECT * FROM " +RECIPES+" WHERE " +COLUMN_USERNAME+" is null";
+
+        return baseListRecipe(query);
     }
 
-    public ArrayList<Recipe> listRecipe(){ //Returns list of Recipes from database
-        String query = "SELECT * FROM " + RECIPES;
+    public ArrayList<Recipe> baseListRecipe(String inputquery){ //Returns list of Recipes from database with query input
+        String query = inputquery;
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery(query, null);
 
-        Recipe queryData = null;
+        Recipe queryData;
+        String rid;
+        String query2;
+        Cursor cursor2;
+        String cuisine;
+        ArrayList<String> cList;
+        String query3;
+        Cursor cursor3;
+        String ingredient;
+        ArrayList<String> iList;
+        String query4;
+        Cursor cursor4;
+        String step;
+        ArrayList<String> sList;
+
         ArrayList<Recipe> rList = new ArrayList<>();
         if (cursor.moveToFirst()) {
             while (!cursor.isAfterLast()) {
                 queryData = new Recipe();
-                queryData.setRecipeId(cursor.getInt(0));
+
+                rid = cursor.getString(0);
+                queryData.setRid(rid);
                 queryData.setName(cursor.getString(1));
                 queryData.setDescription(cursor.getString(2));
-                queryData.setUserId(cursor.getInt(3));
-                queryData.setNoOfLikes(cursor.getInt(4));
-                queryData.setSteps(cursor.getString(5));
-                queryData.setIngredients(cursor.getString(6));
-                if (cursor.getBlob(7) != null){
-                    queryData.setRecipeImage(DbBitmapUtility.getImage(cursor.getBlob(7)));
+                queryData.setDuration(cursor.getInt(3));
+                queryData.setUid(cursor.getString(4));
+                queryData.setNooflikes(cursor.getInt(5));
+                queryData.setRecipeimage(cursor.getString(6));
+                queryData.setServings(cursor.getInt(7));
+
+
+                query2 = "SELECT * FROM " + CUISINE +
+                        " WHERE " + COLUMN_RECIPEID + "=\"" + rid + "\"";
+                cursor2 = db.rawQuery(query2, null);
+                cList = new ArrayList<>();
+                if (cursor2.moveToFirst()) {
+                    while (!cursor2.isAfterLast()) {
+                        cuisine = cursor2.getString(0);
+                        cList.add(cuisine);
+
+                        cursor2.moveToNext();
+                    }
                 }
+                else{
+                    cList = null;
+                }
+                cursor2.close();
+                queryData.setCuisineList(cList);
+
+                query3 = "SELECT * FROM " + INGREDIENT +
+                        " WHERE " + COLUMN_RECIPEID + "=\"" + rid + "\"";
+                cursor3 = db.rawQuery(query3, null);
+                iList = new ArrayList<>();
+                if (cursor3.moveToFirst()) {
+                    while (!cursor3.isAfterLast()) {
+                        ingredient = cursor3.getString(0);
+                        iList.add(ingredient);
+
+                        cursor3.moveToNext();
+                    }
+                }
+                else{
+                    iList = null;
+                }
+                cursor3.close();
+                queryData.setIngredientsList(iList);
+
+                query4 = "SELECT * FROM " + STEPS +
+                        " WHERE " + COLUMN_RECIPEID + "=\"" + rid + "\"";
+                cursor4 = db.rawQuery(query4, null);
+                sList = new ArrayList<>();
+                if (cursor4.moveToFirst()) {
+                    while (!cursor4.isAfterLast()) {
+                        step = cursor4.getString(0);
+                        sList.add(step);
+
+                        cursor4.moveToNext();
+                    }
+                }
+                else{
+                    sList = null;
+                }
+                cursor4.close();
+                queryData.setStepsList(sList);
+
                 rList.add(queryData);
 
                 cursor.moveToNext();
@@ -413,334 +622,4 @@ public class DBHandler extends SQLiteOpenHelper {
 
         return rList;
     }
-    public List<Recipe> listUserRecipe(){ //Returns list of Recipes from database
-        String query = "SELECT * FROM " +RECIPES+" WHERE " +COLUMN_RECIPEUSERID+" is not null";
-        SQLiteDatabase db = this.getReadableDatabase();
-        Cursor cursor = db.rawQuery(query, null);
-
-        Recipe queryData = null;
-        List<Recipe> rList = new ArrayList<>();
-        if (cursor.moveToFirst()) {
-            while (!cursor.isAfterLast()) {
-                queryData = new Recipe();
-                queryData.setRecipeId(cursor.getInt(0));
-                queryData.setName(cursor.getString(1));
-                queryData.setDescription(cursor.getString(2));
-                queryData.setUserId(cursor.getInt(3));
-                queryData.setNoOfLikes(cursor.getInt(4));
-                queryData.setSteps(cursor.getString(5));
-                queryData.setIngredients(cursor.getString(6));
-                if (cursor.getBlob(7) != null){
-                    queryData.setRecipeImage(DbBitmapUtility.getImage(cursor.getBlob(7)));
-                }
-                rList.add(queryData);
-
-                cursor.moveToNext();
-            }
-        }
-        cursor.close();
-
-        return rList;
-    }
-    public List<Recipe> listOnlineRecipe(){ //Returns list of Recipes from database
-        String query = "SELECT * FROM " +RECIPES+" WHERE " +COLUMN_RECIPEUSERID+" is null";
-        SQLiteDatabase db = this.getReadableDatabase();
-        Cursor cursor = db.rawQuery(query, null);
-
-        Recipe queryData = null;
-        List<Recipe> rList = new ArrayList<>();
-        if (cursor.moveToFirst()) {
-            while (!cursor.isAfterLast()) {
-                queryData = new Recipe();
-                queryData.setRecipeId(cursor.getInt(0));
-                queryData.setName(cursor.getString(1));
-                queryData.setDescription(cursor.getString(2));
-                queryData.setUserId(cursor.getInt(3));
-                queryData.setNoOfLikes(cursor.getInt(4));
-                queryData.setSteps(cursor.getString(5));
-                queryData.setIngredients(cursor.getString(6));
-                if (cursor.getBlob(7) != null){
-                    queryData.setRecipeImage(DbBitmapUtility.getImage(cursor.getBlob(7)));
-                }
-                rList.add(queryData);
-
-                cursor.moveToNext();
-            }
-        }
-        cursor.close();
-
-        return rList;
-    }
-
-    public void addDefaultRecipes(SQLiteDatabase db) { //Method housing all default recipes to be added to database
-        // create default Recipes
-        ContentValues values = new ContentValues();
-        values.put(COLUMN_RECIPENAME, "Farro Salad with Asparagus and Parmesan");
-        values.put(COLUMN_DESCRIPTION, "A light and delicious way to get your whole grains. Perfect salad for picnics, baby or bridal showers or just because!");
-        values.put(COLUMN_STEPS, "Step 1: Soak farro in a large bowl of water for at least 12 hours. Drain.\n" +
-                "Step 2: Fill a large pot with lightly salted water and bring to a rolling boil over high heat. Once the water is boiling, stir in the drained farro, and return to a boil. Reduce heat to medium, then cook the farro uncovered, stirring occasionally for 20 minutes. Reduce heat to low, cover, and continue simmering until tender, about 30 more minutes. Drain and allow to cool.\n" +
-                "Step 3: Bring a large pot of lightly salted water to a boil. Add the asparagus, and cook uncovered until tender, about 3 minutes. Drain in a colander, then immediately immerse in ice water for several minutes until cold to stop the cooking process. Once the asparagus is cold, drain well, and chop. Set aside.\n" +
-                "Step 4: Place farro, asparagus, tomatoes, walnuts, cranberries, parsley, and chives in a large bowl. Drizzle the balsamic vinaigrette over and sprinkle about 3/4 cups Parmesan cheese, then toss. Top with the remaining 1/4 cup of Parmesan cheese. Serve at room temperature.\n");
-        values.put(COLUMN_INGREDIENTS, "2 cups farro\n" +
-                "¾ pound fresh asparagus, trimmed\n" +
-                "1 cup red and yellow cherry tomatoes, halved\n" +
-                "¾ cup chopped walnuts\n" +
-                "¾ cup dried cranberries\n" +
-                "½ cup chopped fresh parsley\n" +
-                "⅓ cup chopped fresh chives\n" +
-                "¼ cup balsamic vinaigrette, or to taste\n" +
-                "1 cup shaved Parmesan cheese, divided ");
-        //values.put(COLUMN_RECIPEID, recipeData.getRecipeId()); Primary Key Autoincrement
-        //values.put(COLUMN_RECIPEUSERID, recipeData.getUserId());
-        values.put(COLUMN_LIKES, 0);
-        //Bitmap bm = BitmapFactory.decodeResource(context.getResources(), R.drawable.random_pic);
-        //values.put(COLUMN_RECIPEIMAGE, DbBitmapUtility.getBytes(bm));
-        db.insert(RECIPES, null, values);
-
-        values.put(COLUMN_RECIPENAME, "Avocado Deviled Eggs");
-        values.put(COLUMN_DESCRIPTION, "This is a twist on the traditional deviled egg. I usually use 1 or 2 fewer yolks for the filling. ");
-        values.put(COLUMN_STEPS, "Step 1: Scoop egg yolks into a bowl; add avocado, 2/3 of chopped turkey bacon, mayonnaise, lime juice, garlic, cayenne pepper, and salt. Mash egg yolk mixture until filling is evenly combined.\n" +
-                "Step 2: Spoon filling into a piping bag or plastic bag with a snipped corner. Pipe filling into each egg white; top with a turkey bacon piece, jalapeno slice, and dash hot sauce.");
-        values.put(COLUMN_INGREDIENTS, "6 hard-boiled eggs, peeled and halved\n" +
-                "1 avocado - peeled, pitted, and diced\n" +
-                "3 slices cooked turkey bacon, chopped, divided\n" +
-                "2½ tablespoons mayonnaise\n" +
-                "2 teaspoons lime juice\n" +
-                "1 clove garlic, crushed\n" +
-                "⅛ teaspoon cayenne pepper\n" +
-                "sea salt to taste\n" +
-                "1 jalapeno pepper, sliced (Optional)\n" +
-                "1 dash hot sauce, or to taste (Optional)");
-        db.insert(RECIPES, null, values);
-
-        values.put(COLUMN_RECIPENAME, "Spicy Sweet Glazed Salmon");
-        values.put(COLUMN_DESCRIPTION, "I looked for a recipe for glazed salmon and didn't find one that used the ingredients I had on hand. So I threw together what I had and came up with this tangy, spicy sweet marinade that adds flavor, but doesn't mask the flavor of the salmon. My kids and sister loved it. They said it was better than 'restaurant salmon' It's great served with wild rice and stir fried veggies. ");
-        values.put(COLUMN_STEPS, "Step 1: Place salmon in a shallow, flat dish, and set aside. Combine the vinegar, olive oil, soy sauce, water, lemon juice, red pepper flakes, onion powder, garlic powder, cilantro, and brown sugar in a blender. Blend until brown sugar dissolves. Pour the marinade over the salmon to cover evenly. Cover the dish, and refrigerate at least 2 hours.\n" +
-                "Step 2: Line a broiling pan with foil. Remove salmon from marinade, and place on prepared broiling pan; season to taste with salt and pepper. Transfer remaining marinade to a saucepan.\n" +
-                "Step 3: Turn on broiler to low.\n" +
-                "Step 4: Broil salmon about 6 inches from the heat for 5 minutes; brush with remaining marinade. Broil an additional 5 to 10 minutes, brushing 2 or 3 more times with additional marinade. Salmon is done when fish is no longer bright red and can be flaked with a fork.\n" +
-                "Step 5: Meanwhile, cook the remaining marinade over low heat until it thickens and reduces by one-third, 5 to 10 minutes. Use cooked marinade as a dipping sauce or drizzle over salmon just before serving.\n");
-        values.put(COLUMN_INGREDIENTS, "1½ pounds fresh salmon fillet with skin removed\n" +
-                "¼ cup red wine vinegar\n" +
-                "¼ cup olive oil\n" +
-                "¼ cup soy sauce\n" +
-                "¼ cup water\n" +
-                "1 tablespoon lemon juice\n" +
-                "½ teaspoon red pepper flakes, or to taste\n" +
-                "1 teaspoon onion powder\n" +
-                "1 teaspoon garlic powder\n" +
-                "2 teaspoons chopped fresh cilantro\n" +
-                "⅓ cup brown sugar, packed\n" +
-                "salt and ground black pepper to taste ");
-        db.insert(RECIPES, null, values);
-
-        values.put(COLUMN_RECIPENAME, "Good Old Fashioned Pancakes");
-        values.put(COLUMN_DESCRIPTION, "This is a great recipe that I found in my Grandma's recipe book. Judging from the weathered look of this recipe card, this was a family favorite. ");
-        values.put(COLUMN_STEPS, "Step 1: In a large bowl, sift together the flour, baking powder, salt and sugar. Make a well in the center and pour in the milk, egg and melted butter; mix until smooth.\n" +
-                "Step 2: Heat a lightly oiled griddle or frying pan over medium-high heat. Pour or scoop the batter onto the griddle, using approximately 1/4 cup for each pancake. Brown on both sides and serve hot.\n");
-        values.put(COLUMN_INGREDIENTS, "1½ cups all-purpose flour\n" +
-                "3½ teaspoons baking powder\n" +
-                "¼ teaspoon salt, or more to taste\n" +
-                "1 tablespoon white sugar\n" +
-                "1¼ cups milk\n" +
-                "1 egg\n" +
-                "3 tablespoons butter, melted ");
-        db.insert(RECIPES, null, values);
-
-        values.put(COLUMN_RECIPENAME, "Rhubarb Muffin");
-        values.put(COLUMN_DESCRIPTION, "This is a great way to use up that frozen rhubarb in your freezer, but you can also use fresh rhubarb. It makes a moist and tangy muffin. ");
-        values.put(COLUMN_STEPS, "Step 1: Preheat the oven to 350 degrees F (175 degrees C). Grease a 12 cup muffin tin, or line with paper liners.\n" +
-                "Step 2: In a medium bowl, stir together the yogurt, 2 tablespoons of melted butter, oil and egg. In a large bowl, stir together the flour, 3/4 cup of brown sugar, baking soda and salt. Pour the wet ingredients into the dry, and mix until just blended. Fold in rhubarb. Spoon into the prepared muffin tin, filling cups at least 2/3 full.\n" +
-                "Step 3: In a small bowl, stir together 1/4 cup of brown sugar, cinnamon, nutmeg, almonds, and 2 teaspoons of melted butter. Spoon over the tops of the muffins, and press down lightly.\n" +
-                "Step 4: Bake for 25 minutes in the preheated oven, or until the tops spring back when lightly pressed. Cool in the pan for about 15 minutes before removing.\n");
-        values.put(COLUMN_INGREDIENTS, "½ cup vanilla yogurt\n" +
-                "2 tablespoons butter, melted\n" +
-                "2 tablespoons vegetable oil\n" +
-                "1 egg\n" +
-                "1⅓ cups all-purpose flour\n" +
-                "¾ cup brown sugar\n" +
-                "½ teaspoon baking soda\n" +
-                "¼ teaspoon salt\n" +
-                "1 cup diced rhubarb\n" +
-                "¼ cup brown sugar\n" +
-                "½ teaspoon ground cinnamon\n" +
-                "¼ teaspoon ground nutmeg\n" +
-                "¼ cup crushed sliced almonds\n" +
-                "2 teaspoons melted butter");
-        db.insert(RECIPES, null, values);
-
-        values.put(COLUMN_RECIPENAME, "Perfect Summer Fruit Salad");
-        values.put(COLUMN_DESCRIPTION, "The perfect fruit salad for a backyard bbq or any occasion. There are never leftovers! This is one of my favorite fruit salad recipes, as I think the sauce really makes it. This salad is tastier the longer you can let it soak in its juices. I prefer 3 to 4 hours in the refrigerator before I serve it. Enjoy. ");
-        values.put(COLUMN_STEPS, "Step 1: Bring orange juice, lemon juice, brown sugar, orange zest, and lemon zest to a boil in a saucepan over medium-high heat. Reduce heat to medium-low, and simmer until slightly thickened, about 5 minutes. Remove from heat, and stir in vanilla extract. Set aside to cool.\n" +
-                "Step 2: Layer the fruit in a large, clear glass bowl in this order: pineapple, strawberries, kiwi fruit, bananas, oranges, grapes, and blueberries. Pour the cooled sauce over the fruit. Cover and refrigerate for 3 to 4 hours before serving.\n");
-        values.put(COLUMN_INGREDIENTS, "⅔ cup fresh orange juice\n" +
-                "⅓ cup fresh lemon juice\n" +
-                "⅓ cup packed brown sugar\n" +
-                "½ teaspoon grated orange zest\n" +
-                "½ teaspoon grated lemon zest\n" +
-                "1 teaspoon vanilla extract\n" +
-                "2 cups cubed fresh pineapple\n" +
-                "2 cups strawberries, hulled and sliced\n" +
-                "3 kiwi fruit, peeled and sliced\n" +
-                "3 bananas, sliced\n" +
-                "2 oranges, peeled and sectioned\n" +
-                "1 cup seedless grapes\n" +
-                "2 cups blueberries ");
-        db.insert(RECIPES, null, values);
-
-        values.put(COLUMN_RECIPENAME, "Scrambled Eggs Done Right");
-        values.put(COLUMN_DESCRIPTION, "The right way to scramble eggs. There is more to just mixing eggs and cooking! This will make a believer out of you. ");
-        values.put(COLUMN_STEPS, "Step 1: In a cup or small bowl, whisk together the eggs, mayonnaise and water using a fork. Melt margarine in a skillet over low heat. Pour in the eggs, and stir constantly as they cook. Remove the eggs to a plate when they are set, but still moist. Do not over cook. Never add salt or pepper until eggs are on plate, but these are also good without.\n");
-        values.put(COLUMN_INGREDIENTS, "2 eggs\n" +
-                "1 teaspoon mayonnaise or salad dressing\n" +
-                "1 teaspoon water (Optional)\n" +
-                "1 teaspoon margarine or butter\n" +
-                "1 pinch salt and pepper to taste ");
-        db.insert(RECIPES, null, values);
-
-        values.put(COLUMN_RECIPENAME, "Oven-Baked Bacon");
-        values.put(COLUMN_DESCRIPTION, "I always bake bacon in the oven! You just need to plan a bit ahead as the bacon takes longer. With baking, the bacon grease stays nice and clean and you can reuse it to saute vegetables or eggs for extra flavor. ");
-        values.put(COLUMN_STEPS, "Step 1: Preheat the oven to 350 degrees F (175 degrees C). Line a baking sheet with parchment paper.\n" +
-                "Step 2: Place bacon slices one next to the other on the prepared baking sheet.\n" +
-                "Step 3: Bake in the preheated oven for 15 to 20 minutes. Remove from oven. Flip bacon slices with kitchen tongs and return to oven. Bake until crispy, 15 to 20 minutes more. Thinner slices will need less time, about 20 minutes total. Drain on a plate lined with paper towels.\n");
-        values.put(COLUMN_INGREDIENTS, "1 (16 ounce) package bacon ");
-        db.insert(RECIPES, null, values);
-
-        values.put(COLUMN_RECIPENAME, "Breakfast Sausage");
-        values.put(COLUMN_DESCRIPTION, "Homemade breakfast sausage patties made with ground pork, brown sugar, and sage deliver sweet and savory flavor in every bite. These are better than store-bought since you can flavor them as you like! Serve a patty alongside scrambled eggs and hash brown potatoes or layer one with a fried egg and a slice of cheese to make a tasty breakfast sandwich. ");
-        values.put(COLUMN_STEPS, "Step 1: Mix together brown sugar, sage, salt, black pepper, marjoram, red pepper flakes, and cloves in a small bowl until well combined.\n" +
-                "Step 2: Place pork in a large bowl. Add spice mixture and mix with your hands until well combined. Form mixture into 6 patties.\n" +
-                "Step 3: Heat a large skillet over medium-high heat. Add patties and saute until browned and crispy, about 5 minutes per side. An instant-read thermometer inserted into the center should read at least 160 degrees F (71 degrees C).\n");
-        values.put(COLUMN_INGREDIENTS, "1 tablespoon brown sugar\n" +
-                "2 teaspoons dried sage\n" +
-                "2 teaspoons salt\n" +
-                "1 teaspoon ground black pepper\n" +
-                "¼ teaspoon dried marjoram\n" +
-                "⅛ teaspoon crushed red pepper flakes\n" +
-                "1 pinch ground cloves\n" +
-                "2 pounds ground pork ");
-        db.insert(RECIPES, null, values);
-
-        values.put(COLUMN_RECIPENAME, "Egg Bites");
-        values.put(COLUMN_DESCRIPTION, "Easy baked version of those egg bites made popular by that famous chain coffeehouse. I like them with hot sauce! ");
-        values.put(COLUMN_STEPS, "Step 1: Preheat the oven to 350 degrees F (175 degrees C). Spray a 12-cup muffin tin with nonstick cooking spray.\n" +
-                "Step 2: Place a thin layer of potato slices in the bottom of each muffin cup. Add a little butter on top.\n" +
-                "Step 3: Bake in the preheated oven for 5 minutes.\n" +
-                "Step 4: Mix eggs, tomato, bell pepper, spinach, ham, and onion together in a large bowl. Remove muffin tin from oven and ladle the egg mixture over the potatoes. Top each muffin cup with a mozzarella cube.\n" +
-                "Step 5: Continue baking until egg bites are set, about 20 minutes.\n");
-        values.put(COLUMN_INGREDIENTS, "cooking spray\n" +
-                "5 small tri-color baby potatoes, thinly sliced\n" +
-                "¼ stick butter\n" +
-                "10 small eggs\n" +
-                "1 small tomato, finely chopped\n" +
-                "1 small yellow bell pepper, finely chopped\n" +
-                "½ cup fresh spinach\n" +
-                "¼ cup chopped ham\n" +
-                "¼ cup chopped white onion\n" +
-                "1 slice mozzarella cheese, cut into 12 cubes ");
-        db.insert(RECIPES, null, values);
-
-        values.put(COLUMN_RECIPENAME, "Creamy Pork Soup");
-        values.put(COLUMN_DESCRIPTION, "This creamy soup can be made with leftover pulled pork.");
-        values.put(COLUMN_STEPS, "Step 1: Combine milk and chicken broth in a large pot. Add pulled pork and barbecue sauce and stir. Stir in chili powder, black pepper, oregano, and salt. Let simmer over low heat, stirring occasionally, for 45 minutes.\n" +
-                "Step 2: Divide into 6 bowls and top with parsley.");
-        values.put(COLUMN_INGREDIENTS, "2 cups whole milk\n" +
-                "2 cups chicken broth\n" +
-                "1¾ cups cooked pulled pork\n" +
-                "2 tablespoons barbecue sauce\n" +
-                "2 teaspoons chili powder\n" +
-                "2 teaspoons ground black pepper\n" +
-                "1½ teaspoons dried oregano\n" +
-                "1 teaspoon salt\n" +
-                "2 tablespoons dried parsley ");
-        values.put(COLUMN_RECIPEUSERID, 2);
-        db.insert(RECIPES, null, values);
-
-        values.put(COLUMN_RECIPENAME, "Quick and Easy Pulled Pork Burritos");
-        values.put(COLUMN_DESCRIPTION, "A tasty way to use up your leftovers from a pulled pork! Goes well with a little coleslaw. ");
-        values.put(COLUMN_STEPS, "Step 1: Pour beans into a pot and bring to a simmer over medium-low heat.\n" +
-                "Step 2: Place a tortilla on a microwave-safe plate, sprinkle with onion, 2 tablespoons beans, and 2 to 3 tablespoons pulled pork. Sprinkle with Monterey Jack cheese, and roll the tortilla closed. Drizzle over 2 tablespoons of enchilada sauce, and sprinkle with more cheese.\n" +
-                "Step 3: Microwave until heated through and cheese is melted, about 1 minute. Repeat with remaining tortillas and filling ingredients.\n");
-        values.put(COLUMN_INGREDIENTS, "1 (16 ounce) can baked beans (such as Bush's® Grillin' Beans®)\n" +
-                "8 (10 inch) soft flour tortillas\n" +
-                "1 small onion, diced\n" +
-                "1 pound cooked pulled pork, heated\n" +
-                "1 (8 ounce) package shredded Monterey Jack cheese\n" +
-                "1 (16 ounce) can mild enchilada sauce ");
-        db.insert(RECIPES, null, values);
-
-        values.put(COLUMN_RECIPENAME, "Pulled Pork Meatloaf");
-        values.put(COLUMN_DESCRIPTION, "After you and the family have enjoyed all the pulled pork you can stand, use the last few cups in a pulled pork meatloaf. It's fantastic! ");
-        values.put(COLUMN_STEPS, "Step 1: Preheat oven to 350 degrees F (175 degrees C). Spray a loaf pan with cooking spray.\n" +
-                "Step 2: Whisk eggs and milk together in a bowl. Add pork, bread crumbs, bell pepper, green onion, mustard, and pepper; stir. Transfer pork mixture to the prepared loaf pan. Press pork tightly into pan and spread barbeque sauce on top.\n" +
-                "Step 3: Bake in the preheated oven until heated through, about 1 hour. Let meatloaf cool 5 to 10 minutes before slicing and serving.\n");
-        values.put(COLUMN_INGREDIENTS, "cooking spray\n" +
-                "2 eggs\n" +
-                "½ cup milk\n" +
-                "3 cups cooked pulled pork without sauce, chopped\n" +
-                "1 cup bread crumbs\n" +
-                "¼ green bell pepper, chopped\n" +
-                "1 green onion, chopped, or to taste\n" +
-                "1 teaspoon dry mustard\n" +
-                "1 teaspoon ground black pepper\n" +
-                "½ cup barbeque sauce ");
-        db.insert(RECIPES, null, values);
-
-        values.put(COLUMN_RECIPENAME, "Pulled Pork and Pumpkin Cornbread Torta");
-        values.put(COLUMN_DESCRIPTION, "Created this recipe from our family's favorite fall flavors. Pumpkin, pork, pecans, cornbread, and cranberries. All these flavors melt in your mouth, with the added flavors of fall and the slight chill in the air, bring an added warmth and smile to your hearts. ");
-        values.put(COLUMN_STEPS, "Step 1: Preheat the oven to 375 degrees F (190 degrees C). Spray the bottom and sides of 2 nonstick, 9-inch round baking pans with cooking spray.\n" +
-                "Step 2: Mix cornmeal, flour, baking powder, cinnamon, baking soda, salt, and nutmeg together in a large bowl until blended. Add pumpkin, sour cream, brown sugar, vegetable oil, and eggs; beat with an electric mixer on medium speed until blended and creamy, about 2 minutes.\n" +
-                "Step 3: Pour and evenly spoon equal portions of the batter mixture into the 2 prepared baking pans.\n" +
-                "Step 4: Bake in the preheated oven until golden brown and a toothpick inserted into the centers comes out clean, about 20 minutes. Place both over a wire cooling rack and let cool slightly, about 8 minutes. Carefully remove cornbread from pans and set aside.\n" +
-                "Step 5: Center one cornbread, top-side down, on a serving plate or platter. Spoon and evenly spread the warm pulled pork over top to cover, then carefully center the remaining cornbread on top.\n" +
-                "Step 6: Mix pepitas, cranberries, and pecans together in a small bowl. Spoon evenly over the top edges of the cornbread and add a little spoonful to the center. Cut the assembled torta into even slices and serve with barbeque sauce.\n");
-        values.put(COLUMN_INGREDIENTS, "nonstick cooking spray\n" +
-                "1 cup yellow cornmeal\n" +
-                "1 cup bread flour\n" +
-                "1 tablespoon baking powder\n" +
-                "1 teaspoon ground cinnamon\n" +
-                "½ teaspoon baking soda\n" +
-                "½ teaspoon salt\n" +
-                "¼ teaspoon freshly ground nutmeg\n" +
-                "1 cup solid-pack pumpkin\n" +
-                "½ cup sour cream\n" +
-                "½ cup packed brown sugar\n" +
-                "⅓ cup vegetable oil\n" +
-                "2 large eggs\n" +
-                "4 cups cooked pulled pork, heated\n" +
-                "½ cup toasted pepitas\n" +
-                "½ cup dried cranberries\n" +
-                "½ cup toasted chopped pecans\n" +
-                "½ cup barbeque sauce ");
-        db.insert(RECIPES, null, values);
-
-        values.put(COLUMN_RECIPENAME, "BBQ Pork Pizza");
-        values.put(COLUMN_DESCRIPTION, "A very easy way to make a delicious BBQ pork pizza in minutes! ");
-        values.put(COLUMN_STEPS, "Step 1: Preheat oven to 425 degrees F (220 degrees C). Grease a 9x13 inch baking pan.\n" +
-                "Step 2: Roll the dough out into the prepared pan. Top the dough with the barbecued pork. Sprinkle with the red onions, and layer on the dill pickle slices. Sprinkle mozzarella cheese evenly over the top.\n" +
-                "Step 3: Bake in the preheated oven until crust is golden and cheese is melted, about 18 minutes.\n");
-        values.put(COLUMN_INGREDIENTS, "1 (13.8 ounce) package refrigerated pizza dough\n" +
-                "1 (18 ounce) container barbequed pulled pork\n" +
-                "¼ red onion, thinly sliced\n" +
-                "½ cup dill pickle slices\n" +
-                "2 cups shredded mozzarella cheese ");
-        db.insert(RECIPES, null, values);
-
-    }
-
-    public void addDefaultAccounts(SQLiteDatabase db){ //Method housing all default accounts to be added to Database
-        ContentValues values = new ContentValues();
-
-        values.put(COLUMN_USERNAME, "test");
-        values.put(COLUMN_PASSWORD, "password");
-
-        Bitmap bm = BitmapFactory.decodeResource(context.getResources(), R.drawable.random_pic);
-        values.put(COLUMN_USERIMAGE, DbBitmapUtility.getBytes(bm));
-        db.insert(ACCOUNTS, null, values);
-
-        values.put(COLUMN_USERNAME, "usercreated");
-        values.put(COLUMN_PASSWORD, "password");
-        values.putNull(COLUMN_USERIMAGE);
-        db.insert(ACCOUNTS, null, values);
-    }*/
 }
