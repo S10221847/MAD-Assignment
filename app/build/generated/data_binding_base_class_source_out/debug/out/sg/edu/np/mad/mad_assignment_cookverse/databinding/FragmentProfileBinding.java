@@ -4,6 +4,7 @@ package sg.edu.np.mad.mad_assignment_cookverse.databinding;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -35,6 +36,9 @@ public final class FragmentProfileBinding implements ViewBinding {
   public final BottomNavigationView bottomNavigationView2;
 
   @NonNull
+  public final Button editProfile;
+
+  @NonNull
   public final TextView likedReci;
 
   @NonNull
@@ -55,14 +59,15 @@ public final class FragmentProfileBinding implements ViewBinding {
   private FragmentProfileBinding(@NonNull ConstraintLayout rootView,
       @NonNull FrameLayout FRAGMENTPLACEHOLDER, @NonNull ImageView ProfileImage,
       @NonNull TextView bio, @NonNull BottomNavigationView bottomNavigationView2,
-      @NonNull TextView likedReci, @NonNull ConstraintLayout linearLayout,
-      @NonNull TextView personalReci, @NonNull TextView textView2, @NonNull TextView textView7,
-      @NonNull TextView userName) {
+      @NonNull Button editProfile, @NonNull TextView likedReci,
+      @NonNull ConstraintLayout linearLayout, @NonNull TextView personalReci,
+      @NonNull TextView textView2, @NonNull TextView textView7, @NonNull TextView userName) {
     this.rootView = rootView;
     this.FRAGMENTPLACEHOLDER = FRAGMENTPLACEHOLDER;
     this.ProfileImage = ProfileImage;
     this.bio = bio;
     this.bottomNavigationView2 = bottomNavigationView2;
+    this.editProfile = editProfile;
     this.likedReci = likedReci;
     this.linearLayout = linearLayout;
     this.personalReci = personalReci;
@@ -122,6 +127,12 @@ public final class FragmentProfileBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.editProfile;
+      Button editProfile = ViewBindings.findChildViewById(rootView, id);
+      if (editProfile == null) {
+        break missingId;
+      }
+
       id = R.id.likedReci;
       TextView likedReci = ViewBindings.findChildViewById(rootView, id);
       if (likedReci == null) {
@@ -155,8 +166,8 @@ public final class FragmentProfileBinding implements ViewBinding {
       }
 
       return new FragmentProfileBinding((ConstraintLayout) rootView, FRAGMENTPLACEHOLDER,
-          ProfileImage, bio, bottomNavigationView2, likedReci, linearLayout, personalReci,
-          textView2, textView7, userName);
+          ProfileImage, bio, bottomNavigationView2, editProfile, likedReci, linearLayout,
+          personalReci, textView2, textView7, userName);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

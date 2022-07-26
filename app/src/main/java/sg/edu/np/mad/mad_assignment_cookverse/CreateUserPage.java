@@ -23,9 +23,6 @@ import java.util.List;
 
 public class CreateUserPage extends AppCompatActivity {
     public String TAG = "Create User Page";
-    public String MY_USERNAME = "MyUsername";
-    public String MY_PASSWORD = "MyPassword";
-    //DBHandler dbHandler = new DBHandler(this,null,null,1);
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,7 +52,7 @@ public class CreateUserPage extends AppCompatActivity {
                                 User userDataDB = new User();
                                 userDataDB.setName(myCreateUsername.getText().toString());
                                 userDataDB.setPassword((myCreatePassword.getText().toString()));
-                                userDataDB.setUserImage("https://upload.wikimedia.org/wikipedia/commons/a/ac/Default_pfp.jpg");
+                                /*userDataDB.setUserImage("https://upload.wikimedia.org/wikipedia/commons/a/ac/Default_pfp.jpg");*/
                                 userDataDB.setBio("Your own bio");
 
                                 DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();

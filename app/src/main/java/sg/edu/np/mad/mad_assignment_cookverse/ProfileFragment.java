@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -71,23 +72,26 @@ public class ProfileFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_profile, container, false);
         //DBHandler dbHandler = new DBHandler(getActivity(), null, null, 1);
 
-        Intent receivingEnd = getActivity().getIntent();
+        /*Intent receivingEnd = getActivity().getIntent();
         String currentUsername = receivingEnd.getStringExtra("username");
         String userpfp = receivingEnd.getStringExtra("image");
-        String userbio = receivingEnd.getStringExtra("bio");
+        String userbio = receivingEnd.getStringExtra("bio");*/
         TextView currentName =  rootView.findViewById(R.id.userName);
         TextView currentBio =  rootView.findViewById(R.id.bio);
+        Button editProfile = rootView.findViewById(R.id.editProfile);
 
-        User currentUser = new User();
+        /*User currentUser = new User();
         currentUser.setName(currentUsername);
         currentUser.setUserImage(userpfp);
-        currentUser.setBio(userbio);
+        currentUser.setBio(userbio);*/
 
         //Find the current user among all the users in database
-        currentName.setText(currentUser.getName());
-        currentBio.setText(currentUser.getBio());
+        currentName.setText(LoginPage.mainUser.getName());
+        currentBio.setText(LoginPage.mainUser.getBio());
         ImageView myImage =rootView.findViewById(R.id.ProfileImage);
-        new ImageLoadTask(currentUser.getUserImage(), myImage).execute();
+        if (LoginPage.mainUser.getUserImage() != null){
+            new ImageLoadTask(LoginPage.mainUser.getUserImage(), myImage).execute();
+        }
 
         BottomNavigationView BNV =rootView.findViewById(R.id.bottomNavigationView2);
         //Switch among fragments when clicking them
@@ -102,13 +106,26 @@ public class ProfileFragment extends Fragment {
             }
             return true;
         });
+        editProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent editIntent = new Intent(getActivity().getBaseContext(), EditProfile.class);
+                /*editIntent.putExtra("Username", LoginPage.mainUser.getName());
+                editIntent.putExtra("Bio", LoginPage.mainUser.getBio());
+                editIntent.putExtra("Pfp", LoginPage.mainUser.getUserImage());*/
+                /*Add in password*/
+                getActivity().startActivity(editIntent);
+            }
+        });
         return rootView;
     }
-    //Method for showing fragments
+
+        //Method for showing fragments
     private void replaceFragment(Fragment fragment){
         FragmentManager fragmentManager = getChildFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.FRAGMENT_PLACEHOLDER, fragment);
         fragmentTransaction.commit();
     }
+
 }

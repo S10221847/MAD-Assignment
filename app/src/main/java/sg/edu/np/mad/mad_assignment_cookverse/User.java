@@ -2,6 +2,7 @@ package sg.edu.np.mad.mad_assignment_cookverse;
 
 import android.graphics.Bitmap;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class User {
@@ -9,8 +10,8 @@ public class User {
     private String password;
     private String userImage;
     private String bio;
-    private List<String> likedList;
-    private List<String> createdList;
+    private List<String> likedList = new ArrayList<>();
+    private List<String> createdList = new ArrayList<>();
 
     public String getName() {
         return name;

@@ -1,5 +1,6 @@
 package sg.edu.np.mad.mad_assignment_cookverse;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,18 +17,14 @@ public class MainFragment extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //Get username from login page and send to profile fragment
-        String currentUsername = getIntent().getStringExtra("username");
-        bundle.putString("username", currentUsername);
-        ProfileFragment profileFragment = new ProfileFragment();
-        profileFragment.setArguments(bundle);
-
         //Bind to xml and view for easier declarative layout
         binding = FragmentMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        Intent receivingEnd = getIntent();
+        String previousAct = receivingEnd.getStringExtra("activity");
         replaceFragment(new HomeFragment());
         //Switch fragment when clicked
-        binding.bottomNavigationView.setItemIconTintList(null);
+        //binding.bottomNavigationView.setItemIconTintList(null);
         binding.bottomNavigationView.setOnItemSelectedListener(item -> {
             switch(item.getItemId()){
                 case R.id.home:
@@ -41,7 +38,7 @@ public class MainFragment extends AppCompatActivity {
                     break;
                 case R.id.profile:
                     //replace with profile fragment that contained arguments
-                    replaceFragment(profileFragment);
+                    replaceFragment(new ProfileFragment());
                     break;
             }
 
@@ -55,4 +52,5 @@ public class MainFragment extends AppCompatActivity {
         fragmentTransaction.replace(R.id.frame_layout, fragment);
         fragmentTransaction.commit();
     }
+
 }

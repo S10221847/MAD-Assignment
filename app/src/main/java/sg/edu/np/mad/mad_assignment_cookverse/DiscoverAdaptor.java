@@ -40,21 +40,11 @@ public class DiscoverAdaptor extends RecyclerView.Adapter<DiscoverViewHolder>{
 
     public int getItemCount(){ return data.size(); }
 
-    @Override
-    public long getItemId(int position) {
+    public String getRid(int position) {
 
-        int itemID;
+        String recipeid = data.get(position).getRid();
 
-        // orig will be null only if we haven't filtered yet:
-        if (dataOriginal == null)
-        {
-            itemID = position;
-        }
-        else
-        {
-            itemID = dataOriginal.indexOf(data.get(position));
-        }
-        return itemID;
+        return recipeid;
     }
     /*
     //FILTERING

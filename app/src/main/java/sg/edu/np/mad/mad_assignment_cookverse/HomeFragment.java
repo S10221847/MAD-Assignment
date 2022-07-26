@@ -1,6 +1,9 @@
 package sg.edu.np.mad.mad_assignment_cookverse;
 
+import static android.content.Context.MODE_PRIVATE;
+
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -53,8 +56,10 @@ public class HomeFragment extends Fragment implements RecyclerViewInterface,User
     RecyclerViewInterface RecyclerViewInterface;
     UserRecyclerViewInterface UserRecyclerViewInterface;
     List<Recipe> dataOriginal;
-    List<Recipe> uList;
-
+    public String GLOBAL_PREF = "MyPrefs";
+    public String DATABASE_VERSION = "MyDatabaseVersion";
+    SharedPreferences sharedPreferences;
+    DBHandler dbHandler;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -100,17 +105,12 @@ public class HomeFragment extends Fragment implements RecyclerViewInterface,User
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        //DBHandler dbHandler = new DBHandler(getActivity(), null, null, 1);
         RecyclerViewInterface rvi = this;
         UserRecyclerViewInterface urvi = this;
-        List<Recipe>rList=new ArrayList<>();
 
 
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_home, container, false);
-        ArrayList<Recipe> dataOriginal = new ArrayList<>();
-
-
 
         //Commented code below as it is to add random recipes from api, only uncomment when want to add more.
 
@@ -246,16 +246,34 @@ public class HomeFragment extends Fragment implements RecyclerViewInterface,User
 
         //Call webapi to store online lists into firebase
 
-        //dataOriginal = dbHandler.listRecipe();
+
+        //DBHandler
+        sharedPreferences = this.getActivity().getSharedPreferences(GLOBAL_PREF, MODE_PRIVATE);
+        int sharedDBVersion = sharedPreferences.getInt(DATABASE_VERSION, 2);
+        dbHandler = new DBHandler(getActivity(), null, null, sharedDBVersion);
+        dataOriginal = dbHandler.listAllRecipe();
 
         //RECYCLER VIEW FOR ONLINE RECIPES
         RecyclerView orecyclerView = view.findViewById(R.id.onlinerecRecyclerView);   //instantiate recycler view for ONLINE RECIPES
         orecyclerView.setHasFixedSize(true);
+        List<Recipe>oList=dbHandler.listOnlineRecipe();
 
-        RecyclerView urecyclerView = view.findViewById(R.id.usercreatedRecyclerView);
+        oAdapter = new OnlineRecipesAdapter(oList, rvi, dataOriginal);  //ONLINE RECIPE ADAPTER
+        LinearLayoutManager oLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
+        orecyclerView.setLayoutManager(oLayoutManager);
+        orecyclerView.setAdapter(oAdapter);
+
+        //RECYCLER VIEW FOR USER CREATED RECIPES (user.id of recipes=null)
+        RecyclerView urecyclerView=view.findViewById(R.id.usercreatedRecyclerView);
         urecyclerView.setHasFixedSize(true);
+        List<Recipe>uList=dbHandler.listUserRecipe();
 
-        Query query = FirebaseDatabase.getInstance().getReference().child("Recipes");
+        uAdapter=new UserCreatedAdapter(uList,this, dataOriginal);
+        LinearLayoutManager uLayoutManager=new LinearLayoutManager(getActivity(),LinearLayoutManager.HORIZONTAL,false);
+        urecyclerView.setLayoutManager(uLayoutManager);
+        urecyclerView.setAdapter(uAdapter);
+
+        /*Query query = FirebaseDatabase.getInstance().getReference().child("Recipes");
         List<Recipe> list = new ArrayList<>();
         ValueEventListener eventListener = new ValueEventListener() {
             @Override
@@ -297,17 +315,7 @@ public class HomeFragment extends Fragment implements RecyclerViewInterface,User
                 Log.v(TAG, error.getMessage());
             }
         };
-        query.addValueEventListener(eventListener);
-
-        //RECYCLER VIEW FOR USER CREATED RECIPES (user.id of recipes=null)
-        /*RecyclerView urecyclerView=view.findViewById(R.id.usercreatedRecyclerView);
-        urecyclerView.setHasFixedSize(true);
-        List<Recipe>uList=dbHandler.listUserRecipe();
-
-        uAdapter=new UserCreatedAdapter(uList,this);
-        LinearLayoutManager uLayoutManager=new LinearLayoutManager(getActivity(),LinearLayoutManager.HORIZONTAL,false);
-        urecyclerView.setLayoutManager(uLayoutManager);
-        urecyclerView.setAdapter(uAdapter);*/
+        query.addValueEventListener(eventListener);*/
 
         return view;
 
@@ -317,32 +325,21 @@ public class HomeFragment extends Fragment implements RecyclerViewInterface,User
     public void onItemClick(int pos) {
         Intent intent = new Intent(getActivity().getBaseContext(),
                 RecipeActivity.class);
-        long x = oAdapter.getItemId(pos);
-        int i = (int) x;
+        String rid  = oAdapter.getRid(pos);
 
-        intent.putExtra("recipePos", i);
+        intent.putExtra("recipeID", rid);
         getActivity().startActivity(intent);
     }
 
     public void onItemClick2(int pos) {
         Intent intent = new Intent(getActivity().getBaseContext(),
                 RecipeActivity.class);
-        long x = uAdapter.getItemId(pos);
-        int i = (int) x;
+        String rid = uAdapter.getRid(pos);
 
-        intent.putExtra("recipePos", i);
+        intent.putExtra("recipeID", rid);
         getActivity().startActivity(intent);
 
 
-    }
-
-    public void addRecipe(Recipe r) {  //Use as method
-        String rid = "";
-        DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
-        rid = rootRef.child("Recipes").push().getKey();
-        r.setRid(rid);
-        DatabaseReference ref = rootRef.child("Recipes").child(rid);
-        ref.setValue(r);
     }
 }
 

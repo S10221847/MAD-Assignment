@@ -1,6 +1,9 @@
 package sg.edu.np.mad.mad_assignment_cookverse;
 
+import static android.content.Context.MODE_PRIVATE;
+
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -38,6 +41,11 @@ public class DiscoverFragment extends Fragment implements RecyclerViewInterface{
     FragmentProfileBinding binding;
     DiscoverAdaptor dAdaptor;
     RecyclerViewInterface recyclerViewInterface;
+    ArrayList<Recipe> dataOriginal;
+    public String GLOBAL_PREF = "MyPrefs";
+    public String DATABASE_VERSION = "MyDatabaseVersion";
+    SharedPreferences sharedPreferences;
+    DBHandler dbHandler;
     //SearchView searchView;
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -87,36 +95,22 @@ public class DiscoverFragment extends Fragment implements RecyclerViewInterface{
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_discover, container, false);
 
-        //DBHandler dbHandler = new DBHandler(getActivity(), null, null, 1);
+        //DBHandler
+        sharedPreferences = this.getActivity().getSharedPreferences(GLOBAL_PREF, MODE_PRIVATE);
+        int sharedDBVersion = sharedPreferences.getInt(DATABASE_VERSION, 2);
+        dbHandler = new DBHandler(getActivity(), null, null, sharedDBVersion);
+        dataOriginal = dbHandler.listAllRecipe();
+
         RecyclerViewInterface rvi = this;
 
         RecyclerView discoverRecyclerView = view.findViewById(R.id.discoverRecyclerView);
         SearchView searchView = view.findViewById(R.id.searchbar);
 
-        Query query = FirebaseDatabase.getInstance().getReference().child("Recipes");
-        ArrayList<Recipe> list = new ArrayList<>();
-        ValueEventListener eventListener = new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if (dataSnapshot.exists()) {
-                    for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                        Recipe r = snapshot.getValue(Recipe.class);
-                        list.add(r);
-                    }
-                }
-
-                dAdaptor = new DiscoverAdaptor(list, rvi);
-                LinearLayoutManager dLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
-                discoverRecyclerView.setLayoutManager(new StaggeredGridLayoutManager(2, dLayoutManager.VERTICAL));
-                discoverRecyclerView.setAdapter(dAdaptor);
-                setHasOptionsMenu(true);
-            }
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                Log.v("Main", error.getMessage());
-            }
-        };
-        query.addValueEventListener(eventListener);
+        dAdaptor = new DiscoverAdaptor(dataOriginal, rvi);
+        LinearLayoutManager dLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
+        discoverRecyclerView.setLayoutManager(new StaggeredGridLayoutManager(2, dLayoutManager.VERTICAL));
+        discoverRecyclerView.setAdapter(dAdaptor);
+        setHasOptionsMenu(true);
 
 
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
@@ -127,7 +121,7 @@ public class DiscoverFragment extends Fragment implements RecyclerViewInterface{
 
             @Override
             public boolean onQueryTextChange(String newText) {
-                filter(newText, list);
+                filter(newText, dataOriginal);
                 return false;
             }
         });
@@ -177,36 +171,9 @@ public class DiscoverFragment extends Fragment implements RecyclerViewInterface{
     public void onItemClick(int pos) {
         Intent intent = new Intent(getActivity().getBaseContext(),
                 RecipeActivity.class);
-        //DBHandler dbHandler = new DBHandler(getActivity(), null, null, 1);
-        long x = dAdaptor.getItemId(pos);
-        int i = (int) x;
+        String rid = dAdaptor.getRid(pos);
 
-        intent.putExtra("recipePos", i);
+        intent.putExtra("recipeID", rid);
         getActivity().startActivity(intent);
-
-        /*Query query = FirebaseDatabase.getInstance().getReference().child("Recipes");
-        List<Recipe> list = new ArrayList<>();
-        ValueEventListener eventListener = new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if (dataSnapshot.exists()) {
-                    for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                        Recipe r = snapshot.getValue(Recipe.class);
-                        list.add(r);
-                    }
-                }
-                intent.putExtra("recipeName", list.get(i).getName());
-                intent.putExtra("recipeDesc", list.get(i).getDescription());
-                intent.putExtra("recipeSteps", list.get(i).getSteps());
-                intent.putExtra("recipeIngred", list.get(i).getIngredients());
-
-                getActivity().startActivity(intent);
-            }
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                Log.v("Main", error.getMessage());
-            }
-        };
-        query.addValueEventListener(eventListener);*/
     }
 }
