@@ -114,7 +114,7 @@ public class HomeFragment extends Fragment implements RecyclerViewInterface,User
 
         //Commented code below as it is to add random recipes from api, only uncomment when want to add more.
 
-        /*RequestQueue queue = Volley.newRequestQueue(getActivity()); //Code to install random recipes from api into firebase
+        RequestQueue queue = Volley.newRequestQueue(getActivity()); //Code to install random recipes from api into firebase
         String url = "https://api.spoonacular.com/recipes/random?apiKey=af813f5ed72840b8883afa9debd61d05&number=100";
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
                 new Response.Listener<JSONObject>() {
@@ -145,6 +145,7 @@ public class HomeFragment extends Fragment implements RecyclerViewInterface,User
                         try {
                             JSONArray recipe = response.getJSONArray("recipes"); //get recipes array containing all the random recipes
                             for (int i = 0; i < recipe.length(); i++) {   //for loop through all the recipes in the recipes array
+                                r=new Recipe();
                                 JSONObject recipe_index = recipe.getJSONObject(i); //assign 1 recipe object to a variable
                                 vegetarian = recipe_index.getBoolean("vegetarian"); //vegetarian
                                 r.setVegetarian(vegetarian);
@@ -184,6 +185,7 @@ public class HomeFragment extends Fragment implements RecyclerViewInterface,User
                                 r.setUid(userID);
 
                                 JSONArray cuisineList_temp = recipe_index.getJSONArray("cuisines"); //Recipe cuisines list
+                                cuisineList = new ArrayList<String>();
                                 if (cuisineList_temp != null) {
                                     for (int x = 0; x < cuisineList_temp.length(); x++) {
                                         cuisineList.add(cuisineList_temp.getString(x));
@@ -193,6 +195,7 @@ public class HomeFragment extends Fragment implements RecyclerViewInterface,User
                                 r.setCuisineList(cuisineList);
 
                                 JSONArray ingredArray = recipe_index.getJSONArray("extendedIngredients"); //Get ingredients array
+                                ingredList = new ArrayList<String>();
                                 for (int a = 0; a < ingredArray.length(); a++) {
                                     JSONObject ingredient = ingredArray.getJSONObject(a); //Get respective ingredient details
                                     String ingredName = ingredient.getString("original"); //Get Name of ingredient
@@ -202,6 +205,7 @@ public class HomeFragment extends Fragment implements RecyclerViewInterface,User
                                 r.setIngredientsList(ingredList);
 
                                 JSONArray stepsArray = recipe_index.getJSONArray("analyzedInstructions"); //Get steps array
+                                stepsList = new ArrayList<String>();
                                 JSONObject stepsObjectArray = stepsArray.getJSONObject(0); //Get steps object array
                                 JSONArray steps = stepsObjectArray.getJSONArray("steps"); //get steps array in the object array
                                 for (int s = 0; s < steps.length(); s++) {
@@ -233,7 +237,7 @@ public class HomeFragment extends Fragment implements RecyclerViewInterface,User
                 Toast.makeText(getActivity(), "ERROR OCCURED", Toast.LENGTH_SHORT).show();
             }
         });
-        queue.add(request); */
+        queue.add(request);
 
 
         //Call webapi to store online lists into firebase
