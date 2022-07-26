@@ -114,8 +114,8 @@ public class HomeFragment extends Fragment implements RecyclerViewInterface,User
 
         //Commented code below as it is to add random recipes from api, only uncomment when want to add more.
 
-        RequestQueue queue = Volley.newRequestQueue(getActivity()); //Code to install random recipes from api into firebase
-        String url = "https://api.spoonacular.com/recipes/random?apiKey=af813f5ed72840b8883afa9debd61d05&number=100";
+        /*RequestQueue queue = Volley.newRequestQueue(getActivity()); //Code to install random recipes from api into firebase
+        String url = "https://api.spoonacular.com/recipes/random?apiKey=af813f5ed72840b8883afa9debd61d05&number=10";
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
                 new Response.Listener<JSONObject>() {
                     @Override
@@ -172,6 +172,10 @@ public class HomeFragment extends Fragment implements RecyclerViewInterface,User
                                 r.setName(recipeName);
 
                                 recipeDesc = recipe_index.getString("summary"); //Recipe Description
+                                recipeDesc=recipeDesc.replaceAll("<b>","");
+                                recipeDesc=recipeDesc.replaceAll("</b>","");
+                                recipeDesc=recipeDesc.replaceAll("<a href=","");
+                                recipeDesc=recipeDesc.replaceAll("</a>","");
                                 r.setDescription(recipeDesc);
 
                                 duration = recipe_index.getInt("readyInMinutes"); //Recipe Duration
@@ -237,7 +241,7 @@ public class HomeFragment extends Fragment implements RecyclerViewInterface,User
                 Toast.makeText(getActivity(), "ERROR OCCURED", Toast.LENGTH_SHORT).show();
             }
         });
-        queue.add(request);
+        queue.add(request);*/
 
 
         //Call webapi to store online lists into firebase

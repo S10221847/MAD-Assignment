@@ -33,17 +33,21 @@ public final class FragmentHomeBinding implements ViewBinding {
   public final TextView textView15;
 
   @NonNull
+  public final TextView textView3;
+
+  @NonNull
   public final RecyclerView usercreatedRecyclerView;
 
   private FragmentHomeBinding(@NonNull ConstraintLayout rootView,
       @NonNull ConstraintLayout frameLayout, @NonNull RecyclerView onlinerecRecyclerView,
-      @NonNull TextView textView14, @NonNull TextView textView15,
+      @NonNull TextView textView14, @NonNull TextView textView15, @NonNull TextView textView3,
       @NonNull RecyclerView usercreatedRecyclerView) {
     this.rootView = rootView;
     this.frameLayout = frameLayout;
     this.onlinerecRecyclerView = onlinerecRecyclerView;
     this.textView14 = textView14;
     this.textView15 = textView15;
+    this.textView3 = textView3;
     this.usercreatedRecyclerView = usercreatedRecyclerView;
   }
 
@@ -94,6 +98,12 @@ public final class FragmentHomeBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.textView3;
+      TextView textView3 = ViewBindings.findChildViewById(rootView, id);
+      if (textView3 == null) {
+        break missingId;
+      }
+
       id = R.id.usercreatedRecyclerView;
       RecyclerView usercreatedRecyclerView = ViewBindings.findChildViewById(rootView, id);
       if (usercreatedRecyclerView == null) {
@@ -101,7 +111,7 @@ public final class FragmentHomeBinding implements ViewBinding {
       }
 
       return new FragmentHomeBinding((ConstraintLayout) rootView, frameLayout,
-          onlinerecRecyclerView, textView14, textView15, usercreatedRecyclerView);
+          onlinerecRecyclerView, textView14, textView15, textView3, usercreatedRecyclerView);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));
