@@ -119,23 +119,18 @@ public class RecipeActivity extends AppCompatActivity {
                     (LoginPage.mainUser.getLikedList()).remove(recipeID);
                     r.setNooflikes((r.getNooflikes()-1));
                     likestatus.setImageURI(Uri.parse("android.resource://"+getPackageName()+"/"+R.drawable.not_liked));
-                    //dbHandler.updateUser(LoginPage.mainUser);
-                    fbHandler.addUpdateUser(LoginPage.mainUser);
-                    fbHandler.updateRecipe(r);
-
-
 
                 }
                 else{
                     (LoginPage.mainUser.getLikedList()).add(recipeID);
                     r.setNooflikes((r.getNooflikes()+1));
                     likestatus.setImageURI(Uri.parse("android.resource://"+getPackageName()+"/"+R.drawable.liked));
-                    //dbHandler.updateUser(LoginPage.mainUser);
-                    fbHandler.addUpdateUser(LoginPage.mainUser);
-                    fbHandler.updateRecipe(r);
-
 
                 }
+                dbHandler.updateUser(LoginPage.mainUser);
+                fbHandler.addUpdateUser(LoginPage.mainUser);
+                dbHandler.updateRecipe(r);
+                fbHandler.updateRecipe(r);
             }
         });
     }

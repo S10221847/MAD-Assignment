@@ -192,32 +192,6 @@ public class DBHandler extends SQLiteOpenHelper {
         db.insert(ACCOUNTS, null, Values);
         db.close();
     }
-    public void updateUser(User userData){
-        SQLiteDatabase db=this.getWritableDatabase();
-        ContentValues Values=new ContentValues();
-        Values.put(COLUMN_USERNAME, userData.getName());
-        Values.put(COLUMN_BIO, userData.getBio());
-        Values.put(COLUMN_USERIMAGE, userData.getUserImage());
-        removeLikedRecipes(userData.getName());
-        if (userData.getLikedList() != null){
-            for (String rid : userData.getLikedList()){
-                addLikedRecipes(rid, userData.getName());
-            }
-        }
-        db.update("ACCOUNTS",Values,COLUMN_USERNAME + " = ?",new String[]{userData.getName()});
-        db.close();
-
-
-
-    }
-    public void removeLikedRecipes(String username){
-        SQLiteDatabase db=this.getWritableDatabase();
-        ContentValues Values=new ContentValues();
-        Values.put(COLUMN_USERNAME,username);
-        db.delete(LIKEDRECIPES,"Username=?",new String[]{username});
-        db.close();
-    }
-
 
     public void addLikedRecipes(String rid, String username){
         ContentValues Values = new ContentValues();
@@ -239,41 +213,54 @@ public class DBHandler extends SQLiteOpenHelper {
         db.close();
     }
 
-    /*public void updateUser(User userData){ //Replaces user database info with new user info
-
-        deleteUser(userData.getId()); //Deletes user from database
-
-        ContentValues values = new ContentValues();
-        values.put(COLUMN_USERNAME, userData.getName());
-        values.put(COLUMN_PASSWORD, userData.getPassword());
-        values.put(COLUMN_USERID, userData.getId()); //necessary to avoid auto incrementation
-        if (userData.getUserImage() != null){
-            values.put(COLUMN_USERIMAGE, DbBitmapUtility.getBytes(userData.getUserImage()));
-        }
+    public void updateUser(User userData){ //Replaces user database info with new user info
 
         SQLiteDatabase db = this.getWritableDatabase();
-        db.insert(ACCOUNTS, null, values);
+
+        ContentValues Values = new ContentValues();
+        Values.put(COLUMN_USERNAME, userData.getName());
+        Values.put(COLUMN_BIO, userData.getBio());
+        Values.put(COLUMN_USERIMAGE, userData.getUserImage());
+        db.update(ACCOUNTS, Values,COLUMN_USERNAME + " = ?",
+                new String[] { String.valueOf(userData.getName()) });
+
+        db.delete(LIKEDRECIPES, COLUMN_USERNAME + " = ?",
+                new String[] { String.valueOf(userData.getName()) });
+
+        db.delete(CREATEDRECIPES, COLUMN_USERNAME + " = ?",
+                new String[] { String.valueOf(userData.getName()) });
+
+        if (userData.getLikedList() != null){
+            for (String rid : userData.getLikedList()){
+                addLikedRecipes(rid, userData.getName());
+            }
+        }
+
+        if (userData.getCreatedList() != null){
+            for (String rid : userData.getCreatedList()){
+                addCreatedRecipes(rid, userData.getName());
+            }
+        }
+
         db.close();
     }
 
-    public void deleteUser(int id) { //Deletes user from database with specified ID
+    public void deleteUser(User userData) { //Deletes user from database with specified ID
 
-        String query = "SELECT * FROM " + ACCOUNTS + " WHERE "
-                + COLUMN_USERID + " = \""
-                + id + "\"";
         SQLiteDatabase db = this.getWritableDatabase();
 
-        Cursor cursor = db.rawQuery(query, null);
+        db.delete(ACCOUNTS, COLUMN_USERNAME + " = ?",
+                new String[] { String.valueOf(userData.getName()) });
 
-        User user = new User();
-        if (cursor.moveToFirst()) {
-            user.setId(Integer.parseInt(cursor.getString(0)));
-            db.delete(ACCOUNTS, COLUMN_USERID + " = ?",
-                    new String[] { String.valueOf(user.getId()) });
-            cursor.close();
-        }
+        db.delete(LIKEDRECIPES, COLUMN_USERNAME + " = ?",
+                new String[] { String.valueOf(userData.getName()) });
+
+        db.delete(CREATEDRECIPES, COLUMN_USERNAME + " = ?",
+                new String[] { String.valueOf(userData.getName()) });
+
         db.close();
-    }*/
+    }
+
 
     public ArrayList<User> listUser(){ //Returns a list with all users from the database
         String query = "SELECT * FROM " + ACCOUNTS;
@@ -494,45 +481,73 @@ public class DBHandler extends SQLiteOpenHelper {
         db.close();
     }
 
-    /*public void updateRecipe(Recipe recipeData){ //Replaces recipe database info with new recipe info
-
-        deleteRecipe(recipeData.getRecipeId());
-
-        ContentValues values = new ContentValues();
-        values.put(COLUMN_RECIPENAME, recipeData.getName());
-        values.put(COLUMN_DESCRIPTION, recipeData.getDescription());
-        values.put(COLUMN_RECIPEID, recipeData.getRecipeId()); //Avoid incrementation
-        values.put(COLUMN_RECIPEUSERID, recipeData.getUserId());
-        values.put(COLUMN_LIKES, recipeData.getNoOfLikes());
-        values.put(COLUMN_STEPS, recipeData.getSteps());
-        values.put(COLUMN_INGREDIENTS, recipeData.getIngredients());
-        if (recipeData.getRecipeImage() != null){
-            values.put(COLUMN_RECIPEIMAGE, DbBitmapUtility.getBytes(recipeData.getRecipeImage()));
-        }
+    public void updateRecipe(Recipe recipeData){ //Replaces recipe database info with new user info
 
         SQLiteDatabase db = this.getWritableDatabase();
-        db.insert(RECIPES, null, values);
+
+        ContentValues values = new ContentValues();
+        values.put(COLUMN_RECIPEID, recipeData.getRid());
+        values.put(COLUMN_RECIPENAME, recipeData.getName());
+        values.put(COLUMN_DESCRIPTION, recipeData.getDescription());
+        values.put(COLUMN_DURATION, recipeData.getDuration());
+        values.put(COLUMN_USERNAME, recipeData.getUid());
+        values.put(COLUMN_LIKES, recipeData.getNooflikes());
+        values.put(COLUMN_RECIPEIMAGE, recipeData.getRecipeimage());
+        values.put(COLUMN_SERVINGS, recipeData.getServings());
+
+        db.update(RECIPES, values,COLUMN_RECIPEID + " = ?",
+                new String[] { String.valueOf(recipeData.getRid()) });
+
+        db.delete(CUISINE, COLUMN_RECIPECUISINE + " = ?",
+                new String[] { String.valueOf(recipeData.getRid()) });
+
+        db.delete(INGREDIENT, COLUMN_RECIPEINGREDIENT + " = ?",
+                new String[] { String.valueOf(recipeData.getRid()) });
+
+        db.delete(STEPS, COLUMN_RECIPESTEPS + " = ?",
+                new String[] { String.valueOf(recipeData.getRid()) });
+
+        if (recipeData.getCuisineList() != null){
+            for (String cuisi : recipeData.getCuisineList()){
+                addCuisines(recipeData.getRid(), cuisi);
+            }
+        }
+
+        if(recipeData.getIngredientsList() != null){
+            for (String ingred : recipeData.getIngredientsList()){
+                addIngredients(recipeData.getRid(), ingred);
+            }
+        }
+
+        if(recipeData.getStepsList() != null){
+            for (String step : recipeData.getStepsList()){
+                addSteps(recipeData.getRid(), step);
+            }
+        }
+
         db.close();
     }
 
-    public void deleteRecipe(int id) { //Deletes recipe with specified ID
+    public void deleteRecipe(Recipe recipeData) { //Deletes user from database with specified ID
 
-        String query = "SELECT * FROM " + RECIPES + " WHERE "
-                + COLUMN_RECIPEID + " = \""
-                + id + "\"";
         SQLiteDatabase db = this.getWritableDatabase();
 
-        Cursor cursor = db.rawQuery(query, null);
+        db.delete(RECIPES, COLUMN_RECIPEID + " = ?",
+                new String[] { String.valueOf(recipeData.getRid()) });
 
-        Recipe recipe = new Recipe();
-        if (cursor.moveToFirst()) {
-            recipe.setRecipeId(Integer.parseInt(cursor.getString(0)));
-            db.delete(RECIPES, COLUMN_RECIPEID + " = ?",
-                    new String[] { String.valueOf(recipe.getRecipeId()) });
-            cursor.close();
-        }
+        db.delete(CUISINE, COLUMN_RECIPECUISINE + " = ?",
+                new String[] { String.valueOf(recipeData.getRid()) });
+
+        db.delete(INGREDIENT, COLUMN_RECIPEINGREDIENT + " = ?",
+                new String[] { String.valueOf(recipeData.getRid()) });
+
+        db.delete(STEPS, COLUMN_RECIPESTEPS + " = ?",
+                new String[] { String.valueOf(recipeData.getRid()) });
+
         db.close();
-    }*/
+    }
+
+
     public ArrayList<Recipe> listAllRecipe(){ //Returns list of all Recipes from database
         String query = "SELECT * FROM " + RECIPES;
 

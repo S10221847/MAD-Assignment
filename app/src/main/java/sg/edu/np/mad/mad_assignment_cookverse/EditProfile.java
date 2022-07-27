@@ -2,6 +2,7 @@ package sg.edu.np.mad.mad_assignment_cookverse;
 
 import android.content.ContentResolver;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
@@ -33,6 +34,12 @@ public class EditProfile extends AppCompatActivity {
     private static final int PICK_IMAGE_REQUEST = 1;
     private ImageView imageView;
     private String TAG = "EditProfile";
+    private FBHandler fbHandler;
+    public String GLOBAL_PREF = "MyPrefs";
+    public String DATABASE_VERSION = "MyDatabaseVersion";
+    SharedPreferences sharedPreferences;
+    DBHandler dbHandler;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,6 +52,11 @@ public class EditProfile extends AppCompatActivity {
         imageView = findViewById(R.id.editPic);
         Button editCancel = findViewById(R.id.editCancel);
         Button editSave = findViewById(R.id.editSave);
+
+        sharedPreferences = this.getSharedPreferences(GLOBAL_PREF, MODE_PRIVATE);
+        int sharedDBVersion = sharedPreferences.getInt(DATABASE_VERSION, 2);
+        dbHandler = new DBHandler(this, null, null, sharedDBVersion);
+        fbHandler = new FBHandler(dbHandler);
 
         /*Intent receivingEnd = getIntent();
         String username = receivingEnd.getStringExtra("Username");
@@ -121,9 +133,7 @@ public class EditProfile extends AppCompatActivity {
                                     LoginPage.mainUser.setUserImage(uri.toString());
                                     LoginPage.mainUser.setName(editName.getText().toString());
                                     LoginPage.mainUser.setBio(editBio.getText().toString());
-                                    DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
-                                    String uid = LoginPage.mainUser.getName();
-                                    rootRef.child("Accounts").child(uid).setValue(LoginPage.mainUser);
+                                    fbHandler.addUpdateUser(LoginPage.mainUser);
                                 }
                             }).addOnFailureListener(new OnFailureListener() {
                                 @Override
@@ -148,9 +158,7 @@ public class EditProfile extends AppCompatActivity {
         else {
             LoginPage.mainUser.setName(editName.getText().toString());
             LoginPage.mainUser.setBio(editBio.getText().toString());
-            DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
-            String uid = LoginPage.mainUser.getName();
-            rootRef.child("Accounts").child(uid).setValue(LoginPage.mainUser);
+            fbHandler.addUpdateUser(LoginPage.mainUser);
         }
     }
 }

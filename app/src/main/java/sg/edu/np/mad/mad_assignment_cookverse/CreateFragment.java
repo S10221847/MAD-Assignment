@@ -1,9 +1,11 @@
 package sg.edu.np.mad.mad_assignment_cookverse;
 
 import static android.app.Activity.RESULT_OK;
+import static android.content.Context.MODE_PRIVATE;
 
 import android.content.ContentResolver;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -70,6 +72,10 @@ public class CreateFragment extends Fragment {
     private LinearLayout stepList;
     private LinearLayout cuisiList;
     private FBHandler fbHandler;
+    public String GLOBAL_PREF = "MyPrefs";
+    public String DATABASE_VERSION = "MyDatabaseVersion";
+    SharedPreferences sharedPreferences;
+    DBHandler dbHandler;
 
 
     /**
@@ -191,12 +197,15 @@ public class CreateFragment extends Fragment {
                 }
                 recipe.setCuisineList(RecipeCuisi);
 
-                if (recipe.getName() != null && recipe.getIngredientsList() != null) {
+                if (recipe.getName() != null && mImageUri != null) {
                     createRecipe(recipe);
                 }
+                else{
+                    Toast.makeText(getActivity(), "Please add a name and image",Toast.LENGTH_SHORT).show();
+                }
 
-                FragmentTransaction ft = getFragmentManager().beginTransaction();
-                ft.detach(CreateFragment.this).attach(CreateFragment.this).commit();
+                //FragmentTransaction ft = getFragmentManager().beginTransaction();
+                //ft.detach(CreateFragment.this).attach(CreateFragment.this).commit();
             }
         });
 
@@ -303,6 +312,10 @@ public class CreateFragment extends Fragment {
     }
 
     private void createRecipe(Recipe r){
+        sharedPreferences = this.getActivity().getSharedPreferences(GLOBAL_PREF, MODE_PRIVATE);
+        int sharedDBVersion = sharedPreferences.getInt(DATABASE_VERSION, 2);
+        dbHandler = new DBHandler(getActivity(), null, null, sharedDBVersion);
+        fbHandler = new FBHandler(dbHandler);
         if (mImageUri != null){
             String fileName = System.currentTimeMillis() + "." + getFileExtension(mImageUri);
             StorageReference fileReference = mStorageRef.child(fileName);
@@ -324,6 +337,9 @@ public class CreateFragment extends Fragment {
                                     // Got the download URL for 'users/me/profile.png' in uri
                                     r.setRecipeimage(uri.toString());
                                     Log.v("MAIN", uri.toString());
+                                    dbHandler.updateUser(LoginPage.mainUser);
+                                    fbHandler.addUpdateUser(LoginPage.mainUser);
+                                    dbHandler.addRecipe(r);
                                     fbHandler.addRecipe(r);
                                     Toast.makeText(getActivity(), "Recipe Created Successfully.", Toast.LENGTH_SHORT).show();
                                 }
@@ -351,6 +367,9 @@ public class CreateFragment extends Fragment {
         }
         else{
             Toast.makeText(getActivity(), "No image for this recipe",Toast.LENGTH_SHORT).show();
+            dbHandler.updateUser(LoginPage.mainUser);
+            fbHandler.addUpdateUser(LoginPage.mainUser);
+            dbHandler.addRecipe(r);
             fbHandler.addRecipe(r);
         }
     }
