@@ -44,6 +44,10 @@
         "source": "D:\\MAD\\MAD-Assignment-Cookverse\\app\\src\\main\\res\\layout\\activity_login_page.xml"
     },
     {
+        "merged": "D:\\MAD\\MAD-Assignment-Cookverse\\app\\build\\intermediates\\merged_res\\debug\\layout_recipedesc_popup.xml.flat",
+        "source": "D:\\MAD\\MAD-Assignment-Cookverse\\app\\src\\main\\res\\layout\\recipedesc_popup.xml"
+    },
+    {
         "merged": "D:\\MAD\\MAD-Assignment-Cookverse\\app\\build\\intermediates\\merged_res\\debug\\drawable-v24_ic_baseline_account_circle_24.xml.flat",
         "source": "D:\\MAD\\MAD-Assignment-Cookverse\\app\\src\\main\\res\\drawable-v24\\ic_baseline_account_circle_24.xml"
     },

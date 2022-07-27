@@ -2583,6 +2583,7 @@ id SHOW_PROGRESS
 id SYM
 id TOP_END
 id TOP_START
+id about
 id accelerate
 id accessibility_action_clickable_span
 id accessibility_custom_action_0
@@ -2768,6 +2769,7 @@ id dragUp
 id dropdown_editable
 id dropdown_menu
 id dropdown_noneditable
+id duration
 id easeIn
 id easeInOut
 id easeOut
@@ -2845,6 +2847,7 @@ id imageView2
 id imageView3
 id imageView4
 id imageView5
+id imageView6
 id immediateStop
 id included
 id info
@@ -2980,7 +2983,9 @@ id postLayout
 id profile
 id progress_circular
 id progress_horizontal
+id rImage
 id rName
+id rName_popup
 id rSteps
 id radio
 id ratio
@@ -3327,6 +3332,7 @@ layout notification_template_icon_group
 layout notification_template_part_chronometer
 layout notification_template_part_time
 layout online_recipes
+layout recipedesc_popup
 layout select_dialog_item_material
 layout select_dialog_multichoice_material
 layout select_dialog_singlechoice_material

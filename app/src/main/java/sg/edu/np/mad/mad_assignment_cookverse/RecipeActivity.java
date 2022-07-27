@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.firebase.database.DataSnapshot;
@@ -23,7 +24,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class RecipeActivity extends AppCompatActivity {
-    boolean showingSteps = true;
+    boolean showingSteps = false;
     List<Recipe> dataOriginal;
     public String GLOBAL_PREF = "MyPrefs";
     public String DATABASE_VERSION = "MyDatabaseVersion";
@@ -35,15 +36,22 @@ public class RecipeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_recipe);
 
         Intent intent = getIntent();
-        String recipeID = intent.getStringExtra("recipeID");
+        String recipeID = intent.getStringExtra("recipeID"); //Selected recipe id
 
         sharedPreferences = this.getSharedPreferences(GLOBAL_PREF, MODE_PRIVATE);
         int sharedDBVersion = sharedPreferences.getInt(DATABASE_VERSION, 2);
         dbHandler = new DBHandler(this, null, null, sharedDBVersion);
 
-        Recipe r = dbHandler.findRecipe(recipeID);
+        Recipe r = dbHandler.findRecipe(recipeID); //Find selected recipe
         TextView rName = findViewById(R.id.rName);
+        ImageView rImage=findViewById(R.id.rImage);
+        TextView duration=findViewById(R.id.duration);
+        new ImageLoadTask(r.getRecipeimage(), rImage).execute();
         rName.setText(r.getName());
+        String duration_String=String.valueOf(r.getDuration());
+        duration_String=duration_String.concat(" minutes");
+
+        duration.setText(duration_String);
 
         String recipeSteps = "";
         String recipeIngred = "";
@@ -59,7 +67,7 @@ public class RecipeActivity extends AppCompatActivity {
         }
 
         TextView rSteps = findViewById(R.id.rSteps);
-        rSteps.setText(recipeSteps);
+        rSteps.setText(recipeIngred);
 
         Button ingredStepsButton = findViewById(R.id.ingredStepsButton);
 

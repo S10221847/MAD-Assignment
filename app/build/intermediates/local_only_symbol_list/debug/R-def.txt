@@ -27,6 +27,7 @@ font poppins
 id CreateImage
 id FRAGMENT_PLACEHOLDER
 id ProfileImage
+id about
 id addCuisine
 id addCuisineButton
 id addIngredient
@@ -51,6 +52,7 @@ id discover
 id discoverFilter
 id discoverRecyclerView
 id discover_layout
+id duration
 id editBio
 id editCancel
 id editName
@@ -75,6 +77,7 @@ id imageView2
 id imageView3
 id imageView4
 id imageView5
+id imageView6
 id ingredList
 id ingredStepsButton
 id liked
@@ -89,7 +92,9 @@ id onlinerecipename
 id personal
 id personalReci
 id profile
+id rImage
 id rName
+id rName_popup
 id rSteps
 id recipeName
 id searchbar
@@ -129,6 +134,7 @@ layout fragment_main
 layout fragment_profile
 layout fragment_user_recipe
 layout online_recipes
+layout recipedesc_popup
 layout usercreatedrecipes
 menu bottom_nav_menu
 menu profile_nav_menu
