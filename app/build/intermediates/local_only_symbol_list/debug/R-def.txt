@@ -19,6 +19,8 @@ drawable ic_filter
 drawable ic_launcher_background
 drawable ic_launcher_foreground
 drawable ic_search
+drawable liked
+drawable not_liked
 drawable pfp
 drawable pic
 drawable random_pic
@@ -82,6 +84,7 @@ id ingredList
 id ingredStepsButton
 id liked
 id likedReci
+id likestatus
 id linearLayout
 id linearLayout2
 id linearLayout3

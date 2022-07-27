@@ -7,8 +7,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -30,6 +32,8 @@ public class RecipeActivity extends AppCompatActivity {
     public String DATABASE_VERSION = "MyDatabaseVersion";
     SharedPreferences sharedPreferences;
     DBHandler dbHandler;
+    FBHandler fbHandler;
+    boolean like_ornot;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,11 +45,25 @@ public class RecipeActivity extends AppCompatActivity {
         sharedPreferences = this.getSharedPreferences(GLOBAL_PREF, MODE_PRIVATE);
         int sharedDBVersion = sharedPreferences.getInt(DATABASE_VERSION, 2);
         dbHandler = new DBHandler(this, null, null, sharedDBVersion);
+        FBHandler fbHandler = new FBHandler(dbHandler);
 
         Recipe r = dbHandler.findRecipe(recipeID); //Find selected recipe
         TextView rName = findViewById(R.id.rName);
         ImageView rImage=findViewById(R.id.rImage);
         TextView duration=findViewById(R.id.duration);
+        ImageView likestatus=findViewById(R.id.likestatus);
+        like_ornot=LoginPage.mainUser.getLikedList().contains(recipeID);
+        //Check if user already liked post
+        if(LoginPage.mainUser.getLikedList().contains(recipeID)){   //If user already liked post, heart is filled up
+            likestatus.setImageURI(Uri.parse("android.resource://"+getPackageName()+"/"+R.drawable.liked));
+        }
+        else{ //If user havent liked post
+            likestatus.setImageURI(Uri.parse("android.resource://"+getPackageName()+"/"+R.drawable.not_liked));
+        }
+
+
+
+
         new ImageLoadTask(r.getRecipeimage(), rImage).execute();
         rName.setText(r.getName());
         String duration_String=String.valueOf(r.getDuration());
@@ -91,6 +109,32 @@ public class RecipeActivity extends AppCompatActivity {
                     ingredStepsButton.setText("Show ingredients");
                     showingSteps = true;
                     rSteps.setText(finalRecipeSteps);
+                }
+            }
+        });
+        likestatus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(LoginPage.mainUser.getLikedList().contains(recipeID)){  //If recipe is liked and user clicks, it unlikes
+                    (LoginPage.mainUser.getLikedList()).remove(recipeID);
+                    r.setNooflikes((r.getNooflikes()-1));
+                    likestatus.setImageURI(Uri.parse("android.resource://"+getPackageName()+"/"+R.drawable.not_liked));
+                    //dbHandler.updateUser(LoginPage.mainUser);
+                    fbHandler.addUpdateUser(LoginPage.mainUser);
+                    fbHandler.updateRecipe(r);
+
+
+
+                }
+                else{
+                    (LoginPage.mainUser.getLikedList()).add(recipeID);
+                    r.setNooflikes((r.getNooflikes()+1));
+                    likestatus.setImageURI(Uri.parse("android.resource://"+getPackageName()+"/"+R.drawable.liked));
+                    //dbHandler.updateUser(LoginPage.mainUser);
+                    fbHandler.addUpdateUser(LoginPage.mainUser);
+                    fbHandler.updateRecipe(r);
+
+
                 }
             }
         });

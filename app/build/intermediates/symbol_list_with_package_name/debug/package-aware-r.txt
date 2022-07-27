@@ -2516,6 +2516,7 @@ drawable ic_mtrl_chip_checked_black
 drawable ic_mtrl_chip_checked_circle
 drawable ic_mtrl_chip_close_circle
 drawable ic_search
+drawable liked
 drawable m3_appbar_background
 drawable m3_popupmenu_background_overlay
 drawable m3_radiobutton_ripple
@@ -2545,6 +2546,7 @@ drawable mtrl_popupmenu_background
 drawable mtrl_popupmenu_background_overlay
 drawable mtrl_tabs_default_indicator
 drawable navigation_empty_icon
+drawable not_liked
 drawable notification_action_background
 drawable notification_bg
 drawable notification_bg_low
@@ -2871,6 +2873,7 @@ id legacy
 id light
 id liked
 id likedReci
+id likestatus
 id line1
 id line3
 id linear

@@ -31,6 +31,9 @@ public final class ActivityRecipeBinding implements ViewBinding {
   public final Button ingredStepsButton;
 
   @NonNull
+  public final ImageView likestatus;
+
+  @NonNull
   public final ImageView rImage;
 
   @NonNull
@@ -40,12 +43,13 @@ public final class ActivityRecipeBinding implements ViewBinding {
   public final TextView rSteps;
 
   private ActivityRecipeBinding(@NonNull ConstraintLayout rootView, @NonNull Button about,
-      @NonNull TextView duration, @NonNull Button ingredStepsButton, @NonNull ImageView rImage,
-      @NonNull TextView rName, @NonNull TextView rSteps) {
+      @NonNull TextView duration, @NonNull Button ingredStepsButton, @NonNull ImageView likestatus,
+      @NonNull ImageView rImage, @NonNull TextView rName, @NonNull TextView rSteps) {
     this.rootView = rootView;
     this.about = about;
     this.duration = duration;
     this.ingredStepsButton = ingredStepsButton;
+    this.likestatus = likestatus;
     this.rImage = rImage;
     this.rName = rName;
     this.rSteps = rSteps;
@@ -96,6 +100,12 @@ public final class ActivityRecipeBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.likestatus;
+      ImageView likestatus = ViewBindings.findChildViewById(rootView, id);
+      if (likestatus == null) {
+        break missingId;
+      }
+
       id = R.id.rImage;
       ImageView rImage = ViewBindings.findChildViewById(rootView, id);
       if (rImage == null) {
@@ -115,7 +125,7 @@ public final class ActivityRecipeBinding implements ViewBinding {
       }
 
       return new ActivityRecipeBinding((ConstraintLayout) rootView, about, duration,
-          ingredStepsButton, rImage, rName, rSteps);
+          ingredStepsButton, likestatus, rImage, rName, rSteps);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

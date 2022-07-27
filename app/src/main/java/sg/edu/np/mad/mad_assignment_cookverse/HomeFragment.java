@@ -343,5 +343,6 @@ public class HomeFragment extends Fragment implements RecyclerViewInterface,User
 
 
     }
+
 }
 

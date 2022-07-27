@@ -42,7 +42,7 @@ public class FBHandler {
                 Log.v(TAG, error.getMessage());
             }
         };
-        query.addValueEventListener(eventListener);
+        query.addListenerForSingleValueEvent(eventListener);
     }
 
     public void retrieveFBRecipeData(Context context){
@@ -64,7 +64,7 @@ public class FBHandler {
                 Log.v(TAG, error.getMessage());
             }
         };
-        query.addValueEventListener(eventListener);
+        query.addListenerForSingleValueEvent(eventListener);
     }
 
     public void addRecipe(Recipe r){

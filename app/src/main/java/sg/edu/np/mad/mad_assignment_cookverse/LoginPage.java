@@ -80,6 +80,8 @@ public class LoginPage extends AppCompatActivity {
                         mainUser.setBio(userDBData.getBio());
                         mainUser.setUserImage(userDBData.getUserImage());
                         mainUser.setPassword(userDBData.getPassword());
+                        mainUser.setLikedList(userDBData.getLikedList());
+                        mainUser.setCreatedList(userDBData.getCreatedList());
                         startActivity(myIntent);
                         Toast.makeText(LoginPage.this,"Valid",Toast.LENGTH_SHORT).show();
                     }
@@ -96,6 +98,6 @@ public class LoginPage extends AppCompatActivity {
                 Log.v(TAG, error.getMessage());
             }
         };
-        query.addValueEventListener(eventListener);
+        query.addListenerForSingleValueEvent(eventListener);
     }
 }

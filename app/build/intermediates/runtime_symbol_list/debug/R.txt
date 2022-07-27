@@ -2515,6 +2515,7 @@ int drawable ic_mtrl_chip_checked_black 0x7f070089
 int drawable ic_mtrl_chip_checked_circle 0x7f07008a
 int drawable ic_mtrl_chip_close_circle 0x7f07008b
 int drawable ic_search 0x7f07008c
+int drawable liked 0x7f0700be
 int drawable m3_appbar_background 0x7f07008d
 int drawable m3_popupmenu_background_overlay 0x7f07008e
 int drawable m3_radiobutton_ripple 0x7f07008f
@@ -2544,6 +2545,7 @@ int drawable mtrl_popupmenu_background 0x7f0700a6
 int drawable mtrl_popupmenu_background_overlay 0x7f0700a7
 int drawable mtrl_tabs_default_indicator 0x7f0700a8
 int drawable navigation_empty_icon 0x7f0700a9
+int drawable not_liked 0x7f0700bf
 int drawable notification_action_background 0x7f0700aa
 int drawable notification_bg 0x7f0700ab
 int drawable notification_bg_low 0x7f0700ac
@@ -2870,6 +2872,7 @@ int id legacy 0x7f09012a
 int id light 0x7f09012b
 int id liked 0x7f09012c
 int id likedReci 0x7f09012d
+int id likestatus 0x7f090249
 int id line1 0x7f09012e
 int id line3 0x7f09012f
 int id linear 0x7f090130

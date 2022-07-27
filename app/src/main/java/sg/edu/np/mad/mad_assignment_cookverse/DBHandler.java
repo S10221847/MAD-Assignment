@@ -192,6 +192,32 @@ public class DBHandler extends SQLiteOpenHelper {
         db.insert(ACCOUNTS, null, Values);
         db.close();
     }
+    public void updateUser(User userData){
+        SQLiteDatabase db=this.getWritableDatabase();
+        ContentValues Values=new ContentValues();
+        Values.put(COLUMN_USERNAME, userData.getName());
+        Values.put(COLUMN_BIO, userData.getBio());
+        Values.put(COLUMN_USERIMAGE, userData.getUserImage());
+        removeLikedRecipes(userData.getName());
+        if (userData.getLikedList() != null){
+            for (String rid : userData.getLikedList()){
+                addLikedRecipes(rid, userData.getName());
+            }
+        }
+        db.update("ACCOUNTS",Values,COLUMN_USERNAME + " = ?",new String[]{userData.getName()});
+        db.close();
+
+
+
+    }
+    public void removeLikedRecipes(String username){
+        SQLiteDatabase db=this.getWritableDatabase();
+        ContentValues Values=new ContentValues();
+        Values.put(COLUMN_USERNAME,username);
+        db.delete(LIKEDRECIPES,"Username=?",new String[]{username});
+        db.close();
+    }
+
 
     public void addLikedRecipes(String rid, String username){
         ContentValues Values = new ContentValues();
