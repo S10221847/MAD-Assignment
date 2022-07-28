@@ -2502,6 +2502,7 @@ drawable ic_baseline_account_circle_24
 drawable ic_baseline_add_24
 drawable ic_baseline_edit_24
 drawable ic_baseline_home_24
+drawable ic_baseline_image_not_supported_24
 drawable ic_baseline_search_24
 drawable ic_clock_black_24dp
 drawable ic_filter
@@ -2689,6 +2690,7 @@ id buttonPanel
 id cache_measures
 id callMeasure
 id cancel_button
+id cardView
 id carryVelocity
 id center
 id centerCrop
@@ -2979,7 +2981,10 @@ id pathRelative
 id peekHeight
 id percent
 id personal
+id personalRImage
+id personalRName
 id personalReci
+id personal_recipe_layout
 id pin
 id position
 id postLayout
@@ -3001,6 +3006,7 @@ id right_icon
 id right_side
 id rounded
 id row_index_key
+id rvNumbers
 id save_non_transition_alpha
 id save_overlay_view
 id sawtooth
@@ -3335,6 +3341,7 @@ layout notification_template_icon_group
 layout notification_template_part_chronometer
 layout notification_template_part_time
 layout online_recipes
+layout personal_recipe_layout
 layout recipedesc_popup
 layout select_dialog_item_material
 layout select_dialog_multichoice_material

@@ -3,6 +3,10 @@ package sg.edu.np.mad.mad_assignment_cookverse;
 import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -14,6 +18,7 @@ public class MainFragment extends AppCompatActivity {
     FragmentMainBinding binding;
     DBHandler dbHandler = new DBHandler(this, null, null, 1);
     Bundle bundle = new Bundle();
+    public static ActivityResultLauncher<Intent> activityResultLauncher;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -21,8 +26,19 @@ public class MainFragment extends AppCompatActivity {
         binding = FragmentMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         Intent receivingEnd = getIntent();
-        String previousAct = receivingEnd.getStringExtra("activity");
         replaceFragment(new HomeFragment());
+        activityResultLauncher = registerForActivityResult(
+                new ActivityResultContracts.StartActivityForResult(),
+                new ActivityResultCallback<ActivityResult>() {
+                    @Override
+                    public void onActivityResult(ActivityResult result) {
+                        if (result.getResultCode() == 123) {
+                            replaceFragment(new ProfileFragment());
+                        } else if (result.getResultCode() == 321) {
+                        }
+                    }
+                }
+        );
         //Switch fragment when clicked
         //binding.bottomNavigationView.setItemIconTintList(null);
         binding.bottomNavigationView.setOnItemSelectedListener(item -> {
@@ -52,5 +68,4 @@ public class MainFragment extends AppCompatActivity {
         fragmentTransaction.replace(R.id.frame_layout, fragment);
         fragmentTransaction.commit();
     }
-
 }

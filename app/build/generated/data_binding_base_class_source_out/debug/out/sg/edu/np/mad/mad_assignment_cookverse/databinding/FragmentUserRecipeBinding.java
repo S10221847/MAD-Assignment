@@ -4,25 +4,33 @@ package sg.edu.np.mad.mad_assignment_cookverse.databinding;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.FrameLayout;
+import android.widget.RelativeLayout;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewbinding.ViewBinding;
+import androidx.viewbinding.ViewBindings;
 import java.lang.NullPointerException;
 import java.lang.Override;
+import java.lang.String;
 import sg.edu.np.mad.mad_assignment_cookverse.R;
 
 public final class FragmentUserRecipeBinding implements ViewBinding {
   @NonNull
-  private final FrameLayout rootView;
+  private final RelativeLayout rootView;
 
-  private FragmentUserRecipeBinding(@NonNull FrameLayout rootView) {
+  @NonNull
+  public final RecyclerView rvNumbers;
+
+  private FragmentUserRecipeBinding(@NonNull RelativeLayout rootView,
+      @NonNull RecyclerView rvNumbers) {
     this.rootView = rootView;
+    this.rvNumbers = rvNumbers;
   }
 
   @Override
   @NonNull
-  public FrameLayout getRoot() {
+  public RelativeLayout getRoot() {
     return rootView;
   }
 
@@ -43,10 +51,19 @@ public final class FragmentUserRecipeBinding implements ViewBinding {
 
   @NonNull
   public static FragmentUserRecipeBinding bind(@NonNull View rootView) {
-    if (rootView == null) {
-      throw new NullPointerException("rootView");
-    }
+    // The body of this method is generated in a way you would not otherwise write.
+    // This is done to optimize the compiled bytecode for size and performance.
+    int id;
+    missingId: {
+      id = R.id.rvNumbers;
+      RecyclerView rvNumbers = ViewBindings.findChildViewById(rootView, id);
+      if (rvNumbers == null) {
+        break missingId;
+      }
 
-    return new FragmentUserRecipeBinding((FrameLayout) rootView);
+      return new FragmentUserRecipeBinding((RelativeLayout) rootView, rvNumbers);
+    }
+    String missingId = rootView.getResources().getResourceName(id);
+    throw new NullPointerException("Missing required view with ID: ".concat(missingId));
   }
 }

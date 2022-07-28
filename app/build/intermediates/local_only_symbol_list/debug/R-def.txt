@@ -14,6 +14,7 @@ drawable ic_baseline_account_circle_24
 drawable ic_baseline_add_24
 drawable ic_baseline_edit_24
 drawable ic_baseline_home_24
+drawable ic_baseline_image_not_supported_24
 drawable ic_baseline_search_24
 drawable ic_filter
 drawable ic_launcher_background
@@ -43,6 +44,7 @@ id buttonCancel
 id buttonCreate
 id buttonCreateRecipe
 id buttonImage
+id cardView
 id coordinatorLayout
 id coordinatorLayout2
 id create
@@ -93,13 +95,17 @@ id onlinelikes
 id onlinerecRecyclerView
 id onlinerecipename
 id personal
+id personalRImage
+id personalRName
 id personalReci
+id personal_recipe_layout
 id profile
 id rImage
 id rName
 id rName_popup
 id rSteps
 id recipeName
+id rvNumbers
 id searchbar
 id stepList
 id test
@@ -137,6 +143,7 @@ layout fragment_main
 layout fragment_profile
 layout fragment_user_recipe
 layout online_recipes
+layout personal_recipe_layout
 layout recipedesc_popup
 layout usercreatedrecipes
 menu bottom_nav_menu
