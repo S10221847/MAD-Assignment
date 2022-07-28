@@ -25,6 +25,9 @@ public final class ActivityRecipeBinding implements ViewBinding {
   public final Button about;
 
   @NonNull
+  public final ImageView backButton;
+
+  @NonNull
   public final TextView duration;
 
   @NonNull
@@ -43,10 +46,12 @@ public final class ActivityRecipeBinding implements ViewBinding {
   public final TextView rSteps;
 
   private ActivityRecipeBinding(@NonNull ConstraintLayout rootView, @NonNull Button about,
-      @NonNull TextView duration, @NonNull Button ingredStepsButton, @NonNull ImageView likestatus,
-      @NonNull ImageView rImage, @NonNull TextView rName, @NonNull TextView rSteps) {
+      @NonNull ImageView backButton, @NonNull TextView duration, @NonNull Button ingredStepsButton,
+      @NonNull ImageView likestatus, @NonNull ImageView rImage, @NonNull TextView rName,
+      @NonNull TextView rSteps) {
     this.rootView = rootView;
     this.about = about;
+    this.backButton = backButton;
     this.duration = duration;
     this.ingredStepsButton = ingredStepsButton;
     this.likestatus = likestatus;
@@ -88,6 +93,12 @@ public final class ActivityRecipeBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.back_button;
+      ImageView backButton = ViewBindings.findChildViewById(rootView, id);
+      if (backButton == null) {
+        break missingId;
+      }
+
       id = R.id.duration;
       TextView duration = ViewBindings.findChildViewById(rootView, id);
       if (duration == null) {
@@ -124,7 +135,7 @@ public final class ActivityRecipeBinding implements ViewBinding {
         break missingId;
       }
 
-      return new ActivityRecipeBinding((ConstraintLayout) rootView, about, duration,
+      return new ActivityRecipeBinding((ConstraintLayout) rootView, about, backButton, duration,
           ingredStepsButton, likestatus, rImage, rName, rSteps);
     }
     String missingId = rootView.getResources().getResourceName(id);

@@ -52,6 +52,8 @@ public class RecipeActivity extends AppCompatActivity {
         ImageView rImage=findViewById(R.id.rImage);
         TextView duration=findViewById(R.id.duration);
         ImageView likestatus=findViewById(R.id.likestatus);
+        ImageView back_button=findViewById(R.id.back_button);
+
         like_ornot=LoginPage.mainUser.getLikedList().contains(recipeID);
         //Check if user already liked post
         if(LoginPage.mainUser.getLikedList().contains(recipeID)){   //If user already liked post, heart is filled up
@@ -131,6 +133,13 @@ public class RecipeActivity extends AppCompatActivity {
                 fbHandler.addUpdateUser(LoginPage.mainUser);
                 dbHandler.updateRecipe(r);
                 fbHandler.updateRecipe(r);
+            }
+        });
+        back_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //onBackPressed();
+                finish();
             }
         });
     }

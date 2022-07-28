@@ -2463,6 +2463,7 @@ int drawable abc_vector_test 0x7f070055
 int drawable applogo 0x7f070056
 int drawable avd_hide_password 0x7f070057
 int drawable avd_show_password 0x7f070058
+int drawable back_arrow 0x7f0700c0
 int drawable btn_checkbox_checked_mtrl 0x7f070059
 int drawable btn_checkbox_checked_to_unchecked_mtrl_animation 0x7f07005a
 int drawable btn_checkbox_unchecked_mtrl 0x7f07005b
@@ -2666,6 +2667,7 @@ int id auto 0x7f09005f
 int id autoComplete 0x7f090060
 int id autoCompleteToEnd 0x7f090061
 int id autoCompleteToStart 0x7f090062
+int id back_button 0x7f09024a
 int id barrier 0x7f090063
 int id baseline 0x7f090064
 int id beginOnFirstDraw 0x7f090065

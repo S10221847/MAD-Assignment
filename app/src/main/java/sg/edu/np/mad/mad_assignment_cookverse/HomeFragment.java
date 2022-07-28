@@ -319,6 +319,8 @@ public class HomeFragment extends Fragment implements RecyclerViewInterface,User
         };
         query.addValueEventListener(eventListener);*/
 
+
+
         return view;
 
 
@@ -343,6 +345,7 @@ public class HomeFragment extends Fragment implements RecyclerViewInterface,User
 
 
     }
+
 
 }
 
