@@ -1,11 +1,24 @@
 package sg.edu.np.mad.mad_assignment_cookverse;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -14,7 +27,8 @@ import androidx.fragment.app.Fragment;
  */
 //Child fragment of profile fragment
 public class UserRecipeFragment extends Fragment {
-
+    PersonalRecipeAdapter adapter;
+    public static ArrayList<Recipe> rList = new ArrayList<>();
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -59,6 +73,41 @@ public class UserRecipeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_user_recipe, container, false);
+        View view = inflater.inflate(R.layout.fragment_user_recipe, container, false);
+        // data to populate the RecyclerView with
+        PersonalRecipeAdapter.ItemClickListener itemClickListener = this::onItemClick;
+        Query query = FirebaseDatabase.getInstance().getReference().child("Recipes");
+        ValueEventListener eventListener = new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()) {
+                    for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                        Recipe r = snapshot.getValue(Recipe.class);
+                        rList.add(r);
+                    }
+                }
+                RecyclerView recyclerView = view.findViewById(R.id.rvNumbers);
+                int numberOfColumns = 3;
+                recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), numberOfColumns));
+                adapter = new PersonalRecipeAdapter(getActivity(), rList);
+                adapter.setClickListener(itemClickListener);
+                recyclerView.setAdapter(adapter);
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Log.v("Main", error.getMessage());
+            }
+        };
+        query.addValueEventListener(eventListener);
+        // set up the RecyclerView
+        return view;
     }
+
+
+    public void onItemClick(View view, int position) {
+        Log.i("TAG", "You clicked number " + adapter.getItem(position) + ", which is at cell position " + position);
+        Intent myintent = new Intent(getActivity().getBaseContext(), EditProfile.class);
+        startActivity(myintent);
+    }
+
 }

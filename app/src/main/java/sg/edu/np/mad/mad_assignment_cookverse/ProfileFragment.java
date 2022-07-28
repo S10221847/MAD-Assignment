@@ -2,6 +2,7 @@ package sg.edu.np.mad.mad_assignment_cookverse;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,11 +10,23 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
 
 import sg.edu.np.mad.mad_assignment_cookverse.databinding.FragmentProfileBinding;
 
@@ -24,6 +37,7 @@ import sg.edu.np.mad.mad_assignment_cookverse.databinding.FragmentProfileBinding
  */
 public class ProfileFragment extends Fragment {
     FragmentProfileBinding binding;
+    ArrayList<Recipe> personalRecipe = new ArrayList<>();
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -79,13 +93,32 @@ public class ProfileFragment extends Fragment {
         TextView currentName =  rootView.findViewById(R.id.userName);
         TextView currentBio =  rootView.findViewById(R.id.bio);
         Button editProfile = rootView.findViewById(R.id.editProfile);
-
+        TextView personalR = rootView.findViewById(R.id.personalReci);
+        TextView likedR = rootView.findViewById(R.id.likedReci);
         /*User currentUser = new User();
         currentUser.setName(currentUsername);
         currentUser.setUserImage(userpfp);
         currentUser.setBio(userbio);*/
 
         //Find the current user among all the users in database
+        Query query2 = FirebaseDatabase.getInstance().getReference().child("Recipes");
+        ValueEventListener eventListener2 = new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()) {
+                    for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                        Recipe r = snapshot.getValue(Recipe.class);
+                        personalRecipe.add(r);
+                    }
+                }
+                personalR.setText(String.valueOf(personalRecipe.size()));
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Log.v("Main", error.getMessage());
+            }
+        };
+        query2.addValueEventListener(eventListener2);
         currentName.setText(LoginPage.mainUser.getName());
         currentBio.setText(LoginPage.mainUser.getBio());
         ImageView myImage =rootView.findViewById(R.id.ProfileImage);
@@ -114,7 +147,7 @@ public class ProfileFragment extends Fragment {
                 editIntent.putExtra("Bio", LoginPage.mainUser.getBio());
                 editIntent.putExtra("Pfp", LoginPage.mainUser.getUserImage());*/
                 /*Add in password*/
-                getActivity().startActivity(editIntent);
+                MainFragment.activityResultLauncher.launch(editIntent);
             }
         });
         return rootView;

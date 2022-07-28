@@ -79,6 +79,8 @@ public class EditProfile extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 updateUser(editName, editBio);
+                Intent intent = new Intent();
+                setResult(123, intent);
                 finish();
             }
         });
