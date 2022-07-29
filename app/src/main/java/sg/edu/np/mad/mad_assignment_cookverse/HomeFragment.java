@@ -42,6 +42,7 @@ import sg.edu.np.mad.mad_assignment_cookverse.databinding.FragmentProfileBinding
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Random;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -60,6 +61,8 @@ public class HomeFragment extends Fragment implements RecyclerViewInterface,User
     public String DATABASE_VERSION = "MyDatabaseVersion";
     SharedPreferences sharedPreferences;
     DBHandler dbHandler;
+    public static List<Recipe>oList=new ArrayList<>();
+    public static List<Recipe>uList=new ArrayList<>();
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -115,7 +118,7 @@ public class HomeFragment extends Fragment implements RecyclerViewInterface,User
         //Commented code below as it is to add random recipes from api, only uncomment when want to add more.
 
         /*RequestQueue queue = Volley.newRequestQueue(getActivity()); //Code to install random recipes from api into firebase
-        String url = "https://api.spoonacular.com/recipes/random?apiKey=af813f5ed72840b8883afa9debd61d05&number=10";
+        String url = "https://api.spoonacular.com/recipes/random?apiKey=af813f5ed72840b8883afa9debd61d05&number=20";
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
                 new Response.Listener<JSONObject>() {
                     @Override
@@ -224,7 +227,13 @@ public class HomeFragment extends Fragment implements RecyclerViewInterface,User
                                 r.setRecipeimage(recipeImage);
                                 servings = recipe_index.getInt("servings");
                                 r.setServings(servings);
-                                addRecipe(r);
+                                //addRecipe(r);
+                                String rid = "";
+                                DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
+                                rid = rootRef.child("Recipes").push().getKey();
+                                r.setRid(rid);
+                                DatabaseReference ref = rootRef.child("Recipes").child(rid);
+                                ref.setValue(r);
 
                             }
 
@@ -256,7 +265,8 @@ public class HomeFragment extends Fragment implements RecyclerViewInterface,User
         //RECYCLER VIEW FOR ONLINE RECIPES
         RecyclerView orecyclerView = view.findViewById(R.id.onlinerecRecyclerView);   //instantiate recycler view for ONLINE RECIPES
         orecyclerView.setHasFixedSize(true);
-        List<Recipe>oList=dbHandler.listOnlineRecipe();
+        oList=dbHandler.listOnlineRecipe();
+
         Collections.shuffle(oList);
 
         oAdapter = new OnlineRecipesAdapter(oList, rvi, dataOriginal);  //ONLINE RECIPE ADAPTER
@@ -267,7 +277,8 @@ public class HomeFragment extends Fragment implements RecyclerViewInterface,User
         //RECYCLER VIEW FOR USER CREATED RECIPES (user.id of recipes=null)
         RecyclerView urecyclerView=view.findViewById(R.id.usercreatedRecyclerView);
         urecyclerView.setHasFixedSize(true);
-        List<Recipe>uList=dbHandler.listUserRecipe();
+        uList=dbHandler.listUserRecipe();
+
         Collections.shuffle(uList);
 
         uAdapter=new UserCreatedAdapter(uList,this, dataOriginal);
@@ -332,7 +343,8 @@ public class HomeFragment extends Fragment implements RecyclerViewInterface,User
         String rid  = oAdapter.getRid(pos);
 
         intent.putExtra("recipeID", rid);
-        getActivity().startActivity(intent);
+        intent.putExtra("activity","home");
+        MainFragment.activityResultLauncher.launch(intent);
     }
 
     public void onItemClick2(int pos) {
@@ -341,7 +353,8 @@ public class HomeFragment extends Fragment implements RecyclerViewInterface,User
         String rid = uAdapter.getRid(pos);
 
         intent.putExtra("recipeID", rid);
-        getActivity().startActivity(intent);
+        intent.putExtra("activity","home");
+        MainFragment.activityResultLauncher.launch(intent);
 
 
     }

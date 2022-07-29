@@ -34,6 +34,7 @@ public class RecipeActivity extends AppCompatActivity {
     DBHandler dbHandler;
     FBHandler fbHandler;
     boolean like_ornot;
+    String activity;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,6 +42,7 @@ public class RecipeActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         String recipeID = intent.getStringExtra("recipeID"); //Selected recipe id
+        activity=intent.getStringExtra("activity"); //Activity it came from
 
         sharedPreferences = this.getSharedPreferences(GLOBAL_PREF, MODE_PRIVATE);
         int sharedDBVersion = sharedPreferences.getInt(DATABASE_VERSION, 2);
@@ -138,8 +140,19 @@ public class RecipeActivity extends AppCompatActivity {
         back_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //onBackPressed();
-                finish();
+                if (activity.equals("home")){
+                    Intent intent = new Intent();
+                    setResult(321, intent);
+                    finish();
+                }
+                else if (activity.equals("discover")){
+                    Intent intent=new Intent();
+                    setResult(456,intent);
+                    finish();
+                }
+
+
+
             }
         });
     }

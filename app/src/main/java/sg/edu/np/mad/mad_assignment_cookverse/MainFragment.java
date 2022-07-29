@@ -34,8 +34,13 @@ public class MainFragment extends AppCompatActivity {
                     public void onActivityResult(ActivityResult result) {
                         if (result.getResultCode() == 123) {
                             replaceFragment(new ProfileFragment());
-                        } else if (result.getResultCode() == 321) {
                         }
+                        else if (result.getResultCode() == 321) {
+                            replaceFragment(new HomeFragment());
+
+
+                        }
+
                     }
                 }
         );

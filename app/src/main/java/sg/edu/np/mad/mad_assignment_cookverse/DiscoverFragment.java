@@ -174,6 +174,7 @@ public class DiscoverFragment extends Fragment implements RecyclerViewInterface{
         String rid = dAdaptor.getRid(pos);
 
         intent.putExtra("recipeID", rid);
-        getActivity().startActivity(intent);
+        intent.putExtra("activity","discover");
+        startActivity(intent);
     }
 }
