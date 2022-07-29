@@ -316,6 +316,7 @@ public class CreateFragment extends Fragment {
         int sharedDBVersion = sharedPreferences.getInt(DATABASE_VERSION, 2);
         dbHandler = new DBHandler(getActivity(), null, null, sharedDBVersion);
         fbHandler = new FBHandler(dbHandler);
+        ArrayList<String> al = new ArrayList<>();
         if (mImageUri != null){
             String fileName = System.currentTimeMillis() + "." + getFileExtension(mImageUri);
             StorageReference fileReference = mStorageRef.child(fileName);
@@ -337,10 +338,18 @@ public class CreateFragment extends Fragment {
                                     // Got the download URL for 'users/me/profile.png' in uri
                                     r.setRecipeimage(uri.toString());
                                     Log.v("MAIN", uri.toString());
+                                    al.add(r.getRid());
+                                    if (LoginPage.mainUser.getCreatedList() == null){
+                                        LoginPage.mainUser.setCreatedList(al);
+                                    }
+                                    else{
+                                        LoginPage.mainUser.getCreatedList().add(r.getRid());
+                                    }
                                     dbHandler.updateUser(LoginPage.mainUser);
                                     fbHandler.addUpdateUser(LoginPage.mainUser);
                                     dbHandler.addRecipe(r);
                                     fbHandler.addRecipe(r);
+
                                     Toast.makeText(getActivity(), "Recipe Created Successfully.", Toast.LENGTH_SHORT).show();
                                 }
                             }).addOnFailureListener(new OnFailureListener() {
