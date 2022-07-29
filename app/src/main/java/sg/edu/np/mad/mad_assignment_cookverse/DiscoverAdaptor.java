@@ -1,5 +1,6 @@
 package sg.edu.np.mad.mad_assignment_cookverse;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +18,7 @@ public class DiscoverAdaptor extends RecyclerView.Adapter<DiscoverViewHolder>{
     private ArrayList<Recipe> data;
     private ArrayList<Recipe> dataOriginal;
     private final RecyclerViewInterface recyclerViewInterface;
+    private Context context;
 
     public DiscoverAdaptor(ArrayList<Recipe> input, RecyclerViewInterface recyclerViewInterface) {
         this.data = input;
@@ -27,12 +29,12 @@ public class DiscoverAdaptor extends RecyclerView.Adapter<DiscoverViewHolder>{
 
     public DiscoverViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View item = LayoutInflater.from(parent.getContext()).inflate(R.layout.discover_layout, parent, false);
+        context = parent.getContext();
         return new DiscoverViewHolder(item, recyclerViewInterface);
     }
 
     public void onBindViewHolder(DiscoverViewHolder holder, int position){
         Recipe dish = data.get(position);
-
         holder.txt.setText(dish.getName());
         //holder.txt2.setText(dish.getDescription());
         new ImageLoadTask(dish.getRecipeimage(), holder.img).execute();
@@ -90,8 +92,36 @@ public class DiscoverAdaptor extends RecyclerView.Adapter<DiscoverViewHolder>{
             }
         }
     };*/
-    public void filterList(ArrayList<Recipe> list){
+    public void Filter (ArrayList<Recipe> list, boolean constraint){
         this.data = list;
+
+        if(this.data.size()==0){
+            Toast.makeText(context,"Invalid search", Toast.LENGTH_SHORT).show();
+        }
+
+        notifyDataSetChanged();
+    }
+
+    public void functionFilterList(ArrayList<Recipe> list, boolean hasConstraint, boolean constraintChanged){
+        ArrayList<Recipe> filteredList = new ArrayList<>();
+
+        //constraint did not change
+        if(hasConstraint==true && constraintChanged == true){
+            for(Recipe item:this.data){
+                if(list.contains(item)){
+                    filteredList.add(item);
+                }
+            }
+            this.data = filteredList;
+        }
+
+        else{
+            this.data = list;
+        }
+
+        if(this.data.size()==0){
+            Toast.makeText(context,"Invalid search", Toast.LENGTH_SHORT).show();
+        }
         notifyDataSetChanged();
     }
 }

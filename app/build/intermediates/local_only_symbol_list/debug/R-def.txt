@@ -38,6 +38,7 @@ id addIngredient
 id addIngredientsButton
 id addSteps
 id addStepsButton
+id applyFilter
 id back_button
 id bio
 id bottomNavigationView
@@ -47,6 +48,7 @@ id buttonCreate
 id buttonCreateRecipe
 id buttonImage
 id cardView
+id clearFilter
 id coordinatorLayout
 id coordinatorLayout2
 id create
@@ -86,6 +88,12 @@ id imageView5
 id imageView6
 id ingredList
 id ingredStepsButton
+id isDairyFree
+id isGlutenFree
+id isHealthy
+id isPopular
+id isVegan
+id isVegetarian
 id liked
 id likedReci
 id likestatus
@@ -136,6 +144,7 @@ layout activity_splash_screen
 layout add_cuisine
 layout add_ingredients
 layout add_steps
+layout bottom_sheet_dialog_layout
 layout discover_layout
 layout fragment_create
 layout fragment_discover

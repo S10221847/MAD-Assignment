@@ -2662,6 +2662,7 @@ id animateToEnd
 id animateToStart
 id antiClockwise
 id anticipate
+id applyFilter
 id arc
 id asConfigured
 id async
@@ -2711,6 +2712,7 @@ id chip3
 id chip_group
 id chronometer
 id circle_center
+id clearFilter
 id clear_text
 id clip_horizontal
 id clip_vertical
@@ -2861,6 +2863,12 @@ id ingredList
 id ingredStepsButton
 id invisible
 id inward
+id isDairyFree
+id isGlutenFree
+id isHealthy
+id isPopular
+id isVegan
+id isVegetarian
 id italic
 id item1
 id item2
@@ -3264,6 +3272,7 @@ layout activity_splash_screen
 layout add_cuisine
 layout add_ingredients
 layout add_steps
+layout bottom_sheet_dialog_layout
 layout custom_dialog
 layout design_bottom_navigation_item
 layout design_bottom_sheet_dialog
