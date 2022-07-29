@@ -9,6 +9,8 @@ color purple_700
 color teal_200
 color teal_700
 color white
+drawable add_tolist
+drawable addedshopping
 drawable applogo
 drawable back_arrow
 drawable ic_baseline_account_circle_24
@@ -124,6 +126,7 @@ id recipeName
 id rvLiked
 id rvPersonal
 id searchbar
+id shoppingList
 id stepList
 id test
 id test2

@@ -12,6 +12,7 @@ public class User {
     private String bio;
     private List<String> likedList = new ArrayList<>();
     private List<String> createdList = new ArrayList<>();
+    private List<String> shoppingList=new ArrayList<>();
 
     public String getName() {
         return name;
@@ -60,4 +61,8 @@ public class User {
     public void setCreatedList(List<String> createdList) {
         this.createdList = createdList;
     }
+
+    public List<String> getShoppingList(){return shoppingList;}
+
+    public void setShoppingList(List<String>shoppingList){this.shoppingList=shoppingList;}
 }

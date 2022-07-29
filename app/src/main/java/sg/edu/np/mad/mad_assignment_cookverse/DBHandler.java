@@ -38,6 +38,7 @@ public class DBHandler extends SQLiteOpenHelper {
     //Created Recipes table storing User's created recipes list
     public static String CREATEDRECIPES = "CreatedRecipes";
     //Use COLUMN_USERNAME and COLUMN_RECIPEID as composite key
+    public static String SHOPPINGLIST= "ShoppingList";
 
 
     //Recipes table storing Recipe data
@@ -46,6 +47,15 @@ public class DBHandler extends SQLiteOpenHelper {
     public static String COLUMN_RECIPENAME = "RecipeName";
     public static String COLUMN_DESCRIPTION = "Description";
     public static String COLUMN_DURATION = "Duration";
+
+    public static String COLUMN_VEGETARIAN="Vegetarian";
+    public static String COLUMN_VEGAN="Vegan";
+    public static String COLUMN_GLUTENFREE="GLutenFree";
+    public static String COLUMN_DAIRYFREE="DairyFree";
+    public static String COLUMN_HEALTHY="Healthy";
+    public static String COLUMN_CHEAP="Cheap";
+    public static String COLUMN_POPULAR="Popular";
+
     //Use COLUMN_USERNAME as Recipe's uid
     public static String COLUMN_LIKES = "NoOfLikes";
     public static String COLUMN_RECIPEIMAGE = "RecipeImage";
@@ -82,10 +92,13 @@ public class DBHandler extends SQLiteOpenHelper {
         String CREATE_TABLE4 = "CREATE TABLE " + RECIPES + "(" + COLUMN_RECIPEID + " TEXT,"
                 + COLUMN_RECIPENAME + " TEXT," + COLUMN_DESCRIPTION + " TEXT," + COLUMN_DURATION
                 + " INTEGER," + COLUMN_USERNAME  + " TEXT," + COLUMN_LIKES  + " INTEGER," + COLUMN_RECIPEIMAGE +
-                " TEXT," + COLUMN_SERVINGS + " INTEGER)";
+                " TEXT," + COLUMN_SERVINGS + " INTEGER," + COLUMN_VEGETARIAN + " INTEGER DEFAULT 0," + COLUMN_VEGAN +
+                " INTEGER DEFAULT 0," + COLUMN_GLUTENFREE + " INTEGER DEFAULT 0," + COLUMN_DAIRYFREE + " INTEGER DEFAULT 0," + COLUMN_HEALTHY + " INTEGER DEFAULT 0," + COLUMN_CHEAP + " INTEGER DEFAULT 0," + COLUMN_POPULAR + " INTEGER DEFAULT 0)";
+
         String CREATE_TABLE5 = "CREATE TABLE " + CUISINE + "(" + COLUMN_RECIPECUISINE + " TEXT," + COLUMN_RECIPEID + " TEXT)";
         String CREATE_TABLE6 = "CREATE TABLE " + INGREDIENT + "(" + COLUMN_RECIPEINGREDIENT + " TEXT," + COLUMN_RECIPEID + " TEXT)";
         String CREATE_TABLE7 = "CREATE TABLE " + STEPS + "(" + COLUMN_RECIPESTEPS + " TEXT," + COLUMN_RECIPEID + " TEXT)";
+        String CREATE_TABLE8 = "CREATE TABLE " + SHOPPINGLIST + "(" + COLUMN_USERNAME + " TEXT," + COLUMN_RECIPEID + " TEXT)";
 
         db.execSQL(CREATE_TABLE1);
         db.execSQL(CREATE_TABLE2);
@@ -94,6 +107,7 @@ public class DBHandler extends SQLiteOpenHelper {
         db.execSQL(CREATE_TABLE5);
         db.execSQL(CREATE_TABLE6);
         db.execSQL(CREATE_TABLE7);
+        db.execSQL(CREATE_TABLE8);
     }
 
     @Override
@@ -105,6 +119,7 @@ public class DBHandler extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + CUISINE);
         db.execSQL("DROP TABLE IF EXISTS " + INGREDIENT);
         db.execSQL("DROP TABLE IF EXISTS " + STEPS);
+        db.execSQL("DROP TABLE IF EXISTS " + SHOPPINGLIST);
         onCreate(db);
     }
 
@@ -165,6 +180,25 @@ public class DBHandler extends SQLiteOpenHelper {
         cursor.close();
         queryData.setCreatedList(cList);
 
+        query = "SELECT * FROM " + SHOPPINGLIST +
+                " WHERE " + COLUMN_USERNAME + "=\"" + username + "\"";
+        cursor = db.rawQuery(query, null);
+        ArrayList<String> sList= new ArrayList<>();
+        String shoppingListID;
+        if (cursor.moveToFirst()){
+            while (!cursor.isAfterLast()){
+                shoppingListID = cursor.getString(1);
+                sList.add(shoppingListID);
+
+                cursor.moveToNext();
+            }
+        }
+        else{
+            sList = null;
+        }
+        cursor.close();
+        queryData.setShoppingList(sList);
+
         db.close();
 
         return queryData;
@@ -185,6 +219,12 @@ public class DBHandler extends SQLiteOpenHelper {
         if (userData.getCreatedList() != null){
             for (String rid : userData.getCreatedList()){
                 addCreatedRecipes(rid, userData.getName());
+            }
+        }
+
+        if (userData.getShoppingList() != null){
+            for (String rid : userData.getLikedList()){
+                addShoppingRecipes(rid, userData.getName());
             }
         }
 
@@ -213,6 +253,16 @@ public class DBHandler extends SQLiteOpenHelper {
         db.close();
     }
 
+    public void addShoppingRecipes(String rid, String username){
+        ContentValues Values = new ContentValues();
+        Values.put(COLUMN_USERNAME, username);
+        Values.put(COLUMN_RECIPEID, rid);
+
+        SQLiteDatabase db= this.getWritableDatabase();
+        db.insert(SHOPPINGLIST, null, Values);
+        db.close();
+    }
+
     public void updateUser(User userData){ //Replaces user database info with new user info
 
         SQLiteDatabase db = this.getWritableDatabase();
@@ -230,6 +280,9 @@ public class DBHandler extends SQLiteOpenHelper {
         db.delete(CREATEDRECIPES, COLUMN_USERNAME + " = ?",
                 new String[] { String.valueOf(userData.getName()) });
 
+        db.delete(SHOPPINGLIST, COLUMN_USERNAME + " = ?",
+                new String[] { String.valueOf(userData.getName()) });
+
         if (userData.getLikedList() != null){
             for (String rid : userData.getLikedList()){
                 addLikedRecipes(rid, userData.getName());
@@ -239,6 +292,12 @@ public class DBHandler extends SQLiteOpenHelper {
         if (userData.getCreatedList() != null){
             for (String rid : userData.getCreatedList()){
                 addCreatedRecipes(rid, userData.getName());
+            }
+        }
+
+        if (userData.getShoppingList() != null){
+            for (String rid : userData.getShoppingList()){
+                addShoppingRecipes(rid, userData.getName());
             }
         }
 
@@ -258,6 +317,9 @@ public class DBHandler extends SQLiteOpenHelper {
         db.delete(CREATEDRECIPES, COLUMN_USERNAME + " = ?",
                 new String[] { String.valueOf(userData.getName()) });
 
+        db.delete(SHOPPINGLIST, COLUMN_USERNAME + " = ?",
+                new String[] { String.valueOf(userData.getName())});
+
         db.close();
     }
 
@@ -271,12 +333,16 @@ public class DBHandler extends SQLiteOpenHelper {
         String username;
         String query2;
         String query3;
+        String query4;
         Cursor cursor2;
         Cursor cursor3;
+        Cursor cursor4;
         String createdRecipeID;
         ArrayList<String> cList;
         String likedRecipeID;
         ArrayList<String> lList;
+        String shoppingRecipeID;
+        ArrayList<String>sList;
         ArrayList<User> uList = new ArrayList<>();
         if (cursor.moveToFirst()) {
             do { //iterates through every row the query returned
@@ -323,6 +389,24 @@ public class DBHandler extends SQLiteOpenHelper {
                 }
                 cursor3.close();
                 queryData.setCreatedList(cList);
+
+                query4 = "SELECT * FROM " + SHOPPINGLIST +
+                        " WHERE " + COLUMN_USERNAME + "=\"" + username + "\"";
+                cursor4=db.rawQuery(query4, null);
+                sList = new ArrayList<>();
+                if (cursor4.moveToFirst()) {
+                    while (!cursor4.isAfterLast()) {
+                        shoppingRecipeID = cursor4.getString(1);
+                        sList.add(shoppingRecipeID);
+
+                        cursor4.moveToNext();
+                    }
+                }
+                else{
+                    sList = null;
+                }
+                cursor4.close();
+                queryData.setShoppingList(sList);
                 uList.add(queryData);
 
             } while (cursor.moveToNext());
@@ -349,6 +433,14 @@ public class DBHandler extends SQLiteOpenHelper {
             queryData.setNooflikes(cursor.getInt(5));
             queryData.setRecipeimage(cursor.getString(6));
             queryData.setServings(cursor.getInt(7));
+            queryData.setVegetarian(cursor.getInt(8)==1);
+            queryData.setVegan(cursor.getInt(9)==1);
+            queryData.setGlutenFree(cursor.getInt(10)==1);
+            queryData.setDairyFree(cursor.getInt(11)==1);
+            queryData.setHealthy(cursor.getInt(12)==1);
+            queryData.setCheap(cursor.getInt(13)==1);
+            queryData.setPopular(cursor.getInt(14)==1);
+
 
             cursor.close();
         }
@@ -427,6 +519,14 @@ public class DBHandler extends SQLiteOpenHelper {
         values.put(COLUMN_LIKES, recipeData.getNooflikes());
         values.put(COLUMN_RECIPEIMAGE, recipeData.getRecipeimage());
         values.put(COLUMN_SERVINGS, recipeData.getServings());
+        values.put(COLUMN_VEGETARIAN,recipeData.isVegetarian());
+        values.put(COLUMN_VEGAN,recipeData.isVegan());
+        values.put(COLUMN_GLUTENFREE,recipeData.isGlutenFree());
+        values.put(COLUMN_DAIRYFREE,recipeData.isDairyFree());
+        values.put(COLUMN_HEALTHY,recipeData.isHealthy());
+        values.put(COLUMN_CHEAP,recipeData.isCheap());
+        values.put(COLUMN_POPULAR,recipeData.isPopular());
+
 
         if (recipeData.getCuisineList() != null){
             for (String cuisi : recipeData.getCuisineList()){
@@ -494,6 +594,13 @@ public class DBHandler extends SQLiteOpenHelper {
         values.put(COLUMN_LIKES, recipeData.getNooflikes());
         values.put(COLUMN_RECIPEIMAGE, recipeData.getRecipeimage());
         values.put(COLUMN_SERVINGS, recipeData.getServings());
+        values.put(COLUMN_VEGETARIAN,recipeData.isVegetarian());
+        values.put(COLUMN_VEGAN,recipeData.isVegan());
+        values.put(COLUMN_GLUTENFREE,recipeData.isGlutenFree());
+        values.put(COLUMN_DAIRYFREE,recipeData.isDairyFree());
+        values.put(COLUMN_HEALTHY,recipeData.isHealthy());
+        values.put(COLUMN_CHEAP,recipeData.isCheap());
+        values.put(COLUMN_POPULAR,recipeData.isPopular());
 
         db.update(RECIPES, values,COLUMN_RECIPEID + " = ?",
                 new String[] { String.valueOf(recipeData.getRid()) });
@@ -564,6 +671,9 @@ public class DBHandler extends SQLiteOpenHelper {
         return baseListRecipe(query);
     }
 
+
+
+
     public ArrayList<Recipe> baseListRecipe(String inputquery){ //Returns list of Recipes from database with query input
         String query = inputquery;
         SQLiteDatabase db = this.getReadableDatabase();
@@ -598,6 +708,13 @@ public class DBHandler extends SQLiteOpenHelper {
                 queryData.setNooflikes(cursor.getInt(5));
                 queryData.setRecipeimage(cursor.getString(6));
                 queryData.setServings(cursor.getInt(7));
+                queryData.setVegetarian(cursor.getInt(8)==1);
+                queryData.setVegan(cursor.getInt(9)==1);
+                queryData.setGlutenFree(cursor.getInt(10)==1);
+                queryData.setDairyFree(cursor.getInt(11)==1);
+                queryData.setHealthy(cursor.getInt(12)==1);
+                queryData.setCheap(cursor.getInt(13)==1);
+                queryData.setPopular(cursor.getInt(14)==1);
 
 
                 query2 = "SELECT * FROM " + CUISINE +

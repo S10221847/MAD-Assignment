@@ -35,6 +35,7 @@ public class RecipeActivity extends AppCompatActivity {
     FBHandler fbHandler;
     boolean like_ornot;
     String activity;
+    boolean shopping_ornot;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,8 +56,10 @@ public class RecipeActivity extends AppCompatActivity {
         TextView duration=findViewById(R.id.duration);
         ImageView likestatus=findViewById(R.id.likestatus);
         ImageView back_button=findViewById(R.id.back_button);
+        ImageView shoppingList=findViewById(R.id.shoppingList);
 
         like_ornot=LoginPage.mainUser.getLikedList().contains(recipeID);
+        shopping_ornot=LoginPage.mainUser.getShoppingList().contains(recipeID);
         //Check if user already liked post
         if(LoginPage.mainUser.getLikedList().contains(recipeID)){   //If user already liked post, heart is filled up
             likestatus.setImageURI(Uri.parse("android.resource://"+getPackageName()+"/"+R.drawable.liked));
@@ -64,6 +67,15 @@ public class RecipeActivity extends AppCompatActivity {
         else{ //If user havent liked post
             likestatus.setImageURI(Uri.parse("android.resource://"+getPackageName()+"/"+R.drawable.not_liked));
         }
+
+        //Check if user already added to shopping list
+        if(LoginPage.mainUser.getShoppingList().contains(recipeID)){
+            shoppingList.setImageURI(Uri.parse("android.resource://"+getPackageName()+"/"+R.drawable.addedshopping));
+        }
+        else{
+            shoppingList.setImageURI(Uri.parse("android.resource://"+getPackageName()+"/"+R.drawable.add_tolist));
+        }
+
 
 
 
@@ -137,6 +149,25 @@ public class RecipeActivity extends AppCompatActivity {
                 fbHandler.updateRecipe(r);
             }
         });
+
+        shoppingList.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(LoginPage.mainUser.getShoppingList().contains(recipeID)){
+                    (LoginPage.mainUser.getShoppingList()).remove(recipeID);
+                    shoppingList.setImageURI(Uri.parse("android.resource://"+getPackageName()+"/"+R.drawable.add_tolist));
+                }
+                else{
+                    (LoginPage.mainUser.getShoppingList()).add(recipeID);
+                    shoppingList.setImageURI(Uri.parse("android.resource://"+getPackageName()+"/"+R.drawable.addedshopping));
+                }
+                dbHandler.updateUser(LoginPage.mainUser);
+                fbHandler.addUpdateUser(LoginPage.mainUser);
+
+            }
+        });
+
+
         back_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

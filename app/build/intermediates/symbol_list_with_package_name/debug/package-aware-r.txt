@@ -2461,6 +2461,8 @@ drawable abc_textfield_search_activated_mtrl_alpha
 drawable abc_textfield_search_default_mtrl_alpha
 drawable abc_textfield_search_material
 drawable abc_vector_test
+drawable add_tolist
+drawable addedshopping
 drawable applogo
 drawable avd_hide_password
 drawable avd_show_password
@@ -3050,6 +3052,7 @@ id selected
 id selection_type
 id sharedValueSet
 id sharedValueUnset
+id shoppingList
 id shortcut
 id showCustom
 id showHome

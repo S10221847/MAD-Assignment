@@ -45,10 +45,13 @@ public final class ActivityRecipeBinding implements ViewBinding {
   @NonNull
   public final TextView rSteps;
 
+  @NonNull
+  public final ImageView shoppingList;
+
   private ActivityRecipeBinding(@NonNull ConstraintLayout rootView, @NonNull Button about,
       @NonNull ImageView backButton, @NonNull TextView duration, @NonNull Button ingredStepsButton,
       @NonNull ImageView likestatus, @NonNull ImageView rImage, @NonNull TextView rName,
-      @NonNull TextView rSteps) {
+      @NonNull TextView rSteps, @NonNull ImageView shoppingList) {
     this.rootView = rootView;
     this.about = about;
     this.backButton = backButton;
@@ -58,6 +61,7 @@ public final class ActivityRecipeBinding implements ViewBinding {
     this.rImage = rImage;
     this.rName = rName;
     this.rSteps = rSteps;
+    this.shoppingList = shoppingList;
   }
 
   @Override
@@ -135,8 +139,14 @@ public final class ActivityRecipeBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.shoppingList;
+      ImageView shoppingList = ViewBindings.findChildViewById(rootView, id);
+      if (shoppingList == null) {
+        break missingId;
+      }
+
       return new ActivityRecipeBinding((ConstraintLayout) rootView, about, backButton, duration,
-          ingredStepsButton, likestatus, rImage, rName, rSteps);
+          ingredStepsButton, likestatus, rImage, rName, rSteps, shoppingList);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));
