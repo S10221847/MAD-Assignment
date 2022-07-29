@@ -136,6 +136,7 @@ public class EditProfile extends AppCompatActivity {
                                     LoginPage.mainUser.setName(editName.getText().toString());
                                     LoginPage.mainUser.setBio(editBio.getText().toString());
                                     fbHandler.addUpdateUser(LoginPage.mainUser);
+                                    dbHandler.updateUser(LoginPage.mainUser);
                                 }
                             }).addOnFailureListener(new OnFailureListener() {
                                 @Override
@@ -161,6 +162,7 @@ public class EditProfile extends AppCompatActivity {
             LoginPage.mainUser.setName(editName.getText().toString());
             LoginPage.mainUser.setBio(editBio.getText().toString());
             fbHandler.addUpdateUser(LoginPage.mainUser);
+            dbHandler.updateUser(LoginPage.mainUser);
         }
     }
 }

@@ -20,12 +20,12 @@ public final class FragmentUserRecipeBinding implements ViewBinding {
   private final RelativeLayout rootView;
 
   @NonNull
-  public final RecyclerView rvNumbers;
+  public final RecyclerView rvPersonal;
 
   private FragmentUserRecipeBinding(@NonNull RelativeLayout rootView,
-      @NonNull RecyclerView rvNumbers) {
+      @NonNull RecyclerView rvPersonal) {
     this.rootView = rootView;
-    this.rvNumbers = rvNumbers;
+    this.rvPersonal = rvPersonal;
   }
 
   @Override
@@ -55,13 +55,13 @@ public final class FragmentUserRecipeBinding implements ViewBinding {
     // This is done to optimize the compiled bytecode for size and performance.
     int id;
     missingId: {
-      id = R.id.rvNumbers;
-      RecyclerView rvNumbers = ViewBindings.findChildViewById(rootView, id);
-      if (rvNumbers == null) {
+      id = R.id.rvPersonal;
+      RecyclerView rvPersonal = ViewBindings.findChildViewById(rootView, id);
+      if (rvPersonal == null) {
         break missingId;
       }
 
-      return new FragmentUserRecipeBinding((RelativeLayout) rootView, rvNumbers);
+      return new FragmentUserRecipeBinding((RelativeLayout) rootView, rvPersonal);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

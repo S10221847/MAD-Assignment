@@ -2694,6 +2694,7 @@ id cache_measures
 id callMeasure
 id cancel_button
 id cardView
+id cardView2
 id carryVelocity
 id center
 id centerCrop
@@ -2786,6 +2787,8 @@ id editBio
 id editCancel
 id editName
 id editPassword
+id editPasswordProfile
+id editPasswordProfileAgain
 id editPic
 id editPicButton
 id editProfile
@@ -2884,7 +2887,10 @@ id leftToRight
 id legacy
 id light
 id liked
+id likedRImage
+id likedRName
 id likedReci
+id liked_recipe_layout
 id likestatus
 id line1
 id line3
@@ -3016,7 +3022,8 @@ id right_icon
 id right_side
 id rounded
 id row_index_key
-id rvNumbers
+id rvLiked
+id rvPersonal
 id save_non_transition_alpha
 id save_overlay_view
 id sawtooth
@@ -3108,6 +3115,8 @@ id textSpacerNoTitle
 id textStart
 id textTop
 id textView
+id textView10
+id textView11
 id textView14
 id textView15
 id textView2
@@ -3297,6 +3306,7 @@ layout fragment_liked_recipe
 layout fragment_main
 layout fragment_profile
 layout fragment_user_recipe
+layout liked_recipe_layout
 layout m3_alert_dialog
 layout m3_alert_dialog_actions
 layout m3_alert_dialog_title

@@ -48,6 +48,7 @@ id buttonCreate
 id buttonCreateRecipe
 id buttonImage
 id cardView
+id cardView2
 id clearFilter
 id coordinatorLayout
 id coordinatorLayout2
@@ -65,6 +66,8 @@ id editBio
 id editCancel
 id editName
 id editPassword
+id editPasswordProfile
+id editPasswordProfileAgain
 id editPic
 id editPicButton
 id editProfile
@@ -95,7 +98,10 @@ id isPopular
 id isVegan
 id isVegetarian
 id liked
+id likedRImage
+id likedRName
 id likedReci
+id liked_recipe_layout
 id likestatus
 id linearLayout
 id linearLayout2
@@ -115,12 +121,15 @@ id rName
 id rName_popup
 id rSteps
 id recipeName
-id rvNumbers
+id rvLiked
+id rvPersonal
 id searchbar
 id stepList
 id test
 id test2
 id textView
+id textView10
+id textView11
 id textView14
 id textView15
 id textView2
@@ -153,6 +162,7 @@ layout fragment_liked_recipe
 layout fragment_main
 layout fragment_profile
 layout fragment_user_recipe
+layout liked_recipe_layout
 layout online_recipes
 layout personal_recipe_layout
 layout recipedesc_popup

@@ -7,10 +7,10 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.viewbinding.ViewBinding;
 import androidx.viewbinding.ViewBindings;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -21,7 +21,7 @@ import sg.edu.np.mad.mad_assignment_cookverse.R;
 
 public final class ActivityEditProfileBinding implements ViewBinding {
   @NonNull
-  private final ConstraintLayout rootView;
+  private final ScrollView rootView;
 
   @NonNull
   public final EditText editBio;
@@ -33,6 +33,12 @@ public final class ActivityEditProfileBinding implements ViewBinding {
   public final EditText editName;
 
   @NonNull
+  public final EditText editPasswordProfile;
+
+  @NonNull
+  public final EditText editPasswordProfileAgain;
+
+  @NonNull
   public final ImageView editPic;
 
   @NonNull
@@ -40,6 +46,12 @@ public final class ActivityEditProfileBinding implements ViewBinding {
 
   @NonNull
   public final Button editSave;
+
+  @NonNull
+  public final TextView textView10;
+
+  @NonNull
+  public final TextView textView11;
 
   @NonNull
   public final TextView textView3;
@@ -50,17 +62,23 @@ public final class ActivityEditProfileBinding implements ViewBinding {
   @NonNull
   public final TextView textView6;
 
-  private ActivityEditProfileBinding(@NonNull ConstraintLayout rootView, @NonNull EditText editBio,
-      @NonNull Button editCancel, @NonNull EditText editName, @NonNull ImageView editPic,
+  private ActivityEditProfileBinding(@NonNull ScrollView rootView, @NonNull EditText editBio,
+      @NonNull Button editCancel, @NonNull EditText editName, @NonNull EditText editPasswordProfile,
+      @NonNull EditText editPasswordProfileAgain, @NonNull ImageView editPic,
       @NonNull FloatingActionButton editPicButton, @NonNull Button editSave,
-      @NonNull TextView textView3, @NonNull TextView textView5, @NonNull TextView textView6) {
+      @NonNull TextView textView10, @NonNull TextView textView11, @NonNull TextView textView3,
+      @NonNull TextView textView5, @NonNull TextView textView6) {
     this.rootView = rootView;
     this.editBio = editBio;
     this.editCancel = editCancel;
     this.editName = editName;
+    this.editPasswordProfile = editPasswordProfile;
+    this.editPasswordProfileAgain = editPasswordProfileAgain;
     this.editPic = editPic;
     this.editPicButton = editPicButton;
     this.editSave = editSave;
+    this.textView10 = textView10;
+    this.textView11 = textView11;
     this.textView3 = textView3;
     this.textView5 = textView5;
     this.textView6 = textView6;
@@ -68,7 +86,7 @@ public final class ActivityEditProfileBinding implements ViewBinding {
 
   @Override
   @NonNull
-  public ConstraintLayout getRoot() {
+  public ScrollView getRoot() {
     return rootView;
   }
 
@@ -111,6 +129,18 @@ public final class ActivityEditProfileBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.editPasswordProfile;
+      EditText editPasswordProfile = ViewBindings.findChildViewById(rootView, id);
+      if (editPasswordProfile == null) {
+        break missingId;
+      }
+
+      id = R.id.editPasswordProfileAgain;
+      EditText editPasswordProfileAgain = ViewBindings.findChildViewById(rootView, id);
+      if (editPasswordProfileAgain == null) {
+        break missingId;
+      }
+
       id = R.id.editPic;
       ImageView editPic = ViewBindings.findChildViewById(rootView, id);
       if (editPic == null) {
@@ -126,6 +156,18 @@ public final class ActivityEditProfileBinding implements ViewBinding {
       id = R.id.editSave;
       Button editSave = ViewBindings.findChildViewById(rootView, id);
       if (editSave == null) {
+        break missingId;
+      }
+
+      id = R.id.textView10;
+      TextView textView10 = ViewBindings.findChildViewById(rootView, id);
+      if (textView10 == null) {
+        break missingId;
+      }
+
+      id = R.id.textView11;
+      TextView textView11 = ViewBindings.findChildViewById(rootView, id);
+      if (textView11 == null) {
         break missingId;
       }
 
@@ -147,8 +189,9 @@ public final class ActivityEditProfileBinding implements ViewBinding {
         break missingId;
       }
 
-      return new ActivityEditProfileBinding((ConstraintLayout) rootView, editBio, editCancel,
-          editName, editPic, editPicButton, editSave, textView3, textView5, textView6);
+      return new ActivityEditProfileBinding((ScrollView) rootView, editBio, editCancel, editName,
+          editPasswordProfile, editPasswordProfileAgain, editPic, editPicButton, editSave,
+          textView10, textView11, textView3, textView5, textView6);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

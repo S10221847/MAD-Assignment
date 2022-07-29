@@ -140,16 +140,17 @@ public class RecipeActivity extends AppCompatActivity {
         back_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Intent intent=new Intent();
                 if (activity.equals("home")){
-                    Intent intent = new Intent();
                     setResult(321, intent);
-                    finish();
                 }
                 else if (activity.equals("discover")){
-                    Intent intent=new Intent();
                     setResult(456,intent);
-                    finish();
                 }
+                else if (activity.equals("profile")){
+                    setResult(123, intent);
+                }
+                finish();
 
 
 

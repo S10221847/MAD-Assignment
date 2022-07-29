@@ -1,6 +1,9 @@
 package sg.edu.np.mad.mad_assignment_cookverse;
 
+import static android.content.Context.MODE_PRIVATE;
+
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -37,7 +40,15 @@ import sg.edu.np.mad.mad_assignment_cookverse.databinding.FragmentProfileBinding
  */
 public class ProfileFragment extends Fragment {
     FragmentProfileBinding binding;
-    ArrayList<Recipe> personalRecipe = new ArrayList<>();
+    public static ArrayList<Recipe> allRecipe = new ArrayList<>();
+    public static ArrayList<Recipe> personalRecipe = new ArrayList<>();
+    public static ArrayList<Recipe> likedRecipe = new ArrayList<>();
+    public static ArrayList<String> personalStringRecipe = new ArrayList<>();
+    public static ArrayList<String> likedStringRecipe = new ArrayList<>();
+    public String GLOBAL_PREF = "MyPrefs";
+    public String DATABASE_VERSION = "MyDatabaseVersion";
+    DBHandler dbHandler;
+    SharedPreferences sharedPreferences;
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -101,7 +112,7 @@ public class ProfileFragment extends Fragment {
         currentUser.setBio(userbio);*/
 
         //Find the current user among all the users in database
-        Query query2 = FirebaseDatabase.getInstance().getReference().child("Recipes");
+        /*Query query2 = FirebaseDatabase.getInstance().getReference().child("Recipes");
         ValueEventListener eventListener2 = new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -118,9 +129,27 @@ public class ProfileFragment extends Fragment {
                 Log.v("Main", error.getMessage());
             }
         };
-        query2.addValueEventListener(eventListener2);
+        query2.addValueEventListener(eventListener2);*/
+        sharedPreferences = this.getActivity().getSharedPreferences(GLOBAL_PREF, MODE_PRIVATE);
+        int sharedDBVersion = sharedPreferences.getInt(DATABASE_VERSION, 2);
+        dbHandler = new DBHandler(getActivity(), null, null, sharedDBVersion);
+        allRecipe = dbHandler.listAllRecipe();
+        for (Recipe r:allRecipe) {//Need to edit if there's email verification
+            if (LoginPage.mainUser.getCreatedList().contains(r.getRid()) &
+                    !personalStringRecipe.contains(r.getRid())){
+                personalStringRecipe.add(r.getRid());
+                personalRecipe.add(r);
+            }
+            else if (LoginPage.mainUser.getLikedList().contains(r.getRid()) &
+                    !likedStringRecipe.contains(r.getRid())){
+                likedStringRecipe.add(r.getRid());
+                likedRecipe.add(r);
+            }
+        }
         currentName.setText(LoginPage.mainUser.getName());
         currentBio.setText(LoginPage.mainUser.getBio());
+        personalR.setText(String.valueOf(personalRecipe.size()));
+        likedR.setText(String.valueOf(likedRecipe.size()));
         ImageView myImage =rootView.findViewById(R.id.ProfileImage);
         if (LoginPage.mainUser.getUserImage() != null){
             new ImageLoadTask(LoginPage.mainUser.getUserImage(), myImage).execute();

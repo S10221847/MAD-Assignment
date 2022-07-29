@@ -1,11 +1,14 @@
 package sg.edu.np.mad.mad_assignment_cookverse;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -14,7 +17,7 @@ import androidx.fragment.app.Fragment;
  */
 //Child fragment of ProfileFragment
 public class LikedRecipeFragment extends Fragment {
-
+    LikedRecipeAdapter adapter;
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -59,6 +62,23 @@ public class LikedRecipeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_liked_recipe, container, false);
+        View view = inflater.inflate(R.layout.fragment_liked_recipe, container, false);
+        LikedRecipeAdapter.ItemClickListener itemClickListener = this::onItemClick;
+        RecyclerView recyclerView = view.findViewById(R.id.rvLiked);
+        int numberOfColumns = 3;
+        recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), numberOfColumns));
+        adapter = new LikedRecipeAdapter(getActivity(), ProfileFragment.likedRecipe);
+        adapter.setClickListener(itemClickListener);
+        recyclerView.setAdapter(adapter);
+        return view;
+    }
+    public void onItemClick(View view, int position) {
+        Intent intent = new Intent(getActivity().getBaseContext(),
+                RecipeActivity.class);
+        String rid  = ProfileFragment.likedRecipe.get(position).getRid();
+
+        intent.putExtra("recipeID", rid);
+        intent.putExtra("activity","profile");
+        MainFragment.activityResultLauncher.launch(intent);
     }
 }
