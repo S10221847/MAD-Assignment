@@ -19,6 +19,7 @@ public class MainFragment extends AppCompatActivity {
     DBHandler dbHandler = new DBHandler(this, null, null, 1);
     Bundle bundle = new Bundle();
     public static ActivityResultLauncher<Intent> activityResultLauncher;
+    public static int HomeSeed;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,9 +37,8 @@ public class MainFragment extends AppCompatActivity {
                             replaceFragment(new ProfileFragment());
                         }
                         else if (result.getResultCode() == 321) {
+                            HomeFragment.cameFromRecipe = true;
                             replaceFragment(new HomeFragment());
-
-
                         }
 
                     }

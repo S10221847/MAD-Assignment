@@ -76,7 +76,7 @@ public class LikedRecipeFragment extends Fragment {
         Intent intent = new Intent(getActivity().getBaseContext(),
                 RecipeActivity.class);
         String rid  = ProfileFragment.likedRecipe.get(position).getRid();
-
+        ProfileFragment.personalOrLiked = "liked";
         intent.putExtra("recipeID", rid);
         intent.putExtra("activity","profile");
         MainFragment.activityResultLauncher.launch(intent);

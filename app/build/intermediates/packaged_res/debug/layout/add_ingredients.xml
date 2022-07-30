@@ -12,17 +12,38 @@
         android:layout_width="280dp"
         android:layout_height="wrap_content"
         android:hint="Ingredients"
-        android:textColorHint="@color/black"
+        android:ems="10"
         tools:layout_editor_absoluteY="5dp"></EditText>
 
-    <ImageView
+    <Button
         android:id="@+id/deleteIngredient"
-        android:layout_width="20dp"
-        android:layout_height="30dp"
+        android:layout_width="50dp"
+        android:layout_height="53dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="4dp"
+        android:backgroundTint="@color/white"
+        android:text="x"
+        android:textColor="@color/cardview_dark_background"
+        android:textSize="20dp"
+        android:textStyle="bold"
         android:visibility="invisible"
-        app:srcCompat="@android:drawable/btn_dialog"
-        tools:layout_editor_absoluteX="286dp"
-        tools:layout_editor_absoluteY="16dp" />
+        app:layout_constraintStart_toEndOf="@+id/addIngredientsButton"
+        app:layout_constraintTop_toTopOf="parent"></Button>
+
+    <Button
+        android:id="@+id/addIngredientsButton"
+        android:layout_width="50dp"
+        android:layout_height="53dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="4dp"
+        android:backgroundTint="@color/white"
+        android:text="+"
+        android:textColor="@color/cardview_dark_background"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:visibility="visible"
+        app:layout_constraintStart_toEndOf="@+id/addIngredient"
+        app:layout_constraintTop_toTopOf="parent"></Button>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

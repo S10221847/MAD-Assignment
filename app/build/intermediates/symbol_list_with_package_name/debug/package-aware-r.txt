@@ -3015,6 +3015,7 @@ id rName_popup
 id rSteps
 id radio
 id ratio
+id recipeEdit
 id recipeName
 id rectangles
 id reverseSawtooth
@@ -3052,6 +3053,7 @@ id selected
 id selection_type
 id sharedValueSet
 id sharedValueUnset
+id shopList
 id shoppingList
 id shortcut
 id showCustom
@@ -3308,6 +3310,7 @@ layout fragment_home
 layout fragment_liked_recipe
 layout fragment_main
 layout fragment_profile
+layout fragment_shopping_list
 layout fragment_user_recipe
 layout liked_recipe_layout
 layout m3_alert_dialog

@@ -122,10 +122,12 @@ id rImage
 id rName
 id rName_popup
 id rSteps
+id recipeEdit
 id recipeName
 id rvLiked
 id rvPersonal
 id searchbar
+id shopList
 id shoppingList
 id stepList
 id test
@@ -164,6 +166,7 @@ layout fragment_home
 layout fragment_liked_recipe
 layout fragment_main
 layout fragment_profile
+layout fragment_shopping_list
 layout fragment_user_recipe
 layout liked_recipe_layout
 layout online_recipes

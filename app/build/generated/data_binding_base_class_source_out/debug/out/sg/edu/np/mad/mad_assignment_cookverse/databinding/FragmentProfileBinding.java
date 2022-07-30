@@ -7,10 +7,10 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.viewbinding.ViewBinding;
 import androidx.viewbinding.ViewBindings;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -21,7 +21,7 @@ import sg.edu.np.mad.mad_assignment_cookverse.R;
 
 public final class FragmentProfileBinding implements ViewBinding {
   @NonNull
-  private final ConstraintLayout rootView;
+  private final ScrollView rootView;
 
   @NonNull
   public final FrameLayout FRAGMENTPLACEHOLDER;
@@ -42,7 +42,7 @@ public final class FragmentProfileBinding implements ViewBinding {
   public final TextView likedReci;
 
   @NonNull
-  public final ConstraintLayout linearLayout;
+  public final ScrollView linearLayout;
 
   @NonNull
   public final TextView personalReci;
@@ -56,12 +56,12 @@ public final class FragmentProfileBinding implements ViewBinding {
   @NonNull
   public final TextView userName;
 
-  private FragmentProfileBinding(@NonNull ConstraintLayout rootView,
+  private FragmentProfileBinding(@NonNull ScrollView rootView,
       @NonNull FrameLayout FRAGMENTPLACEHOLDER, @NonNull ImageView ProfileImage,
       @NonNull TextView bio, @NonNull BottomNavigationView bottomNavigationView2,
-      @NonNull Button editProfile, @NonNull TextView likedReci,
-      @NonNull ConstraintLayout linearLayout, @NonNull TextView personalReci,
-      @NonNull TextView textView2, @NonNull TextView textView7, @NonNull TextView userName) {
+      @NonNull Button editProfile, @NonNull TextView likedReci, @NonNull ScrollView linearLayout,
+      @NonNull TextView personalReci, @NonNull TextView textView2, @NonNull TextView textView7,
+      @NonNull TextView userName) {
     this.rootView = rootView;
     this.FRAGMENTPLACEHOLDER = FRAGMENTPLACEHOLDER;
     this.ProfileImage = ProfileImage;
@@ -78,7 +78,7 @@ public final class FragmentProfileBinding implements ViewBinding {
 
   @Override
   @NonNull
-  public ConstraintLayout getRoot() {
+  public ScrollView getRoot() {
     return rootView;
   }
 
@@ -139,7 +139,7 @@ public final class FragmentProfileBinding implements ViewBinding {
         break missingId;
       }
 
-      ConstraintLayout linearLayout = (ConstraintLayout) rootView;
+      ScrollView linearLayout = (ScrollView) rootView;
 
       id = R.id.personalReci;
       TextView personalReci = ViewBindings.findChildViewById(rootView, id);
@@ -165,9 +165,9 @@ public final class FragmentProfileBinding implements ViewBinding {
         break missingId;
       }
 
-      return new FragmentProfileBinding((ConstraintLayout) rootView, FRAGMENTPLACEHOLDER,
-          ProfileImage, bio, bottomNavigationView2, editProfile, likedReci, linearLayout,
-          personalReci, textView2, textView7, userName);
+      return new FragmentProfileBinding((ScrollView) rootView, FRAGMENTPLACEHOLDER, ProfileImage,
+          bio, bottomNavigationView2, editProfile, likedReci, linearLayout, personalReci, textView2,
+          textView7, userName);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));
