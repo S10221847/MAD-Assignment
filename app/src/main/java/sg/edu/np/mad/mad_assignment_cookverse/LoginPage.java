@@ -75,7 +75,7 @@ public class LoginPage extends AppCompatActivity {
                         Intent myIntent = new Intent(LoginPage.this, MainFragment.class);
                         /*myIntent.putExtra("username", username);
                         myIntent.putExtra("image", userDBData.getUserImage());*/
-                        myIntent.putExtra("activity", "loginpage");
+                        //myIntent.putExtra("activity", "loginpage");
                         mainUser.setName(username);
                         mainUser.setBio(userDBData.getBio());
                         mainUser.setUserImage(userDBData.getUserImage());

@@ -57,6 +57,7 @@ public class RecipeActivity extends AppCompatActivity {
         ImageView likestatus=findViewById(R.id.likestatus);
         ImageView back_button=findViewById(R.id.back_button);
         ImageView shoppingList=findViewById(R.id.shoppingList);
+        ImageView recipeEdit = findViewById(R.id.recipeEdit);
 
         like_ornot=LoginPage.mainUser.getLikedList().contains(recipeID);
         shopping_ornot=LoginPage.mainUser.getShoppingList().contains(recipeID);
@@ -128,6 +129,18 @@ public class RecipeActivity extends AppCompatActivity {
                 }
             }
         });
+        if (LoginPage.mainUser.getCreatedList().contains(recipeID)){
+            recipeEdit.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent1 = new Intent(RecipeActivity.this, EditProfile.class);
+                    startActivity(intent1);
+                }
+            });
+        }
+        else {
+            recipeEdit.setVisibility(View.GONE);
+        }
         likestatus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

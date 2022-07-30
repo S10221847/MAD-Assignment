@@ -1,23 +1,19 @@
 package sg.edu.np.mad.mad_assignment_cookverse;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link LikedRecipeFragment#newInstance} factory method to
+ * Use the {@link ShoppingListFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-//Child fragment of ProfileFragment
-public class LikedRecipeFragment extends Fragment {
-    LikedRecipeAdapter adapter;
+public class ShoppingListFragment extends Fragment {
+
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -27,7 +23,7 @@ public class LikedRecipeFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public LikedRecipeFragment() {
+    public ShoppingListFragment() {
         // Required empty public constructor
     }
 
@@ -37,11 +33,11 @@ public class LikedRecipeFragment extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment LikedRecipeFragment.
+     * @return A new instance of fragment ShoppingListFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static LikedRecipeFragment newInstance(String param1, String param2) {
-        LikedRecipeFragment fragment = new LikedRecipeFragment();
+    public static ShoppingListFragment newInstance(String param1, String param2) {
+        ShoppingListFragment fragment = new ShoppingListFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -62,23 +58,6 @@ public class LikedRecipeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_liked_recipe, container, false);
-        LikedRecipeAdapter.ItemClickListener itemClickListener = this::onItemClick;
-        RecyclerView recyclerView = view.findViewById(R.id.rvLiked);
-        int numberOfColumns = 3;
-        recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), numberOfColumns));
-        adapter = new LikedRecipeAdapter(getActivity(), ProfileFragment.likedRecipe);
-        adapter.setClickListener(itemClickListener);
-        recyclerView.setAdapter(adapter);
-        return view;
-    }
-    public void onItemClick(View view, int position) {
-        Intent intent = new Intent(getActivity().getBaseContext(),
-                RecipeActivity.class);
-        String rid  = ProfileFragment.likedRecipe.get(position).getRid();
-        ProfileFragment.personalOrLiked = "liked";
-        intent.putExtra("recipeID", rid);
-        intent.putExtra("activity","profile");
-        MainFragment.activityResultLauncher.launch(intent);
+        return inflater.inflate(R.layout.fragment_shopping_list, container, false);
     }
 }

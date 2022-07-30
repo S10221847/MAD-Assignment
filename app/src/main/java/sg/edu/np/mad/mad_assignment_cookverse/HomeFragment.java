@@ -5,39 +5,13 @@ import static android.content.Context.MODE_PRIVATE;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.Volley;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
-import com.google.firebase.database.ValueEventListener;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import sg.edu.np.mad.mad_assignment_cookverse.databinding.FragmentProfileBinding;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -63,7 +37,8 @@ public class HomeFragment extends Fragment implements RecyclerViewInterface,User
     DBHandler dbHandler;
     public static List<Recipe>oList=new ArrayList<>();
     public static List<Recipe>uList=new ArrayList<>();
-
+    public static int seed = new Random().nextInt();;
+    public static Boolean cameFromRecipe = false;
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -110,7 +85,6 @@ public class HomeFragment extends Fragment implements RecyclerViewInterface,User
                              Bundle savedInstanceState) {
         RecyclerViewInterface rvi = this;
         UserRecyclerViewInterface urvi = this;
-
 
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_home, container, false);
@@ -266,20 +240,25 @@ public class HomeFragment extends Fragment implements RecyclerViewInterface,User
         RecyclerView orecyclerView = view.findViewById(R.id.onlinerecRecyclerView);   //instantiate recycler view for ONLINE RECIPES
         orecyclerView.setHasFixedSize(true);
         oList=dbHandler.listOnlineRecipe();
-
-        Collections.shuffle(oList);
-
-        oAdapter = new OnlineRecipesAdapter(oList, rvi, dataOriginal);  //ONLINE RECIPE ADAPTER
-        LinearLayoutManager oLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
-        orecyclerView.setLayoutManager(oLayoutManager);
-        orecyclerView.setAdapter(oAdapter);
-
         //RECYCLER VIEW FOR USER CREATED RECIPES (user.id of recipes=null)
         RecyclerView urecyclerView=view.findViewById(R.id.usercreatedRecyclerView);
         urecyclerView.setHasFixedSize(true);
         uList=dbHandler.listUserRecipe();
 
-        Collections.shuffle(uList);
+        if (cameFromRecipe == false){
+            seed = new Random().nextInt();
+            Collections.shuffle(oList, new Random(seed));
+            Collections.shuffle(uList, new Random(seed));
+        }
+        else{
+            Collections.shuffle(oList, new Random(MainFragment.HomeSeed));
+            Collections.shuffle(uList, new Random(MainFragment.HomeSeed));
+        }
+        cameFromRecipe = false;
+        oAdapter = new OnlineRecipesAdapter(oList, rvi, dataOriginal);  //ONLINE RECIPE ADAPTER
+        LinearLayoutManager oLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
+        orecyclerView.setLayoutManager(oLayoutManager);
+        orecyclerView.setAdapter(oAdapter);
 
         uAdapter=new UserCreatedAdapter(uList,this, dataOriginal);
         LinearLayoutManager uLayoutManager=new LinearLayoutManager(getActivity(),LinearLayoutManager.HORIZONTAL,false);
@@ -341,7 +320,7 @@ public class HomeFragment extends Fragment implements RecyclerViewInterface,User
         Intent intent = new Intent(getActivity().getBaseContext(),
                 RecipeActivity.class);
         String rid  = oAdapter.getRid(pos);
-
+        MainFragment.HomeSeed = seed;
         intent.putExtra("recipeID", rid);
         intent.putExtra("activity","home");
         MainFragment.activityResultLauncher.launch(intent);
@@ -351,11 +330,10 @@ public class HomeFragment extends Fragment implements RecyclerViewInterface,User
         Intent intent = new Intent(getActivity().getBaseContext(),
                 RecipeActivity.class);
         String rid = uAdapter.getRid(pos);
-
+        MainFragment.HomeSeed = seed;
         intent.putExtra("recipeID", rid);
         intent.putExtra("activity","home");
         MainFragment.activityResultLauncher.launch(intent);
-
 
     }
 
