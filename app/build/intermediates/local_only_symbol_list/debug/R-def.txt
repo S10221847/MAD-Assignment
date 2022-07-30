@@ -121,12 +121,14 @@ id personalReci
 id personal_recipe_layout
 id profile
 id progressBar
+id progressBar2
 id rImage
 id rName
 id rName_popup
 id rSteps
 id recipeEdit
 id recipeName
+id refreshImage
 id rvLiked
 id rvPersonal
 id searchbar

@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.util.Log;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -65,6 +66,28 @@ public class FBHandler {
                     }
                 }
                 Intent myIntent = new Intent(context, LoginPage.class);
+                context.startActivity(myIntent);
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Log.v(TAG, error.getMessage());
+            }
+        };
+        query.addListenerForSingleValueEvent(eventListener);
+    }
+
+    public void refreshFBRecipeData(){
+        Query query = FirebaseDatabase.getInstance().getReference().child("Recipes");
+        ValueEventListener eventListener = new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()) {
+                    for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                        Recipe r = snapshot.getValue(Recipe.class);
+                        dbHandler.addRecipe(r);
+                    }
+                }
+                Intent myIntent = new Intent(context, MainFragment.class);
                 context.startActivity(myIntent);
             }
             @Override

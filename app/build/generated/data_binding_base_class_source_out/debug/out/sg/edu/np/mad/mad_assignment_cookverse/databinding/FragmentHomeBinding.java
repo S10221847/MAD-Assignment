@@ -4,6 +4,8 @@ package sg.edu.np.mad.mad_assignment_cookverse.databinding;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -27,6 +29,12 @@ public final class FragmentHomeBinding implements ViewBinding {
   public final RecyclerView onlinerecRecyclerView;
 
   @NonNull
+  public final ProgressBar progressBar2;
+
+  @NonNull
+  public final ImageView refreshImage;
+
+  @NonNull
   public final TextView textView14;
 
   @NonNull
@@ -40,11 +48,14 @@ public final class FragmentHomeBinding implements ViewBinding {
 
   private FragmentHomeBinding(@NonNull ConstraintLayout rootView,
       @NonNull ConstraintLayout frameLayout, @NonNull RecyclerView onlinerecRecyclerView,
+      @NonNull ProgressBar progressBar2, @NonNull ImageView refreshImage,
       @NonNull TextView textView14, @NonNull TextView textView15, @NonNull TextView textView3,
       @NonNull RecyclerView usercreatedRecyclerView) {
     this.rootView = rootView;
     this.frameLayout = frameLayout;
     this.onlinerecRecyclerView = onlinerecRecyclerView;
+    this.progressBar2 = progressBar2;
+    this.refreshImage = refreshImage;
     this.textView14 = textView14;
     this.textView15 = textView15;
     this.textView3 = textView3;
@@ -86,6 +97,18 @@ public final class FragmentHomeBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.progressBar2;
+      ProgressBar progressBar2 = ViewBindings.findChildViewById(rootView, id);
+      if (progressBar2 == null) {
+        break missingId;
+      }
+
+      id = R.id.refreshImage;
+      ImageView refreshImage = ViewBindings.findChildViewById(rootView, id);
+      if (refreshImage == null) {
+        break missingId;
+      }
+
       id = R.id.textView14;
       TextView textView14 = ViewBindings.findChildViewById(rootView, id);
       if (textView14 == null) {
@@ -111,7 +134,8 @@ public final class FragmentHomeBinding implements ViewBinding {
       }
 
       return new FragmentHomeBinding((ConstraintLayout) rootView, frameLayout,
-          onlinerecRecyclerView, textView14, textView15, textView3, usercreatedRecyclerView);
+          onlinerecRecyclerView, progressBar2, refreshImage, textView14, textView15, textView3,
+          usercreatedRecyclerView);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

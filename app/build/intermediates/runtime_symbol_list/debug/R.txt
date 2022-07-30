@@ -3009,6 +3009,7 @@ int id position 0x7f0901b0
 int id postLayout 0x7f0901b1
 int id profile 0x7f0901b2
 int id progressBar 0x7f0901b3
+int id progressBar2 0x7f090265
 int id progress_circular 0x7f0901b4
 int id progress_horizontal 0x7f0901b5
 int id rImage 0x7f0901b6
@@ -3020,6 +3021,7 @@ int id ratio 0x7f0901bb
 int id recipeEdit 0x7f0901bc
 int id recipeName 0x7f0901bd
 int id rectangles 0x7f0901be
+int id refreshImage 0x7f090266
 int id reverseSawtooth 0x7f0901bf
 int id right 0x7f0901c0
 int id rightToLeft 0x7f0901c1

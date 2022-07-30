@@ -2,16 +2,29 @@ package sg.edu.np.mad.mad_assignment_cookverse;
 
 import static android.content.Context.MODE_PRIVATE;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.ProgressBar;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -309,7 +322,61 @@ public class HomeFragment extends Fragment implements RecyclerViewInterface,User
         };
         query.addValueEventListener(eventListener);*/
 
+        ImageView refreshButton = view.findViewById(R.id.refreshImage);
+        ProgressBar progressBar = view.findViewById(R.id.progressBar2);
+        refreshButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                builder.setMessage("Do you want to refresh the recipes? This may take awhile").setCancelable(false);
+                builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        Query query = FirebaseDatabase.getInstance().getReference().child("Database_Version");
+                        ValueEventListener eventListener = new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                int FBVersion = 1;
+                                sharedPreferences = getActivity().getSharedPreferences(GLOBAL_PREF, MODE_PRIVATE);
+                                int sharedDBVersion = sharedPreferences.getInt(DATABASE_VERSION, 2);
+                                if (dataSnapshot.exists()) {
+                                    FBVersion = (int) dataSnapshot.getValue(Integer.class);
+                                }
+                                if (FBVersion != sharedDBVersion) {
+                                    progressBar.setVisibility(View.VISIBLE);
+                                    sharedDBVersion = FBVersion;
+                                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                                    editor.putInt(DATABASE_VERSION, sharedDBVersion);
+                                    editor.apply();
+                                    DBHandler dbHandler = new DBHandler(getActivity(), null, null, sharedDBVersion);
+                                    FBHandler fbHandler = new FBHandler(dbHandler,getActivity());
+                                    fbHandler.retrieveFBUserData();
+                                    fbHandler.refreshFBRecipeData();
+                                    //progressBar.setVisibility(View.INVISIBLE);
+                                }
+                                else{
+                                    Toast.makeText(getActivity(), "Recipes already up to date",Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError error) {
+                                Log.v("Main", error.getMessage());
+                            }
+                        };
+                        query.addListenerForSingleValueEvent(eventListener);
+                    }
+                });
+                builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                    }
+                });
 
+                AlertDialog alert = builder.create();
+                alert.setTitle("Refresh Recipes");
+                alert.show();
+            }
+        });
 
         return view;
 

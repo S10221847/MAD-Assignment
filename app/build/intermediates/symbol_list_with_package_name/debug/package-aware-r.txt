@@ -3010,6 +3010,7 @@ id position
 id postLayout
 id profile
 id progressBar
+id progressBar2
 id progress_circular
 id progress_horizontal
 id rImage
@@ -3021,6 +3022,7 @@ id ratio
 id recipeEdit
 id recipeName
 id rectangles
+id refreshImage
 id reverseSawtooth
 id right
 id rightToLeft
