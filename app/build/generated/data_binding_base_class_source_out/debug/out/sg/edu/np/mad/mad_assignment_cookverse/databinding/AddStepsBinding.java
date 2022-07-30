@@ -24,12 +24,16 @@ public final class AddStepsBinding implements ViewBinding {
   public final EditText addSteps;
 
   @NonNull
+  public final Button addStepsButton;
+
+  @NonNull
   public final Button deleteStep;
 
   private AddStepsBinding(@NonNull ConstraintLayout rootView, @NonNull EditText addSteps,
-      @NonNull Button deleteStep) {
+      @NonNull Button addStepsButton, @NonNull Button deleteStep) {
     this.rootView = rootView;
     this.addSteps = addSteps;
+    this.addStepsButton = addStepsButton;
     this.deleteStep = deleteStep;
   }
 
@@ -66,13 +70,19 @@ public final class AddStepsBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.addStepsButton;
+      Button addStepsButton = ViewBindings.findChildViewById(rootView, id);
+      if (addStepsButton == null) {
+        break missingId;
+      }
+
       id = R.id.deleteStep;
       Button deleteStep = ViewBindings.findChildViewById(rootView, id);
       if (deleteStep == null) {
         break missingId;
       }
 
-      return new AddStepsBinding((ConstraintLayout) rootView, addSteps, deleteStep);
+      return new AddStepsBinding((ConstraintLayout) rootView, addSteps, addStepsButton, deleteStep);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

@@ -37,8 +37,6 @@ public class MainFragment extends AppCompatActivity {
                         }
                         else if (result.getResultCode() == 321) {
                             replaceFragment(new HomeFragment());
-
-
                         }
 
                     }

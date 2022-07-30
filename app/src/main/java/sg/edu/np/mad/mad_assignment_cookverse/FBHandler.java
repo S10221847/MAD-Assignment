@@ -82,7 +82,6 @@ public class FBHandler {
         r.setRid(rid);
         DatabaseReference ref = rootRef.child("Recipes").child(rid);
         ref.setValue(r);
-        updateVersion();
 
         LoginPage.mainUser.getCreatedList().add(rid);
         addUpdateUser(LoginPage.mainUser);
@@ -123,9 +122,9 @@ public class FBHandler {
         sharedPreferences = context.getSharedPreferences(GLOBAL_PREF, MODE_PRIVATE);
         int sharedDBVersion = sharedPreferences.getInt(DATABASE_VERSION, 2);
         sharedDBVersion += 1;
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putInt(DATABASE_VERSION, sharedDBVersion);
-        editor.apply();
+        //SharedPreferences.Editor editor = sharedPreferences.edit();
+        //editor.putInt(DATABASE_VERSION, sharedDBVersion);
+        //editor.apply();
 
         DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
         DatabaseReference ref = rootRef.child("Database_Version");

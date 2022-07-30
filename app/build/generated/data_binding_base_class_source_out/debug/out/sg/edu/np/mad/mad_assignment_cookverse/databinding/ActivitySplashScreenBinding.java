@@ -5,7 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.TextView;
+import android.widget.ProgressBar;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -21,16 +21,16 @@ public final class ActivitySplashScreenBinding implements ViewBinding {
   private final ConstraintLayout rootView;
 
   @NonNull
-  public final ImageView imageView5;
+  public final ImageView imageView8;
 
   @NonNull
-  public final TextView textView8;
+  public final ProgressBar progressBar;
 
   private ActivitySplashScreenBinding(@NonNull ConstraintLayout rootView,
-      @NonNull ImageView imageView5, @NonNull TextView textView8) {
+      @NonNull ImageView imageView8, @NonNull ProgressBar progressBar) {
     this.rootView = rootView;
-    this.imageView5 = imageView5;
-    this.textView8 = textView8;
+    this.imageView8 = imageView8;
+    this.progressBar = progressBar;
   }
 
   @Override
@@ -60,19 +60,19 @@ public final class ActivitySplashScreenBinding implements ViewBinding {
     // This is done to optimize the compiled bytecode for size and performance.
     int id;
     missingId: {
-      id = R.id.imageView5;
-      ImageView imageView5 = ViewBindings.findChildViewById(rootView, id);
-      if (imageView5 == null) {
+      id = R.id.imageView8;
+      ImageView imageView8 = ViewBindings.findChildViewById(rootView, id);
+      if (imageView8 == null) {
         break missingId;
       }
 
-      id = R.id.textView8;
-      TextView textView8 = ViewBindings.findChildViewById(rootView, id);
-      if (textView8 == null) {
+      id = R.id.progressBar;
+      ProgressBar progressBar = ViewBindings.findChildViewById(rootView, id);
+      if (progressBar == null) {
         break missingId;
       }
 
-      return new ActivitySplashScreenBinding((ConstraintLayout) rootView, imageView5, textView8);
+      return new ActivitySplashScreenBinding((ConstraintLayout) rootView, imageView8, progressBar);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

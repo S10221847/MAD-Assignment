@@ -8,6 +8,9 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ProgressBar;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -26,6 +29,7 @@ public class Splash_Screen extends AppCompatActivity {
         setContentView(R.layout.activity_splash_screen);
 
         Context context = this;
+        ProgressBar progressBar = findViewById(R.id.progressBar);
 
         Query query = FirebaseDatabase.getInstance().getReference().child("Database_Version");
         ValueEventListener eventListener = new ValueEventListener() {
@@ -38,6 +42,7 @@ public class Splash_Screen extends AppCompatActivity {
                     FBVersion = (int) dataSnapshot.getValue(Integer.class);
                 }
                 if (FBVersion != sharedDBVersion) {
+                    progressBar.setVisibility(View.VISIBLE);
                     sharedDBVersion = FBVersion;
                     SharedPreferences.Editor editor = sharedPreferences.edit();
                     editor.putInt(DATABASE_VERSION, sharedDBVersion);

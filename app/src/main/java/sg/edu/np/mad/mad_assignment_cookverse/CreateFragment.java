@@ -140,6 +140,13 @@ public class CreateFragment extends Fragment {
             }
         });
 
+        mImageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openFileChooser();
+            }
+        });
+
         mButtonCreateRecipe.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -199,9 +206,11 @@ public class CreateFragment extends Fragment {
                 if (!recipe.getName().equals("") && mImageUri != null && !recipe.getIngredientsList().get(0).equals("")
                 && !recipe.getStepsList().get(0).equals("")) {
                     createRecipe(recipe);
+                    Intent myIntent = new Intent(getActivity(), MainFragment.class);
+                    getActivity().startActivity(myIntent);
                 }
                 else{
-                    Toast.makeText(getActivity(), "Please add a name and image",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), "Please include all required fields and an image",Toast.LENGTH_SHORT).show();
                 }
 
                 //FragmentTransaction ft = getFragmentManager().beginTransaction();
@@ -268,6 +277,9 @@ public class CreateFragment extends Fragment {
             @Override
             public void onClick(View view){
                 removeIngredView(ingredView);
+                if (ingredList.getChildCount() == 1){
+                    addIngred.setVisibility(View.VISIBLE);
+                }
             }
         });
         add.setOnClickListener(new View.OnClickListener(){
@@ -286,12 +298,23 @@ public class CreateFragment extends Fragment {
     private void addStepView(){
         final View stepView = getLayoutInflater().inflate(R.layout.add_steps, null, false);
         Button delete = stepView.findViewById(R.id.deleteStep);
+        Button add = stepView.findViewById(R.id.addStepsButton);
         delete.setVisibility(View.VISIBLE);
+        addStep.setVisibility(View.INVISIBLE);
 
         delete.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
                 removeStepView(stepView);
+                if (stepList.getChildCount() == 1){
+                    addStep.setVisibility(View.VISIBLE);
+                }
+            }
+        });
+        add.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+                addStepView();
             }
         });
         stepList.addView(stepView);
@@ -304,12 +327,21 @@ public class CreateFragment extends Fragment {
     private void addCuisineView(){
         final View cuisiView = getLayoutInflater().inflate(R.layout.add_cuisine, null, false);
         Button delete = cuisiView.findViewById(R.id.deleteCuisine);
+        Button add = cuisiView.findViewById(R.id.addCuisineButton);
         delete.setVisibility(View.VISIBLE);
+        addCuisi.setVisibility(View.INVISIBLE);
 
         delete.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
                 removeCuisiView(cuisiView);
+
+            }
+        });
+        add.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+                addCuisineView();
             }
         });
         cuisiList.addView(cuisiView);
@@ -354,7 +386,6 @@ public class CreateFragment extends Fragment {
                                         LoginPage.mainUser.getCreatedList().add(r.getRid());
                                     }
                                     dbHandler.updateUser(LoginPage.mainUser);
-                                    fbHandler.addUpdateUser(LoginPage.mainUser);
                                     dbHandler.addRecipe(r);
                                     fbHandler.addRecipe(r);
 
@@ -384,10 +415,6 @@ public class CreateFragment extends Fragment {
         }
         else{
             Toast.makeText(getActivity(), "No image for this recipe",Toast.LENGTH_SHORT).show();
-            dbHandler.updateUser(LoginPage.mainUser);
-            fbHandler.addUpdateUser(LoginPage.mainUser);
-            dbHandler.addRecipe(r);
-            fbHandler.addRecipe(r);
         }
     }
 }

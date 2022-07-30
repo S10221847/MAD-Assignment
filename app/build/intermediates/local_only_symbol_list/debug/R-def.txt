@@ -11,6 +11,7 @@ color teal_700
 color white
 drawable add_tolist
 drawable addedshopping
+drawable appicon3
 drawable applogo
 drawable back_arrow
 drawable ic_baseline_account_circle_24
@@ -29,6 +30,7 @@ drawable pfp
 drawable pic
 drawable random_pic
 drawable search_view_bg
+drawable uploadicon
 font poppins
 id CreateImage
 id FRAGMENT_PLACEHOLDER
@@ -89,8 +91,8 @@ id imageView
 id imageView2
 id imageView3
 id imageView4
-id imageView5
 id imageView6
+id imageView8
 id ingredList
 id ingredStepsButton
 id isDairyFree
@@ -118,6 +120,7 @@ id personalRName
 id personalReci
 id personal_recipe_layout
 id profile
+id progressBar
 id rImage
 id rName
 id rName_popup
@@ -141,7 +144,7 @@ id textView4
 id textView5
 id textView6
 id textView7
-id textView8
+id textView9
 id userName
 id userSignup
 id usercreatedRecyclerView

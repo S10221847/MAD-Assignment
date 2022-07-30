@@ -2463,6 +2463,7 @@ drawable abc_textfield_search_material
 drawable abc_vector_test
 drawable add_tolist
 drawable addedshopping
+drawable appicon3
 drawable applogo
 drawable avd_hide_password
 drawable avd_show_password
@@ -2571,6 +2572,7 @@ drawable test_custom_background
 drawable test_level_drawable
 drawable tooltip_frame_dark
 drawable tooltip_frame_light
+drawable uploadicon
 font poppins
 id ALT
 id BOTTOM_END
@@ -2859,8 +2861,8 @@ id imageView
 id imageView2
 id imageView3
 id imageView4
-id imageView5
 id imageView6
+id imageView8
 id immediateStop
 id included
 id info
@@ -3007,6 +3009,7 @@ id pin
 id position
 id postLayout
 id profile
+id progressBar
 id progress_circular
 id progress_horizontal
 id rImage
@@ -3128,7 +3131,7 @@ id textView4
 id textView5
 id textView6
 id textView7
-id textView8
+id textView9
 id text_input_end_icon
 id text_input_error_icon
 id text_input_start_icon

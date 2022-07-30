@@ -24,12 +24,16 @@ public final class AddCuisineBinding implements ViewBinding {
   public final EditText addCuisine;
 
   @NonNull
+  public final Button addCuisineButton;
+
+  @NonNull
   public final Button deleteCuisine;
 
   private AddCuisineBinding(@NonNull ConstraintLayout rootView, @NonNull EditText addCuisine,
-      @NonNull Button deleteCuisine) {
+      @NonNull Button addCuisineButton, @NonNull Button deleteCuisine) {
     this.rootView = rootView;
     this.addCuisine = addCuisine;
+    this.addCuisineButton = addCuisineButton;
     this.deleteCuisine = deleteCuisine;
   }
 
@@ -66,13 +70,20 @@ public final class AddCuisineBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.addCuisineButton;
+      Button addCuisineButton = ViewBindings.findChildViewById(rootView, id);
+      if (addCuisineButton == null) {
+        break missingId;
+      }
+
       id = R.id.deleteCuisine;
       Button deleteCuisine = ViewBindings.findChildViewById(rootView, id);
       if (deleteCuisine == null) {
         break missingId;
       }
 
-      return new AddCuisineBinding((ConstraintLayout) rootView, addCuisine, deleteCuisine);
+      return new AddCuisineBinding((ConstraintLayout) rootView, addCuisine, addCuisineButton,
+          deleteCuisine);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

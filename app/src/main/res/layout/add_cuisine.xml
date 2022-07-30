@@ -9,10 +9,10 @@
 
     <EditText
         android:id="@+id/addCuisine"
-        android:layout_width="280dp"
+        android:layout_width="270dp"
         android:layout_height="wrap_content"
         android:hint="Cuisine (optional)"
-        android:textColorHint="@color/black"
+        android:ems="10"
         tools:layout_editor_absoluteY="5dp"></EditText>
 
     <Button
@@ -20,16 +20,31 @@
         android:layout_width="50dp"
         android:layout_height="53dp"
         android:layout_gravity="center"
-        android:layout_marginStart="52dp"
-        android:layout_marginTop="5dp"
+        android:layout_marginStart="2dp"
+        android:layout_marginTop="4dp"
         android:backgroundTint="@color/white"
         android:text="x"
         android:textColor="@color/cardview_dark_background"
         android:textSize="20dp"
         android:textStyle="bold"
+        android:visibility="invisible"
+        app:layout_constraintStart_toEndOf="@+id/addCuisineButton"
+        app:layout_constraintTop_toTopOf="parent"></Button>
+
+    <Button
+        android:id="@+id/addCuisineButton"
+        android:layout_width="50dp"
+        android:layout_height="53dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="4dp"
+        android:backgroundTint="@color/white"
+        android:text="+"
+        android:textColor="@color/cardview_dark_background"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:visibility="visible"
         app:layout_constraintStart_toEndOf="@+id/addCuisine"
-        app:layout_constraintTop_toTopOf="parent"
-        android:visibility="invisible"></Button>
+        app:layout_constraintTop_toTopOf="parent"></Button>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
