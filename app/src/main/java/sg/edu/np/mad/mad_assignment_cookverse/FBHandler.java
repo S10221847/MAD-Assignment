@@ -92,5 +92,18 @@ public class FBHandler {
         ref.setValue(u);
     }
 
-    //delete User and Recipe data methods
+    public void removeRecipe(Recipe r){
+        DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
+        String rid = r.getRid();
+        DatabaseReference ref = rootRef.child("Recipes").child(rid);
+        ref.removeValue();
+    }
+
+    public void removeUser(User u){
+        DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
+        String username = u.getName();
+        DatabaseReference ref = rootRef.child("Accounts").child(username);
+        ref.removeValue();
+    }
+
 }
