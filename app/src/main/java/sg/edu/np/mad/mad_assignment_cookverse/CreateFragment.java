@@ -157,7 +157,6 @@ public class CreateFragment extends Fragment {
 
                 List<String> RecipeIngred = new ArrayList<>();
                 for (int i = 0; i < ingredList.getChildCount(); i++){
-                    Log.v("Main", i + "s");
                     try {
                         EditText et = (EditText) ingredList.getChildAt(i).findViewById(R.id.addIngredient);
                         Log.v("Main", et.getText().toString());
@@ -171,7 +170,6 @@ public class CreateFragment extends Fragment {
 
                 List<String> RecipeStep = new ArrayList<>();
                 for (int i = 0; i < stepList.getChildCount(); i++){
-                    Log.v("Main", i + "s");
                     try {
                         EditText et = (EditText) stepList.getChildAt(i).findViewById(R.id.addSteps);
                         Log.v("Main", et.getText().toString());
@@ -185,7 +183,6 @@ public class CreateFragment extends Fragment {
 
                 List<String> RecipeCuisi = new ArrayList<>();
                 for (int i = 0; i < cuisiList.getChildCount(); i++){
-                    Log.v("Main", i + "s");
                     try {
                         EditText et = (EditText) cuisiList.getChildAt(i).findViewById(R.id.addCuisine);
                         Log.v("Main", et.getText().toString());
@@ -195,9 +192,12 @@ public class CreateFragment extends Fragment {
                         Log.v("Main", "fail");
                     }
                 }
-                recipe.setCuisineList(RecipeCuisi);
+                if (!RecipeCuisi.get(0).equals("")) {
+                    recipe.setCuisineList(RecipeCuisi);
+                }
 
-                if (recipe.getName() != null && mImageUri != null) {
+                if (!recipe.getName().equals("") && mImageUri != null && !recipe.getIngredientsList().get(0).equals("")
+                && !recipe.getStepsList().get(0).equals("")) {
                     createRecipe(recipe);
                 }
                 else{
@@ -259,13 +259,21 @@ public class CreateFragment extends Fragment {
 
     private void addIngredientView(){
         final View ingredView = getLayoutInflater().inflate(R.layout.add_ingredients, null, false);
-        ImageView delete = (ImageView) ingredView.findViewById(R.id.deleteIngredient);
+        Button delete = ingredView.findViewById(R.id.deleteIngredient);
+        Button add = ingredView.findViewById(R.id.addIngredientsButton);
         delete.setVisibility(View.VISIBLE);
+        addIngred.setVisibility(View.INVISIBLE);
 
         delete.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
                 removeIngredView(ingredView);
+            }
+        });
+        add.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+                addIngredientView();
             }
         });
         ingredList.addView(ingredView);
@@ -277,7 +285,7 @@ public class CreateFragment extends Fragment {
 
     private void addStepView(){
         final View stepView = getLayoutInflater().inflate(R.layout.add_steps, null, false);
-        ImageView delete = (ImageView) stepView.findViewById(R.id.deleteStep);
+        Button delete = stepView.findViewById(R.id.deleteStep);
         delete.setVisibility(View.VISIBLE);
 
         delete.setOnClickListener(new View.OnClickListener(){
@@ -295,7 +303,7 @@ public class CreateFragment extends Fragment {
 
     private void addCuisineView(){
         final View cuisiView = getLayoutInflater().inflate(R.layout.add_cuisine, null, false);
-        ImageView delete = (ImageView) cuisiView.findViewById(R.id.deleteCuisine);
+        Button delete = cuisiView.findViewById(R.id.deleteCuisine);
         delete.setVisibility(View.VISIBLE);
 
         delete.setOnClickListener(new View.OnClickListener(){
@@ -315,7 +323,7 @@ public class CreateFragment extends Fragment {
         sharedPreferences = this.getActivity().getSharedPreferences(GLOBAL_PREF, MODE_PRIVATE);
         int sharedDBVersion = sharedPreferences.getInt(DATABASE_VERSION, 2);
         dbHandler = new DBHandler(getActivity(), null, null, sharedDBVersion);
-        fbHandler = new FBHandler(dbHandler);
+        fbHandler = new FBHandler(dbHandler,getActivity());
         ArrayList<String> al = new ArrayList<>();
         if (mImageUri != null){
             String fileName = System.currentTimeMillis() + "." + getFileExtension(mImageUri);

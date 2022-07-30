@@ -4,8 +4,8 @@ package sg.edu.np.mad.mad_assignment_cookverse.databinding;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -24,12 +24,16 @@ public final class AddIngredientsBinding implements ViewBinding {
   public final EditText addIngredient;
 
   @NonNull
-  public final ImageView deleteIngredient;
+  public final Button addIngredientsButton;
+
+  @NonNull
+  public final Button deleteIngredient;
 
   private AddIngredientsBinding(@NonNull ConstraintLayout rootView, @NonNull EditText addIngredient,
-      @NonNull ImageView deleteIngredient) {
+      @NonNull Button addIngredientsButton, @NonNull Button deleteIngredient) {
     this.rootView = rootView;
     this.addIngredient = addIngredient;
+    this.addIngredientsButton = addIngredientsButton;
     this.deleteIngredient = deleteIngredient;
   }
 
@@ -66,14 +70,20 @@ public final class AddIngredientsBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.addIngredientsButton;
+      Button addIngredientsButton = ViewBindings.findChildViewById(rootView, id);
+      if (addIngredientsButton == null) {
+        break missingId;
+      }
+
       id = R.id.deleteIngredient;
-      ImageView deleteIngredient = ViewBindings.findChildViewById(rootView, id);
+      Button deleteIngredient = ViewBindings.findChildViewById(rootView, id);
       if (deleteIngredient == null) {
         break missingId;
       }
 
       return new AddIngredientsBinding((ConstraintLayout) rootView, addIngredient,
-          deleteIngredient);
+          addIngredientsButton, deleteIngredient);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

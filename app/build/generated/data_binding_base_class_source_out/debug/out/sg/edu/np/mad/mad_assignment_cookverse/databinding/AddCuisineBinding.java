@@ -4,8 +4,8 @@ package sg.edu.np.mad.mad_assignment_cookverse.databinding;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -24,10 +24,10 @@ public final class AddCuisineBinding implements ViewBinding {
   public final EditText addCuisine;
 
   @NonNull
-  public final ImageView deleteCuisine;
+  public final Button deleteCuisine;
 
   private AddCuisineBinding(@NonNull ConstraintLayout rootView, @NonNull EditText addCuisine,
-      @NonNull ImageView deleteCuisine) {
+      @NonNull Button deleteCuisine) {
     this.rootView = rootView;
     this.addCuisine = addCuisine;
     this.deleteCuisine = deleteCuisine;
@@ -67,7 +67,7 @@ public final class AddCuisineBinding implements ViewBinding {
       }
 
       id = R.id.deleteCuisine;
-      ImageView deleteCuisine = ViewBindings.findChildViewById(rootView, id);
+      Button deleteCuisine = ViewBindings.findChildViewById(rootView, id);
       if (deleteCuisine == null) {
         break missingId;
       }

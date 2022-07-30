@@ -4,8 +4,8 @@ package sg.edu.np.mad.mad_assignment_cookverse.databinding;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -24,10 +24,10 @@ public final class AddStepsBinding implements ViewBinding {
   public final EditText addSteps;
 
   @NonNull
-  public final ImageView deleteStep;
+  public final Button deleteStep;
 
   private AddStepsBinding(@NonNull ConstraintLayout rootView, @NonNull EditText addSteps,
-      @NonNull ImageView deleteStep) {
+      @NonNull Button deleteStep) {
     this.rootView = rootView;
     this.addSteps = addSteps;
     this.deleteStep = deleteStep;
@@ -67,7 +67,7 @@ public final class AddStepsBinding implements ViewBinding {
       }
 
       id = R.id.deleteStep;
-      ImageView deleteStep = ViewBindings.findChildViewById(rootView, id);
+      Button deleteStep = ViewBindings.findChildViewById(rootView, id);
       if (deleteStep == null) {
         break missingId;
       }

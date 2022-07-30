@@ -48,7 +48,7 @@ public class RecipeActivity extends AppCompatActivity {
         sharedPreferences = this.getSharedPreferences(GLOBAL_PREF, MODE_PRIVATE);
         int sharedDBVersion = sharedPreferences.getInt(DATABASE_VERSION, 2);
         dbHandler = new DBHandler(this, null, null, sharedDBVersion);
-        FBHandler fbHandler = new FBHandler(dbHandler);
+        FBHandler fbHandler = new FBHandler(dbHandler,this);
 
         Recipe r = dbHandler.findRecipe(recipeID); //Find selected recipe
         TextView rName = findViewById(R.id.rName);

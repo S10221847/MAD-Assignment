@@ -56,7 +56,7 @@ public class EditProfile extends AppCompatActivity {
         sharedPreferences = this.getSharedPreferences(GLOBAL_PREF, MODE_PRIVATE);
         int sharedDBVersion = sharedPreferences.getInt(DATABASE_VERSION, 2);
         dbHandler = new DBHandler(this, null, null, sharedDBVersion);
-        fbHandler = new FBHandler(dbHandler);
+        fbHandler = new FBHandler(dbHandler,this);
 
         /*Intent receivingEnd = getIntent();
         String username = receivingEnd.getStringExtra("Username");

@@ -1,7 +1,10 @@
 package sg.edu.np.mad.mad_assignment_cookverse;
 
+import static android.content.Context.MODE_PRIVATE;
+
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -20,9 +23,14 @@ import java.util.List;
 public class FBHandler {
     private String TAG = "FBHandler";
     private DBHandler dbHandler;
+    private Context context;
+    public String GLOBAL_PREF = "MyPrefs";
+    public String DATABASE_VERSION = "MyDatabaseVersion";
+    SharedPreferences sharedPreferences;
 
-    public FBHandler(DBHandler dbHandler){
+    public FBHandler(DBHandler dbHandler, Context context){
         this.dbHandler = dbHandler;
+        this.context = context;
     }
 
     public void retrieveFBUserData(){
@@ -45,7 +53,7 @@ public class FBHandler {
         query.addListenerForSingleValueEvent(eventListener);
     }
 
-    public void retrieveFBRecipeData(Context context){
+    public void retrieveFBRecipeData(){
         Query query = FirebaseDatabase.getInstance().getReference().child("Recipes");//.limitToFirst(50);
         ValueEventListener eventListener = new ValueEventListener() {
             @Override
@@ -74,6 +82,7 @@ public class FBHandler {
         r.setRid(rid);
         DatabaseReference ref = rootRef.child("Recipes").child(rid);
         ref.setValue(r);
+        updateVersion();
 
         LoginPage.mainUser.getCreatedList().add(rid);
         addUpdateUser(LoginPage.mainUser);
@@ -83,6 +92,7 @@ public class FBHandler {
         String rid = r.getRid();
         DatabaseReference ref = rootRef.child("Recipes").child(rid);
         ref.setValue(r);
+        updateVersion();
     }
 
     public void addUpdateUser(User u){ //both adds and updates user data within firebase
@@ -90,6 +100,7 @@ public class FBHandler {
         DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
         DatabaseReference ref = rootRef.child("Accounts").child(username);
         ref.setValue(u);
+        updateVersion();
     }
 
     public void removeRecipe(Recipe r){
@@ -97,6 +108,7 @@ public class FBHandler {
         String rid = r.getRid();
         DatabaseReference ref = rootRef.child("Recipes").child(rid);
         ref.removeValue();
+        updateVersion();
     }
 
     public void removeUser(User u){
@@ -104,6 +116,20 @@ public class FBHandler {
         String username = u.getName();
         DatabaseReference ref = rootRef.child("Accounts").child(username);
         ref.removeValue();
+        updateVersion();
+    }
+
+    public void updateVersion(){
+        sharedPreferences = context.getSharedPreferences(GLOBAL_PREF, MODE_PRIVATE);
+        int sharedDBVersion = sharedPreferences.getInt(DATABASE_VERSION, 2);
+        sharedDBVersion += 1;
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putInt(DATABASE_VERSION, sharedDBVersion);
+        editor.apply();
+
+        DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
+        DatabaseReference ref = rootRef.child("Database_Version");
+        ref.setValue(sharedDBVersion);
     }
 
 }

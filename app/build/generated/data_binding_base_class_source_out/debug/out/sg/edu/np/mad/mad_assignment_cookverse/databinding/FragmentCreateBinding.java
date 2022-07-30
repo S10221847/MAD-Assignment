@@ -29,9 +29,6 @@ public final class FragmentCreateBinding implements ViewBinding {
   public final Button addCuisineButton;
 
   @NonNull
-  public final Button addIngredientsButton;
-
-  @NonNull
   public final Button addStepsButton;
 
   @NonNull
@@ -62,16 +59,15 @@ public final class FragmentCreateBinding implements ViewBinding {
   public final LinearLayout stepList;
 
   private FragmentCreateBinding(@NonNull ScrollView rootView, @NonNull ImageView CreateImage,
-      @NonNull Button addCuisineButton, @NonNull Button addIngredientsButton,
-      @NonNull Button addStepsButton, @NonNull Button buttonCreateRecipe,
-      @NonNull Button buttonImage, @NonNull LinearLayout cuisineList,
-      @NonNull EditText editRecipeDescription, @NonNull EditText editRecipeDuration,
-      @NonNull EditText editRecipeName, @NonNull EditText editRecipeServings,
-      @NonNull LinearLayout ingredList, @NonNull LinearLayout stepList) {
+      @NonNull Button addCuisineButton, @NonNull Button addStepsButton,
+      @NonNull Button buttonCreateRecipe, @NonNull Button buttonImage,
+      @NonNull LinearLayout cuisineList, @NonNull EditText editRecipeDescription,
+      @NonNull EditText editRecipeDuration, @NonNull EditText editRecipeName,
+      @NonNull EditText editRecipeServings, @NonNull LinearLayout ingredList,
+      @NonNull LinearLayout stepList) {
     this.rootView = rootView;
     this.CreateImage = CreateImage;
     this.addCuisineButton = addCuisineButton;
-    this.addIngredientsButton = addIngredientsButton;
     this.addStepsButton = addStepsButton;
     this.buttonCreateRecipe = buttonCreateRecipe;
     this.buttonImage = buttonImage;
@@ -120,12 +116,6 @@ public final class FragmentCreateBinding implements ViewBinding {
       id = R.id.addCuisineButton;
       Button addCuisineButton = ViewBindings.findChildViewById(rootView, id);
       if (addCuisineButton == null) {
-        break missingId;
-      }
-
-      id = R.id.addIngredientsButton;
-      Button addIngredientsButton = ViewBindings.findChildViewById(rootView, id);
-      if (addIngredientsButton == null) {
         break missingId;
       }
 
@@ -190,9 +180,8 @@ public final class FragmentCreateBinding implements ViewBinding {
       }
 
       return new FragmentCreateBinding((ScrollView) rootView, CreateImage, addCuisineButton,
-          addIngredientsButton, addStepsButton, buttonCreateRecipe, buttonImage, cuisineList,
-          editRecipeDescription, editRecipeDuration, editRecipeName, editRecipeServings, ingredList,
-          stepList);
+          addStepsButton, buttonCreateRecipe, buttonImage, cuisineList, editRecipeDescription,
+          editRecipeDuration, editRecipeName, editRecipeServings, ingredList, stepList);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));
