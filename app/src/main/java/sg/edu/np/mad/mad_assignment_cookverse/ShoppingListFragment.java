@@ -70,14 +70,14 @@ public class ShoppingListFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        sharedPreferences = this.getActivity().getSharedPreferences(GLOBAL_PREF, MODE_PRIVATE);
+        /*sharedPreferences = this.getActivity().getSharedPreferences(GLOBAL_PREF, MODE_PRIVATE);
         int sharedDBVersion = sharedPreferences.getInt(DATABASE_VERSION, 2);
         db = new DBHandler(getActivity(), null, null, sharedDBVersion);
         List<String> shopping=LoginPage.mainUser.getShoppingList();
         for(int i=0;i<shopping.size();i++){
             Recipe r=db.findRecipe(shopping.get(i));
             shoppingRec.add(r);
-        }
+        }*/
         View view = inflater.inflate(R.layout.fragment_shopping_list, container, false);
         // Inflate the layout for this fragment
         RecyclerView recyclerView=view.findViewById(R.id.shoppingrecycler);

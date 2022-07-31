@@ -82,6 +82,7 @@ public class LoginPage extends AppCompatActivity {
                         mainUser.setPassword(userDBData.getPassword());
                         mainUser.setLikedList(userDBData.getLikedList());
                         mainUser.setCreatedList(userDBData.getCreatedList());
+                        mainUser.setShoppingList(userDBData.getShoppingList());
                         startActivity(myIntent);
                         Toast.makeText(LoginPage.this,"Valid",Toast.LENGTH_SHORT).show();
                     }
