@@ -36,8 +36,16 @@
         "source": "D:\\MAD\\MAD-Assignment-Cookverse\\app\\src\\main\\res\\layout\\activity_main.xml"
     },
     {
+        "merged": "D:\\MAD\\MAD-Assignment-Cookverse\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\each_ingred.xml",
+        "source": "D:\\MAD\\MAD-Assignment-Cookverse\\app\\src\\main\\res\\layout\\each_ingred.xml"
+    },
+    {
         "merged": "D:\\MAD\\MAD-Assignment-Cookverse\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\liked_recipe_layout.xml",
         "source": "D:\\MAD\\MAD-Assignment-Cookverse\\app\\src\\main\\res\\layout\\liked_recipe_layout.xml"
+    },
+    {
+        "merged": "D:\\MAD\\MAD-Assignment-Cookverse\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\each_step.xml",
+        "source": "D:\\MAD\\MAD-Assignment-Cookverse\\app\\src\\main\\res\\layout\\each_step.xml"
     },
     {
         "merged": "D:\\MAD\\MAD-Assignment-Cookverse\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\discover_layout.xml",

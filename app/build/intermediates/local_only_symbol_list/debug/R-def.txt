@@ -98,6 +98,7 @@ id imageView4
 id imageView8
 id ingredList
 id ingredStepsButton
+id ingred_line
 id isDairyFree
 id isGlutenFree
 id isHealthy
@@ -137,7 +138,7 @@ id rPic
 id rPopular
 id rPopularr
 id rServings
-id rSteps
+id rStepIngred
 id recipeEdit
 id recipeName
 id refreshImage
@@ -153,6 +154,8 @@ id shopping_servings
 id shoppinglinear
 id shoppingrecycler
 id stepList
+id step_line
+id step_no
 id test
 id test2
 id textView
@@ -188,6 +191,8 @@ layout add_ingredients
 layout add_steps
 layout bottom_sheet_dialog_layout
 layout discover_layout
+layout each_ingred
+layout each_step
 layout fragment_create
 layout fragment_discover
 layout fragment_home

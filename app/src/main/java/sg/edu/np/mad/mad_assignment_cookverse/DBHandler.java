@@ -605,13 +605,13 @@ public class DBHandler extends SQLiteOpenHelper {
         db.update(RECIPES, values,COLUMN_RECIPEID + " = ?",
                 new String[] { String.valueOf(recipeData.getRid()) });
 
-        db.delete(CUISINE, COLUMN_RECIPECUISINE + " = ?",
+        db.delete(CUISINE, COLUMN_RECIPEID + " = ?",
                 new String[] { String.valueOf(recipeData.getRid()) });
 
-        db.delete(INGREDIENT, COLUMN_RECIPEINGREDIENT + " = ?",
+        db.delete(INGREDIENT, COLUMN_RECIPEID + " = ?",
                 new String[] { String.valueOf(recipeData.getRid()) });
 
-        db.delete(STEPS, COLUMN_RECIPESTEPS + " = ?",
+        db.delete(STEPS, COLUMN_RECIPEID + " = ?",
                 new String[] { String.valueOf(recipeData.getRid()) });
 
         if (recipeData.getCuisineList() != null){

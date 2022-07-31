@@ -19,6 +19,7 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.google.firebase.database.DataSnapshot;
@@ -49,11 +50,12 @@ public class RecipeActivity extends AppCompatActivity {
         Intent intent = getIntent();
         String recipeID = intent.getStringExtra("recipeID"); //Selected recipe id
         activity=intent.getStringExtra("activity"); //Activity it came from
+        Log.v(TAG,recipeID);
 
         sharedPreferences = this.getSharedPreferences(GLOBAL_PREF, MODE_PRIVATE);
         int sharedDBVersion = sharedPreferences.getInt(DATABASE_VERSION, 2);
         dbHandler = new DBHandler(this, null, null, sharedDBVersion);
-        FBHandler fbHandler = new FBHandler(dbHandler,this);
+        fbHandler = new FBHandler(dbHandler,this);
 
         Recipe r = dbHandler.findRecipe(recipeID); //Find selected recipe
         TextView rName = findViewById(R.id.rName);
@@ -83,19 +85,25 @@ public class RecipeActivity extends AppCompatActivity {
                 TextView rDesc=aboutDialog.findViewById(R.id.rDesc);
                 rDesc.setText(r.getDescription());
                 rDesc.setMovementMethod(new ScrollingMovementMethod());
-                String cuisineR="Cuisine information missing";
+                String cuisineR="";
                 if(r.getCuisineList()!=null){
-                    cuisineR=r.getCuisineList().get(0);
-                    if(r.getCuisineList().size()>1){
-                        for(int c=1;c<r.getCuisineList().size();c++){
-                            cuisineR=cuisineR.concat(", ");
-                            cuisineR=cuisineR.concat(r.getCuisineList().get(c));
+                    for(int c=0;c<r.getCuisineList().size();c++){
+                        cuisineR=cuisineR.concat(r.getCuisineList().get(c));
+                        cuisineR=cuisineR.concat(", ");
                     }
+
                     //String cuisineR="hello";
 
 
                     }
+                if(cuisineR==""){
+                    cuisineR="Cuisine information not available/missing";
+
                 }
+                else{
+                    cuisineR=cuisineR.substring(0,cuisineR.length()-2);
+                }
+
 
                 TextView rCuisine=aboutDialog.findViewById(R.id.rCuisine);
                 rCuisine.setText(cuisineR);
@@ -117,6 +125,9 @@ public class RecipeActivity extends AppCompatActivity {
                 }
                 if(dietR!=""){
                     dietR=dietR.substring(0,dietR.length()-2);
+                }
+                if(dietR==""){
+                    dietR="Dietary Information not available/missing";
                 }
                 TextView rDiet=aboutDialog.findViewById(R.id.rDiet);
                 rDiet.setText(dietR);
@@ -161,6 +172,7 @@ public class RecipeActivity extends AppCompatActivity {
 
 
 
+
         new ImageLoadTask(r.getRecipeimage(), rImage).execute();
         rName.setText(r.getName());
         String duration_String=String.valueOf(r.getDuration());
@@ -172,19 +184,31 @@ public class RecipeActivity extends AppCompatActivity {
         String recipeIngred = "";
         int step = 1;
 
-        for(String i : r.getStepsList()){
-            recipeSteps += "Step " + step + ": " + i + "\n" + "\n";
-            step += 1;
+        /*for(String i : r.getStepsList()){
+            View ingredView = getLayoutInflater().inflate(R.layout.each_ingred, null, false);
+            TextView ingred_line=ingredView.findViewById(R.id.ingred_line);
+            ingred_line.setText(i);
+            stepIngred.addView(ingredView);
         }
 
         for(String i : r.getIngredientsList()){
-            recipeIngred += i + "\n";
+            View ingredView = getLayoutInflater().inflate(R.layout.each_ingred, null, false);
+            TextView ingred_line=ingredView.findViewById(R.id.ingred_line);
+            ingred_line.setText(i);
+            stepIngred.addView(ingredView);
+        }*/
+        LinearLayout stepIngred=findViewById(R.id.rStepIngred);
+        for(String i : r.getIngredientsList()){
+            View ingredView = getLayoutInflater().inflate(R.layout.each_ingred, null, false);
+            TextView ingred_line=ingredView.findViewById(R.id.ingred_line);
+            ingred_line.setText(i);
+            stepIngred.addView(ingredView);
         }
 
-        TextView rSteps = findViewById(R.id.rSteps);
-        rSteps.setText(recipeIngred);
+
 
         Button ingredStepsButton = findViewById(R.id.ingredStepsButton);
+
 
         if(showingSteps==true){
             ingredStepsButton.setText("Show Ingredients");
@@ -193,19 +217,37 @@ public class RecipeActivity extends AppCompatActivity {
             ingredStepsButton.setText("Show steps");
         }
 
+
         String finalRecipeIngred = recipeIngred;
         String finalRecipeSteps = recipeSteps;
         ingredStepsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (showingSteps == true) {
+                    stepIngred.removeAllViews();
                     ingredStepsButton.setText("Show steps");
                     showingSteps = false;
-                    rSteps.setText(finalRecipeIngred);
+                    for(String i : r.getIngredientsList()){
+                        View ingredView = getLayoutInflater().inflate(R.layout.each_ingred, null, false);
+                        TextView ingred_line=ingredView.findViewById(R.id.ingred_line);
+                        ingred_line.setText(i);
+                        stepIngred.addView(ingredView);
+                    }
                 } else {
+                    stepIngred.removeAllViews();
                     ingredStepsButton.setText("Show ingredients");
                     showingSteps = true;
-                    rSteps.setText(finalRecipeSteps);
+                    int p=1;
+                    for(String i : r.getStepsList()) {
+                        View stepView = getLayoutInflater().inflate(R.layout.each_step, null, false);
+                        TextView step_line = stepView.findViewById(R.id.step_line);
+                        TextView step_no=stepView.findViewById(R.id.step_no);
+                        step_line.setText(i);
+                        step_no.setText(String.valueOf(p));
+                        p+=1;
+
+                        stepIngred.addView(stepView);
+                    }
                 }
             }
         });
@@ -282,64 +324,6 @@ public class RecipeActivity extends AppCompatActivity {
         });
 
     }
-    private void showAboutDialog(Recipe r){
-        Dialog aboutDialog=new Dialog(RecipeActivity.this);
-        aboutDialog.setContentView(R.layout.about_recipe);
 
 
-        ImageView rPic=aboutDialog.findViewById(R.id.rPic);
-        new ImageLoadTask(r.getRecipeimage(), rPic).execute();
-        TextView rName=aboutDialog.findViewById(R.id.rName);
-        rName.setText(r.getName());
-        String rServings=String.valueOf(r.getServings());
-        rServings=rServings.concat(" Servings");
-        TextView rServingss=aboutDialog.findViewById(R.id.rServings);
-        rServingss.setText(rServings);
-        TextView rDesc=aboutDialog.findViewById(R.id.rDesc);
-        rDesc.setText(r.getDescription());
-        String cuisineR=r.getCuisineList().get(0);
-        for(int c=1;c<r.getCuisineList().size();c++){
-            cuisineR=cuisineR.concat(",");
-            cuisineR=cuisineR.concat(r.getCuisineList().get(c));
-
-        }
-        TextView rCuisine=aboutDialog.findViewById(R.id.rCuisine);
-        rCuisine.setText(cuisineR);
-        String dietR="";
-        if(r.isVegetarian()){
-            dietR=dietR.concat("Vegetarian, ");
-        }
-        if(r.isVegan()){
-            dietR=dietR.concat("Vegan, ");
-        }
-        if(r.isGlutenFree()){
-            dietR=dietR.concat("Gluten-Free, ");
-        }
-        if(r.isDairyFree()){
-            dietR=dietR.concat("Dairy-Free, ");
-        }
-        if(r.isHealthy()){
-            dietR=dietR.concat("Healthy, ");
-        }
-        if(dietR!=""){
-            dietR=dietR.substring(0,dietR.length()-2);
-        }
-        TextView rDiet=aboutDialog.findViewById(R.id.rDiet);
-        rDiet.setText(dietR);
-        TextView cheap2=aboutDialog.findViewById(R.id.rCheap2);
-        ImageView cheap=aboutDialog.findViewById(R.id.rCheap);
-        if(r.isCheap()==false){
-            cheap2.setVisibility(View.GONE);
-            cheap.setVisibility(View.GONE);
-        }
-        TextView popular2=aboutDialog.findViewById(R.id.rPopularr);
-        ImageView popular=aboutDialog.findViewById(R.id.rPopular);
-        if(r.isPopular()==false){
-            popular2.setVisibility(View.GONE);
-            popular.setVisibility(View.GONE);
-
-        }
-        aboutDialog.show();
-
-    }
 }

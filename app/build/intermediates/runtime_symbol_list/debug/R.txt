@@ -2870,6 +2870,7 @@ int id included 0x7f090123
 int id info 0x7f090124
 int id ingredList 0x7f090125
 int id ingredStepsButton 0x7f090126
+int id ingred_line 0x7f09027b
 int id invisible 0x7f090127
 int id inward 0x7f090128
 int id isDairyFree 0x7f090129
@@ -3027,7 +3028,7 @@ int id rPic 0x7f0901c0
 int id rPopular 0x7f0901c1
 int id rPopularr 0x7f0901c2
 int id rServings 0x7f0901c3
-int id rSteps 0x7f0901c4
+int id rStepIngred 0x7f09027c
 int id radio 0x7f0901c5
 int id ratio 0x7f0901c6
 int id recipeEdit 0x7f0901c7
@@ -3109,6 +3110,8 @@ int id startVertical 0x7f090212
 int id staticLayout 0x7f090213
 int id staticPostLayout 0x7f090214
 int id stepList 0x7f090215
+int id step_line 0x7f09027f
+int id step_no 0x7f09027d
 int id stop 0x7f090216
 int id stretch 0x7f090217
 int id submenuarrow 0x7f090218
@@ -3331,6 +3334,8 @@ int layout design_navigation_menu_item 0x7f0c0034
 int layout design_text_input_end_icon 0x7f0c0035
 int layout design_text_input_start_icon 0x7f0c0036
 int layout discover_layout 0x7f0c0037
+int layout each_ingred 0x7f0c0091
+int layout each_step 0x7f0c0092
 int layout fragment_create 0x7f0c0038
 int layout fragment_discover 0x7f0c0039
 int layout fragment_home 0x7f0c003a

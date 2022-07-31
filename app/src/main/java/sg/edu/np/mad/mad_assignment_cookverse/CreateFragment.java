@@ -407,7 +407,7 @@ public class CreateFragment extends Fragment {
 
                                     //Adds recipe to firebase and local database and updates user object
                                     dbHandler.updateUser(LoginPage.mainUser);
-                                    dbHandler.addRecipe(r);
+                                    //dbHandler.addRecipe(r);
                                     fbHandler.addRecipe(r);
 
                                     Toast.makeText(getActivity(), "Recipe Created Successfully.", Toast.LENGTH_SHORT).show();

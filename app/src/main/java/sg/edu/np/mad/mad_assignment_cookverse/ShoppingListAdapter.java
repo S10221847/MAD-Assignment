@@ -48,6 +48,7 @@ public class ShoppingListAdapter extends RecyclerView.Adapter<ShoppingListViewHo
             String ingredient= data.get(position).getIngredientsList().get(x);
             shoppingIngred.setText(ingredient);
             holder.rIngred.addView(view);
+
         }
 
 

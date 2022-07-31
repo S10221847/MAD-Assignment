@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
@@ -43,7 +44,7 @@ public final class ActivityRecipeBinding implements ViewBinding {
   public final TextView rName;
 
   @NonNull
-  public final TextView rSteps;
+  public final LinearLayout rStepIngred;
 
   @NonNull
   public final ImageView recipeEdit;
@@ -54,7 +55,8 @@ public final class ActivityRecipeBinding implements ViewBinding {
   private ActivityRecipeBinding(@NonNull ScrollView rootView, @NonNull Button about,
       @NonNull ImageView backButton, @NonNull TextView duration, @NonNull Button ingredStepsButton,
       @NonNull ImageView likestatus, @NonNull ImageView rImage, @NonNull TextView rName,
-      @NonNull TextView rSteps, @NonNull ImageView recipeEdit, @NonNull ImageView shoppingList) {
+      @NonNull LinearLayout rStepIngred, @NonNull ImageView recipeEdit,
+      @NonNull ImageView shoppingList) {
     this.rootView = rootView;
     this.about = about;
     this.backButton = backButton;
@@ -63,7 +65,7 @@ public final class ActivityRecipeBinding implements ViewBinding {
     this.likestatus = likestatus;
     this.rImage = rImage;
     this.rName = rName;
-    this.rSteps = rSteps;
+    this.rStepIngred = rStepIngred;
     this.recipeEdit = recipeEdit;
     this.shoppingList = shoppingList;
   }
@@ -137,9 +139,9 @@ public final class ActivityRecipeBinding implements ViewBinding {
         break missingId;
       }
 
-      id = R.id.rSteps;
-      TextView rSteps = ViewBindings.findChildViewById(rootView, id);
-      if (rSteps == null) {
+      id = R.id.rStepIngred;
+      LinearLayout rStepIngred = ViewBindings.findChildViewById(rootView, id);
+      if (rStepIngred == null) {
         break missingId;
       }
 
@@ -156,7 +158,7 @@ public final class ActivityRecipeBinding implements ViewBinding {
       }
 
       return new ActivityRecipeBinding((ScrollView) rootView, about, backButton, duration,
-          ingredStepsButton, likestatus, rImage, rName, rSteps, recipeEdit, shoppingList);
+          ingredStepsButton, likestatus, rImage, rName, rStepIngred, recipeEdit, shoppingList);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

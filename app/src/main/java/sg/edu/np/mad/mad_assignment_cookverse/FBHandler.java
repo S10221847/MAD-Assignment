@@ -105,6 +105,7 @@ public class FBHandler {
         r.setRid(rid);
         DatabaseReference ref = rootRef.child("Recipes").child(rid);
         ref.setValue(r);
+        dbHandler.addRecipe(r);
 
         LoginPage.mainUser.getCreatedList().add(rid);
         addUpdateUser(LoginPage.mainUser);
