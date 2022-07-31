@@ -8,6 +8,7 @@
         <entry key="..\:/MAD/MAD-Assignment-Cookverse/app/src/main/res/layout/activity_login_page.xml" value="0.22146739130434784" />
         <entry key="..\:/MAD/MAD-Assignment-Cookverse/app/src/main/res/layout/activity_recipe.xml" value="0.264" />
         <entry key="..\:/MAD/MAD-Assignment-Cookverse/app/src/main/res/layout/add_ingredients.xml" value="0.22826086956521738" />
+        <entry key="..\:/MAD/MAD-Assignment-Cookverse/app/src/main/res/layout/add_steps.xml" value="0.22826086956521738" />
         <entry key="..\:/MAD/MAD-Assignment-Cookverse/app/src/main/res/layout/discover_layout.xml" value="0.22146739130434784" />
         <entry key="..\:/MAD/MAD-Assignment-Cookverse/app/src/main/res/layout/fragment_create.xml" value="0.25416666666666665" />
         <entry key="..\:/MAD/MAD-Assignment-Cookverse/app/src/main/res/layout/fragment_discover.xml" value="0.22146739130434784" />
@@ -15,9 +16,12 @@
         <entry key="..\:/MAD/MAD-Assignment-Cookverse/app/src/main/res/layout/fragment_liked_recipe.xml" value="0.22826086956521738" />
         <entry key="..\:/MAD/MAD-Assignment-Cookverse/app/src/main/res/layout/fragment_main.xml" value="0.12360688956433637" />
         <entry key="..\:/MAD/MAD-Assignment-Cookverse/app/src/main/res/layout/fragment_profile.xml" value="0.22146739130434784" />
+        <entry key="..\:/MAD/MAD-Assignment-Cookverse/app/src/main/res/layout/fragment_shopping_list.xml" value="0.25416666666666665" />
         <entry key="..\:/MAD/MAD-Assignment-Cookverse/app/src/main/res/layout/fragment_user_recipe.xml" value="0.22826086956521738" />
         <entry key="..\:/MAD/MAD-Assignment-Cookverse/app/src/main/res/layout/online_recipes.xml" value="0.264" />
         <entry key="..\:/MAD/MAD-Assignment-Cookverse/app/src/main/res/layout/recipedesc_popup.xml" value="0.22826086956521738" />
+        <entry key="..\:/MAD/MAD-Assignment-Cookverse/app/src/main/res/layout/shopping_ingred.xml" value="0.22826086956521738" />
+        <entry key="..\:/MAD/MAD-Assignment-Cookverse/app/src/main/res/layout/shoppinglist_layout.xml" value="0.2" />
         <entry key="..\:/MAD/MAD-Assignment-Cookverse/app/src/main/res/layout/usercreatedrecipes.xml" value="0.1" />
         <entry key="..\:/MAD/MAD-Assignment-Cookverse/app/src/main/res/menu/profile_nav_menu.xml" value="0.25052083333333336" />
         <entry key="..\:/MAD/MAD-Assignment-Cookverse/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1" />
@@ -26,13 +30,9 @@
         <entry key="..\:/Users/65866/Desktop/MAD/MAD-Assignment/app/src/main/res/layout/activity_creater_user_page.xml" value="0.2546875" />
         <entry key="..\:/Users/65866/Desktop/MAD/MAD-Assignment/app/src/main/res/layout/activity_login_page.xml" value="0.3" />
         <entry key="..\:/Users/65866/Desktop/MAD/MAD-Assignment/app/src/main/res/layout/activity_main.xml" value="0.22826086956521738" />
-        <entry key="..\:/Users/65866/Desktop/MAD/MAD-Assignment/app/src/main/res/layout/activity_splash_screen.xml" value="0.36" />
-        <entry key="..\:/Users/65866/Desktop/MAD/MAD-Assignment/app/src/main/res/layout/add_cuisine.xml" value="0.22826086956521738" />
-        <entry key="..\:/Users/65866/Desktop/MAD/MAD-Assignment/app/src/main/res/layout/add_ingredients.xml" value="0.2546875" />
-        <entry key="..\:/Users/65866/Desktop/MAD/MAD-Assignment/app/src/main/res/layout/add_steps.xml" value="0.22826086956521738" />
-        <entry key="..\:/Users/65866/Desktop/MAD/MAD-Assignment/app/src/main/res/layout/fragment_create.xml" value="0.3" />
+        <entry key="..\:/Users/65866/Desktop/MAD/MAD-Assignment/app/src/main/res/layout/fragment_create.xml" value="0.22826086956521738" />
         <entry key="..\:/Users/65866/Desktop/MAD/MAD-Assignment/app/src/main/res/layout/fragment_discover.xml" value="0.22826086956521738" />
-        <entry key="..\:/Users/65866/Desktop/MAD/MAD-Assignment/app/src/main/res/layout/fragment_home.xml" value="0.36" />
+        <entry key="..\:/Users/65866/Desktop/MAD/MAD-Assignment/app/src/main/res/layout/fragment_home.xml" value="0.2546875" />
         <entry key="..\:/Users/65866/Desktop/MAD/MAD-Assignment/app/src/main/res/layout/fragment_main.xml" value="0.22826086956521738" />
         <entry key="..\:/Users/65866/Desktop/MAD/MAD-Assignment/app/src/main/res/layout/fragment_profile.xml" value="0.2546875" />
         <entry key="..\:/Users/65866/Desktop/MAD/NEW MAD/app/src/main/res/layout/activity_login_page.xml" value="0.22826086956521738" />

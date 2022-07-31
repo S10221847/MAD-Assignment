@@ -223,7 +223,7 @@ public class DBHandler extends SQLiteOpenHelper {
         }
 
         if (userData.getShoppingList() != null){
-            for (String rid : userData.getLikedList()){
+            for (String rid : userData.getShoppingList()){
                 addShoppingRecipes(rid, userData.getName());
             }
         }

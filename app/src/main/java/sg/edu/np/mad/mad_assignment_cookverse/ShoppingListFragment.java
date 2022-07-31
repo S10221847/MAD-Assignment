@@ -1,11 +1,19 @@
 package sg.edu.np.mad.mad_assignment_cookverse;
 
+import static android.content.Context.MODE_PRIVATE;
+
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -13,6 +21,11 @@ import androidx.fragment.app.Fragment;
  * create an instance of this fragment.
  */
 public class ShoppingListFragment extends Fragment {
+    public List<Recipe>shoppingRec=new ArrayList<>();
+    public String GLOBAL_PREF = "MyPrefs";
+    public String DATABASE_VERSION = "MyDatabaseVersion";
+    DBHandler db;
+    SharedPreferences sharedPreferences;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -57,7 +70,22 @@ public class ShoppingListFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        sharedPreferences = this.getActivity().getSharedPreferences(GLOBAL_PREF, MODE_PRIVATE);
+        int sharedDBVersion = sharedPreferences.getInt(DATABASE_VERSION, 2);
+        db = new DBHandler(getActivity(), null, null, sharedDBVersion);
+        List<String> shopping=LoginPage.mainUser.getShoppingList();
+        for(int i=0;i<shopping.size();i++){
+            Recipe r=db.findRecipe(shopping.get(i));
+            shoppingRec.add(r);
+        }
+        View view = inflater.inflate(R.layout.fragment_shopping_list, container, false);
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_shopping_list, container, false);
+        RecyclerView recyclerView=view.findViewById(R.id.shoppingrecycler);
+        ShoppingListAdapter sAdaptor=new ShoppingListAdapter(ProfileFragment.shoppingList,getActivity());
+        LinearLayoutManager mLayoutManager=new LinearLayoutManager(getActivity(),LinearLayoutManager.VERTICAL,false);
+        recyclerView.setLayoutManager(mLayoutManager);
+        recyclerView.setAdapter(sAdaptor);
+        return view;
+
     }
 }

@@ -2727,6 +2727,7 @@ id collapseActionView
 id compress
 id confirm_button
 id constraint
+id constraintLayout
 id container
 id content
 id contentPanel
@@ -2832,6 +2833,7 @@ id forever
 id fragment_container_view_tag
 id frameLayout
 id frameLayout2
+id frameLayout3
 id frame_layout
 id frost
 id fullscreen_header
@@ -3059,7 +3061,13 @@ id selection_type
 id sharedValueSet
 id sharedValueUnset
 id shopList
+id shoppingIngred
 id shoppingList
+id shopping_name
+id shopping_pic
+id shopping_servings
+id shoppinglinear
+id shoppingrecycler
 id shortcut
 id showCustom
 id showHome
@@ -3378,6 +3386,8 @@ layout recipedesc_popup
 layout select_dialog_item_material
 layout select_dialog_multichoice_material
 layout select_dialog_singlechoice_material
+layout shopping_ingred
+layout shoppinglist_layout
 layout support_simple_spinner_dropdown_item
 layout test_action_chip
 layout test_chip_zero_corner_radius

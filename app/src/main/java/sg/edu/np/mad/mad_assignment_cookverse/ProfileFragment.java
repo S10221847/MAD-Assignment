@@ -34,6 +34,8 @@ public class ProfileFragment extends Fragment {
     public static ArrayList<Recipe> likedRecipe = new ArrayList<>();
     public static ArrayList<String> personalStringRecipe = new ArrayList<>();
     public static ArrayList<String> likedStringRecipe = new ArrayList<>();
+    public static ArrayList<Recipe> shoppingList=new ArrayList<>();
+    public static ArrayList<String> shoppingListString=new ArrayList<>();
     public static String personalOrLiked = "";
     public String GLOBAL_PREF = "MyPrefs";
     public String DATABASE_VERSION = "MyDatabaseVersion";
@@ -128,6 +130,8 @@ public class ProfileFragment extends Fragment {
         likedRecipe.removeAll(likedRecipe);
         personalStringRecipe.removeAll(personalStringRecipe);
         personalRecipe.removeAll(personalRecipe);
+        shoppingList.removeAll(shoppingList);
+        shoppingListString.removeAll(shoppingListString);
         sharedPreferences = this.getActivity().getSharedPreferences(GLOBAL_PREF, MODE_PRIVATE);
         int sharedDBVersion = sharedPreferences.getInt(DATABASE_VERSION, 2);
         dbHandler = new DBHandler(getActivity(), null, null, sharedDBVersion);
@@ -142,6 +146,11 @@ public class ProfileFragment extends Fragment {
                     !likedStringRecipe.contains(r.getRid())){
                 likedStringRecipe.add(r.getRid());
                 likedRecipe.add(r);
+            }
+            if (LoginPage.mainUser.getShoppingList().contains(r.getRid()) &
+                    !shoppingListString.contains(r.getRid())){
+                shoppingListString.add(r.getRid());
+                shoppingList.add(r);
             }
         }
         currentName.setText(LoginPage.mainUser.getName());
