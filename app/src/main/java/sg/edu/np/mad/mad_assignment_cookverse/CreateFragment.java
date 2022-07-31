@@ -131,8 +131,10 @@ public class CreateFragment extends Fragment {
         //TextView cuisine = view.findViewById(R.id.addCuisine);
         TextView servings = view.findViewById(R.id.editRecipeServings);
 
+        //Getting storage reference for images
         mStorageRef = FirebaseStorage.getInstance().getReference("images");
 
+        //Button that calls openFileChooser method which allows for images to be chosen
         mButtonChooseImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -140,6 +142,7 @@ public class CreateFragment extends Fragment {
             }
         });
 
+        //Button that calls openFileChooser method which allows for images to be chosen
         mImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -147,9 +150,12 @@ public class CreateFragment extends Fragment {
             }
         });
 
+        //Button that processes user's input to create recipe object to be added to online and local database
         mButtonCreateRecipe.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                //Instantiating recipe object and setting values from user's input
                 Recipe recipe = new Recipe();
                 recipe.setName(name.getText().toString());
                 recipe.setDescription(description.getText().toString());
@@ -203,8 +209,10 @@ public class CreateFragment extends Fragment {
                     recipe.setCuisineList(RecipeCuisi);
                 }
 
+                //Checks to see if user has entered the minimum required inputs
                 if (!recipe.getName().equals("") && mImageUri != null && !recipe.getIngredientsList().get(0).equals("")
                 && !recipe.getStepsList().get(0).equals("")) {
+                    //Calls create recipe method to send recipe object to database
                     createRecipe(recipe);
                     Intent myIntent = new Intent(getActivity(), MainFragment.class);
                     getActivity().startActivity(myIntent);
@@ -212,12 +220,10 @@ public class CreateFragment extends Fragment {
                 else{
                     Toast.makeText(getActivity(), "Please include all required fields and an image",Toast.LENGTH_SHORT).show();
                 }
-
-                //FragmentTransaction ft = getFragmentManager().beginTransaction();
-                //ft.detach(CreateFragment.this).attach(CreateFragment.this).commit();
             }
         });
 
+        //Button that adds additional EditText/Layout to listview to allow user's to add more ingredients
         addIngred.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -225,6 +231,7 @@ public class CreateFragment extends Fragment {
             }
         });
 
+        //Button that adds additional EditText/Layout to listview to allow user's to add more steps
         addStep.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -232,6 +239,7 @@ public class CreateFragment extends Fragment {
             }
         });
 
+        //Button that adds additional EditText/Layout to listview to allow user's to add more cuisines
         addCuisi.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -242,6 +250,7 @@ public class CreateFragment extends Fragment {
         return view;
     }
 
+    //Allows user's to choose image from their files
     private void openFileChooser(){
         Intent intent = new Intent();
         intent.setType("image/*");
@@ -260,16 +269,18 @@ public class CreateFragment extends Fragment {
         }
     }
 
+    //Gets image's file type as string
     private String getFileExtension(Uri uri){
         ContentResolver cR = getActivity().getContentResolver();
         MimeTypeMap mime = MimeTypeMap.getSingleton();
         return mime.getExtensionFromMimeType(cR.getType(uri));
     }
 
+    //Adds new ingredient view to list view to allow user's to add more ingredients
     private void addIngredientView(){
         final View ingredView = getLayoutInflater().inflate(R.layout.add_ingredients, null, false);
-        Button delete = ingredView.findViewById(R.id.deleteIngredient);
-        Button add = ingredView.findViewById(R.id.addIngredientsButton);
+        Button delete = ingredView.findViewById(R.id.deleteIngredient); //button that deletes ingredient view
+        Button add = ingredView.findViewById(R.id.addIngredientsButton); //button that adds ingredient view
         delete.setVisibility(View.VISIBLE);
         addIngred.setVisibility(View.INVISIBLE);
 
@@ -291,6 +302,7 @@ public class CreateFragment extends Fragment {
         ingredList.addView(ingredView);
     }
 
+    //Removes ingredient view from list view
     private void removeIngredView(View view){
         ingredList.removeView(view);
     }
@@ -335,7 +347,9 @@ public class CreateFragment extends Fragment {
             @Override
             public void onClick(View view){
                 removeCuisiView(cuisiView);
-
+                if (cuisiList.getChildCount() == 1){
+                    addCuisi.setVisibility(View.VISIBLE);
+                }
             }
         });
         add.setOnClickListener(new View.OnClickListener(){
@@ -351,16 +365,21 @@ public class CreateFragment extends Fragment {
         cuisiList.removeView(view);
     }
 
+    //Method that receives recipe object to be added to local database and firebase
     private void createRecipe(Recipe r){
         sharedPreferences = this.getActivity().getSharedPreferences(GLOBAL_PREF, MODE_PRIVATE);
         int sharedDBVersion = sharedPreferences.getInt(DATABASE_VERSION, 2);
         dbHandler = new DBHandler(getActivity(), null, null, sharedDBVersion);
         fbHandler = new FBHandler(dbHandler,getActivity());
         ArrayList<String> al = new ArrayList<>();
+
+        //checking to see if there is an input image
         if (mImageUri != null){
+            //setting image name and storage reference
             String fileName = System.currentTimeMillis() + "." + getFileExtension(mImageUri);
             StorageReference fileReference = mStorageRef.child(fileName);
 
+            //uploading image to storage
             fileReference.putFile(mImageUri)
                     .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                         @Override
@@ -385,6 +404,8 @@ public class CreateFragment extends Fragment {
                                     else{
                                         LoginPage.mainUser.getCreatedList().add(r.getRid());
                                     }
+
+                                    //Adds recipe to firebase and local database and updates user object
                                     dbHandler.updateUser(LoginPage.mainUser);
                                     dbHandler.addRecipe(r);
                                     fbHandler.addRecipe(r);
