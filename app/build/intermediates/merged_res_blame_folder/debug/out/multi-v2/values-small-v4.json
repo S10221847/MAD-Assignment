@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "C:\\Users\\tanko\\Desktop\\Year 2 sem 1\\MAD\\MAD-Assignment-minh\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-small-v4\\values-small-v4.xml",
+            "outputFile": "C:\\Users\\ashyo\\OneDrive\\Desktop\\Year 2\\MAD\\MADASSG\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-small-v4\\values-small-v4.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\tanko\\.gradle\\caches\\transforms-3\\84b6c140ff5d351a3cdb5f3505dd6d86\\transformed\\material-1.6.0\\res\\values-small-v4\\values-small-v4.xml",
+                    "source": "C:\\Users\\ashyo\\.gradle\\caches\\transforms-3\\84b6c140ff5d351a3cdb5f3505dd6d86\\transformed\\material-1.6.0\\res\\values-small-v4\\values-small-v4.xml",
                     "from": {
                         "startLines": "2,3,4,5",
                         "startColumns": "4,4,4,4",

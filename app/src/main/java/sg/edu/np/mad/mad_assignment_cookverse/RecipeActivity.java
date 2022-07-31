@@ -139,8 +139,6 @@ public class RecipeActivity extends AppCompatActivity {
         });
 
 
-        like_ornot=LoginPage.mainUser.getLikedList().contains(recipeID);
-        shopping_ornot=LoginPage.mainUser.getShoppingList().contains(recipeID);
         //Check if user already liked post
         if(LoginPage.mainUser.getLikedList().contains(recipeID)){   //If user already liked post, heart is filled up
             likestatus.setImageURI(Uri.parse("android.resource://"+getPackageName()+"/"+R.drawable.liked));
