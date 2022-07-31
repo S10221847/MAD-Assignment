@@ -6,7 +6,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.FrameLayout;
-import android.widget.ImageView;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
@@ -14,6 +13,7 @@ import androidx.annotation.Nullable;
 import androidx.viewbinding.ViewBinding;
 import androidx.viewbinding.ViewBindings;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.imageview.ShapeableImageView;
 import java.lang.NullPointerException;
 import java.lang.Override;
 import java.lang.String;
@@ -27,7 +27,7 @@ public final class FragmentProfileBinding implements ViewBinding {
   public final FrameLayout FRAGMENTPLACEHOLDER;
 
   @NonNull
-  public final ImageView ProfileImage;
+  public final ShapeableImageView ProfileImage;
 
   @NonNull
   public final TextView bio;
@@ -57,7 +57,7 @@ public final class FragmentProfileBinding implements ViewBinding {
   public final TextView userName;
 
   private FragmentProfileBinding(@NonNull ScrollView rootView,
-      @NonNull FrameLayout FRAGMENTPLACEHOLDER, @NonNull ImageView ProfileImage,
+      @NonNull FrameLayout FRAGMENTPLACEHOLDER, @NonNull ShapeableImageView ProfileImage,
       @NonNull TextView bio, @NonNull BottomNavigationView bottomNavigationView2,
       @NonNull Button editProfile, @NonNull TextView likedReci, @NonNull ScrollView linearLayout,
       @NonNull TextView personalReci, @NonNull TextView textView2, @NonNull TextView textView7,
@@ -110,7 +110,7 @@ public final class FragmentProfileBinding implements ViewBinding {
       }
 
       id = R.id.ProfileImage;
-      ImageView ProfileImage = ViewBindings.findChildViewById(rootView, id);
+      ShapeableImageView ProfileImage = ViewBindings.findChildViewById(rootView, id);
       if (ProfileImage == null) {
         break missingId;
       }

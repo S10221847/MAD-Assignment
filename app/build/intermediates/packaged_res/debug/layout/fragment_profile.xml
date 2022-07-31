@@ -54,16 +54,20 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/ProfileImage" />
 
-        <ImageView
+        <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/ProfileImage"
             android:layout_width="136dp"
-            android:layout_height="128dp"
+            android:layout_height="136dp"
             android:layout_marginStart="20dp"
             android:layout_marginTop="24dp"
             android:background="#00FFC107"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_baseline_account_circle_24" />
+            app:shapeAppearanceOverlay="@style/Circular"
+            app:srcCompat="@drawable/ic_baseline_account_circle_24"
+            app:strokeColor="#040404"
+            app:strokeWidth="5dp"
+            android:scaleType="centerCrop"/>
 
         <TextView
             android:id="@+id/bio"

@@ -11,6 +11,7 @@ import android.webkit.MimeTypeMap;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -27,6 +28,8 @@ import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
+import java.util.ArrayList;
+
 public class EditProfile extends AppCompatActivity {
     private static Uri imageURI;
     private StorageReference mStorageRef;
@@ -37,6 +40,7 @@ public class EditProfile extends AppCompatActivity {
     private FBHandler fbHandler;
     public String GLOBAL_PREF = "MyPrefs";
     public String DATABASE_VERSION = "MyDatabaseVersion";
+    public ArrayList<String> userNameString = new ArrayList<>();
     SharedPreferences sharedPreferences;
     DBHandler dbHandler;
 
@@ -50,7 +54,7 @@ public class EditProfile extends AppCompatActivity {
         EditText editName = (EditText) findViewById(R.id.editName);
         EditText editBio = (EditText) findViewById(R.id.editBio);
         imageView = findViewById(R.id.editPic);
-        Button editCancel = findViewById(R.id.editCancel);
+        ImageView editCancel = findViewById(R.id.backArrowEditProfile);
         Button editSave = findViewById(R.id.editSave);
 
         sharedPreferences = this.getSharedPreferences(GLOBAL_PREF, MODE_PRIVATE);
@@ -78,10 +82,20 @@ public class EditProfile extends AppCompatActivity {
         editSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                updateUser(editName, editBio);
-                Intent intent = new Intent();
-                setResult(123, intent);
-                finish();
+                if (editName.getText().toString().isEmpty()){
+                    editName.setError("Name must not be empty!");
+                    editName.requestFocus();
+                }
+                else if(userNameString.contains(editName.getText().toString())){
+                    editName.setError("Name is taken!");
+                    editName.requestFocus();
+                }
+                else{
+                    updateUser(editName, editBio);
+                    Intent intent = new Intent();
+                    setResult(123, intent);
+                    finish();
+                }
             }
         });
 

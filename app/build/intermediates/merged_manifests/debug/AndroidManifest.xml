@@ -25,6 +25,9 @@
         android:testOnly="true"
         android:theme="@style/Theme.MADAssignmentCookverse" >
         <activity
+            android:name="sg.edu.np.mad.mad_assignment_cookverse.EditRecipe"
+            android:exported="false" />
+        <activity
             android:name="sg.edu.np.mad.mad_assignment_cookverse.Splash_Screen"
             android:exported="true" >
             <intent-filter>

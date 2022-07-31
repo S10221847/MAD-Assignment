@@ -13,6 +13,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MADAssignmentCookverse">
         <activity
+            android:name=".EditRecipe"
+            android:exported="false" />
+        <activity
             android:name=".Splash_Screen"
             android:exported="true">
             <intent-filter>

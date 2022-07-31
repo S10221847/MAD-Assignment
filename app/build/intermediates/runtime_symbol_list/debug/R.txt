@@ -2675,6 +2675,8 @@ int id auto 0x7f090060
 int id autoComplete 0x7f090061
 int id autoCompleteToEnd 0x7f090062
 int id autoCompleteToStart 0x7f090063
+int id backArrowEditProfile 0x7f09027b
+int id backArrowEditRecipe 0x7f09027c
 int id back_button 0x7f090064
 int id barrier 0x7f090065
 int id baseline 0x7f090066
@@ -2790,7 +2792,6 @@ int id easeInOut 0x7f0900d3
 int id easeOut 0x7f0900d4
 int id east 0x7f0900d5
 int id editBio 0x7f0900d6
-int id editCancel 0x7f0900d7
 int id editName 0x7f0900d8
 int id editPassword 0x7f0900d9
 int id editPasswordProfile 0x7f0900da
@@ -3306,6 +3307,7 @@ int layout abc_tooltip 0x7f0c001b
 int layout about_recipe 0x7f0c001c
 int layout activity_creater_user_page 0x7f0c001d
 int layout activity_edit_profile 0x7f0c001e
+int layout activity_edit_recipe 0x7f0c0091
 int layout activity_login_page 0x7f0c001f
 int layout activity_main 0x7f0c0020
 int layout activity_recipe 0x7f0c0021

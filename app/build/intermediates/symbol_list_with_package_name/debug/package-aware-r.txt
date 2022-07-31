@@ -2676,6 +2676,8 @@ id auto
 id autoComplete
 id autoCompleteToEnd
 id autoCompleteToStart
+id backArrowEditProfile
+id backArrowEditRecipe
 id back_button
 id barrier
 id baseline
@@ -2791,7 +2793,6 @@ id easeInOut
 id easeOut
 id east
 id editBio
-id editCancel
 id editName
 id editPassword
 id editPasswordProfile
@@ -3307,6 +3308,7 @@ layout abc_tooltip
 layout about_recipe
 layout activity_creater_user_page
 layout activity_edit_profile
+layout activity_edit_recipe
 layout activity_login_page
 layout activity_main
 layout activity_recipe
