@@ -1,6 +1,8 @@
 package sg.edu.np.mad.mad_assignment_cookverse;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -11,6 +13,11 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -24,11 +31,129 @@ import java.util.List;
 public class CreateUserPage extends AppCompatActivity {
     public String TAG = "Create User Page";
 
+    EditText myCreateUsername;
+    EditText myCreatePassword;
+    Button myButtonCreate;
+    Button myButtonCancel;
+
+    ProgressDialog progressDialog;
+    FirebaseAuth mAuth;
+    FirebaseUser mUser;
+
+    private FBHandler fbHandler;
+    public String GLOBAL_PREF = "MyPrefs";
+    public String DATABASE_VERSION = "MyDatabaseVersion";
+    SharedPreferences sharedPreferences;
+    DBHandler dbHandler;
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_creater_user_page);
 
-        EditText myCreateUsername = findViewById(R.id.editUsername);
+        sharedPreferences = this.getSharedPreferences(GLOBAL_PREF, MODE_PRIVATE);
+        int sharedDBVersion = sharedPreferences.getInt(DATABASE_VERSION, 2);
+        dbHandler = new DBHandler(this, null, null, sharedDBVersion);
+        fbHandler = new FBHandler(dbHandler,this);
+
+        progressDialog = new ProgressDialog(this);
+
+        myCreateUsername = findViewById(R.id.editUsername);
+        myCreatePassword = findViewById(R.id.editPassword);
+        //For validating creating account
+        myButtonCreate = findViewById(R.id.buttonCreate);
+
+        //For clicking cancel button
+        myButtonCancel = findViewById(R.id.buttonCancel);
+        myButtonCancel.setOnClickListener(view -> CancelAuth());
+
+        initFirebaseAuth();
+
+
+        myButtonCreate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                PerformAuthentication();
+            }
+        });
+
+    }
+
+    private void initFirebaseAuth() {
+        //create firebase member variables
+        mAuth = FirebaseAuth.getInstance();
+        mUser = mAuth.getCurrentUser();
+    }
+
+    private void PerformAuthentication() {
+        String email = myCreateUsername.getText().toString();
+        String password = myCreatePassword.getText().toString();
+
+        //if user didn't added email in editText
+        if (email.isEmpty()) {
+            myCreateUsername.setError("Type Email");
+            myCreateUsername.requestFocus();
+        }
+        //if user didn't added password in editText
+        else if (password.isEmpty()) {
+            myCreatePassword.setError("Type Email");
+            myCreatePassword.requestFocus();
+        } else {
+
+            progressDialog.setMessage("Please wait ,Login...");
+            progressDialog.show();
+
+            //perform authentication by firebase authentication method
+            mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                @Override
+                public void onComplete(@NonNull Task<AuthResult> task) {
+                    if (task.isSuccessful()) {
+                        //if auth successful send verification link
+                        mUser = mAuth.getCurrentUser();
+                        User userDataDB = new User();
+                        String emailNew = email.replaceAll("\\p{Punct}+", "");
+                        userDataDB.setName(emailNew);
+                        userDataDB.setPassword(password);
+                        userDataDB.setBio("Your own bio");
+                        fbHandler.addUpdateUser(userDataDB);
+                        dbHandler.addUser(userDataDB);
+
+                        //send verification
+                        mUser.sendEmailVerification().addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                if (task.isSuccessful()) {
+                                    //if link successfully sent
+                                    progressDialog.dismiss();
+                                    Toast.makeText(CreateUserPage.this, "Please Check your email and verify Link", Toast.LENGTH_SHORT).show();
+                                } else {
+                                    progressDialog.dismiss();
+                                    Toast.makeText(CreateUserPage.this, "" + task.getException().toString(), Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        });
+
+                    } else {
+                        //show error if authentication not successful
+                        progressDialog.dismiss();
+                        Toast.makeText(CreateUserPage.this, "" + task.getException().getLocalizedMessage().toString(), Toast.LENGTH_SHORT).show();
+                    }
+
+                }
+            });
+
+
+        }
+
+    }
+
+    private void CancelAuth() {
+        Toast.makeText(CreateUserPage.this, "Creation Cancelled", Toast.LENGTH_SHORT).show();
+        Intent myCancelIntent = new Intent(CreateUserPage.this, LoginPage.class);
+        startActivity(myCancelIntent);
+    }
+}
+
+        /*EditText myCreateUsername = findViewById(R.id.editUsername);
         EditText myCreatePassword = findViewById(R.id.editPassword);
         //For validating creating account
         Button myButtonCreate = findViewById(R.id.buttonCreate);
@@ -52,7 +177,7 @@ public class CreateUserPage extends AppCompatActivity {
                                 User userDataDB = new User();
                                 userDataDB.setName(myCreateUsername.getText().toString());
                                 userDataDB.setPassword((myCreatePassword.getText().toString()));
-                                /*userDataDB.setUserImage("https://upload.wikimedia.org/wikipedia/commons/a/ac/Default_pfp.jpg");*/
+                                /*userDataDB.setUserImage("https://upload.wikimedia.org/wikipedia/commons/a/ac/Default_pfp.jpg");
                                 userDataDB.setBio("Your own bio");
 
                                 DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
@@ -65,8 +190,8 @@ public class CreateUserPage extends AppCompatActivity {
                                 startActivity(myCreateIntent);
                             }
                             else {
-                                Toast.makeText(CreateUserPage.this, "Username must be within 20 characters! and password more than 1", Toast.LENGTH_SHORT).show();
-                            }
+                                Toast.makeText(CreateUserPage.this, "Username must be within 20 characters! and password more than 1", Toast.LENGTH_SHORT).show();*/
+                           /* }
                         }
                     }
                     @Override
@@ -89,5 +214,5 @@ public class CreateUserPage extends AppCompatActivity {
         });
 
     }
-}
+} */
 

@@ -14,6 +14,7 @@ import androidx.annotation.Nullable;
 import androidx.viewbinding.ViewBinding;
 import androidx.viewbinding.ViewBindings;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.imageview.ShapeableImageView;
 import java.lang.NullPointerException;
 import java.lang.Override;
 import java.lang.String;
@@ -24,10 +25,10 @@ public final class ActivityEditProfileBinding implements ViewBinding {
   private final ScrollView rootView;
 
   @NonNull
-  public final EditText editBio;
+  public final ImageView backArrowEditProfile;
 
   @NonNull
-  public final Button editCancel;
+  public final EditText editBio;
 
   @NonNull
   public final EditText editName;
@@ -39,7 +40,7 @@ public final class ActivityEditProfileBinding implements ViewBinding {
   public final EditText editPasswordProfileAgain;
 
   @NonNull
-  public final ImageView editPic;
+  public final ShapeableImageView editPic;
 
   @NonNull
   public final FloatingActionButton editPicButton;
@@ -62,15 +63,16 @@ public final class ActivityEditProfileBinding implements ViewBinding {
   @NonNull
   public final TextView textView6;
 
-  private ActivityEditProfileBinding(@NonNull ScrollView rootView, @NonNull EditText editBio,
-      @NonNull Button editCancel, @NonNull EditText editName, @NonNull EditText editPasswordProfile,
-      @NonNull EditText editPasswordProfileAgain, @NonNull ImageView editPic,
+  private ActivityEditProfileBinding(@NonNull ScrollView rootView,
+      @NonNull ImageView backArrowEditProfile, @NonNull EditText editBio,
+      @NonNull EditText editName, @NonNull EditText editPasswordProfile,
+      @NonNull EditText editPasswordProfileAgain, @NonNull ShapeableImageView editPic,
       @NonNull FloatingActionButton editPicButton, @NonNull Button editSave,
       @NonNull TextView textView10, @NonNull TextView textView11, @NonNull TextView textView3,
       @NonNull TextView textView5, @NonNull TextView textView6) {
     this.rootView = rootView;
+    this.backArrowEditProfile = backArrowEditProfile;
     this.editBio = editBio;
-    this.editCancel = editCancel;
     this.editName = editName;
     this.editPasswordProfile = editPasswordProfile;
     this.editPasswordProfileAgain = editPasswordProfileAgain;
@@ -111,15 +113,15 @@ public final class ActivityEditProfileBinding implements ViewBinding {
     // This is done to optimize the compiled bytecode for size and performance.
     int id;
     missingId: {
-      id = R.id.editBio;
-      EditText editBio = ViewBindings.findChildViewById(rootView, id);
-      if (editBio == null) {
+      id = R.id.backArrowEditProfile;
+      ImageView backArrowEditProfile = ViewBindings.findChildViewById(rootView, id);
+      if (backArrowEditProfile == null) {
         break missingId;
       }
 
-      id = R.id.editCancel;
-      Button editCancel = ViewBindings.findChildViewById(rootView, id);
-      if (editCancel == null) {
+      id = R.id.editBio;
+      EditText editBio = ViewBindings.findChildViewById(rootView, id);
+      if (editBio == null) {
         break missingId;
       }
 
@@ -142,7 +144,7 @@ public final class ActivityEditProfileBinding implements ViewBinding {
       }
 
       id = R.id.editPic;
-      ImageView editPic = ViewBindings.findChildViewById(rootView, id);
+      ShapeableImageView editPic = ViewBindings.findChildViewById(rootView, id);
       if (editPic == null) {
         break missingId;
       }
@@ -189,8 +191,8 @@ public final class ActivityEditProfileBinding implements ViewBinding {
         break missingId;
       }
 
-      return new ActivityEditProfileBinding((ScrollView) rootView, editBio, editCancel, editName,
-          editPasswordProfile, editPasswordProfileAgain, editPic, editPicButton, editSave,
+      return new ActivityEditProfileBinding((ScrollView) rootView, backArrowEditProfile, editBio,
+          editName, editPasswordProfile, editPasswordProfileAgain, editPic, editPicButton, editSave,
           textView10, textView11, textView3, textView5, textView6);
     }
     String missingId = rootView.getResources().getResourceName(id);

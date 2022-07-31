@@ -14,6 +14,7 @@ public class User {
     private List<String> createdList = new ArrayList<>();
     private List<String> shoppingList=new ArrayList<>();
 
+
     public String getName() {
         return name;
     }

@@ -45,6 +45,8 @@ id addIngredientsButton
 id addSteps
 id addStepsButton
 id applyFilter
+id backArrowEditProfile
+id backArrowEditRecipe
 id back_button
 id bio
 id bottomNavigationView
@@ -70,7 +72,6 @@ id discoverRecyclerView
 id discover_layout
 id duration
 id editBio
-id editCancel
 id editName
 id editPassword
 id editPasswordProfile
@@ -182,6 +183,7 @@ id usercreatedname
 layout about_recipe
 layout activity_creater_user_page
 layout activity_edit_profile
+layout activity_edit_recipe
 layout activity_login_page
 layout activity_main
 layout activity_recipe
