@@ -4,13 +4,13 @@ package sg.edu.np.mad.mad_assignment_cookverse.databinding;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.viewbinding.ViewBinding;
 import androidx.viewbinding.ViewBindings;
+import com.google.android.material.imageview.ShapeableImageView;
 import java.lang.NullPointerException;
 import java.lang.Override;
 import java.lang.String;
@@ -18,24 +18,72 @@ import sg.edu.np.mad.mad_assignment_cookverse.R;
 
 public final class RecipedescPopupBinding implements ViewBinding {
   @NonNull
-  private final ConstraintLayout rootView;
+  private final ScrollView rootView;
 
   @NonNull
-  public final ImageView imageView6;
+  public final ShapeableImageView rCheap;
+
+  @NonNull
+  public final TextView rCheap2;
+
+  @NonNull
+  public final TextView rCuisine;
+
+  @NonNull
+  public final TextView rDesc;
+
+  @NonNull
+  public final TextView rDiet;
 
   @NonNull
   public final TextView rNamePopup;
 
-  private RecipedescPopupBinding(@NonNull ConstraintLayout rootView, @NonNull ImageView imageView6,
-      @NonNull TextView rNamePopup) {
+  @NonNull
+  public final ShapeableImageView rPic;
+
+  @NonNull
+  public final ShapeableImageView rPopular;
+
+  @NonNull
+  public final TextView rPopularr;
+
+  @NonNull
+  public final TextView rServings;
+
+  @NonNull
+  public final TextView textView16;
+
+  @NonNull
+  public final TextView textView18;
+
+  @NonNull
+  public final TextView textView8;
+
+  private RecipedescPopupBinding(@NonNull ScrollView rootView, @NonNull ShapeableImageView rCheap,
+      @NonNull TextView rCheap2, @NonNull TextView rCuisine, @NonNull TextView rDesc,
+      @NonNull TextView rDiet, @NonNull TextView rNamePopup, @NonNull ShapeableImageView rPic,
+      @NonNull ShapeableImageView rPopular, @NonNull TextView rPopularr,
+      @NonNull TextView rServings, @NonNull TextView textView16, @NonNull TextView textView18,
+      @NonNull TextView textView8) {
     this.rootView = rootView;
-    this.imageView6 = imageView6;
+    this.rCheap = rCheap;
+    this.rCheap2 = rCheap2;
+    this.rCuisine = rCuisine;
+    this.rDesc = rDesc;
+    this.rDiet = rDiet;
     this.rNamePopup = rNamePopup;
+    this.rPic = rPic;
+    this.rPopular = rPopular;
+    this.rPopularr = rPopularr;
+    this.rServings = rServings;
+    this.textView16 = textView16;
+    this.textView18 = textView18;
+    this.textView8 = textView8;
   }
 
   @Override
   @NonNull
-  public ConstraintLayout getRoot() {
+  public ScrollView getRoot() {
     return rootView;
   }
 
@@ -60,9 +108,33 @@ public final class RecipedescPopupBinding implements ViewBinding {
     // This is done to optimize the compiled bytecode for size and performance.
     int id;
     missingId: {
-      id = R.id.imageView6;
-      ImageView imageView6 = ViewBindings.findChildViewById(rootView, id);
-      if (imageView6 == null) {
+      id = R.id.rCheap;
+      ShapeableImageView rCheap = ViewBindings.findChildViewById(rootView, id);
+      if (rCheap == null) {
+        break missingId;
+      }
+
+      id = R.id.rCheap2;
+      TextView rCheap2 = ViewBindings.findChildViewById(rootView, id);
+      if (rCheap2 == null) {
+        break missingId;
+      }
+
+      id = R.id.rCuisine;
+      TextView rCuisine = ViewBindings.findChildViewById(rootView, id);
+      if (rCuisine == null) {
+        break missingId;
+      }
+
+      id = R.id.rDesc;
+      TextView rDesc = ViewBindings.findChildViewById(rootView, id);
+      if (rDesc == null) {
+        break missingId;
+      }
+
+      id = R.id.rDiet;
+      TextView rDiet = ViewBindings.findChildViewById(rootView, id);
+      if (rDiet == null) {
         break missingId;
       }
 
@@ -72,7 +144,51 @@ public final class RecipedescPopupBinding implements ViewBinding {
         break missingId;
       }
 
-      return new RecipedescPopupBinding((ConstraintLayout) rootView, imageView6, rNamePopup);
+      id = R.id.rPic;
+      ShapeableImageView rPic = ViewBindings.findChildViewById(rootView, id);
+      if (rPic == null) {
+        break missingId;
+      }
+
+      id = R.id.rPopular;
+      ShapeableImageView rPopular = ViewBindings.findChildViewById(rootView, id);
+      if (rPopular == null) {
+        break missingId;
+      }
+
+      id = R.id.rPopularr;
+      TextView rPopularr = ViewBindings.findChildViewById(rootView, id);
+      if (rPopularr == null) {
+        break missingId;
+      }
+
+      id = R.id.rServings;
+      TextView rServings = ViewBindings.findChildViewById(rootView, id);
+      if (rServings == null) {
+        break missingId;
+      }
+
+      id = R.id.textView16;
+      TextView textView16 = ViewBindings.findChildViewById(rootView, id);
+      if (textView16 == null) {
+        break missingId;
+      }
+
+      id = R.id.textView18;
+      TextView textView18 = ViewBindings.findChildViewById(rootView, id);
+      if (textView18 == null) {
+        break missingId;
+      }
+
+      id = R.id.textView8;
+      TextView textView8 = ViewBindings.findChildViewById(rootView, id);
+      if (textView8 == null) {
+        break missingId;
+      }
+
+      return new RecipedescPopupBinding((ScrollView) rootView, rCheap, rCheap2, rCuisine, rDesc,
+          rDiet, rNamePopup, rPic, rPopular, rPopularr, rServings, textView16, textView18,
+          textView8);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

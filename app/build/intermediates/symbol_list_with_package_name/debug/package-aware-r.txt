@@ -2476,6 +2476,7 @@ drawable btn_radio_off_mtrl
 drawable btn_radio_off_to_on_mtrl_animation
 drawable btn_radio_on_mtrl
 drawable btn_radio_on_to_off_mtrl_animation
+drawable cheap_indicator
 drawable common_full_open_on_phone
 drawable common_google_signin_btn_icon_dark
 drawable common_google_signin_btn_icon_dark_focused
@@ -2566,6 +2567,7 @@ drawable notification_tile_bg
 drawable notify_panel_notification_icon_bg
 drawable pfp
 drawable pic
+drawable popular_indicator
 drawable random_pic
 drawable search_view_bg
 drawable test_custom_background
@@ -2863,7 +2865,6 @@ id imageView
 id imageView2
 id imageView3
 id imageView4
-id imageView6
 id imageView8
 id immediateStop
 id included
@@ -3015,9 +3016,18 @@ id progressBar
 id progressBar2
 id progress_circular
 id progress_horizontal
+id rCheap
+id rCheap2
+id rCuisine
+id rDesc
+id rDiet
 id rImage
 id rName
 id rName_popup
+id rPic
+id rPopular
+id rPopularr
+id rServings
 id rSteps
 id radio
 id ratio
@@ -3137,12 +3147,16 @@ id textView10
 id textView11
 id textView14
 id textView15
+id textView16
+id textView17
+id textView18
 id textView2
 id textView3
 id textView4
 id textView5
 id textView6
 id textView7
+id textView8
 id textView9
 id text_input_end_icon
 id text_input_error_icon
@@ -3290,6 +3304,7 @@ layout abc_search_dropdown_item_icons_2line
 layout abc_search_view
 layout abc_select_dialog_material
 layout abc_tooltip
+layout about_recipe
 layout activity_creater_user_page
 layout activity_edit_profile
 layout activity_login_page
@@ -3837,6 +3852,7 @@ style Base_Widget_MaterialComponents_TextView
 style CardView
 style CardView_Dark
 style CardView_Light
+style Circular
 style EmptyTheme
 style MaterialAlertDialog_Material3
 style MaterialAlertDialog_Material3_Body_Text
@@ -3872,6 +3888,7 @@ style Platform_V25_AppCompat
 style Platform_V25_AppCompat_Light
 style Platform_Widget_AppCompat_Spinner
 style RoundedSquare
+style RoundedSquare2
 style RtlOverlay_DialogWindowTitle_AppCompat
 style RtlOverlay_Widget_AppCompat_ActionBar_TitleItem
 style RtlOverlay_Widget_AppCompat_DialogTitle_Icon

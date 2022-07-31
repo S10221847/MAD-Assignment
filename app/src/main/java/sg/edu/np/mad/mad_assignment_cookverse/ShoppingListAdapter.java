@@ -34,7 +34,9 @@ public class ShoppingListAdapter extends RecyclerView.Adapter<ShoppingListViewHo
     public void onBindViewHolder(ShoppingListViewHolder holder,int position){
 
         holder.rName.setText(data.get(position).getName());
-        holder.rServings.setText(String.valueOf(data.get(position).getServings()));
+        String servings_count=String.valueOf(data.get(position).getServings());
+        servings_count=servings_count.concat(" Servings");
+        holder.rServings.setText(servings_count);
         if(data.get(position).getRecipeimage() != null){
             new ImageLoadTask(data.get(position).getRecipeimage(), holder.rPic).execute();
         }

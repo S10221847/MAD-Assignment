@@ -4,7 +4,7 @@ package sg.edu.np.mad.mad_assignment_cookverse.databinding;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
+import android.widget.CheckBox;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -20,10 +20,10 @@ public final class ShoppingIngredBinding implements ViewBinding {
   private final ConstraintLayout rootView;
 
   @NonNull
-  public final TextView shoppingIngred;
+  public final CheckBox shoppingIngred;
 
   private ShoppingIngredBinding(@NonNull ConstraintLayout rootView,
-      @NonNull TextView shoppingIngred) {
+      @NonNull CheckBox shoppingIngred) {
     this.rootView = rootView;
     this.shoppingIngred = shoppingIngred;
   }
@@ -56,7 +56,7 @@ public final class ShoppingIngredBinding implements ViewBinding {
     int id;
     missingId: {
       id = R.id.shoppingIngred;
-      TextView shoppingIngred = ViewBindings.findChildViewById(rootView, id);
+      CheckBox shoppingIngred = ViewBindings.findChildViewById(rootView, id);
       if (shoppingIngred == null) {
         break missingId;
       }

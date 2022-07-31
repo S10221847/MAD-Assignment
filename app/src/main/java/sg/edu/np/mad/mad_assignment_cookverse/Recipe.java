@@ -9,16 +9,16 @@ import java.util.List;
 
 public class Recipe {
     private String name;
-    private String description;
+    private String description; //
     private int duration; //in minutes
     private String rid;
     private String uid;
-    private List<String> cuisineList = new ArrayList<>();
+    private List<String> cuisineList = new ArrayList<>(); //
     private List<String> ingredientsList = new ArrayList<>();
     private List<String> stepsList = new ArrayList<>();
     private int nooflikes;
     private String recipeimage;
-    private int servings;
+    private int servings; //
 
     private boolean vegetarian;
     private boolean vegan;

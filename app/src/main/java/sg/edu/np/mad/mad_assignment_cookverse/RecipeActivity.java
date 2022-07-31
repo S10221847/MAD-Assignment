@@ -5,13 +5,18 @@ import static android.content.ContentValues.TAG;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
+import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -58,6 +63,81 @@ public class RecipeActivity extends AppCompatActivity {
         ImageView back_button=findViewById(R.id.back_button);
         ImageView shoppingList=findViewById(R.id.shoppingList);
         ImageView recipeEdit = findViewById(R.id.recipeEdit);
+        Button about=findViewById(R.id.about);
+        Dialog aboutDialog=new Dialog(RecipeActivity.this);
+
+        about.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                aboutDialog.setContentView(R.layout.about_recipe);
+
+
+                ImageView rPic=aboutDialog.findViewById(R.id.rPic);
+                new ImageLoadTask(r.getRecipeimage(), rPic).execute();
+                TextView rNamee=aboutDialog.findViewById(R.id.rName_popup);
+                rNamee.setText(r.getName());
+                String rServingss=String.valueOf(r.getServings());
+                rServingss=rServingss.concat(" Servings");
+                TextView rServingsss=aboutDialog.findViewById(R.id.rServings);
+                rServingsss.setText(rServingss);
+                TextView rDesc=aboutDialog.findViewById(R.id.rDesc);
+                rDesc.setText(r.getDescription());
+                rDesc.setMovementMethod(new ScrollingMovementMethod());
+                String cuisineR="Cuisine information missing";
+                if(r.getCuisineList()!=null){
+                    cuisineR=r.getCuisineList().get(0);
+                    if(r.getCuisineList().size()>1){
+                        for(int c=1;c<r.getCuisineList().size();c++){
+                            cuisineR=cuisineR.concat(", ");
+                            cuisineR=cuisineR.concat(r.getCuisineList().get(c));
+                    }
+                    //String cuisineR="hello";
+
+
+                    }
+                }
+
+                TextView rCuisine=aboutDialog.findViewById(R.id.rCuisine);
+                rCuisine.setText(cuisineR);
+                String dietR="";
+                if(r.isVegetarian()){
+                    dietR=dietR.concat("Vegetarian, ");
+                }
+                if(r.isVegan()){
+                    dietR=dietR.concat("Vegan, ");
+                }
+                if(r.isGlutenFree()){
+                    dietR=dietR.concat("Gluten-Free, ");
+                }
+                if(r.isDairyFree()){
+                    dietR=dietR.concat("Dairy-Free, ");
+                }
+                if(r.isHealthy()){
+                    dietR=dietR.concat("Healthy, ");
+                }
+                if(dietR!=""){
+                    dietR=dietR.substring(0,dietR.length()-2);
+                }
+                TextView rDiet=aboutDialog.findViewById(R.id.rDiet);
+                rDiet.setText(dietR);
+                TextView cheap2=aboutDialog.findViewById(R.id.rCheap2);
+                ImageView cheap=aboutDialog.findViewById(R.id.rCheap);
+                if(r.isCheap()==false){
+                    cheap2.setVisibility(View.GONE);
+                    cheap.setVisibility(View.GONE);
+                }
+                TextView popular2=aboutDialog.findViewById(R.id.rPopularr);
+                ImageView popular=aboutDialog.findViewById(R.id.rPopular);
+                if(r.isPopular()==false){
+                    popular2.setVisibility(View.GONE);
+                    popular.setVisibility(View.GONE);
+
+                }
+                aboutDialog.show();
+            }
+
+        });
+
 
         like_ornot=LoginPage.mainUser.getLikedList().contains(recipeID);
         shopping_ornot=LoginPage.mainUser.getShoppingList().contains(recipeID);
@@ -200,5 +280,66 @@ public class RecipeActivity extends AppCompatActivity {
 
             }
         });
+
+    }
+    private void showAboutDialog(Recipe r){
+        Dialog aboutDialog=new Dialog(RecipeActivity.this);
+        aboutDialog.setContentView(R.layout.about_recipe);
+
+
+        ImageView rPic=aboutDialog.findViewById(R.id.rPic);
+        new ImageLoadTask(r.getRecipeimage(), rPic).execute();
+        TextView rName=aboutDialog.findViewById(R.id.rName);
+        rName.setText(r.getName());
+        String rServings=String.valueOf(r.getServings());
+        rServings=rServings.concat(" Servings");
+        TextView rServingss=aboutDialog.findViewById(R.id.rServings);
+        rServingss.setText(rServings);
+        TextView rDesc=aboutDialog.findViewById(R.id.rDesc);
+        rDesc.setText(r.getDescription());
+        String cuisineR=r.getCuisineList().get(0);
+        for(int c=1;c<r.getCuisineList().size();c++){
+            cuisineR=cuisineR.concat(",");
+            cuisineR=cuisineR.concat(r.getCuisineList().get(c));
+
+        }
+        TextView rCuisine=aboutDialog.findViewById(R.id.rCuisine);
+        rCuisine.setText(cuisineR);
+        String dietR="";
+        if(r.isVegetarian()){
+            dietR=dietR.concat("Vegetarian, ");
+        }
+        if(r.isVegan()){
+            dietR=dietR.concat("Vegan, ");
+        }
+        if(r.isGlutenFree()){
+            dietR=dietR.concat("Gluten-Free, ");
+        }
+        if(r.isDairyFree()){
+            dietR=dietR.concat("Dairy-Free, ");
+        }
+        if(r.isHealthy()){
+            dietR=dietR.concat("Healthy, ");
+        }
+        if(dietR!=""){
+            dietR=dietR.substring(0,dietR.length()-2);
+        }
+        TextView rDiet=aboutDialog.findViewById(R.id.rDiet);
+        rDiet.setText(dietR);
+        TextView cheap2=aboutDialog.findViewById(R.id.rCheap2);
+        ImageView cheap=aboutDialog.findViewById(R.id.rCheap);
+        if(r.isCheap()==false){
+            cheap2.setVisibility(View.GONE);
+            cheap.setVisibility(View.GONE);
+        }
+        TextView popular2=aboutDialog.findViewById(R.id.rPopularr);
+        ImageView popular=aboutDialog.findViewById(R.id.rPopular);
+        if(r.isPopular()==false){
+            popular2.setVisibility(View.GONE);
+            popular.setVisibility(View.GONE);
+
+        }
+        aboutDialog.show();
+
     }
 }

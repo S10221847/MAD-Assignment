@@ -96,6 +96,10 @@
         "source": "D:\\MAD\\MAD-Assignment-Cookverse\\app\\src\\main\\res\\layout\\recipedesc_popup.xml"
     },
     {
+        "merged": "D:\\MAD\\MAD-Assignment-Cookverse\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\about_recipe.xml",
+        "source": "D:\\MAD\\MAD-Assignment-Cookverse\\app\\src\\main\\res\\layout\\about_recipe.xml"
+    },
+    {
         "merged": "D:\\MAD\\MAD-Assignment-Cookverse\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\add_steps.xml",
         "source": "D:\\MAD\\MAD-Assignment-Cookverse\\app\\src\\main\\res\\layout\\add_steps.xml"
     },

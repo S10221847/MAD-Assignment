@@ -18,6 +18,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:text="TextView"
+            android:textColor="@color/black"
             android:textSize="20dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.504"
@@ -31,6 +32,7 @@
             android:layout_marginTop="60dp"
             android:text="TextView"
             android:textAlignment="textStart"
+            android:textColor="@color/black"
             android:textSize="24sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
@@ -75,14 +77,15 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="208dp"
             android:text="TextView"
+            android:textColor="@color/black"
             android:textSize="20dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/about" />
 
         <ImageView
             android:id="@+id/likestatus"
-            android:layout_width="62dp"
-            android:layout_height="48dp"
+            android:layout_width="60dp"
+            android:layout_height="40dp"
             android:layout_marginStart="215dp"
             android:layout_marginTop="12dp"
             app:layout_constraintStart_toEndOf="@+id/back_button"
@@ -101,8 +104,8 @@
 
         <ImageView
             android:id="@+id/shoppingList"
-            android:layout_width="62dp"
-            android:layout_height="48dp"
+            android:layout_width="60dp"
+            android:layout_height="40dp"
             android:layout_marginTop="12dp"
             app:layout_constraintStart_toEndOf="@+id/likestatus"
             app:layout_constraintTop_toTopOf="parent"
@@ -110,8 +113,8 @@
 
         <ImageView
             android:id="@+id/recipeEdit"
-            android:layout_width="62dp"
-            android:layout_height="48dp"
+            android:layout_width="60dp"
+            android:layout_height="40dp"
             android:layout_marginStart="153dp"
             android:layout_marginTop="12dp"
             app:layout_constraintStart_toEndOf="@+id/back_button"

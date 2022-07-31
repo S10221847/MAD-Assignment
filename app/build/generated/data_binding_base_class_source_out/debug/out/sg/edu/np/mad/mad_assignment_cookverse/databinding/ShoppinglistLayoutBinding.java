@@ -4,7 +4,6 @@ package sg.edu.np.mad.mad_assignment_cookverse.databinding;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
@@ -12,6 +11,7 @@ import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.viewbinding.ViewBinding;
 import androidx.viewbinding.ViewBindings;
+import com.google.android.material.imageview.ShapeableImageView;
 import java.lang.NullPointerException;
 import java.lang.Override;
 import java.lang.String;
@@ -28,7 +28,7 @@ public final class ShoppinglistLayoutBinding implements ViewBinding {
   public final TextView shoppingName;
 
   @NonNull
-  public final ImageView shoppingPic;
+  public final ShapeableImageView shoppingPic;
 
   @NonNull
   public final TextView shoppingServings;
@@ -38,7 +38,7 @@ public final class ShoppinglistLayoutBinding implements ViewBinding {
 
   private ShoppinglistLayoutBinding(@NonNull ConstraintLayout rootView,
       @NonNull ConstraintLayout constraintLayout, @NonNull TextView shoppingName,
-      @NonNull ImageView shoppingPic, @NonNull TextView shoppingServings,
+      @NonNull ShapeableImageView shoppingPic, @NonNull TextView shoppingServings,
       @NonNull LinearLayout shoppinglinear) {
     this.rootView = rootView;
     this.constraintLayout = constraintLayout;
@@ -88,7 +88,7 @@ public final class ShoppinglistLayoutBinding implements ViewBinding {
       }
 
       id = R.id.shopping_pic;
-      ImageView shoppingPic = ViewBindings.findChildViewById(rootView, id);
+      ShapeableImageView shoppingPic = ViewBindings.findChildViewById(rootView, id);
       if (shoppingPic == null) {
         break missingId;
       }

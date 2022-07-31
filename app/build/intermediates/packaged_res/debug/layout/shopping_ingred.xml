@@ -3,11 +3,16 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content">
 
-    <TextView
+    <CheckBox
         android:id="@+id/shoppingIngred"
-        android:layout_width="407dp"
-        android:layout_height="57dp"
-        android:text="TextView" />
+        android:layout_width="368dp"
+        android:layout_height="50dp"
+        android:drawableLeft="@android:color/transparent"
+        android:drawablePadding="10dp"
+        android:text="CheckBox"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="16dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>
