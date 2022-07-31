@@ -120,15 +120,18 @@ public class LoginPage extends AppCompatActivity {
                             String emailNew = email.replaceAll("\\p{Punct}+", "");
                             mainUser = dbHandler.findUser(emailNew);
                             mainUser.setPassword(password);
-                            List<String> List =new ArrayList<>();
+                            List<String> liked_List =new ArrayList<>();
+                            List<String> shop_List =new ArrayList<>();
+                            List<String> created_List =new ArrayList<>();
                             if(mainUser.getLikedList() == null){
-                                mainUser.setLikedList(List);
+                                mainUser.setLikedList(liked_List);
                             }
+
                             if(mainUser.getShoppingList() == null){
-                                mainUser.setShoppingList(List);
+                                mainUser.setShoppingList(shop_List);
                             }
                             if(mainUser.getCreatedList() == null){
-                                mainUser.setCreatedList(List);
+                                mainUser.setCreatedList(created_List);
                             }
                             sendUserToNewPage();
                         } else {
