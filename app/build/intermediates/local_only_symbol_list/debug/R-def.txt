@@ -79,7 +79,6 @@ id discoverRecyclerView
 id discover_layout
 id duration
 id editBio
-id editName
 id editPassword
 id editPasswordProfile
 id editPasswordProfileAgain
@@ -98,6 +97,7 @@ id editSave
 id editUsername
 id editmyEmailAdd
 id editmyPassword
+id emailAddress
 id frameLayout
 id frameLayout2
 id frameLayout3

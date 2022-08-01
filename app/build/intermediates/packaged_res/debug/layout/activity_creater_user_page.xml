@@ -28,9 +28,9 @@
         android:layout_height="45dp"
         android:layout_marginTop="60dp"
         android:ems="10"
-        android:hint="Username"
-        android:textColorHint="@color/black"
+        android:hint="Email Address"
         android:inputType="textEmailAddress"
+        android:textColorHint="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView4" />

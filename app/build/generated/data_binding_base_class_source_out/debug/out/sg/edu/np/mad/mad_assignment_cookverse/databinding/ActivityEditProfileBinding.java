@@ -34,9 +34,6 @@ public final class ActivityEditProfileBinding implements ViewBinding {
   public final EditText editBio;
 
   @NonNull
-  public final EditText editName;
-
-  @NonNull
   public final EditText editPasswordProfile;
 
   @NonNull
@@ -52,6 +49,9 @@ public final class ActivityEditProfileBinding implements ViewBinding {
   public final Button editSave;
 
   @NonNull
+  public final TextView emailAddress;
+
+  @NonNull
   public final TextView textView10;
 
   @NonNull
@@ -64,33 +64,29 @@ public final class ActivityEditProfileBinding implements ViewBinding {
   public final TextView textView3;
 
   @NonNull
-  public final TextView textView5;
-
-  @NonNull
   public final TextView textView6;
 
   private ActivityEditProfileBinding(@NonNull ScrollView rootView,
       @NonNull EditText actualEditPasswordLast, @NonNull ImageView backArrowEditProfile,
-      @NonNull EditText editBio, @NonNull EditText editName, @NonNull EditText editPasswordProfile,
+      @NonNull EditText editBio, @NonNull EditText editPasswordProfile,
       @NonNull EditText editPasswordProfileAgain, @NonNull ShapeableImageView editPic,
       @NonNull FloatingActionButton editPicButton, @NonNull Button editSave,
-      @NonNull TextView textView10, @NonNull TextView textView11, @NonNull TextView textView13,
-      @NonNull TextView textView3, @NonNull TextView textView5, @NonNull TextView textView6) {
+      @NonNull TextView emailAddress, @NonNull TextView textView10, @NonNull TextView textView11,
+      @NonNull TextView textView13, @NonNull TextView textView3, @NonNull TextView textView6) {
     this.rootView = rootView;
     this.actualEditPasswordLast = actualEditPasswordLast;
     this.backArrowEditProfile = backArrowEditProfile;
     this.editBio = editBio;
-    this.editName = editName;
     this.editPasswordProfile = editPasswordProfile;
     this.editPasswordProfileAgain = editPasswordProfileAgain;
     this.editPic = editPic;
     this.editPicButton = editPicButton;
     this.editSave = editSave;
+    this.emailAddress = emailAddress;
     this.textView10 = textView10;
     this.textView11 = textView11;
     this.textView13 = textView13;
     this.textView3 = textView3;
-    this.textView5 = textView5;
     this.textView6 = textView6;
   }
 
@@ -139,12 +135,6 @@ public final class ActivityEditProfileBinding implements ViewBinding {
         break missingId;
       }
 
-      id = R.id.editName;
-      EditText editName = ViewBindings.findChildViewById(rootView, id);
-      if (editName == null) {
-        break missingId;
-      }
-
       id = R.id.editPasswordProfile;
       EditText editPasswordProfile = ViewBindings.findChildViewById(rootView, id);
       if (editPasswordProfile == null) {
@@ -175,6 +165,12 @@ public final class ActivityEditProfileBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.emailAddress;
+      TextView emailAddress = ViewBindings.findChildViewById(rootView, id);
+      if (emailAddress == null) {
+        break missingId;
+      }
+
       id = R.id.textView10;
       TextView textView10 = ViewBindings.findChildViewById(rootView, id);
       if (textView10 == null) {
@@ -199,12 +195,6 @@ public final class ActivityEditProfileBinding implements ViewBinding {
         break missingId;
       }
 
-      id = R.id.textView5;
-      TextView textView5 = ViewBindings.findChildViewById(rootView, id);
-      if (textView5 == null) {
-        break missingId;
-      }
-
       id = R.id.textView6;
       TextView textView6 = ViewBindings.findChildViewById(rootView, id);
       if (textView6 == null) {
@@ -212,9 +202,9 @@ public final class ActivityEditProfileBinding implements ViewBinding {
       }
 
       return new ActivityEditProfileBinding((ScrollView) rootView, actualEditPasswordLast,
-          backArrowEditProfile, editBio, editName, editPasswordProfile, editPasswordProfileAgain,
-          editPic, editPicButton, editSave, textView10, textView11, textView13, textView3,
-          textView5, textView6);
+          backArrowEditProfile, editBio, editPasswordProfile, editPasswordProfileAgain, editPic,
+          editPicButton, editSave, emailAddress, textView10, textView11, textView13, textView3,
+          textView6);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "D:\\MAD\\MAD-Assignment-Cookverse\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-v25\\values-v25.xml",
+            "outputFile": "C:\\Users\\tanko\\Desktop\\Year 2 sem 1\\MAD\\MAD-Assignment-lastfinal\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-v25\\values-v25.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\kohja\\.gradle\\caches\\transforms-3\\774a2144c0be638ed2d25564d8bbf81e\\transformed\\appcompat-1.4.1\\res\\values-v25\\values-v25.xml",
+                    "source": "C:\\Users\\tanko\\.gradle\\caches\\transforms-3\\774a2144c0be638ed2d25564d8bbf81e\\transformed\\appcompat-1.4.1\\res\\values-v25\\values-v25.xml",
                     "from": {
                         "startLines": "2,3,4,6",
                         "startColumns": "4,4,4,4",

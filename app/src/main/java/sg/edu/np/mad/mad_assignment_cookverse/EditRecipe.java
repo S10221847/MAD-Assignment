@@ -1,11 +1,15 @@
 package sg.edu.np.mad.mad_assignment_cookverse;
 
 import android.content.ContentResolver;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
 import android.webkit.MimeTypeMap;
@@ -29,6 +33,9 @@ import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
+import java.io.ByteArrayOutputStream;
+import java.io.InputStream;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -129,7 +136,8 @@ public class EditRecipe extends AppCompatActivity {
                 openFileChooser();
             }
         });
-        mImageUri = Uri.parse(recipe.getRecipeimage());
+        /*Bitmap bm = doInBackground();
+        mImageUri = getImageUri(this, bm);*/
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -151,7 +159,6 @@ public class EditRecipe extends AppCompatActivity {
                     System.out.println("Could not parse " + e);
                 }
                 recipe.setUid(LoginPage.mainUser.getName());
-                recipe.setNooflikes(0);
 
                 List<String> RecipeIngred = new ArrayList<>();
                 for (int i = 0; i < ingredList.getChildCount(); i++){
@@ -199,9 +206,14 @@ public class EditRecipe extends AppCompatActivity {
                 if (!RecipeCuisi.get(0).equals("")) {
                     recipe.setCuisineList(RecipeCuisi);
                 }
-
+                if (recipe.getIngredientsList().size() > 1 && recipe.getIngredientsList().get(0).equals("")){
+                    recipe.getIngredientsList().remove(recipe.getIngredientsList().get(0));
+                }
+                if (recipe.getStepsList().size() >1 && recipe.getStepsList().get(0).equals("")){
+                    recipe.getStepsList().remove(recipe.getStepsList().get(0));
+                }
                 //Checks to see if user has entered the minimum required inputs
-                if (!recipe.getName().equals("") && mImageUri != null && !recipe.getIngredientsList().get(0).equals("")
+                if (!recipe.getName().equals("") && !recipe.getIngredientsList().get(0).equals("")
                         && !recipe.getStepsList().get(0).equals("")) {
                     //Calls create recipe method to send recipe object to database
                     createRecipe(recipe);
@@ -398,6 +410,22 @@ public class EditRecipe extends AppCompatActivity {
             }
         }
     }
+    public Uri getImageUri(Context inContext, Bitmap inImage) {
+        ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+        inImage.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
+        String path = MediaStore.Images.Media.insertImage(inContext.getContentResolver(), inImage, "Title", null);
+        return Uri.parse(path);
+    }
+    public Bitmap doInBackground() {
+        try {
+            InputStream input = new URL(recipe.getRecipeimage()).openStream();
+            Bitmap myBitmap = BitmapFactory.decodeStream(input);
+            return myBitmap;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
     private void startIngredientsView(){
         if (recipe.getIngredientsList() == null){
         }
@@ -488,6 +516,8 @@ public class EditRecipe extends AppCompatActivity {
                     });
         }
         else{
+            dbHandler.updateRecipe(r);
+            fbHandler.updateRecipe(r);
             Toast.makeText(EditRecipe.this, "No image for this recipe",Toast.LENGTH_SHORT).show();
         }
     }

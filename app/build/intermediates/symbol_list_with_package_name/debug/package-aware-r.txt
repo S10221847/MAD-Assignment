@@ -2811,7 +2811,6 @@ id easeInOut
 id easeOut
 id east
 id editBio
-id editName
 id editPassword
 id editPasswordProfile
 id editPasswordProfileAgain
@@ -2834,6 +2833,7 @@ id editmyPassword
 id edittext_dropdown_editable
 id edittext_dropdown_noneditable
 id elastic
+id emailAddress
 id end
 id endToStart
 id enterAlways
