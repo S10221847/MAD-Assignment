@@ -48,16 +48,18 @@ import java.util.Random;
  * create an instance of this fragment.
  */
 
-public class HomeFragment extends Fragment implements RecyclerViewInterface,UserRecyclerViewInterface,PopRecyclerViewInterface,VegetarianInterface {
+public class HomeFragment extends Fragment implements RecyclerViewInterface,UserRecyclerViewInterface,PopRecyclerViewInterface,VegetarianInterface,HealthyInterface {
     public String TAG = "Home page";
     OnlineRecipesAdapter oAdapter;
     UserCreatedAdapter uAdapter;
     PopRecipeAdapter pAdapter;
     VegetarianAdapter vAdapter;
+    HealthyAdapter hAdapter;
     RecyclerViewInterface RecyclerViewInterface;
     UserRecyclerViewInterface UserRecyclerViewInterface;
     PopRecyclerViewInterface popRecyclerViewInterface;
     VegetarianInterface vegetarianInterface;
+    HealthyInterface healthyInterface;
     List<Recipe> dataOriginal;
     public String GLOBAL_PREF = "MyPrefs";
     public String DATABASE_VERSION = "MyDatabaseVersion";
@@ -68,6 +70,7 @@ public class HomeFragment extends Fragment implements RecyclerViewInterface,User
     public static List<Recipe>uList=new ArrayList<>();
     public static List<Recipe>pList=new ArrayList<>();
     public static List<Recipe>vList=new ArrayList<>();
+    public static List<Recipe>hList=new ArrayList<>();
     public static int seed = new Random().nextInt();;
     public static Boolean cameFromRecipe = false;
     // TODO: Rename parameter arguments, choose names that match
@@ -279,6 +282,16 @@ public class HomeFragment extends Fragment implements RecyclerViewInterface,User
         precyclerView.setHasFixedSize(true);
         RecyclerView vrecyclerView=view.findViewById(R.id.vrecyclerview);
         vrecyclerView.setHasFixedSize(true);
+
+        RecyclerView hrecyclerView=view.findViewById(R.id.healthyrec);
+        hrecyclerView.setHasFixedSize(true);
+        for(Recipe h:dataOriginal){
+            if(h.isHealthy()==true){
+                hList.add(h);
+                continue;
+            }
+
+        }
         for(Recipe x : dataOriginal){
             if(x.isPopular()==true){
                 pList.add(x);
@@ -300,12 +313,14 @@ public class HomeFragment extends Fragment implements RecyclerViewInterface,User
             Collections.shuffle(uList, new Random(seed));
             Collections.shuffle(pList, new Random(seed));
             Collections.shuffle(vList, new Random(seed));
+            Collections.shuffle(hList, new Random(seed));
         }
         else{
             Collections.shuffle(oList, new Random(MainFragment.HomeSeed));
             Collections.shuffle(uList, new Random(MainFragment.HomeSeed));
             Collections.shuffle(pList, new Random(MainFragment.HomeSeed));
             Collections.shuffle(vList, new Random(MainFragment.HomeSeed));
+            Collections.shuffle(hList, new Random(MainFragment.HomeSeed));
         }
         cameFromRecipe = false;
         oAdapter = new OnlineRecipesAdapter(oList, rvi, dataOriginal);  //ONLINE RECIPE ADAPTER
@@ -327,6 +342,11 @@ public class HomeFragment extends Fragment implements RecyclerViewInterface,User
         LinearLayoutManager vLayoutManager=new LinearLayoutManager(getActivity(),LinearLayoutManager.HORIZONTAL,false);
         vrecyclerView.setLayoutManager(vLayoutManager);
         vrecyclerView.setAdapter(vAdapter);
+
+        hAdapter=new HealthyAdapter(hList,this,dataOriginal);
+        LinearLayoutManager hLayoutManager=new LinearLayoutManager(getActivity(),LinearLayoutManager.HORIZONTAL,false);
+        hrecyclerView.setLayoutManager(hLayoutManager);
+        hrecyclerView.setAdapter(hAdapter);
 
 
 
@@ -475,5 +495,16 @@ public class HomeFragment extends Fragment implements RecyclerViewInterface,User
     }
 
 
+    @Override
+    public void onItemClick6(int pos) {
+        Intent intent = new Intent(getActivity().getBaseContext(),
+                RecipeActivity.class);
+        String rid = hAdapter.getRid(pos);
+        MainFragment.HomeSeed = seed;
+        intent.putExtra("recipeID", rid);
+        intent.putExtra("activity","home");
+        MainFragment.activityResultLauncher.launch(intent);
+
+    }
 }
 

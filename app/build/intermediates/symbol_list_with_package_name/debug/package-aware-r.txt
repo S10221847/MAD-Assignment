@@ -2872,6 +2872,7 @@ id grouping
 id groups
 id guideline
 id header_title
+id healthyrec
 id hideable
 id home
 id homeAsUp
@@ -3185,6 +3186,7 @@ id textView17
 id textView18
 id textView19
 id textView2
+id textView20
 id textView3
 id textView4
 id textView5
@@ -3381,6 +3383,7 @@ layout fragment_main
 layout fragment_profile
 layout fragment_shopping_list
 layout fragment_user_recipe
+layout healthy_layout
 layout liked_recipe_layout
 layout m3_alert_dialog
 layout m3_alert_dialog_actions

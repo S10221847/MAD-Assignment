@@ -102,6 +102,7 @@ id frameLayout
 id frameLayout2
 id frameLayout3
 id frame_layout
+id healthyrec
 id home
 id imageView
 id imageView2
@@ -187,6 +188,7 @@ id textView17
 id textView18
 id textView19
 id textView2
+id textView20
 id textView3
 id textView4
 id textView5
@@ -224,6 +226,7 @@ layout fragment_main
 layout fragment_profile
 layout fragment_shopping_list
 layout fragment_user_recipe
+layout healthy_layout
 layout liked_recipe_layout
 layout online_recipes
 layout personal_recipe_layout

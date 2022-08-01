@@ -26,6 +26,9 @@ public final class FragmentHomeBinding implements ViewBinding {
   public final ConstraintLayout frameLayout;
 
   @NonNull
+  public final RecyclerView healthyrec;
+
+  @NonNull
   public final RecyclerView onlinerecRecyclerView;
 
   @NonNull
@@ -50,7 +53,7 @@ public final class FragmentHomeBinding implements ViewBinding {
   public final TextView textView19;
 
   @NonNull
-  public final TextView textView3;
+  public final TextView textView20;
 
   @NonNull
   public final RecyclerView usercreatedRecyclerView;
@@ -59,13 +62,15 @@ public final class FragmentHomeBinding implements ViewBinding {
   public final RecyclerView vrecyclerview;
 
   private FragmentHomeBinding(@NonNull ConstraintLayout rootView,
-      @NonNull ConstraintLayout frameLayout, @NonNull RecyclerView onlinerecRecyclerView,
-      @NonNull RecyclerView poprecy, @NonNull ProgressBar progressBar2,
-      @NonNull ImageView refreshImage, @NonNull TextView textView12, @NonNull TextView textView14,
-      @NonNull TextView textView15, @NonNull TextView textView19, @NonNull TextView textView3,
+      @NonNull ConstraintLayout frameLayout, @NonNull RecyclerView healthyrec,
+      @NonNull RecyclerView onlinerecRecyclerView, @NonNull RecyclerView poprecy,
+      @NonNull ProgressBar progressBar2, @NonNull ImageView refreshImage,
+      @NonNull TextView textView12, @NonNull TextView textView14, @NonNull TextView textView15,
+      @NonNull TextView textView19, @NonNull TextView textView20,
       @NonNull RecyclerView usercreatedRecyclerView, @NonNull RecyclerView vrecyclerview) {
     this.rootView = rootView;
     this.frameLayout = frameLayout;
+    this.healthyrec = healthyrec;
     this.onlinerecRecyclerView = onlinerecRecyclerView;
     this.poprecy = poprecy;
     this.progressBar2 = progressBar2;
@@ -74,7 +79,7 @@ public final class FragmentHomeBinding implements ViewBinding {
     this.textView14 = textView14;
     this.textView15 = textView15;
     this.textView19 = textView19;
-    this.textView3 = textView3;
+    this.textView20 = textView20;
     this.usercreatedRecyclerView = usercreatedRecyclerView;
     this.vrecyclerview = vrecyclerview;
   }
@@ -107,6 +112,12 @@ public final class FragmentHomeBinding implements ViewBinding {
     int id;
     missingId: {
       ConstraintLayout frameLayout = (ConstraintLayout) rootView;
+
+      id = R.id.healthyrec;
+      RecyclerView healthyrec = ViewBindings.findChildViewById(rootView, id);
+      if (healthyrec == null) {
+        break missingId;
+      }
 
       id = R.id.onlinerecRecyclerView;
       RecyclerView onlinerecRecyclerView = ViewBindings.findChildViewById(rootView, id);
@@ -156,9 +167,9 @@ public final class FragmentHomeBinding implements ViewBinding {
         break missingId;
       }
 
-      id = R.id.textView3;
-      TextView textView3 = ViewBindings.findChildViewById(rootView, id);
-      if (textView3 == null) {
+      id = R.id.textView20;
+      TextView textView20 = ViewBindings.findChildViewById(rootView, id);
+      if (textView20 == null) {
         break missingId;
       }
 
@@ -174,9 +185,9 @@ public final class FragmentHomeBinding implements ViewBinding {
         break missingId;
       }
 
-      return new FragmentHomeBinding((ConstraintLayout) rootView, frameLayout,
+      return new FragmentHomeBinding((ConstraintLayout) rootView, frameLayout, healthyrec,
           onlinerecRecyclerView, poprecy, progressBar2, refreshImage, textView12, textView14,
-          textView15, textView19, textView3, usercreatedRecyclerView, vrecyclerview);
+          textView15, textView19, textView20, usercreatedRecyclerView, vrecyclerview);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

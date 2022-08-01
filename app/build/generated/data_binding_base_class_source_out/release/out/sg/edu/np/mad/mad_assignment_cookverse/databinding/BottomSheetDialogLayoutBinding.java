@@ -31,6 +31,9 @@ public final class BottomSheetDialogLayoutBinding implements ViewBinding {
   public final CheckBox isDairyFree;
 
   @NonNull
+  public final CheckBox isFast;
+
+  @NonNull
   public final CheckBox isGlutenFree;
 
   @NonNull
@@ -50,12 +53,14 @@ public final class BottomSheetDialogLayoutBinding implements ViewBinding {
 
   private BottomSheetDialogLayoutBinding(@NonNull LinearLayout rootView,
       @NonNull Button applyFilter, @NonNull TextView clearFilter, @NonNull CheckBox isDairyFree,
-      @NonNull CheckBox isGlutenFree, @NonNull CheckBox isHealthy, @NonNull CheckBox isPopular,
-      @NonNull CheckBox isVegan, @NonNull CheckBox isVegetarian, @NonNull TextView textView5) {
+      @NonNull CheckBox isFast, @NonNull CheckBox isGlutenFree, @NonNull CheckBox isHealthy,
+      @NonNull CheckBox isPopular, @NonNull CheckBox isVegan, @NonNull CheckBox isVegetarian,
+      @NonNull TextView textView5) {
     this.rootView = rootView;
     this.applyFilter = applyFilter;
     this.clearFilter = clearFilter;
     this.isDairyFree = isDairyFree;
+    this.isFast = isFast;
     this.isGlutenFree = isGlutenFree;
     this.isHealthy = isHealthy;
     this.isPopular = isPopular;
@@ -109,6 +114,12 @@ public final class BottomSheetDialogLayoutBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.isFast;
+      CheckBox isFast = ViewBindings.findChildViewById(rootView, id);
+      if (isFast == null) {
+        break missingId;
+      }
+
       id = R.id.isGlutenFree;
       CheckBox isGlutenFree = ViewBindings.findChildViewById(rootView, id);
       if (isGlutenFree == null) {
@@ -146,7 +157,8 @@ public final class BottomSheetDialogLayoutBinding implements ViewBinding {
       }
 
       return new BottomSheetDialogLayoutBinding((LinearLayout) rootView, applyFilter, clearFilter,
-          isDairyFree, isGlutenFree, isHealthy, isPopular, isVegan, isVegetarian, textView5);
+          isDairyFree, isFast, isGlutenFree, isHealthy, isPopular, isVegan, isVegetarian,
+          textView5);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

@@ -2899,6 +2899,7 @@ id ingred_line
 id invisible
 id inward
 id isDairyFree
+id isFast
 id isGlutenFree
 id isHealthy
 id isPopular
@@ -3059,6 +3060,7 @@ id radio
 id ratio
 id recipeEdit
 id recipeName
+id recoringred
 id rectangles
 id refreshImage
 id reverseSawtooth

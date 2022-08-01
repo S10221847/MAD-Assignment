@@ -12,20 +12,20 @@
         "source": "D:\\MAD\\MAD-Assignment-Cookverse\\app\\src\\main\\res\\mipmap-mdpi\\ic_launcher_foreground.png"
     },
     {
-        "merged": "D:\\MAD\\MAD-Assignment-Cookverse\\app\\build\\intermediates\\merged_res\\release\\layout_activity_main.xml.flat",
-        "source": "D:\\MAD\\MAD-Assignment-Cookverse\\app\\src\\main\\res\\layout\\activity_main.xml"
-    },
-    {
-        "merged": "D:\\MAD\\MAD-Assignment-Cookverse\\app\\build\\intermediates\\merged_res\\release\\layout_fragment_liked_recipe.xml.flat",
-        "source": "D:\\MAD\\MAD-Assignment-Cookverse\\app\\src\\main\\res\\layout\\fragment_liked_recipe.xml"
+        "merged": "D:\\MAD\\MAD-Assignment-Cookverse\\app\\build\\intermediates\\merged_res\\release\\layout_personal_recipe_layout.xml.flat",
+        "source": "D:\\MAD\\MAD-Assignment-Cookverse\\app\\src\\main\\res\\layout\\personal_recipe_layout.xml"
     },
     {
         "merged": "D:\\MAD\\MAD-Assignment-Cookverse\\app\\build\\intermediates\\merged_res\\release\\mipmap-xxxhdpi_ic_launcher_foreground.png.flat",
         "source": "D:\\MAD\\MAD-Assignment-Cookverse\\app\\src\\main\\res\\mipmap-xxxhdpi\\ic_launcher_foreground.png"
     },
     {
-        "merged": "D:\\MAD\\MAD-Assignment-Cookverse\\app\\build\\intermediates\\merged_res\\release\\layout_personal_recipe_layout.xml.flat",
-        "source": "D:\\MAD\\MAD-Assignment-Cookverse\\app\\src\\main\\res\\layout\\personal_recipe_layout.xml"
+        "merged": "D:\\MAD\\MAD-Assignment-Cookverse\\app\\build\\intermediates\\merged_res\\release\\layout_fragment_liked_recipe.xml.flat",
+        "source": "D:\\MAD\\MAD-Assignment-Cookverse\\app\\src\\main\\res\\layout\\fragment_liked_recipe.xml"
+    },
+    {
+        "merged": "D:\\MAD\\MAD-Assignment-Cookverse\\app\\build\\intermediates\\merged_res\\release\\layout_activity_main.xml.flat",
+        "source": "D:\\MAD\\MAD-Assignment-Cookverse\\app\\src\\main\\res\\layout\\activity_main.xml"
     },
     {
         "merged": "D:\\MAD\\MAD-Assignment-Cookverse\\app\\build\\intermediates\\merged_res\\release\\layout_poprecipe_layout.xml.flat",
