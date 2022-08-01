@@ -156,6 +156,7 @@ id rServings
 id rStepIngred
 id recipeEdit
 id recipeName
+id recoringred
 id refreshImage
 id rvLiked
 id rvPersonal

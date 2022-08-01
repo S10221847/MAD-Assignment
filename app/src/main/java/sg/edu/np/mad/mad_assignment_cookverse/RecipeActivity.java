@@ -206,13 +206,16 @@ public class RecipeActivity extends AppCompatActivity {
 
 
         Button ingredStepsButton = findViewById(R.id.ingredStepsButton);
+        TextView recoringred =findViewById(R.id.recoringred);
 
 
         if(showingSteps==true){
             ingredStepsButton.setText("Show Ingredients");
+            recoringred.setText("Steps");
         }
         else{
             ingredStepsButton.setText("Show steps");
+            recoringred.setText("Ingredients");
         }
 
 
@@ -225,6 +228,7 @@ public class RecipeActivity extends AppCompatActivity {
                     stepIngred.removeAllViews();
                     ingredStepsButton.setText("Show steps");
                     showingSteps = false;
+                    recoringred.setText("Ingredients");
                     for(String i : r.getIngredientsList()){
                         View ingredView = getLayoutInflater().inflate(R.layout.each_ingred, null, false);
                         TextView ingred_line=ingredView.findViewById(R.id.ingred_line);
@@ -235,6 +239,7 @@ public class RecipeActivity extends AppCompatActivity {
                     stepIngred.removeAllViews();
                     ingredStepsButton.setText("Show ingredients");
                     showingSteps = true;
+                    recoringred.setText("Steps");
                     int p=1;
                     for(String i : r.getStepsList()) {
                         View stepView = getLayoutInflater().inflate(R.layout.each_step, null, false);

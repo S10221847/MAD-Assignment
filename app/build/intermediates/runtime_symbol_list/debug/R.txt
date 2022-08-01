@@ -3059,6 +3059,7 @@ int id radio 0x7f0901d8
 int id ratio 0x7f0901d9
 int id recipeEdit 0x7f0901da
 int id recipeName 0x7f0901db
+int id recoringred 0x7f090296
 int id rectangles 0x7f0901dc
 int id refreshImage 0x7f0901dd
 int id reverseSawtooth 0x7f0901de
