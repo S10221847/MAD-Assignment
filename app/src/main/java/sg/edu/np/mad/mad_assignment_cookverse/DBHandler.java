@@ -233,7 +233,7 @@ public class DBHandler extends SQLiteOpenHelper {
         db.close();
     }
 
-    public void addLikedRecipes(String rid, String username){
+    public void addLikedRecipes(String rid, String username){ //Adds recipeID of liked recipe to table
         ContentValues Values = new ContentValues();
         Values.put(COLUMN_USERNAME, username);
         Values.put(COLUMN_RECIPEID, rid);
@@ -243,7 +243,7 @@ public class DBHandler extends SQLiteOpenHelper {
         db.close();
     }
 
-    public void addCreatedRecipes(String rid, String username){
+    public void addCreatedRecipes(String rid, String username){ //Adds recipeID of created recipe to table
         ContentValues Values = new ContentValues();
         Values.put(COLUMN_USERNAME, username);
         Values.put(COLUMN_RECIPEID, rid);
@@ -253,7 +253,7 @@ public class DBHandler extends SQLiteOpenHelper {
         db.close();
     }
 
-    public void addShoppingRecipes(String rid, String username){
+    public void addShoppingRecipes(String rid, String username){ //Adds recipeID of shopping recipe to table
         ContentValues Values = new ContentValues();
         Values.put(COLUMN_USERNAME, username);
         Values.put(COLUMN_RECIPEID, rid);
@@ -304,7 +304,7 @@ public class DBHandler extends SQLiteOpenHelper {
         db.close();
     }
 
-    public void deleteUser(User userData) { //Deletes user from database with specified ID
+    public void deleteUser(User userData) { //Deletes specified user from database
 
         SQLiteDatabase db = this.getWritableDatabase();
 
@@ -551,7 +551,7 @@ public class DBHandler extends SQLiteOpenHelper {
         db.close();
     }
 
-    public void addCuisines(String rid, String cuisine){
+    public void addCuisines(String rid, String cuisine){ //Adds cuisines of recipe to table
         ContentValues Values = new ContentValues();
         Values.put(COLUMN_RECIPECUISINE, cuisine);
         Values.put(COLUMN_RECIPEID, rid);
@@ -561,7 +561,7 @@ public class DBHandler extends SQLiteOpenHelper {
         db.close();
     }
 
-    public void addIngredients(String rid, String ingredient){
+    public void addIngredients(String rid, String ingredient){ //Adds ingredients of recipe to table
         ContentValues Values = new ContentValues();
         Values.put(COLUMN_RECIPEINGREDIENT, ingredient);
         Values.put(COLUMN_RECIPEID, rid);
@@ -571,7 +571,7 @@ public class DBHandler extends SQLiteOpenHelper {
         db.close();
     }
 
-    public void addSteps(String rid, String step){
+    public void addSteps(String rid, String step){ //Adds steps of recipe to table
         ContentValues Values = new ContentValues();
         Values.put(COLUMN_RECIPESTEPS, step);
         Values.put(COLUMN_RECIPEID, rid);
@@ -581,7 +581,7 @@ public class DBHandler extends SQLiteOpenHelper {
         db.close();
     }
 
-    public void updateRecipe(Recipe recipeData){ //Replaces recipe database info with new user info
+    public void updateRecipe(Recipe recipeData){ //Replaces recipe database info with new recipe info
 
         SQLiteDatabase db = this.getWritableDatabase();
 
@@ -635,7 +635,7 @@ public class DBHandler extends SQLiteOpenHelper {
         db.close();
     }
 
-    public void deleteRecipe(Recipe recipeData) { //Deletes user from database with specified ID
+    public void deleteRecipe(Recipe recipeData) { //Deletes specified recipe from database
 
         SQLiteDatabase db = this.getWritableDatabase();
 
@@ -670,8 +670,6 @@ public class DBHandler extends SQLiteOpenHelper {
 
         return baseListRecipe(query);
     }
-
-
 
 
     public ArrayList<Recipe> baseListRecipe(String inputquery){ //Returns list of Recipes from database with query input

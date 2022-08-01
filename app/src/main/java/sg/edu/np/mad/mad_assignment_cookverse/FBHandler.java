@@ -34,6 +34,7 @@ public class FBHandler {
         this.context = context;
     }
 
+    //Retrieves accounts from firebase and adds them to local database
     public void retrieveFBUserData(){
         Query query = FirebaseDatabase.getInstance().getReference().child("Accounts");
         ValueEventListener eventListener = new ValueEventListener() {
@@ -54,8 +55,9 @@ public class FBHandler {
         query.addListenerForSingleValueEvent(eventListener);
     }
 
+    //Retrieves recipes from firebase and adds them to local database with intent to LoginPage, used on app_launch in splash screen
     public void retrieveFBRecipeData(){
-        Query query = FirebaseDatabase.getInstance().getReference().child("Recipes");//.limitToFirst(50);
+        Query query = FirebaseDatabase.getInstance().getReference().child("Recipes");
         ValueEventListener eventListener = new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -76,6 +78,7 @@ public class FBHandler {
         query.addListenerForSingleValueEvent(eventListener);
     }
 
+    //Retrieves recipes from firebase and adds them to local database with intent to MainFragment
     public void refreshFBRecipeData(){
         Query query = FirebaseDatabase.getInstance().getReference().child("Recipes");
         ValueEventListener eventListener = new ValueEventListener() {
@@ -98,6 +101,7 @@ public class FBHandler {
         query.addListenerForSingleValueEvent(eventListener);
     }
 
+    //Adds recipe to Firebase and local database whilst updating User's CreatedList, used in CreateFragment
     public void addRecipe(Recipe r){
         String rid = "";
         DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
@@ -110,6 +114,8 @@ public class FBHandler {
         LoginPage.mainUser.getCreatedList().add(rid);
         addUpdateUser(LoginPage.mainUser);
     }
+
+    //Updates recipe in Firebase with given recipe ID
     public void updateRecipe(Recipe r){
         DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
         String rid = r.getRid();
@@ -118,7 +124,8 @@ public class FBHandler {
         updateVersion();
     }
 
-    public void addUpdateUser(User u){ //both adds and updates user data within firebase
+    //Both adds and updates user data within Firebase
+    public void addUpdateUser(User u){
         String username = u.getName();
         DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
         DatabaseReference ref = rootRef.child("Accounts").child(username);
@@ -126,6 +133,7 @@ public class FBHandler {
         updateVersion();
     }
 
+    //Removes given recipe from Firebase
     public void removeRecipe(Recipe r){
         DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
         String rid = r.getRid();
@@ -134,6 +142,7 @@ public class FBHandler {
         updateVersion();
     }
 
+    //Removes given user from Firebase
     public void removeUser(User u){
         DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
         String username = u.getName();
@@ -142,6 +151,7 @@ public class FBHandler {
         updateVersion();
     }
 
+    //Called to update Database Version within database for next launch/refresh
     public void updateVersion(){
         sharedPreferences = context.getSharedPreferences(GLOBAL_PREF, MODE_PRIVATE);
         int sharedDBVersion = sharedPreferences.getInt(DATABASE_VERSION, 2);
