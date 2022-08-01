@@ -194,6 +194,8 @@ public class DiscoverFragment extends Fragment implements RecyclerViewInterface{
         checkboxList.add(healthy);
         CheckBox popular = bottomSheetDialog.findViewById(R.id.isPopular);
         checkboxList.add(popular);
+        CheckBox fast = bottomSheetDialog.findViewById(R.id.isFast);
+        checkboxList.add(fast);
         Button applyFilter = bottomSheetDialog.findViewById(R.id.applyFilter);
         TextView clearFilter = bottomSheetDialog.findViewById(R.id.clearFilter);
 
@@ -299,6 +301,13 @@ public class DiscoverFragment extends Fragment implements RecyclerViewInterface{
         if(chosenFilters.contains("Dairy-free")){
             for(Recipe item:list){
                 if(item.isDairyFree()==true && !filteredList.contains(item)){
+                    filteredList.add(item);
+                }
+            }
+        }
+        if(chosenFilters.contains("Fast (less than 40mins)")){
+            for(Recipe item:list){
+                if(item.getDuration()<40 && !filteredList.contains(item)){
                     filteredList.add(item);
                 }
             }

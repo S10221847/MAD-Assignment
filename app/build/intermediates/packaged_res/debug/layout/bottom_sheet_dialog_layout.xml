@@ -42,6 +42,14 @@
         android:textSize="16sp" />
 
     <CheckBox
+        android:id="@+id/isFast"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="Fast (less than 40mins)"
+        android:textSize="16sp" />
+
+    <CheckBox
         android:id="@+id/isHealthy"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
