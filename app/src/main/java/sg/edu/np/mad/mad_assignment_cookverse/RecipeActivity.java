@@ -253,7 +253,8 @@ public class RecipeActivity extends AppCompatActivity {
             recipeEdit.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Intent intent1 = new Intent(RecipeActivity.this, EditProfile.class);
+                    Intent intent1 = new Intent(RecipeActivity.this, EditRecipe.class);
+                    intent1.putExtra("rid",recipeID);
                     startActivity(intent1);
                 }
             });

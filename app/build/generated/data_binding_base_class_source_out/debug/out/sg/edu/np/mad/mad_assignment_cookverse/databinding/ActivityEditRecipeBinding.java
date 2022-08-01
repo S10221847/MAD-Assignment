@@ -24,37 +24,37 @@ public final class ActivityEditRecipeBinding implements ViewBinding {
   private final ScrollView rootView;
 
   @NonNull
-  public final ImageView CreateImage;
+  public final ImageView CreateImage2;
 
   @NonNull
   public final ImageView backArrowEditRecipe;
 
   @NonNull
-  public final Button buttonCreateRecipe;
+  public final Button buttonCreateRecipe2;
 
   @NonNull
-  public final Button buttonImage;
+  public final Button buttonImage2;
 
   @NonNull
-  public final LinearLayout cuisineList;
+  public final LinearLayout cuisineList2;
 
   @NonNull
-  public final EditText editRecipeDescription;
+  public final EditText editRecipeDescription2;
 
   @NonNull
-  public final EditText editRecipeDuration;
+  public final EditText editRecipeDuration2;
 
   @NonNull
-  public final EditText editRecipeName;
+  public final EditText editRecipeName2;
 
   @NonNull
-  public final EditText editRecipeServings;
+  public final EditText editRecipeServings2;
 
   @NonNull
-  public final LinearLayout ingredList;
+  public final LinearLayout ingredList2;
 
   @NonNull
-  public final LinearLayout stepList;
+  public final LinearLayout stepList2;
 
   @NonNull
   public final TextView textView8;
@@ -62,27 +62,31 @@ public final class ActivityEditRecipeBinding implements ViewBinding {
   @NonNull
   public final TextView textView9;
 
-  private ActivityEditRecipeBinding(@NonNull ScrollView rootView, @NonNull ImageView CreateImage,
-      @NonNull ImageView backArrowEditRecipe, @NonNull Button buttonCreateRecipe,
-      @NonNull Button buttonImage, @NonNull LinearLayout cuisineList,
-      @NonNull EditText editRecipeDescription, @NonNull EditText editRecipeDuration,
-      @NonNull EditText editRecipeName, @NonNull EditText editRecipeServings,
-      @NonNull LinearLayout ingredList, @NonNull LinearLayout stepList, @NonNull TextView textView8,
-      @NonNull TextView textView9) {
+  @NonNull
+  public final ImageView trashbin;
+
+  private ActivityEditRecipeBinding(@NonNull ScrollView rootView, @NonNull ImageView CreateImage2,
+      @NonNull ImageView backArrowEditRecipe, @NonNull Button buttonCreateRecipe2,
+      @NonNull Button buttonImage2, @NonNull LinearLayout cuisineList2,
+      @NonNull EditText editRecipeDescription2, @NonNull EditText editRecipeDuration2,
+      @NonNull EditText editRecipeName2, @NonNull EditText editRecipeServings2,
+      @NonNull LinearLayout ingredList2, @NonNull LinearLayout stepList2,
+      @NonNull TextView textView8, @NonNull TextView textView9, @NonNull ImageView trashbin) {
     this.rootView = rootView;
-    this.CreateImage = CreateImage;
+    this.CreateImage2 = CreateImage2;
     this.backArrowEditRecipe = backArrowEditRecipe;
-    this.buttonCreateRecipe = buttonCreateRecipe;
-    this.buttonImage = buttonImage;
-    this.cuisineList = cuisineList;
-    this.editRecipeDescription = editRecipeDescription;
-    this.editRecipeDuration = editRecipeDuration;
-    this.editRecipeName = editRecipeName;
-    this.editRecipeServings = editRecipeServings;
-    this.ingredList = ingredList;
-    this.stepList = stepList;
+    this.buttonCreateRecipe2 = buttonCreateRecipe2;
+    this.buttonImage2 = buttonImage2;
+    this.cuisineList2 = cuisineList2;
+    this.editRecipeDescription2 = editRecipeDescription2;
+    this.editRecipeDuration2 = editRecipeDuration2;
+    this.editRecipeName2 = editRecipeName2;
+    this.editRecipeServings2 = editRecipeServings2;
+    this.ingredList2 = ingredList2;
+    this.stepList2 = stepList2;
     this.textView8 = textView8;
     this.textView9 = textView9;
+    this.trashbin = trashbin;
   }
 
   @Override
@@ -112,9 +116,9 @@ public final class ActivityEditRecipeBinding implements ViewBinding {
     // This is done to optimize the compiled bytecode for size and performance.
     int id;
     missingId: {
-      id = R.id.CreateImage;
-      ImageView CreateImage = ViewBindings.findChildViewById(rootView, id);
-      if (CreateImage == null) {
+      id = R.id.CreateImage2;
+      ImageView CreateImage2 = ViewBindings.findChildViewById(rootView, id);
+      if (CreateImage2 == null) {
         break missingId;
       }
 
@@ -124,57 +128,57 @@ public final class ActivityEditRecipeBinding implements ViewBinding {
         break missingId;
       }
 
-      id = R.id.buttonCreateRecipe;
-      Button buttonCreateRecipe = ViewBindings.findChildViewById(rootView, id);
-      if (buttonCreateRecipe == null) {
+      id = R.id.buttonCreateRecipe2;
+      Button buttonCreateRecipe2 = ViewBindings.findChildViewById(rootView, id);
+      if (buttonCreateRecipe2 == null) {
         break missingId;
       }
 
-      id = R.id.buttonImage;
-      Button buttonImage = ViewBindings.findChildViewById(rootView, id);
-      if (buttonImage == null) {
+      id = R.id.buttonImage2;
+      Button buttonImage2 = ViewBindings.findChildViewById(rootView, id);
+      if (buttonImage2 == null) {
         break missingId;
       }
 
-      id = R.id.cuisineList;
-      LinearLayout cuisineList = ViewBindings.findChildViewById(rootView, id);
-      if (cuisineList == null) {
+      id = R.id.cuisineList2;
+      LinearLayout cuisineList2 = ViewBindings.findChildViewById(rootView, id);
+      if (cuisineList2 == null) {
         break missingId;
       }
 
-      id = R.id.editRecipeDescription;
-      EditText editRecipeDescription = ViewBindings.findChildViewById(rootView, id);
-      if (editRecipeDescription == null) {
+      id = R.id.editRecipeDescription2;
+      EditText editRecipeDescription2 = ViewBindings.findChildViewById(rootView, id);
+      if (editRecipeDescription2 == null) {
         break missingId;
       }
 
-      id = R.id.editRecipeDuration;
-      EditText editRecipeDuration = ViewBindings.findChildViewById(rootView, id);
-      if (editRecipeDuration == null) {
+      id = R.id.editRecipeDuration2;
+      EditText editRecipeDuration2 = ViewBindings.findChildViewById(rootView, id);
+      if (editRecipeDuration2 == null) {
         break missingId;
       }
 
-      id = R.id.editRecipeName;
-      EditText editRecipeName = ViewBindings.findChildViewById(rootView, id);
-      if (editRecipeName == null) {
+      id = R.id.editRecipeName2;
+      EditText editRecipeName2 = ViewBindings.findChildViewById(rootView, id);
+      if (editRecipeName2 == null) {
         break missingId;
       }
 
-      id = R.id.editRecipeServings;
-      EditText editRecipeServings = ViewBindings.findChildViewById(rootView, id);
-      if (editRecipeServings == null) {
+      id = R.id.editRecipeServings2;
+      EditText editRecipeServings2 = ViewBindings.findChildViewById(rootView, id);
+      if (editRecipeServings2 == null) {
         break missingId;
       }
 
-      id = R.id.ingredList;
-      LinearLayout ingredList = ViewBindings.findChildViewById(rootView, id);
-      if (ingredList == null) {
+      id = R.id.ingredList2;
+      LinearLayout ingredList2 = ViewBindings.findChildViewById(rootView, id);
+      if (ingredList2 == null) {
         break missingId;
       }
 
-      id = R.id.stepList;
-      LinearLayout stepList = ViewBindings.findChildViewById(rootView, id);
-      if (stepList == null) {
+      id = R.id.stepList2;
+      LinearLayout stepList2 = ViewBindings.findChildViewById(rootView, id);
+      if (stepList2 == null) {
         break missingId;
       }
 
@@ -190,9 +194,16 @@ public final class ActivityEditRecipeBinding implements ViewBinding {
         break missingId;
       }
 
-      return new ActivityEditRecipeBinding((ScrollView) rootView, CreateImage, backArrowEditRecipe,
-          buttonCreateRecipe, buttonImage, cuisineList, editRecipeDescription, editRecipeDuration,
-          editRecipeName, editRecipeServings, ingredList, stepList, textView8, textView9);
+      id = R.id.trashbin;
+      ImageView trashbin = ViewBindings.findChildViewById(rootView, id);
+      if (trashbin == null) {
+        break missingId;
+      }
+
+      return new ActivityEditRecipeBinding((ScrollView) rootView, CreateImage2, backArrowEditRecipe,
+          buttonCreateRecipe2, buttonImage2, cuisineList2, editRecipeDescription2,
+          editRecipeDuration2, editRecipeName2, editRecipeServings2, ingredList2, stepList2,
+          textView8, textView9, trashbin);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

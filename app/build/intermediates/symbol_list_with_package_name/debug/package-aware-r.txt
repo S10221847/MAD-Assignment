@@ -2514,6 +2514,7 @@ drawable ic_baseline_add_24
 drawable ic_baseline_edit_24
 drawable ic_baseline_home_24
 drawable ic_baseline_image_not_supported_24
+drawable ic_baseline_restore_from_trash_24
 drawable ic_baseline_search_24
 drawable ic_clock_black_24dp
 drawable ic_filter
@@ -2587,6 +2588,7 @@ id BOTTOM_END
 id BOTTOM_START
 id CTRL
 id CreateImage
+id CreateImage2
 id FRAGMENT_PLACEHOLDER
 id FUNCTION
 id META
@@ -2656,6 +2658,7 @@ id action_mode_close_button
 id action_text
 id actions
 id activity_chooser_view_content
+id actualEditPasswordLast
 id add
 id addCuisine
 id addCuisineButton
@@ -2707,7 +2710,9 @@ id browser_actions_menu_view
 id buttonCancel
 id buttonCreate
 id buttonCreateRecipe
+id buttonCreateRecipe2
 id buttonImage
+id buttonImage2
 id buttonPanel
 id cache_measures
 id callMeasure
@@ -2755,6 +2760,7 @@ id cos
 id counterclockwise
 id create
 id cuisineList
+id cuisineList2
 id currentState
 id custom
 id customPanel
@@ -2812,9 +2818,13 @@ id editPic
 id editPicButton
 id editProfile
 id editRecipeDescription
+id editRecipeDescription2
 id editRecipeDuration
+id editRecipeDuration2
 id editRecipeName
+id editRecipeName2
 id editRecipeServings
+id editRecipeServings2
 id editSave
 id editUsername
 id edit_query
@@ -2882,6 +2892,7 @@ id immediateStop
 id included
 id info
 id ingredList
+id ingredList2
 id ingredStepsButton
 id ingred_line
 id invisible
@@ -3123,6 +3134,7 @@ id startVertical
 id staticLayout
 id staticPostLayout
 id stepList
+id stepList2
 id step_line
 id step_no
 id stop
@@ -3160,6 +3172,7 @@ id textTop
 id textView
 id textView10
 id textView11
+id textView13
 id textView14
 id textView15
 id textView16
@@ -3197,6 +3210,7 @@ id transition_layout_save
 id transition_position
 id transition_scene_layoutid_cache
 id transition_transform
+id trashbin
 id triangle
 id unchecked
 id uniform

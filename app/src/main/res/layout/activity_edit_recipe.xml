@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="true"
+    android:background="@color/purple"
     tools:context=".EditRecipe">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -32,14 +33,14 @@
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/back_arrow" />
         <LinearLayout
-            android:id="@+id/ingredList"
+            android:id="@+id/ingredList2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginStart="13dp"
             android:orientation="vertical"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editRecipeServings">
+            app:layout_constraintTop_toBottomOf="@+id/editRecipeServings2">
 
             <include
                 layout="@layout/add_ingredients"
@@ -51,14 +52,14 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/stepList"
+            android:id="@+id/stepList2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginStart="13dp"
             android:orientation="vertical"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/ingredList">
+            app:layout_constraintTop_toBottomOf="@+id/ingredList2">
 
             <include
                 layout="@layout/add_steps"
@@ -67,14 +68,14 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/cuisineList"
+            android:id="@+id/cuisineList2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginStart="13dp"
             android:orientation="vertical"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/stepList">
+            app:layout_constraintTop_toBottomOf="@+id/stepList2">
 
             <include
                 layout="@layout/add_cuisine"
@@ -83,40 +84,38 @@
         </LinearLayout>
 
         <Button
-            android:id="@+id/buttonImage"
+            android:id="@+id/buttonImage2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="48dp"
             android:layout_marginTop="28dp"
             android:text="Choose image"
-            app:layout_constraintStart_toEndOf="@+id/buttonCreateRecipe"
-            app:layout_constraintTop_toBottomOf="@+id/cuisineList" />
+            app:layout_constraintStart_toEndOf="@+id/buttonCreateRecipe2"
+            app:layout_constraintTop_toBottomOf="@+id/cuisineList2" />
 
         <Button
-            android:id="@+id/buttonCreateRecipe"
+            android:id="@+id/buttonCreateRecipe2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="28dp"
-            android:text="Create"
+            android:text="Save"
             app:layout_constraintStart_toEndOf="@+id/textView9"
-            app:layout_constraintTop_toBottomOf="@+id/cuisineList" />
+            app:layout_constraintTop_toBottomOf="@+id/cuisineList2" />
 
         <EditText
-            android:id="@+id/editRecipeName"
+            android:id="@+id/editRecipeName2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="62dp"
-            android:layout_marginEnd="82dp"
             android:ems="10"
             android:hint="Name"
             android:inputType="textPersonName"
-            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/CreateImage" />
+            app:layout_constraintTop_toBottomOf="@+id/CreateImage2" />
 
         <EditText
-            android:id="@+id/editRecipeDescription"
+            android:id="@+id/editRecipeDescription2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="62dp"
@@ -125,10 +124,10 @@
             android:hint="Description (optional)"
             android:inputType="textMultiLine"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editRecipeName" />
+            app:layout_constraintTop_toBottomOf="@+id/editRecipeName2" />
 
         <EditText
-            android:id="@+id/editRecipeDuration"
+            android:id="@+id/editRecipeDuration2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="62dp"
@@ -136,10 +135,10 @@
             android:hint="Duration (optional)"
             android:inputType="number"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editRecipeDescription" />
+            app:layout_constraintTop_toBottomOf="@+id/editRecipeDescription2" />
 
         <EditText
-            android:id="@+id/editRecipeServings"
+            android:id="@+id/editRecipeServings2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="62dp"
@@ -147,10 +146,10 @@
             android:hint="Servings (optional)"
             android:inputType="number"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editRecipeDuration" />
+            app:layout_constraintTop_toBottomOf="@+id/editRecipeDuration2" />
 
         <ImageView
-            android:id="@+id/CreateImage"
+            android:id="@+id/CreateImage2"
             android:layout_width="300dp"
             android:layout_height="300dp"
             android:layout_marginStart="52dp"
@@ -166,7 +165,17 @@
             android:layout_height="93dp"
             android:layout_marginTop="17dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/cuisineList" />
+            app:layout_constraintTop_toBottomOf="@+id/cuisineList2" />
+
+        <ImageView
+            android:id="@+id/trashbin"
+            android:layout_width="62dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="26dp"
+            android:layout_marginTop="12dp"
+            app:layout_constraintStart_toEndOf="@+id/textView8"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_baseline_restore_from_trash_24" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </ScrollView>
