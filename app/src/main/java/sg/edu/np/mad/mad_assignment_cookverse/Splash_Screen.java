@@ -31,6 +31,7 @@ public class Splash_Screen extends AppCompatActivity {
         Context context = this;
         ProgressBar progressBar = findViewById(R.id.progressBar);
 
+        //Connects to Firebase to receive current firebase database version
         Query query = FirebaseDatabase.getInstance().getReference().child("Database_Version");
         ValueEventListener eventListener = new ValueEventListener() {
             @Override
@@ -38,10 +39,13 @@ public class Splash_Screen extends AppCompatActivity {
                 int FBVersion = 1;
                 sharedPreferences = getSharedPreferences(GLOBAL_PREF, MODE_PRIVATE);
                 int sharedDBVersion = sharedPreferences.getInt(DATABASE_VERSION, 2);
+
                 if (dataSnapshot.exists()) {
                     FBVersion = (int) dataSnapshot.getValue(Integer.class);
                 }
-                if (FBVersion != sharedDBVersion) {
+
+                //Check local database version and necessity for update
+                if (FBVersion != sharedDBVersion) { //if version is outdated
                     progressBar.setVisibility(View.VISIBLE);
                     sharedDBVersion = FBVersion;
                     SharedPreferences.Editor editor = sharedPreferences.edit();
@@ -52,7 +56,7 @@ public class Splash_Screen extends AppCompatActivity {
                     fbHandler.retrieveFBUserData();
                     fbHandler.retrieveFBRecipeData();
                 }
-                else{
+                else{ //if version is up to date
                     Intent myIntent = new Intent(context, LoginPage.class);
                     context.startActivity(myIntent);
                 }

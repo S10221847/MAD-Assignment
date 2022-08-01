@@ -11,7 +11,6 @@ import android.webkit.MimeTypeMap;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -22,7 +21,6 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
@@ -41,6 +39,7 @@ public class EditProfile extends AppCompatActivity {
     public String GLOBAL_PREF = "MyPrefs";
     public String DATABASE_VERSION = "MyDatabaseVersion";
     public ArrayList<String> userNameString = new ArrayList<>();
+    public EditText passwordAgain;
     SharedPreferences sharedPreferences;
     DBHandler dbHandler;
 
@@ -56,12 +55,15 @@ public class EditProfile extends AppCompatActivity {
         imageView = findViewById(R.id.editPic);
         ImageView editCancel = findViewById(R.id.backArrowEditProfile);
         Button editSave = findViewById(R.id.editSave);
+        EditText password = (EditText) findViewById(R.id.editPasswordProfile);
+        passwordAgain = (EditText) findViewById(R.id.editPasswordProfileAgain);
+        EditText passwordLast = (EditText) findViewById(R.id.actualEditPasswordLast);
 
         sharedPreferences = this.getSharedPreferences(GLOBAL_PREF, MODE_PRIVATE);
         int sharedDBVersion = sharedPreferences.getInt(DATABASE_VERSION, 2);
         dbHandler = new DBHandler(this, null, null, sharedDBVersion);
         fbHandler = new FBHandler(dbHandler,this);
-
+        String a = LoginPage.mainUser.getPassword();
         /*Intent receivingEnd = getIntent();
         String username = receivingEnd.getStringExtra("Username");
         String bio = receivingEnd.getStringExtra("Bio");
@@ -78,6 +80,11 @@ public class EditProfile extends AppCompatActivity {
                 openFileChooser();
             }
         });
+        for (User i:dbHandler.listUser()) {
+            if (!i.getName().equals(LoginPage.mainUser.getName())){
+                userNameString.add(i.getName());
+            }
+        }
 
         editSave.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -90,7 +97,32 @@ public class EditProfile extends AppCompatActivity {
                     editName.setError("Name is taken!");
                     editName.requestFocus();
                 }
+                else if (!passwordAgain.getText().toString().equals("")){
+                    if (!passwordAgain.getText().toString().equals(passwordLast.getText().toString())){
+                        passwordLast.setError("New password does not match");
+                        passwordLast.requestFocus();
+                    }
+                    else if (!password.getText().toString().equals(LoginPage.mainUser.getPassword())){
+                        password.setError("Old password does not match");
+                        password.requestFocus();
+                    }
+                    else {
+                        if (!editName.getText().toString().equals(LoginPage.mainUser.getName())){
+                            dbHandler.deleteUser(LoginPage.mainUser);
+                            fbHandler.removeUser(LoginPage.mainUser);
+                        }
+                        updateUser(editName, editBio);
+                        updateUserPass();
+                        Intent intent = new Intent();
+                        setResult(123, intent);
+                        finish();
+                    }
+                }
                 else{
+                    if (!editName.getText().toString().equals(LoginPage.mainUser.getName())){
+                        dbHandler.deleteUser(LoginPage.mainUser);
+                        fbHandler.removeUser(LoginPage.mainUser);
+                    }
                     updateUser(editName, editBio);
                     Intent intent = new Intent();
                     setResult(123, intent);
@@ -179,4 +211,10 @@ public class EditProfile extends AppCompatActivity {
             dbHandler.updateUser(LoginPage.mainUser);
         }
     }
+    public void updateUserPass(){
+        LoginPage.mainUser.setPassword(passwordAgain.getText().toString());
+        fbHandler.addUpdateUser(LoginPage.mainUser);
+        dbHandler.updateUser(LoginPage.mainUser);
+    }
+
 }

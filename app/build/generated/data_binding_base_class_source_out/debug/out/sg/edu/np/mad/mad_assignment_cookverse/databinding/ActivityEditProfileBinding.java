@@ -25,6 +25,9 @@ public final class ActivityEditProfileBinding implements ViewBinding {
   private final ScrollView rootView;
 
   @NonNull
+  public final EditText actualEditPasswordLast;
+
+  @NonNull
   public final ImageView backArrowEditProfile;
 
   @NonNull
@@ -55,6 +58,9 @@ public final class ActivityEditProfileBinding implements ViewBinding {
   public final TextView textView11;
 
   @NonNull
+  public final TextView textView13;
+
+  @NonNull
   public final TextView textView3;
 
   @NonNull
@@ -64,13 +70,14 @@ public final class ActivityEditProfileBinding implements ViewBinding {
   public final TextView textView6;
 
   private ActivityEditProfileBinding(@NonNull ScrollView rootView,
-      @NonNull ImageView backArrowEditProfile, @NonNull EditText editBio,
-      @NonNull EditText editName, @NonNull EditText editPasswordProfile,
+      @NonNull EditText actualEditPasswordLast, @NonNull ImageView backArrowEditProfile,
+      @NonNull EditText editBio, @NonNull EditText editName, @NonNull EditText editPasswordProfile,
       @NonNull EditText editPasswordProfileAgain, @NonNull ShapeableImageView editPic,
       @NonNull FloatingActionButton editPicButton, @NonNull Button editSave,
-      @NonNull TextView textView10, @NonNull TextView textView11, @NonNull TextView textView3,
-      @NonNull TextView textView5, @NonNull TextView textView6) {
+      @NonNull TextView textView10, @NonNull TextView textView11, @NonNull TextView textView13,
+      @NonNull TextView textView3, @NonNull TextView textView5, @NonNull TextView textView6) {
     this.rootView = rootView;
+    this.actualEditPasswordLast = actualEditPasswordLast;
     this.backArrowEditProfile = backArrowEditProfile;
     this.editBio = editBio;
     this.editName = editName;
@@ -81,6 +88,7 @@ public final class ActivityEditProfileBinding implements ViewBinding {
     this.editSave = editSave;
     this.textView10 = textView10;
     this.textView11 = textView11;
+    this.textView13 = textView13;
     this.textView3 = textView3;
     this.textView5 = textView5;
     this.textView6 = textView6;
@@ -113,6 +121,12 @@ public final class ActivityEditProfileBinding implements ViewBinding {
     // This is done to optimize the compiled bytecode for size and performance.
     int id;
     missingId: {
+      id = R.id.actualEditPasswordLast;
+      EditText actualEditPasswordLast = ViewBindings.findChildViewById(rootView, id);
+      if (actualEditPasswordLast == null) {
+        break missingId;
+      }
+
       id = R.id.backArrowEditProfile;
       ImageView backArrowEditProfile = ViewBindings.findChildViewById(rootView, id);
       if (backArrowEditProfile == null) {
@@ -173,6 +187,12 @@ public final class ActivityEditProfileBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.textView13;
+      TextView textView13 = ViewBindings.findChildViewById(rootView, id);
+      if (textView13 == null) {
+        break missingId;
+      }
+
       id = R.id.textView3;
       TextView textView3 = ViewBindings.findChildViewById(rootView, id);
       if (textView3 == null) {
@@ -191,9 +211,10 @@ public final class ActivityEditProfileBinding implements ViewBinding {
         break missingId;
       }
 
-      return new ActivityEditProfileBinding((ScrollView) rootView, backArrowEditProfile, editBio,
-          editName, editPasswordProfile, editPasswordProfileAgain, editPic, editPicButton, editSave,
-          textView10, textView11, textView3, textView5, textView6);
+      return new ActivityEditProfileBinding((ScrollView) rootView, actualEditPasswordLast,
+          backArrowEditProfile, editBio, editName, editPasswordProfile, editPasswordProfileAgain,
+          editPic, editPicButton, editSave, textView10, textView11, textView13, textView3,
+          textView5, textView6);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));
