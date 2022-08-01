@@ -48,19 +48,26 @@ import java.util.Random;
  * create an instance of this fragment.
  */
 
-public class HomeFragment extends Fragment implements RecyclerViewInterface,UserRecyclerViewInterface {
+public class HomeFragment extends Fragment implements RecyclerViewInterface,UserRecyclerViewInterface,PopRecyclerViewInterface,VegetarianInterface {
     public String TAG = "Home page";
     OnlineRecipesAdapter oAdapter;
     UserCreatedAdapter uAdapter;
+    PopRecipeAdapter pAdapter;
+    VegetarianAdapter vAdapter;
     RecyclerViewInterface RecyclerViewInterface;
     UserRecyclerViewInterface UserRecyclerViewInterface;
+    PopRecyclerViewInterface popRecyclerViewInterface;
+    VegetarianInterface vegetarianInterface;
     List<Recipe> dataOriginal;
     public String GLOBAL_PREF = "MyPrefs";
     public String DATABASE_VERSION = "MyDatabaseVersion";
     SharedPreferences sharedPreferences;
     DBHandler dbHandler;
+    List<Recipe>rList=new ArrayList<>();
     public static List<Recipe>oList=new ArrayList<>();
     public static List<Recipe>uList=new ArrayList<>();
+    public static List<Recipe>pList=new ArrayList<>();
+    public static List<Recipe>vList=new ArrayList<>();
     public static int seed = new Random().nextInt();;
     public static Boolean cameFromRecipe = false;
     // TODO: Rename parameter arguments, choose names that match
@@ -268,15 +275,37 @@ public class HomeFragment extends Fragment implements RecyclerViewInterface,User
         RecyclerView urecyclerView=view.findViewById(R.id.usercreatedRecyclerView);
         urecyclerView.setHasFixedSize(true);
         uList=dbHandler.listUserRecipe();
+        RecyclerView precyclerView=view.findViewById(R.id.poprecy);
+        precyclerView.setHasFixedSize(true);
+        RecyclerView vrecyclerView=view.findViewById(R.id.vrecyclerview);
+        vrecyclerView.setHasFixedSize(true);
+        for(Recipe x : dataOriginal){
+            if(x.isPopular()==true){
+                pList.add(x);
+                continue;
+            }
+
+        }
+        for(Recipe v: dataOriginal){
+            if(v.isVegetarian()==true){
+                vList.add(v);
+                continue;
+            }
+        }
+
 
         if (cameFromRecipe == false){
             seed = new Random().nextInt();
             Collections.shuffle(oList, new Random(seed));
             Collections.shuffle(uList, new Random(seed));
+            Collections.shuffle(pList, new Random(seed));
+            Collections.shuffle(vList, new Random(seed));
         }
         else{
             Collections.shuffle(oList, new Random(MainFragment.HomeSeed));
             Collections.shuffle(uList, new Random(MainFragment.HomeSeed));
+            Collections.shuffle(pList, new Random(MainFragment.HomeSeed));
+            Collections.shuffle(vList, new Random(MainFragment.HomeSeed));
         }
         cameFromRecipe = false;
         oAdapter = new OnlineRecipesAdapter(oList, rvi, dataOriginal);  //ONLINE RECIPE ADAPTER
@@ -288,6 +317,18 @@ public class HomeFragment extends Fragment implements RecyclerViewInterface,User
         LinearLayoutManager uLayoutManager=new LinearLayoutManager(getActivity(),LinearLayoutManager.HORIZONTAL,false);
         urecyclerView.setLayoutManager(uLayoutManager);
         urecyclerView.setAdapter(uAdapter);
+
+        pAdapter=new PopRecipeAdapter(pList,this,dataOriginal);
+        LinearLayoutManager pLayoutManager=new LinearLayoutManager(getActivity(),LinearLayoutManager.HORIZONTAL,false);
+        precyclerView.setLayoutManager(pLayoutManager);
+        precyclerView.setAdapter(pAdapter);
+
+        vAdapter=new VegetarianAdapter(vList,this,dataOriginal);
+        LinearLayoutManager vLayoutManager=new LinearLayoutManager(getActivity(),LinearLayoutManager.HORIZONTAL,false);
+        vrecyclerView.setLayoutManager(vLayoutManager);
+        vrecyclerView.setAdapter(vAdapter);
+
+
 
         /*Query query = FirebaseDatabase.getInstance().getReference().child("Recipes");
         List<Recipe> list = new ArrayList<>();
@@ -413,6 +454,24 @@ public class HomeFragment extends Fragment implements RecyclerViewInterface,User
         intent.putExtra("activity","home");
         MainFragment.activityResultLauncher.launch(intent);
 
+    }
+    public void onItemClick3(int pos) {
+        Intent intent = new Intent(getActivity().getBaseContext(),
+                RecipeActivity.class);
+        String rid = pAdapter.getRid(pos);
+        MainFragment.HomeSeed = seed;
+        intent.putExtra("recipeID", rid);
+        intent.putExtra("activity", "home");
+        MainFragment.activityResultLauncher.launch(intent);
+    }
+    public void onItemClick4(int pos) {
+        Intent intent = new Intent(getActivity().getBaseContext(),
+                RecipeActivity.class);
+        String rid = vAdapter.getRid(pos);
+        MainFragment.HomeSeed = seed;
+        intent.putExtra("recipeID", rid);
+        intent.putExtra("activity", "home");
+        MainFragment.activityResultLauncher.launch(intent);
     }
 
 

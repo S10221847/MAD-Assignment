@@ -2,6 +2,7 @@ package sg.edu.np.mad.mad_assignment_cookverse;
 
 import static android.content.Context.MODE_PRIVATE;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -20,12 +21,13 @@ import java.util.List;
  * Use the {@link ShoppingListFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class ShoppingListFragment extends Fragment {
+public class ShoppingListFragment extends Fragment{
     public List<Recipe>shoppingRec=new ArrayList<>();
     public String GLOBAL_PREF = "MyPrefs";
     public String DATABASE_VERSION = "MyDatabaseVersion";
     DBHandler db;
     SharedPreferences sharedPreferences;
+
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -88,4 +90,6 @@ public class ShoppingListFragment extends Fragment {
         return view;
 
     }
+
+
 }

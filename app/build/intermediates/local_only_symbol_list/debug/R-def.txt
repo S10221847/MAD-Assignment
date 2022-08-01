@@ -21,6 +21,7 @@ drawable ic_baseline_edit_24
 drawable ic_baseline_home_24
 drawable ic_baseline_image_not_supported_24
 drawable ic_baseline_search_24
+drawable ic_baseline_thumb_up_24
 drawable ic_filter
 drawable ic_launcher_background
 drawable ic_launcher_foreground
@@ -124,6 +125,7 @@ id personalRImage
 id personalRName
 id personalReci
 id personal_recipe_layout
+id poprecy
 id profile
 id progressBar
 id progressBar2
@@ -162,11 +164,13 @@ id test2
 id textView
 id textView10
 id textView11
+id textView12
 id textView14
 id textView15
 id textView16
 id textView17
 id textView18
+id textView19
 id textView2
 id textView3
 id textView4
@@ -180,6 +184,7 @@ id userSignup
 id usercreatedRecyclerView
 id usercreatedlikes
 id usercreatedname
+id vrecyclerview
 layout about_recipe
 layout activity_creater_user_page
 layout activity_edit_profile
@@ -206,10 +211,12 @@ layout fragment_user_recipe
 layout liked_recipe_layout
 layout online_recipes
 layout personal_recipe_layout
+layout poprecipe_layout
 layout recipedesc_popup
 layout shopping_ingred
 layout shoppinglist_layout
 layout usercreatedrecipes
+layout vegetarianrecycler
 menu bottom_nav_menu
 menu profile_nav_menu
 mipmap ic_launcher

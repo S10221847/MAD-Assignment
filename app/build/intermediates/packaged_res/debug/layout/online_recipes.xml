@@ -48,13 +48,17 @@
         android:layout_gravity="center"
         android:layout_marginStart="88dp"
         android:layout_marginTop="132dp"
-        android:drawableRight="@android:drawable/btn_star_big_on"
+        android:drawableRight="@drawable/ic_baseline_thumb_up_24"
         android:gravity="center"
         android:text="TextView"
+        android:paddingLeft="0dp"
+        android:paddingRight="-5dp"
+        android:paddingTop="4dp"
+        android:paddingBottom="4dp"
+        android:textColor="@android:color/holo_red_dark"
         android:textSize="15sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="@+id/imageView4"
-        app:layout_constraintTop_toTopOf="parent"
-        android:textColor="@color/black"/>/>
+        app:layout_constraintTop_toTopOf="parent" />/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -8,6 +8,10 @@
         "source": "D:\\MAD\\MAD-Assignment-Cookverse\\app\\src\\main\\res\\layout\\fragment_create.xml"
     },
     {
+        "merged": "D:\\MAD\\MAD-Assignment-Cookverse\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\poprecipe_layout.xml",
+        "source": "D:\\MAD\\MAD-Assignment-Cookverse\\app\\src\\main\\res\\layout\\poprecipe_layout.xml"
+    },
+    {
         "merged": "D:\\MAD\\MAD-Assignment-Cookverse\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\shopping_ingred.xml",
         "source": "D:\\MAD\\MAD-Assignment-Cookverse\\app\\src\\main\\res\\layout\\shopping_ingred.xml"
     },
@@ -30,6 +34,10 @@
     {
         "merged": "D:\\MAD\\MAD-Assignment-Cookverse\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\fragment_user_recipe.xml",
         "source": "D:\\MAD\\MAD-Assignment-Cookverse\\app\\src\\main\\res\\layout\\fragment_user_recipe.xml"
+    },
+    {
+        "merged": "D:\\MAD\\MAD-Assignment-Cookverse\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\vegetarianrecycler.xml",
+        "source": "D:\\MAD\\MAD-Assignment-Cookverse\\app\\src\\main\\res\\layout\\vegetarianrecycler.xml"
     },
     {
         "merged": "D:\\MAD\\MAD-Assignment-Cookverse\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\activity_main.xml",

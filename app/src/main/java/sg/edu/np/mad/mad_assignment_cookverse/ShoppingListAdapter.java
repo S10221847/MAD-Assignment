@@ -20,9 +20,11 @@ public class ShoppingListAdapter extends RecyclerView.Adapter<ShoppingListViewHo
 
 
 
+
     public ShoppingListAdapter(List<Recipe> input, Context context){
         data=input;
         this.context=context;
+
     }
 
     @NonNull
@@ -59,6 +61,7 @@ public class ShoppingListAdapter extends RecyclerView.Adapter<ShoppingListViewHo
     public int getItemCount() {
         return data.size();
     }
+
 }
 
 

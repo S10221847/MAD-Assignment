@@ -20,6 +20,5 @@ public class ShoppingListViewHolder extends RecyclerView.ViewHolder{
         rServings=itemView.findViewById(R.id.shopping_servings);
         rIngred=itemView.findViewById(R.id.shoppinglinear);
 
-
+        }
     }
-}
