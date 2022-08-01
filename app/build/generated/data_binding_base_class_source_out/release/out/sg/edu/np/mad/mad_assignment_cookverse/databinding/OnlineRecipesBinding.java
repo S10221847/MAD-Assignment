@@ -4,13 +4,13 @@ package sg.edu.np.mad.mad_assignment_cookverse.databinding;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.viewbinding.ViewBinding;
 import androidx.viewbinding.ViewBindings;
+import com.google.android.material.imageview.ShapeableImageView;
 import java.lang.NullPointerException;
 import java.lang.Override;
 import java.lang.String;
@@ -21,7 +21,7 @@ public final class OnlineRecipesBinding implements ViewBinding {
   private final ConstraintLayout rootView;
 
   @NonNull
-  public final ImageView imageView4;
+  public final ShapeableImageView imageView4;
 
   @NonNull
   public final ConstraintLayout linearLayout2;
@@ -32,9 +32,9 @@ public final class OnlineRecipesBinding implements ViewBinding {
   @NonNull
   public final TextView onlinerecipename;
 
-  private OnlineRecipesBinding(@NonNull ConstraintLayout rootView, @NonNull ImageView imageView4,
-      @NonNull ConstraintLayout linearLayout2, @NonNull TextView onlinelikes,
-      @NonNull TextView onlinerecipename) {
+  private OnlineRecipesBinding(@NonNull ConstraintLayout rootView,
+      @NonNull ShapeableImageView imageView4, @NonNull ConstraintLayout linearLayout2,
+      @NonNull TextView onlinelikes, @NonNull TextView onlinerecipename) {
     this.rootView = rootView;
     this.imageView4 = imageView4;
     this.linearLayout2 = linearLayout2;
@@ -70,7 +70,7 @@ public final class OnlineRecipesBinding implements ViewBinding {
     int id;
     missingId: {
       id = R.id.imageView4;
-      ImageView imageView4 = ViewBindings.findChildViewById(rootView, id);
+      ShapeableImageView imageView4 = ViewBindings.findChildViewById(rootView, id);
       if (imageView4 == null) {
         break missingId;
       }

@@ -21,12 +21,14 @@ import java.util.List;
  * Use the {@link ShoppingListFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class ShoppingListFragment extends Fragment{
+public class ShoppingListFragment extends Fragment implements shoppingInterface {
     public List<Recipe>shoppingRec=new ArrayList<>();
     public String GLOBAL_PREF = "MyPrefs";
     public String DATABASE_VERSION = "MyDatabaseVersion";
     DBHandler db;
     SharedPreferences sharedPreferences;
+    shoppingInterface SHOPPINGINTERFACE;
+
 
 
     // TODO: Rename parameter arguments, choose names that match
@@ -83,7 +85,7 @@ public class ShoppingListFragment extends Fragment{
         View view = inflater.inflate(R.layout.fragment_shopping_list, container, false);
         // Inflate the layout for this fragment
         RecyclerView recyclerView=view.findViewById(R.id.shoppingrecycler);
-        ShoppingListAdapter sAdaptor=new ShoppingListAdapter(ProfileFragment.shoppingList,getActivity());
+        ShoppingListAdapter sAdaptor=new ShoppingListAdapter(ProfileFragment.shoppingList,getActivity(),this);
         LinearLayoutManager mLayoutManager=new LinearLayoutManager(getActivity(),LinearLayoutManager.VERTICAL,false);
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setAdapter(sAdaptor);
@@ -92,4 +94,15 @@ public class ShoppingListFragment extends Fragment{
     }
 
 
+    @Override
+    public void onItemClick5(int pos) {
+        Intent intent = new Intent(getActivity().getBaseContext(),
+                RecipeActivity.class);
+        String rid  = ProfileFragment.shoppingList.get(pos).getRid();
+        ProfileFragment.personalOrLiked = "liked";
+        intent.putExtra("recipeID", rid);
+        intent.putExtra("activity","profile");
+        MainFragment.activityResultLauncher.launch(intent);
+
+    }
 }

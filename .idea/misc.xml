@@ -25,7 +25,7 @@
         <entry key="..\:/MAD/MAD-Assignment-Cookverse/app/src/main/res/layout/poprecipe_layout.xml" value="0.22826086956521738" />
         <entry key="..\:/MAD/MAD-Assignment-Cookverse/app/src/main/res/layout/recipedesc_popup.xml" value="0.4" />
         <entry key="..\:/MAD/MAD-Assignment-Cookverse/app/src/main/res/layout/shopping_ingred.xml" value="0.22826086956521738" />
-        <entry key="..\:/MAD/MAD-Assignment-Cookverse/app/src/main/res/layout/shoppinglist_layout.xml" value="0.4" />
+        <entry key="..\:/MAD/MAD-Assignment-Cookverse/app/src/main/res/layout/shoppinglist_layout.xml" value="0.264" />
         <entry key="..\:/MAD/MAD-Assignment-Cookverse/app/src/main/res/layout/usercreatedrecipes.xml" value="0.4" />
         <entry key="..\:/MAD/MAD-Assignment-Cookverse/app/src/main/res/layout/vegetarianrecycler.xml" value="0.22826086956521738" />
         <entry key="..\:/MAD/MAD-Assignment-Cookverse/app/src/main/res/menu/profile_nav_menu.xml" value="0.25052083333333336" />
@@ -52,8 +52,6 @@
         <entry key="..\:/Users/tanko/Desktop/Year 2 sem 1/MAD/MAD-Assignment-minh/app/src/main/res/layout/activity_recipe.xml" value="0.14130434782608695" />
         <entry key="..\:/Users/tanko/Desktop/Year 2 sem 1/MAD/MAD-Assignment-minh/app/src/main/res/layout/fragment_profile.xml" value="0.14130434782608695" />
         <entry key="..\:/Users/tanko/Desktop/Year 2 sem 1/MAD/MAD-Assignment/app/src/main/res/drawable-v24/ic_baseline_image_not_supported_24.xml" value="0.1065" />
-        <entry key="..\:/Users/tanko/Desktop/Year 2 sem 1/MAD/MAD-Assignment/app/src/main/res/drawable-v24/ic_baseline_restore_from_trash_24.xml" value="0.1065" />
-        <entry key="..\:/Users/tanko/Desktop/Year 2 sem 1/MAD/MAD-Assignment/app/src/main/res/layout/activity_edit_recipe.xml" value="0.14130434782608695" />
         <entry key="..\:/Users/tanko/Desktop/Year 2 sem 1/MAD/MAD-Assignment/app/src/main/res/layout/fragment_liked_recipe.xml" value="0.14130434782608695" />
         <entry key="..\:/Users/tanko/Desktop/Year 2 sem 1/MAD/MAD-Assignment/app/src/main/res/layout/fragment_profile.xml" value="0.14666666666666667" />
         <entry key="..\:/Users/tanko/Desktop/Year 2 sem 1/MAD/MAD-Assignment/app/src/main/res/layout/fragment_user_recipe.xml" value="0.14130434782608695" />

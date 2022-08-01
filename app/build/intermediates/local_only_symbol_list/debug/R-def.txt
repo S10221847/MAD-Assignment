@@ -20,6 +20,7 @@ drawable ic_baseline_add_24
 drawable ic_baseline_edit_24
 drawable ic_baseline_home_24
 drawable ic_baseline_image_not_supported_24
+drawable ic_baseline_restore_from_trash_24
 drawable ic_baseline_search_24
 drawable ic_baseline_thumb_up_24
 drawable ic_filter
@@ -36,9 +37,11 @@ drawable search_view_bg
 drawable uploadicon
 font poppins
 id CreateImage
+id CreateImage2
 id FRAGMENT_PLACEHOLDER
 id ProfileImage
 id about
+id actualEditPasswordLast
 id addCuisine
 id addCuisineButton
 id addIngredient
@@ -55,7 +58,9 @@ id bottomNavigationView2
 id buttonCancel
 id buttonCreate
 id buttonCreateRecipe
+id buttonCreateRecipe2
 id buttonImage
+id buttonImage2
 id cardView
 id cardView2
 id clearFilter
@@ -64,6 +69,7 @@ id coordinatorLayout
 id coordinatorLayout2
 id create
 id cuisineList
+id cuisineList2
 id deleteCuisine
 id deleteIngredient
 id deleteStep
@@ -81,9 +87,13 @@ id editPic
 id editPicButton
 id editProfile
 id editRecipeDescription
+id editRecipeDescription2
 id editRecipeDuration
+id editRecipeDuration2
 id editRecipeName
+id editRecipeName2
 id editRecipeServings
+id editRecipeServings2
 id editSave
 id editUsername
 id editmyEmailAdd
@@ -99,6 +109,7 @@ id imageView3
 id imageView4
 id imageView8
 id ingredList
+id ingredList2
 id ingredStepsButton
 id ingred_line
 id isDairyFree
@@ -157,6 +168,7 @@ id shopping_servings
 id shoppinglinear
 id shoppingrecycler
 id stepList
+id stepList2
 id step_line
 id step_no
 id test
@@ -165,6 +177,7 @@ id textView
 id textView10
 id textView11
 id textView12
+id textView13
 id textView14
 id textView15
 id textView16
@@ -179,6 +192,7 @@ id textView6
 id textView7
 id textView8
 id textView9
+id trashbin
 id userName
 id userSignup
 id usercreatedRecyclerView

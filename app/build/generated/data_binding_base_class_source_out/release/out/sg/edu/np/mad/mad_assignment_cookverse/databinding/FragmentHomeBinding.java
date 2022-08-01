@@ -4,6 +4,8 @@ package sg.edu.np.mad.mad_assignment_cookverse.databinding;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -27,24 +29,54 @@ public final class FragmentHomeBinding implements ViewBinding {
   public final RecyclerView onlinerecRecyclerView;
 
   @NonNull
+  public final RecyclerView poprecy;
+
+  @NonNull
+  public final ProgressBar progressBar2;
+
+  @NonNull
+  public final ImageView refreshImage;
+
+  @NonNull
+  public final TextView textView12;
+
+  @NonNull
   public final TextView textView14;
 
   @NonNull
   public final TextView textView15;
 
   @NonNull
+  public final TextView textView19;
+
+  @NonNull
+  public final TextView textView3;
+
+  @NonNull
   public final RecyclerView usercreatedRecyclerView;
+
+  @NonNull
+  public final RecyclerView vrecyclerview;
 
   private FragmentHomeBinding(@NonNull ConstraintLayout rootView,
       @NonNull ConstraintLayout frameLayout, @NonNull RecyclerView onlinerecRecyclerView,
-      @NonNull TextView textView14, @NonNull TextView textView15,
-      @NonNull RecyclerView usercreatedRecyclerView) {
+      @NonNull RecyclerView poprecy, @NonNull ProgressBar progressBar2,
+      @NonNull ImageView refreshImage, @NonNull TextView textView12, @NonNull TextView textView14,
+      @NonNull TextView textView15, @NonNull TextView textView19, @NonNull TextView textView3,
+      @NonNull RecyclerView usercreatedRecyclerView, @NonNull RecyclerView vrecyclerview) {
     this.rootView = rootView;
     this.frameLayout = frameLayout;
     this.onlinerecRecyclerView = onlinerecRecyclerView;
+    this.poprecy = poprecy;
+    this.progressBar2 = progressBar2;
+    this.refreshImage = refreshImage;
+    this.textView12 = textView12;
     this.textView14 = textView14;
     this.textView15 = textView15;
+    this.textView19 = textView19;
+    this.textView3 = textView3;
     this.usercreatedRecyclerView = usercreatedRecyclerView;
+    this.vrecyclerview = vrecyclerview;
   }
 
   @Override
@@ -82,6 +114,30 @@ public final class FragmentHomeBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.poprecy;
+      RecyclerView poprecy = ViewBindings.findChildViewById(rootView, id);
+      if (poprecy == null) {
+        break missingId;
+      }
+
+      id = R.id.progressBar2;
+      ProgressBar progressBar2 = ViewBindings.findChildViewById(rootView, id);
+      if (progressBar2 == null) {
+        break missingId;
+      }
+
+      id = R.id.refreshImage;
+      ImageView refreshImage = ViewBindings.findChildViewById(rootView, id);
+      if (refreshImage == null) {
+        break missingId;
+      }
+
+      id = R.id.textView12;
+      TextView textView12 = ViewBindings.findChildViewById(rootView, id);
+      if (textView12 == null) {
+        break missingId;
+      }
+
       id = R.id.textView14;
       TextView textView14 = ViewBindings.findChildViewById(rootView, id);
       if (textView14 == null) {
@@ -94,14 +150,33 @@ public final class FragmentHomeBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.textView19;
+      TextView textView19 = ViewBindings.findChildViewById(rootView, id);
+      if (textView19 == null) {
+        break missingId;
+      }
+
+      id = R.id.textView3;
+      TextView textView3 = ViewBindings.findChildViewById(rootView, id);
+      if (textView3 == null) {
+        break missingId;
+      }
+
       id = R.id.usercreatedRecyclerView;
       RecyclerView usercreatedRecyclerView = ViewBindings.findChildViewById(rootView, id);
       if (usercreatedRecyclerView == null) {
         break missingId;
       }
 
+      id = R.id.vrecyclerview;
+      RecyclerView vrecyclerview = ViewBindings.findChildViewById(rootView, id);
+      if (vrecyclerview == null) {
+        break missingId;
+      }
+
       return new FragmentHomeBinding((ConstraintLayout) rootView, frameLayout,
-          onlinerecRecyclerView, textView14, textView15, usercreatedRecyclerView);
+          onlinerecRecyclerView, poprecy, progressBar2, refreshImage, textView12, textView14,
+          textView15, textView19, textView3, usercreatedRecyclerView, vrecyclerview);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

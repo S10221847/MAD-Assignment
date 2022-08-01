@@ -9,4 +9,7 @@
     <item
         android:id="@+id/liked"
         android:title="Liked" />
+    <item
+        android:id="@+id/shopList"
+        android:title="Shopping List" />
 </menu>

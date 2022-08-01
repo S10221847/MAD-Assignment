@@ -4,13 +4,13 @@ package sg.edu.np.mad.mad_assignment_cookverse.databinding;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.viewbinding.ViewBinding;
 import androidx.viewbinding.ViewBindings;
+import com.google.android.material.imageview.ShapeableImageView;
 import java.lang.NullPointerException;
 import java.lang.Override;
 import java.lang.String;
@@ -21,7 +21,7 @@ public final class UsercreatedrecipesBinding implements ViewBinding {
   private final ConstraintLayout rootView;
 
   @NonNull
-  public final ImageView imageView3;
+  public final ShapeableImageView imageView3;
 
   @NonNull
   public final ConstraintLayout linearLayout3;
@@ -33,7 +33,7 @@ public final class UsercreatedrecipesBinding implements ViewBinding {
   public final TextView usercreatedname;
 
   private UsercreatedrecipesBinding(@NonNull ConstraintLayout rootView,
-      @NonNull ImageView imageView3, @NonNull ConstraintLayout linearLayout3,
+      @NonNull ShapeableImageView imageView3, @NonNull ConstraintLayout linearLayout3,
       @NonNull TextView usercreatedlikes, @NonNull TextView usercreatedname) {
     this.rootView = rootView;
     this.imageView3 = imageView3;
@@ -70,7 +70,7 @@ public final class UsercreatedrecipesBinding implements ViewBinding {
     int id;
     missingId: {
       id = R.id.imageView3;
-      ImageView imageView3 = ViewBindings.findChildViewById(rootView, id);
+      ShapeableImageView imageView3 = ViewBindings.findChildViewById(rootView, id);
       if (imageView3 == null) {
         break missingId;
       }

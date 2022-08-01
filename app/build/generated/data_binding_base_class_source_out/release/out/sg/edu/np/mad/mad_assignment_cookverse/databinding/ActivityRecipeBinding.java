@@ -5,10 +5,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.viewbinding.ViewBinding;
 import androidx.viewbinding.ViewBindings;
 import java.lang.NullPointerException;
@@ -18,28 +20,59 @@ import sg.edu.np.mad.mad_assignment_cookverse.R;
 
 public final class ActivityRecipeBinding implements ViewBinding {
   @NonNull
-  private final ConstraintLayout rootView;
+  private final ScrollView rootView;
+
+  @NonNull
+  public final Button about;
+
+  @NonNull
+  public final ImageView backButton;
+
+  @NonNull
+  public final TextView duration;
 
   @NonNull
   public final Button ingredStepsButton;
 
   @NonNull
+  public final ImageView likestatus;
+
+  @NonNull
+  public final ImageView rImage;
+
+  @NonNull
   public final TextView rName;
 
   @NonNull
-  public final TextView rSteps;
+  public final LinearLayout rStepIngred;
 
-  private ActivityRecipeBinding(@NonNull ConstraintLayout rootView,
-      @NonNull Button ingredStepsButton, @NonNull TextView rName, @NonNull TextView rSteps) {
+  @NonNull
+  public final ImageView recipeEdit;
+
+  @NonNull
+  public final ImageView shoppingList;
+
+  private ActivityRecipeBinding(@NonNull ScrollView rootView, @NonNull Button about,
+      @NonNull ImageView backButton, @NonNull TextView duration, @NonNull Button ingredStepsButton,
+      @NonNull ImageView likestatus, @NonNull ImageView rImage, @NonNull TextView rName,
+      @NonNull LinearLayout rStepIngred, @NonNull ImageView recipeEdit,
+      @NonNull ImageView shoppingList) {
     this.rootView = rootView;
+    this.about = about;
+    this.backButton = backButton;
+    this.duration = duration;
     this.ingredStepsButton = ingredStepsButton;
+    this.likestatus = likestatus;
+    this.rImage = rImage;
     this.rName = rName;
-    this.rSteps = rSteps;
+    this.rStepIngred = rStepIngred;
+    this.recipeEdit = recipeEdit;
+    this.shoppingList = shoppingList;
   }
 
   @Override
   @NonNull
-  public ConstraintLayout getRoot() {
+  public ScrollView getRoot() {
     return rootView;
   }
 
@@ -64,9 +97,39 @@ public final class ActivityRecipeBinding implements ViewBinding {
     // This is done to optimize the compiled bytecode for size and performance.
     int id;
     missingId: {
+      id = R.id.about;
+      Button about = ViewBindings.findChildViewById(rootView, id);
+      if (about == null) {
+        break missingId;
+      }
+
+      id = R.id.back_button;
+      ImageView backButton = ViewBindings.findChildViewById(rootView, id);
+      if (backButton == null) {
+        break missingId;
+      }
+
+      id = R.id.duration;
+      TextView duration = ViewBindings.findChildViewById(rootView, id);
+      if (duration == null) {
+        break missingId;
+      }
+
       id = R.id.ingredStepsButton;
       Button ingredStepsButton = ViewBindings.findChildViewById(rootView, id);
       if (ingredStepsButton == null) {
+        break missingId;
+      }
+
+      id = R.id.likestatus;
+      ImageView likestatus = ViewBindings.findChildViewById(rootView, id);
+      if (likestatus == null) {
+        break missingId;
+      }
+
+      id = R.id.rImage;
+      ImageView rImage = ViewBindings.findChildViewById(rootView, id);
+      if (rImage == null) {
         break missingId;
       }
 
@@ -76,14 +139,26 @@ public final class ActivityRecipeBinding implements ViewBinding {
         break missingId;
       }
 
-      id = R.id.rSteps;
-      TextView rSteps = ViewBindings.findChildViewById(rootView, id);
-      if (rSteps == null) {
+      id = R.id.rStepIngred;
+      LinearLayout rStepIngred = ViewBindings.findChildViewById(rootView, id);
+      if (rStepIngred == null) {
         break missingId;
       }
 
-      return new ActivityRecipeBinding((ConstraintLayout) rootView, ingredStepsButton, rName,
-          rSteps);
+      id = R.id.recipeEdit;
+      ImageView recipeEdit = ViewBindings.findChildViewById(rootView, id);
+      if (recipeEdit == null) {
+        break missingId;
+      }
+
+      id = R.id.shoppingList;
+      ImageView shoppingList = ViewBindings.findChildViewById(rootView, id);
+      if (shoppingList == null) {
+        break missingId;
+      }
+
+      return new ActivityRecipeBinding((ScrollView) rootView, about, backButton, duration,
+          ingredStepsButton, likestatus, rImage, rName, rStepIngred, recipeEdit, shoppingList);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

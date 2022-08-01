@@ -13,12 +13,26 @@ public class ShoppingListViewHolder extends RecyclerView.ViewHolder{
     TextView rName;
     TextView rServings;
     LinearLayout rIngred;
-    public ShoppingListViewHolder(@NonNull View itemView){
+    public ShoppingListViewHolder(View itemView,shoppingInterface SHOPPINGINTERFACE){
         super(itemView);
         rPic=itemView.findViewById(R.id.shopping_pic);
         rName=itemView.findViewById(R.id.shopping_name);
         rServings=itemView.findViewById(R.id.shopping_servings);
         rIngred=itemView.findViewById(R.id.shoppinglinear);
+        itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(SHOPPINGINTERFACE!=null){
+                    int pos=getAdapterPosition();
 
-        }
+                    if(pos!=RecyclerView.NO_POSITION){
+                        SHOPPINGINTERFACE.onItemClick5(pos);
+                    }
+                }
+            }
+        });
+
+        };
+
+
     }

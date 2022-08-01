@@ -17,21 +17,20 @@ import java.util.List;
 public class ShoppingListAdapter extends RecyclerView.Adapter<ShoppingListViewHolder>{
     List<Recipe> data;
     Context context;
+    shoppingInterface SHOPPINGINTERFACE;
 
 
-
-
-    public ShoppingListAdapter(List<Recipe> input, Context context){
-        data=input;
+    public ShoppingListAdapter(List<Recipe> input, Context context,shoppingInterface SHOPPINGINTERFACE){
+        this.data=input;
         this.context=context;
-
+        this.SHOPPINGINTERFACE=SHOPPINGINTERFACE;
     }
 
     @NonNull
     @Override
     public ShoppingListViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View item= LayoutInflater.from(parent.getContext()).inflate(R.layout.shoppinglist_layout,parent,false);
-        return new ShoppingListViewHolder(item);
+        return new ShoppingListViewHolder(item,SHOPPINGINTERFACE);
     }
     public void onBindViewHolder(ShoppingListViewHolder holder,int position){
 
@@ -61,6 +60,7 @@ public class ShoppingListAdapter extends RecyclerView.Adapter<ShoppingListViewHo
     public int getItemCount() {
         return data.size();
     }
+
 
 }
 

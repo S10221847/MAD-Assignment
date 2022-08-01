@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    android:layout_gravity="center">
+
+    <EditText
+        android:id="@+id/addCuisine"
+        android:layout_width="270dp"
+        android:layout_height="wrap_content"
+        android:hint="Cuisine (optional)"
+        android:ems="10"
+        tools:layout_editor_absoluteY="5dp"></EditText>
+
+    <Button
+        android:id="@+id/deleteCuisine"
+        android:layout_width="50dp"
+        android:layout_height="53dp"
+        android:layout_gravity="center"
+        android:layout_marginStart="2dp"
+        android:layout_marginTop="4dp"
+        android:backgroundTint="@color/white"
+        android:text="x"
+        android:textColor="@color/cardview_dark_background"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:visibility="invisible"
+        app:layout_constraintStart_toEndOf="@+id/addCuisineButton"
+        app:layout_constraintTop_toTopOf="parent"></Button>
+
+    <Button
+        android:id="@+id/addCuisineButton"
+        android:layout_width="50dp"
+        android:layout_height="53dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="4dp"
+        android:backgroundTint="@color/white"
+        android:text="+"
+        android:textColor="@color/cardview_dark_background"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:visibility="visible"
+        app:layout_constraintStart_toEndOf="@+id/addCuisine"
+        app:layout_constraintTop_toTopOf="parent"></Button>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

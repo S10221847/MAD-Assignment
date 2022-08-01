@@ -4,7 +4,11 @@ package sg.edu.np.mad.mad_assignment_cookverse.databinding;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.FrameLayout;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -17,19 +21,64 @@ import sg.edu.np.mad.mad_assignment_cookverse.R;
 
 public final class FragmentCreateBinding implements ViewBinding {
   @NonNull
-  private final FrameLayout rootView;
+  private final ScrollView rootView;
 
   @NonNull
-  public final TextView cmgsoon;
+  public final ImageView CreateImage;
 
-  private FragmentCreateBinding(@NonNull FrameLayout rootView, @NonNull TextView cmgsoon) {
+  @NonNull
+  public final Button buttonCreateRecipe;
+
+  @NonNull
+  public final Button buttonImage;
+
+  @NonNull
+  public final LinearLayout cuisineList;
+
+  @NonNull
+  public final EditText editRecipeDescription;
+
+  @NonNull
+  public final EditText editRecipeDuration;
+
+  @NonNull
+  public final EditText editRecipeName;
+
+  @NonNull
+  public final EditText editRecipeServings;
+
+  @NonNull
+  public final LinearLayout ingredList;
+
+  @NonNull
+  public final LinearLayout stepList;
+
+  @NonNull
+  public final TextView textView9;
+
+  private FragmentCreateBinding(@NonNull ScrollView rootView, @NonNull ImageView CreateImage,
+      @NonNull Button buttonCreateRecipe, @NonNull Button buttonImage,
+      @NonNull LinearLayout cuisineList, @NonNull EditText editRecipeDescription,
+      @NonNull EditText editRecipeDuration, @NonNull EditText editRecipeName,
+      @NonNull EditText editRecipeServings, @NonNull LinearLayout ingredList,
+      @NonNull LinearLayout stepList, @NonNull TextView textView9) {
     this.rootView = rootView;
-    this.cmgsoon = cmgsoon;
+    this.CreateImage = CreateImage;
+    this.buttonCreateRecipe = buttonCreateRecipe;
+    this.buttonImage = buttonImage;
+    this.cuisineList = cuisineList;
+    this.editRecipeDescription = editRecipeDescription;
+    this.editRecipeDuration = editRecipeDuration;
+    this.editRecipeName = editRecipeName;
+    this.editRecipeServings = editRecipeServings;
+    this.ingredList = ingredList;
+    this.stepList = stepList;
+    this.textView9 = textView9;
   }
 
   @Override
   @NonNull
-  public FrameLayout getRoot() {
+  public ScrollView getRoot() {
     return rootView;
   }
 
@@ -54,13 +103,75 @@ public final class FragmentCreateBinding implements ViewBinding {
     // This is done to optimize the compiled bytecode for size and performance.
     int id;
     missingId: {
-      id = R.id.cmgsoon;
-      TextView cmgsoon = ViewBindings.findChildViewById(rootView, id);
-      if (cmgsoon == null) {
+      id = R.id.CreateImage;
+      ImageView CreateImage = ViewBindings.findChildViewById(rootView, id);
+      if (CreateImage == null) {
         break missingId;
       }
 
-      return new FragmentCreateBinding((FrameLayout) rootView, cmgsoon);
+      id = R.id.buttonCreateRecipe;
+      Button buttonCreateRecipe = ViewBindings.findChildViewById(rootView, id);
+      if (buttonCreateRecipe == null) {
+        break missingId;
+      }
+
+      id = R.id.buttonImage;
+      Button buttonImage = ViewBindings.findChildViewById(rootView, id);
+      if (buttonImage == null) {
+        break missingId;
+      }
+
+      id = R.id.cuisineList;
+      LinearLayout cuisineList = ViewBindings.findChildViewById(rootView, id);
+      if (cuisineList == null) {
+        break missingId;
+      }
+
+      id = R.id.editRecipeDescription;
+      EditText editRecipeDescription = ViewBindings.findChildViewById(rootView, id);
+      if (editRecipeDescription == null) {
+        break missingId;
+      }
+
+      id = R.id.editRecipeDuration;
+      EditText editRecipeDuration = ViewBindings.findChildViewById(rootView, id);
+      if (editRecipeDuration == null) {
+        break missingId;
+      }
+
+      id = R.id.editRecipeName;
+      EditText editRecipeName = ViewBindings.findChildViewById(rootView, id);
+      if (editRecipeName == null) {
+        break missingId;
+      }
+
+      id = R.id.editRecipeServings;
+      EditText editRecipeServings = ViewBindings.findChildViewById(rootView, id);
+      if (editRecipeServings == null) {
+        break missingId;
+      }
+
+      id = R.id.ingredList;
+      LinearLayout ingredList = ViewBindings.findChildViewById(rootView, id);
+      if (ingredList == null) {
+        break missingId;
+      }
+
+      id = R.id.stepList;
+      LinearLayout stepList = ViewBindings.findChildViewById(rootView, id);
+      if (stepList == null) {
+        break missingId;
+      }
+
+      id = R.id.textView9;
+      TextView textView9 = ViewBindings.findChildViewById(rootView, id);
+      if (textView9 == null) {
+        break missingId;
+      }
+
+      return new FragmentCreateBinding((ScrollView) rootView, CreateImage, buttonCreateRecipe,
+          buttonImage, cuisineList, editRecipeDescription, editRecipeDuration, editRecipeName,
+          editRecipeServings, ingredList, stepList, textView9);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));
