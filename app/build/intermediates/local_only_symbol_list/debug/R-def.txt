@@ -112,6 +112,7 @@ id ingredList2
 id ingredStepsButton
 id ingred_line
 id isDairyFree
+id isFast
 id isGlutenFree
 id isHealthy
 id isPopular

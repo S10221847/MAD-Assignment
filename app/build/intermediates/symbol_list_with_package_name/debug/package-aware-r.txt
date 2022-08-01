@@ -2898,6 +2898,7 @@ id ingred_line
 id invisible
 id inward
 id isDairyFree
+id isFast
 id isGlutenFree
 id isHealthy
 id isPopular
