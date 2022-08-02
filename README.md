@@ -33,4 +33,4 @@ Ayrton - Creation of discover page, recyclerview, recipe activity, search functi
 
 Ash - Login page, signup page, helping when there is error, event handling
 
-Kok Kai - Creation of user profile, all fragments, bottom navigation bar, helping when there is error, event handling, multimedia
+Kok Kai - Creation of user profile, all creation of fragments, bottom navigation bar, event handling, multimedia, edit profile activity, edit recipe activity, helping to solve errors such as auto refreshing of activities when they resume using activity resume launcher, scrollview, Breadcrumbs for some activities, saves data to firebase database, local database and firebase authentication and preventing home fragment from shuffling the recipes after viewing finish the current recipe. 
