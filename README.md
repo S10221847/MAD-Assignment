@@ -26,7 +26,8 @@ The create page allows Users to add their own recipes to the database where othe
 Tran Huy Minh - Creation of Realtime Firebase Database and Local Database, DBHandler, FBHandler, Splash Screen and CreateFragment as well as related classes such as
 imageloadtask and DBHandlerUtility. Focus primarily on everything related to databases and create recipe feature. Involved in everything that utilizes databases from other activities. Too much bug fixing for whole app. The above description of app.
 
-Javier Koh - Creation of homepage, separation of online recipe and user created recipe, horizontal recyclerview, switch between steps and ingredients, helping when there is error, event handling
+Javier Koh - Creation of homepage, separation of online recipe and user created recipe, horizontal recyclerview, switch between steps and ingredients, helping when there is error, event handling. 
+WebAPI loading of recipes, like feature for each recipe, recipe activity page(whenever a recipe is selected, user is brought to recipe activity where they can see the steps, ingredients etc..), about recipe popup dialog, homepage and its additional category of recipes, add to shopping list feature for each recipe, designing of app screenshots for google playstore, backbutton to bring user back to the page they came from, from the recipe activity. Uploading of app to google playstore. 
 
 Ayrton - Creation of discover page, recyclerview, recipe activity, search functionality, helping when there is error, switch between steps and ingredients, multimedia, event handling
 
